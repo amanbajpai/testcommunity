@@ -5,7 +5,10 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,22 +19,30 @@
             android:layout_height="wrap_content">
 
             <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
-                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_centerVertical="true"
-                android:id="@+id/people_rank_icon"
-                android:drawableLeft="@drawable/first_place"
+                android:id="@+id/people_rank_text"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <ImageView
+                android:visibility="invisible"
+                android:src="@drawable/first_place"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_centerVertical="true"
+                android:id="@+id/rank_icon"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
                 android:textColor="#42505d"
                 android:id="@+id/name_text"
                 android:text="Sebrina"
-                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_toLeftOf="@+id/rank_points_text"
                 android:textSize="@dimen/_15sdp"
-                android:layout_toRightOf="@+id/people_rank_icon"
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content" />
             <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview

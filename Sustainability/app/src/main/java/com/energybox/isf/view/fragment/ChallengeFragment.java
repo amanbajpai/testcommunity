@@ -10,10 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.energybox.isf.R;
+import com.energybox.isf.model.ChallangeRankList;
 import com.energybox.isf.view.activity.HomeActivity;
 import com.energybox.isf.view.adapter.ChallengeAdapter;
 import com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import java.util.ArrayList;
 
 /**
  * Created by akshaydashore on 3/4/18
@@ -26,6 +29,7 @@ public class ChallengeFragment extends BaseFragment {
     HomeActivity activity;
     Context context;
     ChallengeAdapter challengeAdapter;
+    ArrayList<ChallangeRankList> challangeRankLists;
     private OpenSansSemiBoldTextView add_friend_tv;
     private ImageView start_quize_image;
 
@@ -51,6 +55,8 @@ public class ChallengeFragment extends BaseFragment {
     }
 
     private void initView(View view) {
+        challangeRankLists = new ArrayList<>();
+        challangeRankLists = getList();
         challenge_recylerview = (XRecyclerView) view.findViewById(R.id.challenge_recylerview);
         challenge_recylerview.setLoadingMoreEnabled(false);
         challenge_recylerview.setPullRefreshEnabled(false);
@@ -62,11 +68,48 @@ public class ChallengeFragment extends BaseFragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         challenge_recylerview.setLayoutManager(linearLayoutManager);
-        challengeAdapter = new ChallengeAdapter(getActivity());
+        challengeAdapter = new ChallengeAdapter(getActivity(),challangeRankLists);
         challenge_recylerview.setAdapter(challengeAdapter);
         start_quize_image = (ImageView) voucherHeader.findViewById(R.id.start_quize_image);
         add_friend_tv.setOnClickListener(this);
         start_quize_image.setOnClickListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity)getActivity()).backBtn.setVisibility(View.GONE);
+        ((HomeActivity)getActivity()).sliderIcon.setVisibility(View.VISIBLE);
+
+
+    }
+
+    /*
+    *
+    * Dummy List
+    *
+    * */
+
+    public ArrayList<ChallangeRankList> getList() {
+        challangeRankLists.add(new ChallangeRankList("1", "2,753", "Sebrina"));
+        challangeRankLists.add(new ChallangeRankList("2", "2,664", "Kelsi"));
+        challangeRankLists.add(new ChallangeRankList("3", "2,653", "Jose"));
+        challangeRankLists.add(new ChallangeRankList("4", "2,053", "Eliz"));
+        challangeRankLists.add(new ChallangeRankList("5", "1,922", "Gabby"));
+        challangeRankLists.add(new ChallangeRankList("6", "1,053", "Isabelle"));
+        challangeRankLists.add(new ChallangeRankList("7", "1,045", "Jane Doe"));
+        challangeRankLists.add(new ChallangeRankList("8", "950", "Sean"));
+        challangeRankLists.add(new ChallangeRankList("9", "500", "Michal"));
+        challangeRankLists.add(new ChallangeRankList("10", "434", "Hajel"));
+        challangeRankLists.add(new ChallangeRankList("11", "378", "Marcus"));
+        challangeRankLists.add(new ChallangeRankList("12", "301", "Susan"));
+        challangeRankLists.add(new ChallangeRankList("13", "289", "Philip"));
+        challangeRankLists.add(new ChallangeRankList("14", "200", "Stephen"));
+        challangeRankLists.add(new ChallangeRankList("15", "198", "Maria"));
+        challangeRankLists.add(new ChallangeRankList("16", "190", "Novak"));
+
+
+        return challangeRankLists;
     }
 
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sustainability</string>
+    <string name="app_name">ISF</string>
 
     <!--Login Screen String-->
 
@@ -62,7 +62,7 @@
     
     <!--Rewards Screen Strings-->
     <string name="txt_good_job_text">Good job! you\'re the Top 1%. </string>
-    <string name="txt_top_ranked">You ranked 16 out of the whole school in may.</string>
+    <string name="txt_top_ranked">You ranked 7 out of the whole school in may.</string>
     <string name="txt_gift">Here is your Gift!</string>
     <string name="txt_a_cup_of_free_drink">A cup of Free Drink Under $10.</string>
     <string name="txt_expires">Expires in 7d</string>

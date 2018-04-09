@@ -1,15 +1,19 @@
 package com.energybox.isf.view.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.energybox.isf.R;
+import com.energybox.isf.model.ChallangeRankList;
 import com.energybox.isf.utils.AppConstants;
 import com.energybox.isf.view.customs.customfonts.OpenSansLightTextview;
 
@@ -23,10 +27,12 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
     Context context;
+    ArrayList<ChallangeRankList>challangeRankLists;
 
 
-    public ChallengeAdapter(Context context) {
+    public ChallengeAdapter(Context context,ArrayList<ChallangeRankList>challangeRankLists) {
         this.context = context;
+        this.challangeRankLists=challangeRankLists;
     }
 /*
 
@@ -62,19 +68,52 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case AppConstants.TOP_RANKED_VIEW:
                 final TopRankedViewHolder topRankedViewHolder = (TopRankedViewHolder) holder;
                 if(position==0){
+                    topRankedViewHolder.postion.setVisibility(View.INVISIBLE);
+                    topRankedViewHolder.rankIcon.setVisibility(View.VISIBLE);
+                    topRankedViewHolder.rankIcon.setImageResource(R.drawable.first_place);
+                    topRankedViewHolder.points.setText(challangeRankLists.get(position).getRankPoints());
+                    topRankedViewHolder.name.setText(challangeRankLists.get(position).getRankerName());
                    // topRankedViewHolder.postion.setCompoundDrawablesWithIntrinsicBounds(R.drawable.first_place,0,0,0);
                 }
                 break;
             case AppConstants.OTHERS_RANK_VIEW:
                 final OtheresRankViewHolder otheresRankViewHolder = (OtheresRankViewHolder) holder;
                 if(position==1){
+                    otheresRankViewHolder.postion.setVisibility(View.INVISIBLE);
+                    otheresRankViewHolder.rankIcon.setVisibility(View.VISIBLE);
+                    otheresRankViewHolder.rankIcon.setImageResource(R.drawable.second_place);
+                    otheresRankViewHolder.points.setText(challangeRankLists.get(position).getRankPoints());
+                    otheresRankViewHolder.name.setText(challangeRankLists.get(position).getRankerName());
                    // otheresRankViewHolder.postion.setCompoundDrawablesWithIntrinsicBounds(R.drawable.second_place,0,0,0);
 
                 }
                 else if(position==2){
+                    otheresRankViewHolder.postion.setVisibility(View.INVISIBLE);
+                    otheresRankViewHolder.rankIcon.setVisibility(View.VISIBLE);
+                    otheresRankViewHolder.rankIcon.setImageResource(R.drawable.third_place);
+                    otheresRankViewHolder.points.setText(challangeRankLists.get(position).getRankPoints());
+                    otheresRankViewHolder.name.setText(challangeRankLists.get(position).getRankerName());
                   //  otheresRankViewHolder.postion.setCompoundDrawablesWithIntrinsicBounds(R.drawable.third_place,0,0,0);
                 }
+                else if(position==6){
+                    otheresRankViewHolder.postion.setVisibility(View.VISIBLE);
+                    otheresRankViewHolder.rankIcon.setVisibility(View.INVISIBLE);
+                    otheresRankViewHolder.postion.setText(challangeRankLists.get(position).getRankPostion());
+                    otheresRankViewHolder.points.setText(challangeRankLists.get(position).getRankPoints());
+                    otheresRankViewHolder.name.setText(challangeRankLists.get(position).getRankerName()+" "+"(You)");
+                    otheresRankViewHolder.postion.setTextColor(ContextCompat.getColor(context,R.color.home_bottom_card_text_color));
+                    otheresRankViewHolder.name.setTextColor(ContextCompat.getColor(context,R.color.black));
+                    otheresRankViewHolder.points.setTextColor(ContextCompat.getColor(context,R.color.home_bottom_card_text_color));
+                    Typeface externalFont= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Semibold_0.ttf");
+                    otheresRankViewHolder.name.setTypeface(externalFont);
+
+                }
                 else {
+                    otheresRankViewHolder.postion.setVisibility(View.VISIBLE);
+                    otheresRankViewHolder.rankIcon.setVisibility(View.INVISIBLE);
+                    otheresRankViewHolder.postion.setText(challangeRankLists.get(position).getRankPostion());
+                    otheresRankViewHolder.points.setText(challangeRankLists.get(position).getRankPoints());
+                    otheresRankViewHolder.name.setText(challangeRankLists.get(position).getRankerName());
                 }
                 break;
         }
@@ -82,7 +121,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        return 20;
+        return challangeRankLists.size();
     }
 
     @Override
@@ -100,25 +139,28 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public class TopRankedViewHolder extends RecyclerView.ViewHolder {
 
         OpenSansLightTextview name, postion, points;
+        ImageView rankIcon;
 
         public TopRankedViewHolder(View itemView) {
             super(itemView);
             name = (OpenSansLightTextview) itemView.findViewById(R.id.name_text);
             postion = (OpenSansLightTextview) itemView.findViewById(R.id.people_rank_text);
             points = (OpenSansLightTextview) itemView.findViewById(R.id.rank_points_text);
+            rankIcon=(ImageView)itemView.findViewById(R.id.rank_icon);
 
         }
     }
 
     public class OtheresRankViewHolder extends RecyclerView.ViewHolder {
         OpenSansLightTextview name, postion, points;
-
-
+        ImageView rankIcon;
         public OtheresRankViewHolder(View itemView) {
             super(itemView);
             name = (OpenSansLightTextview) itemView.findViewById(R.id.name_text);
             postion = (OpenSansLightTextview) itemView.findViewById(R.id.people_rank_text);
             points = (OpenSansLightTextview) itemView.findViewById(R.id.rank_points_text);
+            rankIcon=(ImageView)itemView.findViewById(R.id.rank_icon);
+
 
         }
     }

@@ -10,27 +10,36 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:paddingBottom="@dimen/_25sdp"
-            android:paddingTop="@dimen/_25sdp"
+            android:paddingBottom="@dimen/_22sdp"
+            android:paddingTop="@dimen/_22sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
                 android:layout_marginLeft="@dimen/_5sdp"
+                android:visibility="invisible"
                 android:layout_centerVertical="true"
                 android:id="@+id/people_rank_text"
                 android:drawableLeft="@drawable/first_place"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_centerVertical="true"
+                android:id="@+id/rank_icon"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
                 android:textColor="#42505d"
                 android:text="Sebrina"
-                android:layout_marginLeft="@dimen/_15sdp"
+                android:id="@+id/name_text"
+                android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_toLeftOf="@+id/rank_points_text"
                 android:textSize="@dimen/_25sdp"
-                android:layout_toRightOf="@+id/people_rank_text"
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content" />
             <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
