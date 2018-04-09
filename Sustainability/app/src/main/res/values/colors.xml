@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="drawer_bg_color">#333333</color>
+    <color name="house_home_color">#1A5A77</color>
+    <color name="saved_color">#ff407b</color>
+    <color name="color_text_and_spinner">#00DCCF</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="dark_gray">#43515D</color>
+    <color name="gray">#91999E</color>
+    <color name="red">#FF4081</color>
+    <color name="white_transparent">#cbffffff</color>
+    <color name="green">#1A5A77</color>
+
+    <color name="light_text_color">#989fa4</color>
+    <color name="semi_light_color">#4d4d4d</color>
+    <color name="home_bottom_card_text_color">#009FAC</color>
+
+</resources>

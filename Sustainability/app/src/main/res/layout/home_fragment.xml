@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@drawable/house_home_selector"
+        android:padding="@dimen/_5sdp">
+
+        <ImageView
+            android:id="@+id/houseImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:src="@drawable/home" />
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansBoldItallicTextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/houseImageView"
+            android:text="@string/txt_house_a"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_10sdp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_below="@+id/home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <android.support.v7.widget.CardView
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_weight="0.92">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_above="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:padding="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:orientation="vertical"
+                        android:layout_toLeftOf="@+id/icon_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                            android:layout_width="match_parent"
+                            android:padding="@dimen/_1sdp"
+                            android:textColor="@color/semi_light_color"
+                            android:layout_toLeftOf="@+id/icon_user"
+                            android:textSize="@dimen/_13sdp"
+                            android:layout_alignParentLeft="true"
+                            android:text="@string/txt_energy_saving"
+                            android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:padding="@dimen/_1sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:textColor="@color/light_text_color"
+                                android:textSize="@dimen/_11sdp"
+                                android:text="@string/txt_consumption"
+                                android:layout_height="wrap_content" />
+                            <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                                android:layout_width="wrap_content"
+                                android:drawablePadding="@dimen/_3sdp"
+                                android:drawableRight="@drawable/small_arrow"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:textColor="@color/color_text_and_spinner"
+                                android:textSize="@dimen/_11sdp"
+                                android:text="@string/txt_this_month"
+                                android:layout_height="wrap_content" />
+
+
+                        </LinearLayout>
+                        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+                            android:layout_width="match_parent"
+                            android:padding="@dimen/_1sdp"
+                            android:textColor="@color/light_text_color"
+                            android:layout_toLeftOf="@+id/icon_user"
+                            android:textSize="@dimen/_10sdp"
+                            android:layout_alignParentLeft="true"
+                            android:text="@string/txt_this_compare"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                    <ImageView
+                        android:id="@+id/icon_user"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/dummy"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                        android:layout_alignParentBottom="true"
+                        android:text="20%"
+                        android:id="@+id/percentTextview"
+                        android:textSize="@dimen/_30sdp"
+                        android:textColor="@color/color_text_and_spinner"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:tint="@color/color_text_and_spinner"
+                        android:src="@drawable/down_arrow"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_toRightOf="@+id/percentTextview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:id="@+id/progressBar"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_55sdp">
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/kwh_text_status"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="914 kWh"
+                        android:layout_toLeftOf="@+id/full_status_text"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:textColor="@color/color_text_and_spinner"
+                        android:layout_alignParentTop="true"
+                        android:layout_height="wrap_content" />
+                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/_10sdp"
+                        android:id="@+id/full_status_text"
+                        android:text=" /1,188.2 kWh"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:textColor="@color/semi_light_color"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_height="wrap_content" />
+
+
+                    <SeekBar
+                        android:progressDrawable="@drawable/custom_seekbar"
+                        style="@style/tallerBarStyle"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/seekbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_20sdp"
+                        android:max="100"
+                        android:progress="30"
+                        android:thumb="@android:color/white" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+        
+        <RelativeLayout
+            android:id="@+id/how_much_save_rl"
+            android:clickable="true"
+            android:background="@drawable/how_much_saved_selector"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_weight=".14"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <ImageView
+                android:src="@drawable/info"
+                android:id="@+id/infoImagView"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+                android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_12sdp"
+                android:text="@string/txt_how_much_saved"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/infoImagView"
+                android:layout_toLeftOf="@+id/rightArrowImagView"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:src="@drawable/right_arrow"
+                android:id="@+id/rightArrowImagView"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.92">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:padding="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                            android:layout_width="match_parent"
+                            android:padding="@dimen/_1sdp"
+                            android:textColor="@color/semi_light_color"
+                            android:layout_toLeftOf="@+id/icon_user"
+                            android:textSize="@dimen/_13sdp"
+                            android:layout_alignParentLeft="true"
+                            android:text="@string/txt_school_energy_saving_txt"
+                            android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:padding="@dimen/_1sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                                android:layout_width="wrap_content"
+                                android:drawablePadding="@dimen/_3sdp"
+                                android:textColor="@color/home_bottom_card_text_color"
+                                android:textSize="@dimen/_11sdp"
+                                android:text="@string/txt_date_upto"
+                                android:layout_height="wrap_content" />
+
+
+                        </LinearLayout>
+                        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+                            android:layout_width="match_parent"
+                            android:padding="@dimen/_1sdp"
+                            android:textColor="@color/light_text_color"
+                            android:layout_toLeftOf="@+id/icon_user"
+                            android:textSize="@dimen/_10sdp"
+                            android:layout_alignParentLeft="true"
+                            android:text="@string/txt_this_compare"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                    <ImageView
+                        android:id="@+id/home_icon"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:src="@drawable/school_icon"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                        android:text="15%"
+                        android:layout_above="@+id/school_kwh_text_status"
+                        android:id="@+id/homePercentTextview"
+                        android:textSize="@dimen/_30sdp"
+                        android:textColor="@color/home_bottom_card_text_color"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_marginBottom="@dimen/_30sdp"
+                        android:layout_above="@+id/school_kwh_text_status"
+                        android:tint="@color/home_bottom_card_text_color"
+                        android:src="@drawable/down_arrow"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/homePercentTextview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/school_kwh_text_status"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="914 kWh"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/home_bottom_card_text_color"
+                        android:layout_height="wrap_content" />
+                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_toRightOf="@+id/school_kwh_text_status"
+                        android:id="@+id/school_full_status_text"
+                        android:text=" /1,188.2 kWh"
+                        android:textColor="@color/semi_light_color"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

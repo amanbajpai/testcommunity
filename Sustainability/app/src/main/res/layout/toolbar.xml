@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/toolbar"
+
+    android:minHeight="?attr/actionBarSize"
+    app:contentInsetEnd="0dp"
+    android:background="@android:color/white"
+    app:contentInsetLeft="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetStart="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/sliderIcon"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/backBtn"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/toolbar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/serachIcon"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/search_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+
+
+
+</android.support.v7.widget.Toolbar>

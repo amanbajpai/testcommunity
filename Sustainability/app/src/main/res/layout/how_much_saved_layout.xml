@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_15sdp">
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        android:id="@+id/how_much_save_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/how_much_i_saved"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        android:id="@+id/this_week_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_12sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawableRight="@drawable/small_arrow"
+                        android:text="@string/this_week"
+                        android:textColor="@color/color_text_and_spinner"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/how_much_save_label"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:orientation="horizontal">
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="68"
+                            android:textColor="@color/color_text_and_spinner"
+                            android:textSize="@dimen/_32sdp" />
+
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="@string/kwh"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_13sdp"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:text="@string/cost_hk"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp" />
+
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            android:id="@+id/cost_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_12sdp"
+                            android:text="$15"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_32sdp" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/dark_gray"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/left_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/which_equals_to"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <LinearLayout
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/select_other_goods"
+                                android:textColor="@color/color_text_and_spinner"
+                                android:textSize="@dimen/_12sdp" />
+                            <ImageView
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/small_arrow" />
+
+
+                        </LinearLayout>
+
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:text="@string/for_comparision"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:id="@+id/middle_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/hot_cho" />
+
+                            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hot chocolate"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </LinearLayout>
+
+
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:text="X2"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_15sdp" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/how_much_save_rl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_weight=".14"
+                android:background="@drawable/how_much_saved_selector"
+                android:clickable="true"
+                android:padding="@dimen/_5sdp">
+
+                <ImageView
+                    android:id="@+id/infoImagView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/info" />
+
+                <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/rightArrowImagView"
+                    android:layout_toRightOf="@+id/infoImagView"
+                    android:text="@string/how_to_save_more_money"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <ImageView
+                    android:id="@+id/rightArrowImagView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/small_arrow"
+                    android:tint="@color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/turnoff_drawable_bg"
+                android:padding="@dimen/_1sdp">
+
+                <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="@string/turn_off_your_a_c_when_you_re_not_in_classroom"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_12sdp" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_15sdp">
+
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        android:id="@+id/carbon_foot_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Corbon foot print"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        android:id="@+id/consumption_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/carbon_foot_label"
+                        android:text="consumption of"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        android:id="@+id/this_month_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/carbon_foot_label"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_toRightOf="@id/consumption_label"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableRight="@drawable/small_arrow"
+                        android:text="This month"
+                        android:textColor="@color/color_text_and_spinner"
+                        android:textSize="@dimen/_10sdp" />
+
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        android:id="@+id/value_km"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_toRightOf="@id/this_month_tv"
+                        android:text="34.5"
+                        android:textColor="@color/color_text_and_spinner"
+                        android:textSize="@dimen/_20sdp" />
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@id/value_km"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="kg"
+
+                        />
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/dark_gray"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_15sdp">
+
+                    <LinearLayout
+                        android:id="@+id/left_layout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/which_wastes"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sdp" />
+
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:drawableRight="@drawable/small_arrow"
+                            android:text="@string/select_other_item"
+                            android:textColor="@color/color_text_and_spinner"
+                            android:textSize="@dimen/_12sdp" />
+
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:text="@string/for_comparision"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/middle_layout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/left_layout1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/tree" />
+
+                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Tree"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+
+                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_toRightOf="@+id/middle_layout1"
+                        android:text="X3"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_15sdp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    android:src="@drawable/graph" />
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_110sdp"
+            android:padding="@dimen/_10sdp">
+
+            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_toLeftOf="@+id/reward_icons"
+                android:maxLines="1"
+                android:text="@string/txt_good_job_text"
+                android:textColor="#4d4d4d"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                android:id="@+id/sub_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_text"
+                android:layout_marginLeft="@dimen/_1sdp"
+                android:layout_marginRight="@dimen/_35sdp"
+                android:layout_toLeftOf="@+id/reward_icons"
+                android:text="@string/txt_top_ranked"
+                android:textColor="#989fa4"
+                android:textSize="@dimen/_10sdp" />
+
+
+            <ImageView
+                android:id="@+id/reward_icons"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/group" />
+
+            <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                android:id="@+id/gift_text"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/sub_title_text"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_1sdp"
+                android:layout_toLeftOf="@+id/reward_icons"
+                android:text="@string/txt_gift"
+                android:textColor="#2addd0"
+                android:textSize="@dimen/_12sdp" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

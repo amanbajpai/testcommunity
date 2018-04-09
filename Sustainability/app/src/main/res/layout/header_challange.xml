@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:background="@drawable/challege_header_bg"
+        android:padding="@dimen/_15sdp">
+
+        <ImageView
+            android:id="@+id/start_quize_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/challenge_header" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/friend_tab_selection_bg"
+            android:gravity="center"
+            android:clickable="true"
+            android:minWidth="@dimen/_120sdp"
+            android:padding="@dimen/_2sdp"
+            android:text="Friends"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/house_tab_deselected_bg"
+            android:gravity="center"
+            android:clickable="true"
+            android:minWidth="@dimen/_120sdp"
+            android:padding="@dimen/_2sdp"
+            android:text="House"
+            android:textColor="@color/color_text_and_spinner"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:text="@string/dashboard"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp" />
+
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+            android:id="@+id/add_friend_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:drawableLeft="@drawable/add"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text="@string/friend"
+            android:textColor="@color/color_text_and_spinner"
+            android:textSize="@dimen/_11sdp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

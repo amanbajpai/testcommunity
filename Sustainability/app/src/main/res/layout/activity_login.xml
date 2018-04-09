@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    tools:context="com.energybox.isf.view.activity.LoginActivity">
+
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/school_logo" />
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:text="@string/txt_sustainability"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_16sdp" />
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansBoldTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/login_with_student_id_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_btn_selector"
+            android:clickable="true"
+            android:paddingBottom="@dimen/_4sdp"
+            android:paddingLeft="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:text="@string/txt_login_student_id"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12sdp" />
+
+        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/forgot_password_btn"
+            android:clickable="true"
+            android:padding="@dimen/_3sdp"
+            android:background="@drawable/forgot_password_selctor"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_forgot_password"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_10sdp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+            android:layout_width="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="@string/txt_powerd_by"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_10sdp" />
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/companylogo" />
+
+
+
+    </LinearLayout>
+</RelativeLayout>
