@@ -18,7 +18,11 @@ android {
         }
     }
 }
-
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -32,6 +36,10 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'net.alexandroid.utils:indicators:1.6'
     compile 'com.jcodecraeer:xrecyclerview:1.5.9'
+    compile 'gun0912.ted:tedpermission:2.1.1'
+
+
+
 
 
 

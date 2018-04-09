@@ -31,7 +31,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:src="@drawable/dummy" />
 
-                <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -41,7 +41,7 @@
                     android:textColor="@color/gray"
                     android:textSize="@dimen/_12sdp" />
 
-                <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -49,7 +49,7 @@
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
 
-            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"

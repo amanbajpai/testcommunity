@@ -21,7 +21,7 @@
             android:layout_marginLeft="@dimen/_10sdp"
             android:src="@drawable/home" />
 
-        <com.energybox.isf.view.customs.customfonts.OpenSansBoldItallicTextView
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldItallicTextView
             android:layout_width="wrap_content"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                             android:layout_width="match_parent"
                             android:padding="@dimen/_1sdp"
                             android:textColor="@color/semi_light_color"
@@ -80,13 +80,13 @@
                             android:padding="@dimen/_1sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                                 android:layout_width="wrap_content"
                                 android:textColor="@color/light_text_color"
                                 android:textSize="@dimen/_11sdp"
                                 android:text="@string/txt_consumption"
                                 android:layout_height="wrap_content" />
-                            <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                 android:layout_width="wrap_content"
                                 android:drawablePadding="@dimen/_3sdp"
                                 android:drawableRight="@drawable/small_arrow"
@@ -98,7 +98,7 @@
 
 
                         </LinearLayout>
-                        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                             android:layout_width="match_parent"
                             android:padding="@dimen/_1sdp"
                             android:textColor="@color/light_text_color"
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content" />
 
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                         android:layout_alignParentBottom="true"
                         android:text="20%"
                         android:id="@+id/percentTextview"
@@ -153,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_55sdp">
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:layout_width="wrap_content"
                         android:id="@+id/kwh_text_status"
                         android:textSize="@dimen/_10sdp"
@@ -163,7 +163,7 @@
                         android:textColor="@color/color_text_and_spinner"
                         android:layout_alignParentTop="true"
                         android:layout_height="wrap_content" />
-                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:textSize="@dimen/_10sdp"
                         android:id="@+id/full_status_text"
@@ -210,7 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                 android:layout_width="match_parent"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_12sdp"
@@ -255,7 +255,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                             android:layout_width="match_parent"
                             android:padding="@dimen/_1sdp"
                             android:textColor="@color/semi_light_color"
@@ -268,7 +268,7 @@
                             android:padding="@dimen/_1sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                 android:layout_width="wrap_content"
                                 android:drawablePadding="@dimen/_3sdp"
                                 android:textColor="@color/home_bottom_card_text_color"
@@ -278,7 +278,7 @@
 
 
                         </LinearLayout>
-                        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                             android:layout_width="match_parent"
                             android:padding="@dimen/_1sdp"
                             android:textColor="@color/light_text_color"
@@ -304,7 +304,7 @@
                         android:layout_height="wrap_content" />
 
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansRegularTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                         android:text="15%"
                         android:layout_above="@+id/school_kwh_text_status"
                         android:id="@+id/homePercentTextview"
@@ -326,7 +326,7 @@
 
 
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:id="@+id/school_kwh_text_status"
@@ -337,7 +337,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textColor="@color/home_bottom_card_text_color"
                         android:layout_height="wrap_content" />
-                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:textSize="@dimen/_10sdp"

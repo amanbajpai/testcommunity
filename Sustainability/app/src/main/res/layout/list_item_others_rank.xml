@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_centerVertical="true"
                 android:id="@+id/people_rank_text"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
                 android:textColor="#42505d"
                 android:id="@+id/name_text"
@@ -45,7 +45,7 @@
                 android:textSize="@dimen/_15sdp"
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content" />
-            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="wrap_content"
                 android:id="@+id/rank_points_text"
                 android:layout_marginRight="@dimen/_5sdp"

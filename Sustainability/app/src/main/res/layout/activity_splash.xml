@@ -5,7 +5,7 @@
     android:background="@drawable/splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.energybox.isf.view.activity.SplashActivity">
+    tools:context="com.gdc.isfacademy.view.activity.SplashActivity">
 
 
 

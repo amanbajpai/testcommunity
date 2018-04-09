@@ -19,7 +19,7 @@
             android:src="@drawable/dummy" />
 
 
-        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
             android:id="@+id/profile_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
-        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
             android:id="@+id/action_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -46,7 +46,7 @@
 
     <fragment xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/fragment_right_drawer"
-        android:name="com.energybox.isf.view.fragment.LeftMenuFragment"
+        android:name="com.gdc.isfacademy.view.fragment.LeftMenuFragment"
         android:layout_width="@dimen/_220sdp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"

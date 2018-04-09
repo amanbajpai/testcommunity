@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ISF</string>
+    <string name="app_name">ISF Community</string>
 
     <!--Login Screen String-->
 
@@ -66,6 +66,12 @@
     <string name="txt_gift">Here is your Gift!</string>
     <string name="txt_a_cup_of_free_drink">A cup of Free Drink Under $10.</string>
     <string name="txt_expires">Expires in 7d</string>
+
+    <!--Friends add Strings-->
+    <string name="txt_search">Search</string>
+    <string name="txt_send_request">SEND REQUEST</string>
+    <string name="txt_try_later">TRY LATER</string>
+
 
 
 </resources>

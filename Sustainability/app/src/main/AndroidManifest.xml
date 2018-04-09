@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.energybox.isf">
+    package="com.gdc.isfacademy">
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name="com.energybox.isf.application.Sustainability"
+        android:name="com.gdc.isfacademy.application.Sustainability"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/FullScreenTheme">
-        <activity android:name="com.energybox.isf.view.activity.SplashActivity">
+        <activity android:name="com.gdc.isfacademy.view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.energybox.isf.view.activity.HomeActivity" />
-        <activity android:name="com.energybox.isf.view.activity.LoginActivity" />
-        <activity android:name="com.energybox.isf.view.activity.BaseActivity"></activity>
+        <activity android:name="com.gdc.isfacademy.view.activity.HomeActivity" />
+        <activity android:name="com.gdc.isfacademy.view.activity.LoginActivity" />
+        <activity android:name="com.gdc.isfacademy.view.activity.BaseActivity"></activity>
     </application>
 
 </manifest>

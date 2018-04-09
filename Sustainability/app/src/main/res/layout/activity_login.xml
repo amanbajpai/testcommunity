@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context="com.energybox.isf.view.activity.LoginActivity">
+    tools:context="com.gdc.isfacademy.view.activity.LoginActivity">
 
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/school_logo" />
 
-        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/_16sdp" />
 
-        <com.energybox.isf.view.customs.customfonts.OpenSansBoldTextView
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
             android:layout_width="wrap_content"
             android:id="@+id/login_with_student_id_btn"
             android:layout_gravity="center"
@@ -47,7 +47,7 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/_12sdp" />
 
-        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
             android:layout_width="wrap_content"
             android:id="@+id/forgot_password_btn"
             android:clickable="true"
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
-        <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
             android:layout_width="wrap_content"
             android:padding="@dimen/_5sdp"
             android:layout_height="wrap_content"

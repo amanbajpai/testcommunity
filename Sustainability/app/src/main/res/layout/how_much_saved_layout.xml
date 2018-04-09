@@ -30,14 +30,14 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_15sdp">
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/how_much_save_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/how_much_i_saved"
                         android:textSize="@dimen/_14sdp" />
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:id="@+id/this_week_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                         android:layout_marginTop="@dimen/_15sdp"
                         android:orientation="horizontal">
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="68"
@@ -66,14 +66,14 @@
                             android:textSize="@dimen/_32sdp" />
 
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:text="@string/kwh"
                             android:textSize="@dimen/_13sdp" />
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/_13sdp"
@@ -84,7 +84,7 @@
                             android:textSize="@dimen/_11sdp" />
 
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:id="@+id/cost_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/which_equals_to"
@@ -141,7 +141,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/select_other_goods"
@@ -158,7 +158,7 @@
                         </LinearLayout>
 
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_3sdp"
@@ -188,7 +188,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/hot_cho" />
 
-                            <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Hot chocolate"
@@ -200,7 +200,7 @@
 
 
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -240,7 +240,7 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/info" />
 
-                <com.energybox.isf.view.customs.customfonts.OpenSansItallicTextView
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -273,7 +273,7 @@
                 android:background="@drawable/turnoff_drawable_bg"
                 android:padding="@dimen/_1sdp">
 
-                <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -296,7 +296,7 @@
                     android:padding="@dimen/_15sdp">
 
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/carbon_foot_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -304,7 +304,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/consumption_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -314,7 +314,7 @@
                         android:textSize="@dimen/_12sdp" />
 
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/this_month_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -328,7 +328,7 @@
                         android:textSize="@dimen/_10sdp" />
 
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:id="@+id/value_km"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -338,7 +338,7 @@
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_20sdp" />
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -376,7 +376,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="vertical">
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/which_wastes"
@@ -384,7 +384,7 @@
                             android:textSize="@dimen/_13sdp" />
 
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_12sdp"
@@ -395,7 +395,7 @@
                             android:textSize="@dimen/_12sdp" />
 
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_3sdp"
@@ -418,7 +418,7 @@
                             android:layout_gravity="center_horizontal"
                             android:src="@drawable/tree" />
 
-                        <com.energybox.isf.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -430,7 +430,7 @@
                     </LinearLayout>
 
 
-                    <com.energybox.isf.view.customs.customfonts.OpenSansSemiBoldTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
