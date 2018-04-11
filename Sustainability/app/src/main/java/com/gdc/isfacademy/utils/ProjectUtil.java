@@ -1,29 +1,52 @@
 package com.gdc.isfacademy.utils;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.Spanned;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
+import com.gdc.isfacademy.application.Sustainability;
+import com.gdc.isfacademy.receivers.AlarmReceiver;
 import com.gdc.isfacademy.view.activity.HomeActivity;
+import com.gdc.isfacademy.view.activity.LoginActivity;
+import com.gdc.isfacademy.view.activity.SplashActivity;
+import com.gdc.isfacademy.view.customs.customfonts.CustomTFSpan;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 
 import java.lang.reflect.Field;
+import java.util.Calendar;
+import java.util.Random;
 
 /**
  * Created by ashishthakur on 29/3/18.
@@ -59,6 +82,10 @@ public class ProjectUtil {
         Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
         pbutton.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccent));
     }
+
+
+
+
 
 
     @SuppressWarnings("deprecation")
@@ -131,6 +158,171 @@ public class ProjectUtil {
 
         Toast.makeText(context,""+message,Toast.LENGTH_SHORT).show();
     }
+
+
+    public static void setAlarm(Context context) {
+        try
+        {
+            AlarmManager alarmMgr;
+            PendingIntent alarmIntent;
+            if (!MyPref.getInstance(context).hasAlarmSet())
+            {
+                Log.e("alaram set","set");
+                MyPref.getInstance(context).setHasAlarmSet(true);
+                MyPref.getInstance(context).setAlarmTime("16");
+
+                // Set the alarm to start at approximately 4:00 p.m.
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.set(Calendar.HOUR_OF_DAY, 16);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+
+                alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(context, AlarmReceiver.class);
+                alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+
+                alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, alarmIntent);
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+
+    public static void checkTime(Context context)
+    {
+        try
+        {
+            Calendar calendar = Calendar.getInstance();
+
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            Log.e("hours",""+hour);
+
+
+            if (hour >=8 && hour < 16)
+            {
+                Log.e("hoursInvalide",""+hour);
+                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME,false);
+                showInvalidTimeDialog(context);
+
+            }
+            else {
+                Log.e("hoursValid",""+hour);
+                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME,true);
+
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void showInvalidTimeDialog(final Context context)
+    {
+        try
+        {
+            appRestrictionAlertDialog(context);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void appRestrictionAlertDialog(final Context mContext) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        Typeface externalFont= Typeface.createFromAsset(mContext.getAssets(), "fonts/OpenSans-Bold_0.ttf");
+        CustomTFSpan tfSpan = new CustomTFSpan(externalFont);
+        SpannableString spannableString = new SpannableString("ISF Community");
+        spannableString.setSpan(tfSpan, 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setTitle(spannableString)
+                .setMessage(fromHtmlAlert(mContext.getResources().getString(R.string.app_restriction_message)))
+        .setPositiveButton(R.string.txt_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                if(mContext instanceof LoginActivity){
+                    ((LoginActivity)mContext).finish();
+                }
+                else if(mContext instanceof HomeActivity){
+                    ((HomeActivity)mContext).finish();
+                }
+            }
+        });
+        final AlertDialog alert = builder.create();
+        alert.show();
+        alert.setCanceledOnTouchOutside(false);
+        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setEnabled(false);
+        Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setEnabled(true);
+        pbutton.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_and_spinner));
+    }
+
+
+
+
+    public static Dialog showCustomDialog(Context context, int resId) {
+        final Dialog dialog = new Dialog(context);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(resId);
+        Window windo = dialog.getWindow();
+        windo.setDimAmount(0.7f);
+        WindowManager.LayoutParams wlp = windo.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        windo.setAttributes(wlp);
+        return dialog;
+    }
+
+
+    public static void sendNotification() {
+        try {
+            //MyPref.getInstance(KalamanseeApp.getAppInstance().getApplicationContext()).writeBooleanPrefs("test",true);
+
+            long when = System.currentTimeMillis();
+            NotificationManager mNotificationManager = (NotificationManager) Sustainability.getAppInstance().getApplicationContext()
+                    .getSystemService(Context.NOTIFICATION_SERVICE);
+            PendingIntent contentIntent = null;
+            Intent notificationIntent = new Intent(Sustainability.getAppInstance().getApplicationContext(), SplashActivity.class);
+            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            contentIntent = PendingIntent.getActivity(Sustainability.getAppInstance().getApplicationContext(),
+                    (int) when, notificationIntent, 0);
+            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(Sustainability.getAppInstance().getApplicationContext())
+                    .setSmallIcon(getNotificationIconnew())
+                    .setLargeIcon(BitmapFactory.decodeResource(Sustainability.getAppInstance().getApplicationContext().getResources(), R.mipmap.ic_launcher))
+                    .setContentTitle(Sustainability.getAppInstance().getApplicationContext().getString(R.string.txt_daily_challange))
+                    .setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setColor(R.color.black)
+                    .setSound(defaultSoundUri)
+                    .setContentIntent(contentIntent);
+            Notification notification =
+                    notificationBuilder
+                    .setStyle(new NotificationCompat.BigTextStyle()).build();
+            notification.flags = Notification.FLAG_AUTO_CANCEL;
+            notification.defaults = Notification.DEFAULT_ALL;
+            Random random = new Random();
+            int m = random.nextInt(9999 - 1000) + 1000;
+            mNotificationManager.notify(m, notification);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int getNotificationIconnew() {
+        boolean useWhiteIcon = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
+        return useWhiteIcon ? R.mipmap.ic_launcher : R.mipmap.ic_launcher;
+    }
+
 
 
 }

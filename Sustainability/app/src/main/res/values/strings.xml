@@ -18,6 +18,8 @@
     <string name="dialog_btn_no">No</string>
     <string name="dialog_title_logout">Exit</string>
     <string name="dialog_message_exit">Are you sure you want to exit?</string>
+    <string name="app_restriction_message">You can\'t use app between 8 AM to 4 PM.</string>
+
     <string name="dialog_btn_yes">Yes</string>
     <string name="txt_Cancel">Cancel</string>
     <string name="txt_menu">Menu</string>
@@ -71,6 +73,10 @@
     <string name="txt_search">Search</string>
     <string name="txt_send_request">SEND REQUEST</string>
     <string name="txt_try_later">TRY LATER</string>
+
+    <string name="txt_enable_notification">Enable open app \"The ISF Sustainability App\"</string>
+    <string name="txt_daily_challange">It\'s time for your DAILY CHALLENGE!"</string>
+
 
 
 
