@@ -84,10 +84,6 @@ public class ProjectUtil {
     }
 
 
-
-
-
-
     @SuppressWarnings("deprecation")
     public static Spanned fromHtmlAlert(String text) {
         Spanned result;
@@ -137,7 +133,7 @@ public class ProjectUtil {
             @Override
             public void onClick(View v) {
                 dialog.cancel();
-                ((HomeActivity)context).bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
+                ((HomeActivity) context).bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
 
 
             }
@@ -154,20 +150,18 @@ public class ProjectUtil {
         dialog.show();
     }
 
-    public static void showToast(final Context context,String message){
+    public static void showToast(final Context context, String message) {
 
-        Toast.makeText(context,""+message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
     }
 
 
     public static void setAlarm(Context context) {
-        try
-        {
+        try {
             AlarmManager alarmMgr;
             PendingIntent alarmIntent;
-            if (!MyPref.getInstance(context).hasAlarmSet())
-            {
-                Log.e("alaram set","set");
+            if (!MyPref.getInstance(context).hasAlarmSet()) {
+                Log.e("alaram set", "set");
                 MyPref.getInstance(context).setHasAlarmSet(true);
                 MyPref.getInstance(context).setAlarmTime("16");
 
@@ -178,7 +172,8 @@ public class ProjectUtil {
                 calendar.set(Calendar.MINUTE, 0);
                 calendar.set(Calendar.SECOND, 0);
 
-                alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+
+                alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 Intent intent = new Intent(context, AlarmReceiver.class);
                 alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
@@ -186,85 +181,80 @@ public class ProjectUtil {
                 alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         AlarmManager.INTERVAL_DAY, alarmIntent);
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
 
-    public static void checkTime(Context context)
-    {
-        try
-        {
+    public static void checkTime(Context context) {
+        try {
             Calendar calendar = Calendar.getInstance();
 
             int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            Log.e("hours",""+hour);
+            Log.e("hours", "" + hour);
 
 
-            if (hour >=8 && hour < 16)
-            {
-                Log.e("hoursInvalide",""+hour);
-                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME,false);
+            if (hour >= 8 && hour < 16) {
+                Log.e("hoursInvalide", "" + hour);
+                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, false);
                 showInvalidTimeDialog(context);
 
-            }
-            else {
-                Log.e("hoursValid",""+hour);
-                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME,true);
+            } else {
+                Log.e("hoursValid", "" + hour);
+                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, true);
 
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void showInvalidTimeDialog(final Context context)
-    {
-        try
-        {
+    public static void showInvalidTimeDialog(final Context context) {
+        try {
             appRestrictionAlertDialog(context);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public static void appRestrictionAlertDialog(final Context mContext) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        Typeface externalFont= Typeface.createFromAsset(mContext.getAssets(), "fonts/OpenSans-Bold_0.ttf");
+        Typeface externalFont = Typeface.createFromAsset(mContext.getAssets(), "fonts/OpenSans-Bold_0.ttf");
         CustomTFSpan tfSpan = new CustomTFSpan(externalFont);
         SpannableString spannableString = new SpannableString("ISF Community");
         spannableString.setSpan(tfSpan, 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         builder.setTitle(spannableString)
                 .setMessage(fromHtmlAlert(mContext.getResources().getString(R.string.app_restriction_message)))
-        .setPositiveButton(R.string.txt_cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                if(mContext instanceof LoginActivity){
-                    ((LoginActivity)mContext).finish();
-                }
-                else if(mContext instanceof HomeActivity){
-                    ((HomeActivity)mContext).finish();
-                }
-            }
-        });
+                .setPositiveButton(R.string.txt_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        if (mContext instanceof LoginActivity) {
+                            ((LoginActivity) mContext).finish();
+                        } else if (mContext instanceof HomeActivity) {
+                            ((HomeActivity) mContext).finish();
+                        }
+                    }
+                });
         final AlertDialog alert = builder.create();
         alert.show();
         alert.setCanceledOnTouchOutside(false);
+        alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                if (mContext instanceof LoginActivity) {
+                    ((LoginActivity) mContext).finish();
+                } else if (mContext instanceof HomeActivity) {
+                    ((HomeActivity) mContext).finish();
+                }
+            }
+        });
         alert.getButton(AlertDialog.BUTTON_NEGATIVE).setEnabled(false);
         Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
         pbutton.setEnabled(true);
         pbutton.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_and_spinner));
     }
-
-
 
 
     public static Dialog showCustomDialog(Context context, int resId) {
@@ -305,7 +295,7 @@ public class ProjectUtil {
                     .setContentIntent(contentIntent);
             Notification notification =
                     notificationBuilder
-                    .setStyle(new NotificationCompat.BigTextStyle()).build();
+                            .setStyle(new NotificationCompat.BigTextStyle()).build();
             notification.flags = Notification.FLAG_AUTO_CANCEL;
             notification.defaults = Notification.DEFAULT_ALL;
             Random random = new Random();
@@ -322,7 +312,6 @@ public class ProjectUtil {
         boolean useWhiteIcon = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
         return useWhiteIcon ? R.mipmap.ic_launcher : R.mipmap.ic_launcher;
     }
-
 
 
 }

@@ -128,11 +128,9 @@ public class HomeActivity extends BaseActivity implements
                                 break;
                             case R.id.navigation_rewards:
                                 selectedFragment = RewardsFragment.newInstance();
-
                                 break;
                             case R.id.navigation_profile:
                                 selectedFragment = ProfileFragment.newInstance();
-
                                 break;
                         }
                         pushFragments(selectedFragment, null, true);
