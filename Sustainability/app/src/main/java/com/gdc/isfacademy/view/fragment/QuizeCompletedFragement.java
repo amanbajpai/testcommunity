@@ -1,6 +1,8 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdc.isfacademy.R;
+import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
@@ -18,10 +21,10 @@ import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 public class QuizeCompletedFragement extends BaseFragment {
 
     public static final String TAG = "QuizeCompletedFragement";
-
-    private OpenSansSemiBoldTextView share_tv;
     HomeActivity activity;
     Context context;
+    int count;
+    private OpenSansSemiBoldTextView share_tv;
 
     public static QuizeCompletedFragement newInstance() {
         QuizeCompletedFragement quizeFragment = new QuizeCompletedFragement();
@@ -33,6 +36,8 @@ public class QuizeCompletedFragement extends BaseFragment {
         super.onCreate(savedInstanceState);
         context = getActivity();
         activity = (HomeActivity) getActivity();
+        Bundle bundle = getArguments();
+        count = bundle.getInt(AppConstants.ANSWER_COUNT);
 
     }
 
@@ -58,7 +63,12 @@ public class QuizeCompletedFragement extends BaseFragment {
         switch (id) {
 
             case R.id.share_tv:
-                ProjectUtil.showShareDialog(context, this);
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Earned" + " " + count + " " + "Points in ISF Community Quize");
+                sendIntent.setType("text/plain");
+                startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
+                // ProjectUtil.showShareDialog(context, this);
                 break;
 
             case R.id.profile_share_tv:
@@ -68,4 +78,17 @@ public class QuizeCompletedFragement extends BaseFragment {
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 101) {
+            if (resultCode == Activity.RESULT_OK) {
+                ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
+
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                ProjectUtil.showToast(getActivity(),"Cancel");
+            }
+        }
+    }
 }

@@ -29,7 +29,8 @@
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/friend_tab_selection_bg"
+            android:id="@+id/friendsRankBtn"
+            android:background="@drawable/friend_selector"
             android:gravity="center"
             android:clickable="true"
             android:minWidth="@dimen/_120sdp"
@@ -40,8 +41,9 @@
 
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:layout_width="wrap_content"
+            android:id="@+id/houseRankBtn"
             android:layout_height="wrap_content"
-            android:background="@drawable/house_tab_deselected_bg"
+            android:background="@drawable/house_deselector"
             android:gravity="center"
             android:clickable="true"
             android:minWidth="@dimen/_120sdp"

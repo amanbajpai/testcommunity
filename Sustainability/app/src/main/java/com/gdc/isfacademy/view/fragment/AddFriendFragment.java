@@ -112,6 +112,13 @@ public class AddFriendFragment extends BaseFragment implements FriendListAdapter
     public void onClick(int id, int pos) {
         switch (id) {
             case R.id.action_tv:
+                if(adapter.getData().get(pos).isRequestSend()){
+                    adapter.getData().get(pos).setRequestSend(false);
+                }
+                else {
+                    adapter.getData().get(pos).setRequestSend(true);
+
+                }
                 ProjectUtil.showToast(getActivity(), adapter.getData().get(pos).getName());
                 break;
         }

@@ -71,6 +71,14 @@ public class MyPref {
         editor.commit();
     }
 
+    public void writeIntegerPrefs(String pref_name, int pref_val) {
+        editor.putInt(pref_name, pref_val);
+        editor.commit();
+    }
+
+    public Integer readIntegerPrefs(String pref_name) {
+        return sharedPreferences.getInt(pref_name, 0);
+    }
     public void clearPrefs() {
         editor.clear();
         editor.commit();
@@ -83,6 +91,31 @@ public class MyPref {
         editor.putBoolean(pref_name, pref_val);
         editor.commit();
     }
+
+
+    public void setAnsweredDate(String answeredDate)
+    {
+        editor.putString("answeredDate", answeredDate);
+        editor.commit();
+    }
+
+    public String getAnsweredDate()
+    {
+        return sharedPreferences.getString("answeredDate", "");
+    }
+
+
+    public void setAnsweredCount(int answeredCount)
+    {
+        editor.putInt("answeredCount", answeredCount);
+        editor.commit();
+    }
+
+    public int getAnsweredCount()
+    {
+        return sharedPreferences.getInt("answeredCount", 0);
+    }
+
 
 
 }

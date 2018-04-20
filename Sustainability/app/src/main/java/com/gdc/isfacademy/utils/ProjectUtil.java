@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +21,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -32,21 +32,29 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
-import com.gdc.isfacademy.application.Sustainability;
+import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.receivers.AlarmReceiver;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.activity.LoginActivity;
 import com.gdc.isfacademy.view.activity.SplashActivity;
 import com.gdc.isfacademy.view.customs.customfonts.CustomTFSpan;
+import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Random;
+
+import static android.R.attr.password;
 
 /**
  * Created by ashishthakur on 29/3/18.
@@ -111,6 +119,24 @@ public class ProjectUtil {
         } catch (IllegalAccessException e) {
 
         }
+    }
+
+    /*
+*
+* show all apps log from here...
+* */
+    public static void showLog(String Tag, String value, int logPrintingSection) {
+        try {
+            if (logPrintingSection == AppConstants.ERROR_LOG) {
+                Log.e(Tag, value);
+            } else {
+                Log.d(Tag, value);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public static void showShareDialog(final Context context, View.OnClickListener listener) {
@@ -277,18 +303,18 @@ public class ProjectUtil {
             //MyPref.getInstance(KalamanseeApp.getAppInstance().getApplicationContext()).writeBooleanPrefs("test",true);
 
             long when = System.currentTimeMillis();
-            NotificationManager mNotificationManager = (NotificationManager) Sustainability.getAppInstance().getApplicationContext()
+            NotificationManager mNotificationManager = (NotificationManager) ISFApp.getAppInstance().getApplicationContext()
                     .getSystemService(Context.NOTIFICATION_SERVICE);
             PendingIntent contentIntent = null;
-            Intent notificationIntent = new Intent(Sustainability.getAppInstance().getApplicationContext(), SplashActivity.class);
+            Intent notificationIntent = new Intent(ISFApp.getAppInstance().getApplicationContext(), SplashActivity.class);
             notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            contentIntent = PendingIntent.getActivity(Sustainability.getAppInstance().getApplicationContext(),
+            contentIntent = PendingIntent.getActivity(ISFApp.getAppInstance().getApplicationContext(),
                     (int) when, notificationIntent, 0);
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(Sustainability.getAppInstance().getApplicationContext())
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(ISFApp.getAppInstance().getApplicationContext())
                     .setSmallIcon(getNotificationIconnew())
-                    .setLargeIcon(BitmapFactory.decodeResource(Sustainability.getAppInstance().getApplicationContext().getResources(), R.mipmap.ic_launcher))
-                    .setContentTitle(Sustainability.getAppInstance().getApplicationContext().getString(R.string.txt_daily_challange))
+                    .setLargeIcon(BitmapFactory.decodeResource(ISFApp.getAppInstance().getApplicationContext().getResources(), R.drawable.app_icon))
+                    .setContentTitle(ISFApp.getAppInstance().getApplicationContext().getString(R.string.txt_daily_challange))
                     .setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setColor(R.color.black)
                     .setSound(defaultSoundUri)
@@ -310,8 +336,81 @@ public class ProjectUtil {
 
     private static int getNotificationIconnew() {
         boolean useWhiteIcon = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
-        return useWhiteIcon ? R.mipmap.ic_launcher : R.mipmap.ic_launcher;
+        return useWhiteIcon ? R.drawable.app_icon : R.drawable.app_icon;
     }
+
+
+
+    public static String loadJSONFromAsset(Context context) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open("questions.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    public static String getTodayDate()
+    {
+        String date = "";
+        try
+        {
+            Calendar calendar = Calendar.getInstance();
+
+            date = calendar.get(Calendar.DAY_OF_MONTH)+"-"+calendar.get(Calendar.MONTH)+"-"+calendar.get(Calendar.YEAR);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return date;
+    }
+
+    public static ProgressDialog showDialog(Context context)
+    {
+        ProgressDialog progressDialog = null;
+        try
+        {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("Loading...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return progressDialog;
+    }
+
+    public static ProgressDialog dismissDialog(ProgressDialog progressDialog)
+    {
+        try
+        {
+            if (progressDialog != null && progressDialog.isShowing())
+                progressDialog.dismiss();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return progressDialog;
+    }
+
+    public static int math(float f) {
+        int c = (int) ((f) + 0.5f);
+        float n = f + 0.5f;
+        return (n - c) % 2 == 0 ? (int) f : c;
+    }
+
 
 
 }

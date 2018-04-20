@@ -61,13 +61,14 @@
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="68"
+                            android:id="@+id/currentWeekConsumption"
                             android:textColor="@color/color_text_and_spinner"
                             android:textSize="@dimen/_32sdp" />
 
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:layout_width="wrap_content"
+                            android:id="@+id/energyUnit"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:text="@string/kwh"
@@ -89,7 +90,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_12sdp"
-                            android:text="$15"
+                            android:text="$0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_32sdp" />
 
@@ -205,7 +206,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_20sdp"
-                            android:text="X2"
+                            android:text="X0"
                             android:textColor="@color/gray"
                             android:textSize="@dimen/_15sdp" />
 
@@ -300,7 +301,7 @@
                         android:id="@+id/carbon_foot_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Corbon foot print"
+                        android:text="Carbon footprint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
 
@@ -323,7 +324,7 @@
                         android:layout_toRightOf="@id/consumption_label"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableRight="@drawable/small_arrow"
-                        android:text="This month"
+                        android:text="@string/txt_this_month"
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_10sdp" />
 
@@ -334,7 +335,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:layout_toRightOf="@id/this_month_tv"
-                        android:text="34.5"
+                        android:text="0"
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_20sdp" />
 
@@ -436,7 +437,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:layout_toRightOf="@+id/middle_layout1"
-                        android:text="X3"
+                        android:text="X0"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/_15sdp" />
                 </RelativeLayout>

@@ -53,7 +53,7 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.Holder> 
         });
 
         if(rewardListResponses.get(position).isItemOpen()){
-            holder.qr_code_relative_layout.setVisibility(View.VISIBLE);
+            holder.qr_code_relative_layout.setVisibility(View.GONE);
 
         }
         else {

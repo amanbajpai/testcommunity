@@ -24,6 +24,7 @@
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldItallicTextView
             android:layout_width="wrap_content"
             android:layout_marginLeft="@dimen/_5sdp"
+            android:id="@+id/studentHouse"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/houseImageView"
@@ -120,13 +121,14 @@
                         android:src="@drawable/dummy"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        />
 
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                         android:layout_alignParentBottom="true"
-                        android:text="20%"
+                        android:text="0%"
                         android:id="@+id/percentTextview"
                         android:textSize="@dimen/_30sdp"
                         android:textColor="@color/color_text_and_spinner"
@@ -134,8 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <ImageView
-                        android:tint="@color/color_text_and_spinner"
-                        android:src="@drawable/down_arrow"
+                        android:id="@+id/percentArrow"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
@@ -157,17 +158,19 @@
                         android:layout_width="wrap_content"
                         android:id="@+id/kwh_text_status"
                         android:textSize="@dimen/_10sdp"
-                        android:text="914 kWh"
+                        android:text="0 kWh"
+                        android:layout_marginRight="@dimen/_1sdp"
                         android:layout_toLeftOf="@+id/full_status_text"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:textColor="@color/color_text_and_spinner"
                         android:layout_alignParentTop="true"
                         android:layout_height="wrap_content" />
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                         android:layout_width="wrap_content"
                         android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_1sdp"
                         android:id="@+id/full_status_text"
-                        android:text=" /1,188.2 kWh"
+                        android:text=" /0 kWh"
                         android:layout_marginRight="@dimen/_15sdp"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:textColor="@color/semi_light_color"
@@ -184,7 +187,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_20sdp"
                         android:max="100"
-                        android:progress="30"
                         android:thumb="@android:color/white" />
 
                 </RelativeLayout>
@@ -270,6 +272,7 @@
                             android:layout_height="wrap_content">
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                 android:layout_width="wrap_content"
+                                android:id="@+id/currentCosumptionDate"
                                 android:drawablePadding="@dimen/_3sdp"
                                 android:textColor="@color/home_bottom_card_text_color"
                                 android:textSize="@dimen/_11sdp"
@@ -305,9 +308,9 @@
 
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
-                        android:text="15%"
+                        android:text="0%"
                         android:layout_above="@+id/school_kwh_text_status"
-                        android:id="@+id/homePercentTextview"
+                        android:id="@+id/buildingPercentTextview"
                         android:textSize="@dimen/_30sdp"
                         android:textColor="@color/home_bottom_card_text_color"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -315,12 +318,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <ImageView
+                        android:id="@+id/buildingEnergyStatusArrow"
                         android:layout_marginBottom="@dimen/_30sdp"
                         android:layout_above="@+id/school_kwh_text_status"
-                        android:tint="@color/home_bottom_card_text_color"
-                        android:src="@drawable/down_arrow"
                         android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_toRightOf="@+id/homePercentTextview"
+                        android:layout_toRightOf="@+id/buildingPercentTextview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -331,20 +333,22 @@
                         android:layout_alignParentBottom="true"
                         android:id="@+id/school_kwh_text_status"
                         android:textSize="@dimen/_10sdp"
-                        android:text="914 kWh"
+                        android:text="0 kWh"
+                        android:layout_marginRight="@dimen/_1sdp"
                         android:layout_marginBottom="@dimen/_20sdp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textColor="@color/home_bottom_card_text_color"
                         android:layout_height="wrap_content" />
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                         android:layout_width="wrap_content"
+                        android:layout_marginLeft="@dimen/_1sdp"
                         android:layout_alignParentBottom="true"
                         android:textSize="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_20sdp"
                         android:layout_toRightOf="@+id/school_kwh_text_status"
                         android:id="@+id/school_full_status_text"
-                        android:text=" /1,188.2 kWh"
+                        android:text=" /0 kWh"
                         android:textColor="@color/semi_light_color"
                         android:layout_height="wrap_content" />
 

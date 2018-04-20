@@ -65,16 +65,25 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ho
     public void onBindViewHolder(Holder holder, final int position) {
         holder.profile_name.setText(friendsBeanLists.get(position).getName());
 
-        if (position % 4 == 0) {
+       /* if (position % 4 == 0) {
             holder.action_tv.setBackgroundResource(R.drawable.gray_rect_crop_bg);
             holder.action_tv.setText("try latter");
-        }
+        }*/
         holder.action_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemClick.onClick(v.getId(),position);
             }
         });
+
+      /*  if(friendsBeanLists.get(position).isRequestSend()){
+            holder.action_tv.setBackgroundResource(R.drawable.gray_rect_crop_bg);
+
+        }
+        else {
+            holder.action_tv.setBackgroundResource(R.drawable.blue_rect_crop_bg);
+
+        }*/
     }
 
     @Override

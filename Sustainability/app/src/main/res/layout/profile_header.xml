@@ -29,7 +29,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_toRightOf="@+id/profile_image"
                 android:orientation="vertical">
 
@@ -41,8 +41,8 @@
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
+                        android:id="@+id/studentName"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/female"
                         android:drawablePadding="@dimen/_5sdp"
                         android:padding="@dimen/_5sdp"
                         android:text="jane Doe"
@@ -52,14 +52,14 @@
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_4sdp"
                         android:background="@drawable/green_rect_crop_bg"
                         android:gravity="center"
+                        android:id="@+id/studentHouse"
                         android:paddingBottom="@dimen/_2sdp"
                         android:paddingLeft="@dimen/_3sdp"
                         android:paddingRight="@dimen/_3sdp"
                         android:paddingTop="@dimen/_2sdp"
-                        android:text="class 6A"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp" />
 
@@ -74,6 +74,7 @@
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableTint="@android:color/darker_gray"
                         android:drawableLeft="@drawable/flash"
                         android:drawablePadding="@dimen/_5sdp"
                         android:padding="@dimen/_5sdp"
@@ -85,6 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:drawableTint="@android:color/darker_gray"
                         android:drawableLeft="@drawable/chart"
                         android:drawablePadding="@dimen/_5sdp"
                         android:padding="@dimen/_5sdp"
@@ -97,6 +99,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:drawableLeft="@drawable/share"
+                        android:drawableTint="@android:color/darker_gray"
+
                         android:drawablePadding="@dimen/_5sdp"
                         android:padding="@dimen/_5sdp"
                         android:text="49"

@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -157,7 +158,7 @@ public class HomeActivity extends BaseActivity implements
             }
 
             fragmentTransaction.replace(R.id.fragment_container, fragment, fragment.getClass().getSimpleName());
-            fragmentTransaction.commitAllowingStateLoss();
+            fragmentTransaction.commit();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,46 +229,52 @@ public class HomeActivity extends BaseActivity implements
         switch (name) {
             case HomeFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-                searchIcon.setVisibility(View.VISIBLE);
+               // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case RewardsFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-                searchIcon.setVisibility(View.VISIBLE);
+              //  searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case ChallengeFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-                searchIcon.setVisibility(View.VISIBLE);
+               // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case ProfileFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-                searchIcon.setVisibility(View.VISIBLE);
+               // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case HowMuchSaveFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
-                searchIcon.setVisibility(View.VISIBLE);
+             //   searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case AddFriendFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
-                searchIcon.setVisibility(View.VISIBLE);
+                //searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case QuizeFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
-                searchIcon.setVisibility(View.VISIBLE);
+              //  searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case QuizeCompletedFragement.TAG:
                 sliderIcon.setVisibility(View.GONE);
-                searchIcon.setVisibility(View.VISIBLE);
+               // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);
                 break;
 
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        fragment.onActivityResult(requestCode, resultCode, data);
+    }
 }

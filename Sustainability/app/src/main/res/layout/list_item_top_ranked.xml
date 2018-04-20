@@ -10,8 +10,8 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:paddingBottom="@dimen/_22sdp"
-            android:paddingTop="@dimen/_22sdp"
+            android:paddingBottom="@dimen/_18sdp"
+            android:paddingTop="@dimen/_18sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

@@ -121,7 +121,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_4sdp"        android:padding="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:padding="@dimen/_20sdp"
         app:cardBackgroundColor="@color/white_transparent"
         app:cardUseCompatPadding="true">
 

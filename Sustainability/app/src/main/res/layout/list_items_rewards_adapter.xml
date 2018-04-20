@@ -10,9 +10,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_2sdp"
         android:layout_marginBottom="@dimen/_2sdp"
-
-        app:cardBackgroundColor="@android:color/transparent"
-      >
+        app:cardBackgroundColor="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,6 +25,7 @@
                 android:layout_height="@dimen/_80sdp">
 
                 <ImageView
+                    android:tint="@color/color_cofffe"
                     android:id="@+id/reward_icons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -40,22 +39,31 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_toLeftOf="@+id/expires_days_text"
+                    android:layout_toLeftOf="@+id/lock"
                     android:layout_toRightOf="@+id/reward_icons"
                     android:text="@string/txt_a_cup_of_free_drink"
-                    android:textColor="#4d4d4d"
+                    android:textColor="#594d4d4d"
                     android:textSize="@dimen/_14sdp" />
+
+                <ImageView
+                    android:id="@+id/lock"
+                    android:src="@drawable/padlock"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/expires_days_text"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp" />
 
                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                     android:id="@+id/expires_days_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_2sdp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:text="@string/txt_expires"
-                    android:textColor="#42505d"
+                    android:text="Unlock"
+                    android:textColor="#594d4d4d"
                     android:textSize="@dimen/_10sdp" />
 
 

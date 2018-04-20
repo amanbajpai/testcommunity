@@ -1,0 +1,469 @@
+{
+  "responseMessage": "All question are fetched successfully",
+  "responseCode": "1",
+  "questions": [
+    {
+      "questionId": 1,
+      "question": "What is Energy?",
+      "options": [
+        {
+          "option": "How quickly work can be done"
+        },
+        {
+          "option": "How much force is required to move an object a certain distance"
+        },
+        {
+          "option": "Movement "
+        },
+        {
+          "option": "The ability to do work"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 2,
+      "question": "All natural energy transformations can be traced back to which form of energy?",
+      "options": [
+        {
+          "option": "Petroleum"
+        },
+        {
+          "option": "Solar"
+        },
+        {
+          "option": "Coal"
+        },
+        {
+          "option": "Hydropower"
+        }
+      ],
+      "answer": "2"
+    },
+    {
+      "questionId": 3,
+      "question": "Today, most of the energy needs in Hong Kong are supplied by",
+      "options": [
+        {
+          "option": "Petroleum"
+        },
+        {
+          "option": "Solar"
+        },
+        {
+          "option": "Coal"
+        },
+        {
+          "option": "Hydropower"
+        }
+      ],
+      "answer": "3"
+    },
+    {
+      "questionId": 4,
+      "question": "What are the correct units used to measure electrical energy consumed at ISF Academy?",
+      "options": [
+        {
+          "option": "kiloWatts"
+        },
+        {
+          "option": "Kilograms per hour"
+        },
+        {
+          "option": "Joules"
+        },
+        {
+          "option": "Newtons"
+        }
+      ],
+      "answer": "1"
+    },
+    {
+      "questionId": 5,
+      "question": "What does HVAC refer to?",
+      "options": [
+        {
+          "option": "Lighting"
+        },
+        {
+          "option": "Electrical plugs"
+        },
+        {
+          "option": "Heating & Air Conditioning"
+        },
+        {
+          "option": "Solar power"
+        }
+      ],
+      "answer": "3"
+    },
+    {
+      "questionId": 6,
+      "question": "When checking the energy consumption for lighting in a particular classroom, you see the value of 127 kW. For which duration would this value make sense? Energy consumption in a...",
+      "options": [
+        {
+          "option": "Minute"
+        },
+        {
+          "option": "Hour"
+        },
+        {
+          "option": "Day"
+        },
+        {
+          "option": "Month"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 7,
+      "question": "How can carbon-based energy consumption serve to negatively impact humans?",
+      "options": [
+        {
+          "option": "Irritation of the respiratory system"
+        },
+        {
+          "option": "Flooding and drought"
+        },
+        {
+          "option": "Stronger storms"
+        },
+        {
+          "option": "All of the above"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 8,
+      "question": "Which of the following is the world’s fastest growing energy sector?",
+      "options": [
+        {
+          "option": "Oil"
+        },
+        {
+          "option": "Natural gas"
+        },
+        {
+          "option": "Solar"
+        },
+        {
+          "option": "Nuclear"
+        }
+      ],
+      "answer": "3"
+    },
+    {
+      "questionId": 9,
+      "question": "What does ‘PV’ stand for in reference to solar power?",
+      "options": [
+        {
+          "option": "Phosphorescent Volatility"
+        },
+        {
+          "option": "Photovoltaic"
+        },
+        {
+          "option": "Phenovolcanic"
+        },
+        {
+          "option": "Potassium Variance "
+        }
+      ],
+      "answer": "2"
+    },
+    {
+      "questionId": 10,
+      "question": "Which of the following is not a reason that fossil fuels are unsustainable?",
+      "options": [
+        {
+          "option": "The world is running out of them."
+        },
+        {
+          "option": "They are difficult to extract and utilize."
+        },
+        {
+          "option": "Their use produces volatile greenhouse gasses. "
+        },
+        {
+          "option": "Their process of extraction poses ecological and other environmental risks. "
+        }
+      ],
+      "answer": "2"
+    },
+    {
+      "questionId": 11,
+      "question": "Which of the following is a major challenge associated with solar energy?",
+      "options": [
+        {
+          "option": "Finding sunny places."
+        },
+        {
+          "option": "Controlling emissions."
+        },
+        {
+          "option": "Effectively storing the energy when it isn’t needed."
+        },
+        {
+          "option": "The installation process is dangerous."
+        }
+      ],
+      "answer": "3"
+    },
+    {
+      "questionId": 12,
+      "question": "Which of the following is not a dangerous emission associated with the combustion of coal?",
+      "options": [
+        {
+          "option": "Mercury"
+        },
+        {
+          "option": "Sulfur Dioxide"
+        },
+        {
+          "option": "Particulate matter"
+        },
+        {
+          "option": "Glucose"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 13,
+      "question": "In what ways are the world’s poor vulnerable to the effects of fossil fuel consumption?",
+      "options": [
+        {
+          "option": "Higher dependence on consistent weather patterns."
+        },
+        {
+          "option": "Less economic power to move away from health risks."
+        },
+        {
+          "option": "Less of a voice to create change in their political systems. "
+        },
+        {
+          "option": "All of the above"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 14,
+      "question": "Which of the following is not a major creator of smog in Hong Kong.",
+      "options": [
+        {
+          "option": "Coal-fired power plants"
+        },
+        {
+          "option": "Personal automobiles"
+        },
+        {
+          "option": "Shipping vessels"
+        },
+        {
+          "option": "Transboundary pollution from Southeast Asia"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 15,
+      "question": "What is the change in global temperature since 1880 in degrees celsius?",
+      "options": [
+        {
+          "option": "1.0"
+        },
+        {
+          "option": "1.5"
+        },
+        {
+          "option": "2.0"
+        },
+        {
+          "option": "2.5"
+        }
+      ],
+      "answer": "1"
+    },
+    {
+      "questionId": 16,
+      "question": "What is the maximum change in temperature (in degrees celsius) the Earth can possibly sustain?",
+      "options": [
+        {
+          "option": "1.0"
+        },
+        {
+          "option": "1.5"
+        },
+        {
+          "option": "2.0"
+        },
+        {
+          "option": "2.5"
+        }
+      ],
+      "answer": "3"
+    },
+    {
+      "questionId": 17,
+      "question": "Which of the following statements is correct?",
+      "options": [
+        {
+          "option": "Global Warming is caused only by natural factors."
+        },
+        {
+          "option": "The Greenhouse Effect is caused only by natural factors."
+        },
+        {
+          "option": "Removing the Greenhouse Effect on Earth would enable life to continue unharmed"
+        },
+        {
+          "option": "An increased Greenhouse Effect causes Global Warming."
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 18,
+      "question": "Which country currently emits the most Greenhouse Gases?",
+      "options": [
+        {
+          "option": "India"
+        },
+        {
+          "option": "UK"
+        },
+        {
+          "option": "US"
+        },
+        {
+          "option": "China"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "questionId": 19,
+      "question": "Which planet's poisonous atmosphere has been described as the product of a \"runaway greenhouse effect\"?",
+      "options": [
+        {
+          "option": "Jupiter"
+        },
+        {
+          "option": "Venus"
+        },
+        {
+          "option": "Earth"
+        },
+        {
+          "option": "Mars"
+        }
+      ],
+      "answer": "2"
+    },
+    {
+      "questionId": 20,
+      "question": "Which of the following lightbulb types uses the least energy, and therefore results in fewer greenhouse gas emissions?",
+      "options": [
+        {
+          "option": "Halogen"
+        },
+        {
+          "option": "Incandescent"
+        },
+        {
+          "option": "Compact Fluorescent"
+        }
+      ],
+      "answer": "3"
+    },
+    {
+      "questionId": 21,
+      "question": "How many human deaths per year does the World Health Organization attribute to climate change?",
+      "options": [
+        {
+          "option": "1,500,000"
+        },
+        {
+          "option": "150,000"
+        },
+        {
+          "option": "15,000"
+        },
+        {
+          "option": "1500"
+        }
+      ],
+      "answer": "2"
+    },
+    {
+      "questionId": 22,
+      "question": "Which Arctic animal do many scientists consider most vulnerable to extinction due to global warming?",
+      "options": [
+        {
+          "option": "Polar bear"
+        },
+        {
+          "option": "Narwhal"
+        },
+        {
+          "option": "Tropical frog"
+        },
+        {
+          "option": "Toucan"
+        }
+      ],
+      "answer": "2"
+    },
+    {
+      "questionId": 23,
+      "question": "A rise in global temperature is expected to increase instances of malaria.",
+      "options": [
+        {
+          "option": "True"
+        },
+        {
+          "option": "False"
+        }
+      ],
+      "answer": "1"
+    },
+    {
+      "questionId": 24,
+      "question": "During what time of day does air travel have the least damaging effect on the environment?",
+      "options": [
+        {
+          "option": "Day time"
+        },
+        {
+          "option": "Night time"
+        },
+        {
+          "option": "It makes no difference"
+        }
+      ],
+      "answer": "1"
+    },
+    {
+      "questionId": 25,
+      "question": "Which of the following industries could be negatively affected by global warming?",
+      "options": [
+        {
+          "option": "Wine-making"
+        },
+        {
+          "option": "Insurance"
+        },
+        {
+          "option": "Commercial fishing"
+        },
+        {
+          "option": "All of the above"
+        }
+      ],
+      "answer": "4"
+    }
+  ]
+}

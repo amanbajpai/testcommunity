@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.utils.AppConstants;
+import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 
 import java.util.Calendar;
@@ -33,8 +34,15 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(AppConstants.SPLASH_HOLD_TIME);
-                    startActivity(new Intent(mContext, LoginActivity.class));
-                    finish();
+                    if(MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_KEY).equalsIgnoreCase("")){
+                        startActivity(new Intent(mContext, LoginActivity.class));
+                        finish();
+                    }
+                    else {
+                        startActivity(new Intent(mContext, HomeActivity.class));
+                        finish();
+                    }
+
 
 
                 } catch (InterruptedException e) {

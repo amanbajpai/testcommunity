@@ -42,6 +42,10 @@
         <item name="android:minHeight">@dimen/_10sdp</item>
         <item name="android:maxHeight">@dimen/_20sdp</item>
     </style>
-
+    <style name="MyProgressDialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/color_text_and_spinner</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
 </resources>
