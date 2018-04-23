@@ -66,4 +66,11 @@ public interface Api {
                                                               @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                               @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
+
+    @GET(ApiConstants.ApiUrls.SUBMIT_SHARE_POINTS)
+    Call<CommonResponse> submitSharePoints(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                      @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                      @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
+
 }

@@ -20,7 +20,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         ProjectUtil.checkTime(context);
         ProjectUtil.sendNotification();
-        ProjectUtil.showToast(context,"Reciever call");
 
         Log.e(TAG, "AlarmReceiver:onReceive() called");
     }

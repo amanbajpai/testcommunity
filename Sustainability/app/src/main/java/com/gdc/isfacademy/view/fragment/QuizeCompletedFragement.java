@@ -5,15 +5,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdc.isfacademy.R;
+import com.gdc.isfacademy.application.ISFApp;
+import com.gdc.isfacademy.model.ChallangeRankList;
+import com.gdc.isfacademy.model.CommonResponse;
+import com.gdc.isfacademy.model.RankingParentResponse;
+import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
+import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
+import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by akshaydashore on 3/4/18
@@ -63,11 +75,8 @@ public class QuizeCompletedFragement extends BaseFragment {
         switch (id) {
 
             case R.id.share_tv:
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Earned" + " " + count + " " + "Points in ISF Community Quize");
-                sendIntent.setType("text/plain");
-                startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
+                submitShare();
+
                 // ProjectUtil.showShareDialog(context, this);
                 break;
 
@@ -75,6 +84,55 @@ public class QuizeCompletedFragement extends BaseFragment {
                 break;
 
         }
+    }
+
+
+    private void submitShare() {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
+            return;
+        }
+
+//        if (challangeRankLists == null || challangeRankLists.size() == 0)
+//            showProgressDialog(getActivity());
+        showProgressDialog(getActivity());
+        Call<CommonResponse> call = ISFApp.getAppInstance()
+                .getApi()
+                .submitSharePoints(AppConstants.API_KEY,
+                        AppConstants.CONTENT_TYPE,
+                        MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+
+        ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                hideProgressDialog();
+                if (response.body() != null) {
+                    if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Earned" + " " + count + " " + "Points in ISF Community Quiz");
+                        sendIntent.setType("text/plain");
+                        startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+
+                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                t.printStackTrace();
+                hideProgressDialog();
+            }
+        });
+
+
     }
 
 
@@ -87,7 +145,7 @@ public class QuizeCompletedFragement extends BaseFragment {
                 ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                ProjectUtil.showToast(getActivity(),"Cancel");
+                Log.e("cancel", "Cancel");
             }
         }
     }

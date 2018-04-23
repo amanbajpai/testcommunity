@@ -161,11 +161,12 @@ public class ChallengeFragment extends BaseFragment {
                 friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
                 houseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
                 getStudentRanking(AppConstants.RANK_TYPE_HOUSE);
-
                 break;
 
             case R.id.start_quize_image:
-                String answeredDate = MyPref.getInstance(getActivity()).getAnsweredDate();
+                String answeredDate = MyPref.getInstance(getActivity())
+                        .readPrefs(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID));
+
                 if (!ProjectUtil.getTodayDate().equalsIgnoreCase(answeredDate)) {
                     ((HomeActivity) getActivity()).pushFragments(new QuizeFragment(), null, true);
                 } else {

@@ -20,6 +20,7 @@ public interface ApiConstants {
         public static final String GET_STUDENTS_RANKINGS="getStudentRankingList";
         public static final String GET_STUDENTS_ENERGY_SAVING="getStudentEnergySaving";
         public static final String GET_BUILDING_ENERGY_SAVING="getBuildingEnergySaving";
+        public static final String SUBMIT_SHARE_POINTS="submitShare";
 
     }
 

@@ -252,7 +252,11 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
     private void finishQuiz(int answerCount, boolean submitStatus) {
         try {
-            MyPref.getInstance(getActivity()).setAnsweredDate(ProjectUtil.getTodayDate());
+
+            MyPref.getInstance(getActivity())
+                    .writePrefs(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID)
+                            , ProjectUtil.getTodayDate());
+
             int answeredCount = MyPref.getInstance(getActivity()).getAnsweredCount();
 
             if (answeredCount == 20)

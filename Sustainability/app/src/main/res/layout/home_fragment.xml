@@ -143,6 +143,19 @@
                         android:layout_toRightOf="@+id/percentTextview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
+                        android:id="@+id/zeroPercentSaved"
+                        android:layout_alignParentBottom="true"
+                        android:text="Saved"
+                        android:visibility="gone"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@android:color/holo_red_light"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_toRightOf="@+id/percentTextview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
 
 
                 </RelativeLayout>
@@ -320,6 +333,18 @@
                     <ImageView
                         android:id="@+id/buildingEnergyStatusArrow"
                         android:layout_marginBottom="@dimen/_30sdp"
+                        android:layout_above="@+id/school_kwh_text_status"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/buildingPercentTextview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
+                        android:id="@+id/zeroPercentSavedBuilding"
+                        android:layout_marginBottom="@dimen/_30sdp"
+                        android:text="Saved"
+                        android:visibility="gone"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@android:color/holo_red_light"
                         android:layout_above="@+id/school_kwh_text_status"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_toRightOf="@+id/buildingPercentTextview"

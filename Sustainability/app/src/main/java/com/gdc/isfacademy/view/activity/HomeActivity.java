@@ -157,7 +157,7 @@ public class HomeActivity extends BaseActivity implements
                 fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
             }
 
-            fragmentTransaction.replace(R.id.fragment_container, fragment, fragment.getClass().getSimpleName());
+            fragmentTransaction.add(R.id.fragment_container, fragment, fragment.getClass().getSimpleName());
             fragmentTransaction.commit();
 
         } catch (Exception e) {

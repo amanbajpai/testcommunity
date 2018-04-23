@@ -50,10 +50,11 @@ public class HomeFragment extends BaseFragment {
     public SeekBar seekbar;
     AppCompatTextView studentHouse, currentCosumptionDate;
     EnergySavingResponse.CurrentCons currentCons;
+    ImageView percentArrow, buildingEnergyStatusArrow;
+    AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding;
     private RelativeLayout how_much_save_rl;
-    private TextView thisWeekStatus, lastWeekStatus,buildingThisWeekStatus,
-            buildingLastWeekStatus, percentTextview,buildingPercentTextview;
-    ImageView percentArrow,buildingEnergyStatusArrow;
+    private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
+            buildingLastWeekStatus, percentTextview, buildingPercentTextview;
 
     public static HomeFragment newInstance() {
         HomeFragment homeFragment = new HomeFragment();
@@ -78,16 +79,20 @@ public class HomeFragment extends BaseFragment {
 
     private void initView(View layout) {
         currentCosumptionDate = (AppCompatTextView) layout.findViewById(R.id.currentCosumptionDate);
+        zerpPercentSave = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSaved);
+        zeroPercentSavedBuilding = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSavedBuilding);
+
+
         how_much_save_rl = (RelativeLayout) layout.findViewById(R.id.how_much_save_rl);
         thisWeekStatus = (TextView) layout.findViewById(R.id.kwh_text_status);
         lastWeekStatus = (TextView) layout.findViewById(R.id.full_status_text);
         percentTextview = (TextView) layout.findViewById(R.id.percentTextview);
         percentArrow = (ImageView) layout.findViewById(R.id.percentArrow);
         seekbar = (SeekBar) layout.findViewById(R.id.seekbar);
-        buildingEnergyStatusArrow=(ImageView)layout.findViewById(R.id.buildingEnergyStatusArrow);
-        buildingPercentTextview=(TextView)layout.findViewById(R.id.buildingPercentTextview);
-        buildingThisWeekStatus=(TextView)layout.findViewById(R.id.school_kwh_text_status);
-        buildingLastWeekStatus=(TextView)layout.findViewById(R.id.school_full_status_text);
+        buildingEnergyStatusArrow = (ImageView) layout.findViewById(R.id.buildingEnergyStatusArrow);
+        buildingPercentTextview = (TextView) layout.findViewById(R.id.buildingPercentTextview);
+        buildingThisWeekStatus = (TextView) layout.findViewById(R.id.school_kwh_text_status);
+        buildingLastWeekStatus = (TextView) layout.findViewById(R.id.school_full_status_text);
         studentHouse = (AppCompatTextView) layout.findViewById(R.id.studentHouse);
         studentHouse.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE));
 
@@ -104,7 +109,7 @@ public class HomeFragment extends BaseFragment {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("dd MMMM yyyy");
         String currentDate = month_date.format(cal.getTime());
-        currentCosumptionDate.setText("Up to "+ currentDate);
+        currentCosumptionDate.setText("Up to " + currentDate);
     }
 
 
@@ -165,7 +170,7 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    public void getEnergySavingBuildingConsumption(){
+    public void getEnergySavingBuildingConsumption() {
         try {
             Call<BuildingEnergySaving> call = ISFApp.getAppInstance()
                     .getApi()
@@ -204,63 +209,62 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    private void setViewforBuilding(BuildingEnergySaving response)
-    {
-        try
-        {
+    private void setViewforBuilding(BuildingEnergySaving response) {
+        try {
             String unit = response.getCurrentCons().getUnit();
 
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
 
-            String currentCons = String.format(Locale.getDefault(),"%.2f %s", currentValue, unit);
-            String lastWeekCons = String.format(Locale.getDefault(),"/ %.2f %s", lastValue, unit);
+
+            String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
+            String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", lastValue, unit);
 
             Typeface externalFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSans-Semibold_0.ttf");
-            buildingThisWeekStatus.setTypeface(externalFont,Typeface.BOLD);
+            buildingThisWeekStatus.setTypeface(externalFont, Typeface.BOLD);
             buildingThisWeekStatus.setText(currentCons);
             buildingLastWeekStatus.setText(lastWeekCons);
 
             float actualSaving;
             if (lastValue > currentValue) // Energy Saved
             {
-                float percentage = (currentValue/lastValue)*100;
+                float percentage = (currentValue / lastValue) * 100;
 
-                actualSaving = 100-percentage;
+                actualSaving = 100 - percentage;
                 buildingEnergyStatusArrow.setColorFilter(ContextCompat.getColor(getActivity(), R.color.home_bottom_card_text_color), android.graphics.PorterDuff.Mode.SRC_IN);
-                buildingPercentTextview.setTextColor(ContextCompat.getColor(getActivity(),R.color.home_bottom_card_text_color));
-                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.down_arrow));
-            }
-            else // Energy Lost
+                buildingPercentTextview.setTextColor(ContextCompat.getColor(getActivity(), R.color.home_bottom_card_text_color));
+                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.down_arrow));
+                buildingEnergyStatusArrow.setVisibility(View.VISIBLE);
+                zeroPercentSavedBuilding.setVisibility(View.GONE);
+            } else // Energy Lost
             {
                 actualSaving = 0.0f;
                 buildingPercentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
-                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.up_arrow));
+                buildingEnergyStatusArrow.setVisibility(View.GONE);
+                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
+                zeroPercentSavedBuilding.setVisibility(View.VISIBLE);
 
             }
 
-            String actualConsSave = String.format(Locale.getDefault(),"%d%s", (ProjectUtil.math(actualSaving)), "%");
+            String actualConsSave = String.format(Locale.getDefault(), "%d%s", (ProjectUtil.math(actualSaving)), "%");
             buildingPercentTextview.setText(actualConsSave);
 
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
 
-    private void setView(EnergySavingResponse response)
-    {
-        try
-        {
+    private void setView(EnergySavingResponse response) {
+        try {
             String unit = response.getCurrentCons().getUnit();
 
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
 
-            String currentCons = String.format(Locale.getDefault(),"%.2f %s", currentValue, unit);
-            String lastWeekCons = String.format(Locale.getDefault(),"/ %.2f %s", lastValue, unit);
+
+            String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
+            String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", lastValue, unit);
 
             thisWeekStatus.setText(currentCons);
             lastWeekStatus.setText(lastWeekCons);
@@ -268,39 +272,38 @@ public class HomeFragment extends BaseFragment {
             float actualSaving;
             if (lastValue > currentValue) // Energy Saved
             {
-                float percentage = (currentValue/lastValue)*100;
+                float percentage = (currentValue / lastValue) * 100;
+                actualSaving = 100 - percentage;
+                percentArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.down_arrow_energy));
+                percentTextview.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                zerpPercentSave.setVisibility(View.GONE);
+                percentArrow.setVisibility(View.VISIBLE);
 
-                actualSaving = 100-percentage;
-                percentArrow.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.down_arrow_energy));
-                percentTextview.setTextColor(ContextCompat.getColor(getActivity(),R.color.color_text_and_spinner));
 
-
-            }
-            else // Energy Lost
+            } else // Energy Lost
             {
                 actualSaving = 0.0f;
                 percentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
                 percentArrow.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light), android.graphics.PorterDuff.Mode.SRC_IN);
-                percentArrow.setBackground(ContextCompat.getDrawable(getActivity(),R.drawable.up_arrow));
+                percentArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
+                percentArrow.setVisibility(View.GONE);
+                zerpPercentSave.setVisibility(View.VISIBLE);
 
             }
 
-            String actualConsSave = String.format(Locale.getDefault(),"%d%s", (ProjectUtil.math(actualSaving)), "%");
+            String actualConsSave = String.format(Locale.getDefault(), "%d%s", (ProjectUtil.math(actualSaving)), "%");
             percentTextview.setText(actualConsSave);
 
             setSeekbarValue(actualSaving);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
 
     private void setSeekbarValue(final float value) {
-        try
-        {
-            Handler handler=new Handler();
+        try {
+            Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -310,15 +313,13 @@ public class HomeFragment extends BaseFragment {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
                             float animProgress = (Float) animation.getAnimatedValue();
-                            seekbar.setProgress((int)animProgress);
+                            seekbar.setProgress((int) animProgress);
                         }
                     });
                     anim.start();
                 }
-            },500);
-        }
-        catch (Exception ex)
-        {
+            }, 500);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
