@@ -5,9 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by vishalchhodwani on 19/4/18.
- */
+
 
 public class EnergySavingResponse {
 

@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 
 import com.gdc.isfacademy.R;
 
-/**
- * Created by akshaydashore on 4/4/18
- */
+
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> {
 

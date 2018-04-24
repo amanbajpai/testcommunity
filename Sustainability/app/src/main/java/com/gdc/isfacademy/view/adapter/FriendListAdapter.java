@@ -16,9 +16,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by akshaydashore on 3/4/18
- */
+
 public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Holder> implements Filterable{
 
     Context context;

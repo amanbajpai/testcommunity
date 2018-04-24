@@ -17,9 +17,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
 
-/**
- * Created by akshaydashore on 3/4/18
- */
+
 public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter.OnListItemClick {
     public static final String TAG = "QuizePagerFragment";
     QuizeListAdapter quizeListAdapter;

@@ -15,9 +15,7 @@ import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.view.adapter.ProfileAdapter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
-/**
- * Created by akshaydashore on 4/4/18
- */
+
 
 public class ProfileFragment extends BaseFragment {
     public static final String TAG = "ProfileFragment";

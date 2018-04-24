@@ -27,9 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by akshaydashore on 3/4/18
- */
+
 public class QuizeCompletedFragement extends BaseFragment {
 
     public static final String TAG = "QuizeCompletedFragement";

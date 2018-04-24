@@ -14,9 +14,6 @@ import com.gdc.isfacademy.view.adapter.RewardsAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by ashishthakur on 5/4/18.
- */
 
 public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRewardItemClickListner {
     public static final String TAG = "RewardsFragment";

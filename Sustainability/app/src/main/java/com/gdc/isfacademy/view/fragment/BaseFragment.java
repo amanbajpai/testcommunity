@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 
 import com.gdc.isfacademy.view.activity.HomeActivity;
 
-/**
- * Created by ashishthakur on 29/3/18.
- */
+
 
 public class BaseFragment extends Fragment implements View.OnClickListener{
     View rootView;

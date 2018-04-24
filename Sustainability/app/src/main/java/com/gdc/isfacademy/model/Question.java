@@ -16,9 +16,7 @@ import org.greenrobot.greendao.annotation.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by vishalchhodwani on 17/4/18.
- */
+
 
 @Entity(
         // Whether an all properties constructor should be generated.

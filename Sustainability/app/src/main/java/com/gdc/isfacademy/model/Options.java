@@ -13,9 +13,7 @@ import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Transient;
 
-/**
- * Created by vishalchhodwani on 17/4/18.
- */
+
 
 @Entity(
         // Whether an all properties constructor should be generated.

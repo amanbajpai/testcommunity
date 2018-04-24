@@ -41,10 +41,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by ashishthakur on 29/3/18.
- */
-
 public class HomeFragment extends BaseFragment {
     public static final String TAG = "HomeFragment";
     public SeekBar seekbar;

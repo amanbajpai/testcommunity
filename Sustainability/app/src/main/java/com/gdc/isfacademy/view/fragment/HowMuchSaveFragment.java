@@ -14,10 +14,6 @@ import com.gdc.isfacademy.utils.AppConstants;
 
 import java.util.Locale;
 
-/**
- * Created by akshaydashore on 2/4/18
- */
-
 public class HowMuchSaveFragment extends BaseFragment {
 
     public static final String TAG = "HowMuchSaveFragment";

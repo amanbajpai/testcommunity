@@ -8,9 +8,7 @@ import com.gdc.isfacademy.view.fragment.QuizePagerFragment;
 
 import java.util.List;
 
-/**
- * Created by akshaydashore on 3/4/18
- */
+
 
 public class QuizePagerAdapter extends FragmentStatePagerAdapter {
     List<QuizePagerFragment> fragmentList;

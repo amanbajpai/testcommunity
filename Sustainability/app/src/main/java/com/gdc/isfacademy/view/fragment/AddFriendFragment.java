@@ -19,9 +19,7 @@ import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText;
 
 import java.util.ArrayList;
 
-/**
- * Created by akshaydashore on 3/4/18
- */
+
 public class AddFriendFragment extends BaseFragment implements FriendListAdapter.OnItemClick {
     public static final String TAG = "AddFriendFragment";
     ArrayList<FriendsBeanList> friendsBeanLists;

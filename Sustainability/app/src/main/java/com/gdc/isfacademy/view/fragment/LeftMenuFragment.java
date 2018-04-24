@@ -21,9 +21,6 @@ import com.gdc.isfacademy.view.adapter.LeftMenuAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by ashishthakur on 29/3/18.
- */
 
 public class LeftMenuFragment extends BaseFragment {
 
