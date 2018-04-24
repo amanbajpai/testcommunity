@@ -75,7 +75,11 @@ public class QuizeCompletedFragement extends BaseFragment {
         switch (id) {
 
             case R.id.share_tv:
-                submitShare();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Earned" + " " + count + " " + "Points in ISF Community Quiz");
+                sendIntent.setType("text/plain");
+                startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
 
                 // ProjectUtil.showShareDialog(context, this);
                 break;
@@ -111,11 +115,12 @@ public class QuizeCompletedFragement extends BaseFragment {
                 hideProgressDialog();
                 if (response.body() != null) {
                     if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Earned" + " " + count + " " + "Points in ISF Community Quiz");
-                        sendIntent.setType("text/plain");
-                        startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
+                        ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
+
+                    }
+                    else {
+                        ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
+
                     }
 
                 }
@@ -125,8 +130,8 @@ public class QuizeCompletedFragement extends BaseFragment {
 
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
-
                 ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -142,7 +147,7 @@ public class QuizeCompletedFragement extends BaseFragment {
 
         if (requestCode == 101) {
             if (resultCode == Activity.RESULT_OK) {
-                ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
+                submitShare();
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Log.e("cancel", "Cancel");
