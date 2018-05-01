@@ -12,10 +12,9 @@ import android.widget.TextView;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
-import com.gdc.isfacademy.model.CommonResponse;
+import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.model.LoginParentResponse;
 import com.gdc.isfacademy.netcom.ApiConstants;
-import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText;

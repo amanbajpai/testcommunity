@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ga_trackingId" translatable="false">UA-118460960-1</string>
+
+
+
+
+    <integer name="ga_sessionTimeout">300</integer>
+
+    <!-- Enable automatic Activity measurement -->
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <!--  The property id associated with this analytics tracker -->
+
+    <string name="ga_sampleFrequency">100.0</string>
+
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+
+    <screenName name="com.gdc.isfacademy.view.activity.LoginActivity">Login Screen</screenName>
+
+
+
+    <screenName name="com.gdc.isfacademy.view.fragment.HomeFragment">Home Screen</screenName>
+    <screenName name="com.gdc.isfacademy.view.fragment.ChallengeFragment">Challenge Screen</screenName>
+    <screenName name="com.gdc.isfacademy.view.fragment.RewardsFragment">Reward Screen</screenName>
+
+    <screenName name="com.gdc.isfacademy.view.fragment.ProfileFragment">Profile Screen</screenName>
+
+
+</resources>

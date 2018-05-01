@@ -18,6 +18,17 @@ public class MyPref {
     private static MyPref instance;
     public static final String IS_VALID_TIME="isValidTime";
 
+    public static final String TODAY_CURRENT_CONSUMPTION="currentConsumption";
+    public static final String WEEK_CONSUMPTION="weekConsumption";
+    public static final String TODAY_CURRENT_CONSUMPTION_UNIT="currentConsumptionUnit";
+
+    public static final String TOTAL_CURRENT_CONSUMPTION_BUILDING="currentConsumptionBuilding";
+    public static final String TOTAL_WEEK_CONSUMPTION_BUILDING="weekConsumptionBuilding";
+    public static final String TOTAL_CURRENT_CONSUMPTION_BUILDING_UNIT="currentConsumptionBuildingUnit";
+
+
+
+
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
 
@@ -74,6 +85,14 @@ public class MyPref {
     public void writeIntegerPrefs(String pref_name, int pref_val) {
         editor.putInt(pref_name, pref_val);
         editor.commit();
+    }
+
+    public void writeFloatPrefs(String pref_name, float pref_val) {
+        editor.putFloat(pref_name, pref_val);
+        editor.commit();
+    }
+    public Float readFloatPrefs(String pref_name) {
+        return sharedPreferences.getFloat(pref_name, -1f);
     }
 
     public Integer readIntegerPrefs(String pref_name) {

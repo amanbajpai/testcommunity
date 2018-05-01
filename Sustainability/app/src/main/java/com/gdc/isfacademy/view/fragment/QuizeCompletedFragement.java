@@ -148,6 +148,8 @@ public class QuizeCompletedFragement extends BaseFragment {
                 submitShare();
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
+                submitShare();
+
                 Log.e("cancel", "Cancel");
             }
         }

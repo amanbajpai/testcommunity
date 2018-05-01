@@ -25,6 +25,7 @@ import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.BuildingEnergySaving;
 import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
+import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
@@ -73,12 +74,17 @@ public class HomeFragment extends BaseFragment {
         return layout;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ISFApp.getAppInstance().trackScreenView("Home Screen");
+
+    }
+
     private void initView(View layout) {
         currentCosumptionDate = (AppCompatTextView) layout.findViewById(R.id.currentCosumptionDate);
         zerpPercentSave = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSaved);
         zeroPercentSavedBuilding = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSavedBuilding);
-
-
         how_much_save_rl = (RelativeLayout) layout.findViewById(R.id.how_much_save_rl);
         thisWeekStatus = (TextView) layout.findViewById(R.id.kwh_text_status);
         lastWeekStatus = (TextView) layout.findViewById(R.id.full_status_text);
@@ -125,7 +131,14 @@ public class HomeFragment extends BaseFragment {
 
     }
 
+
+
     private void getEnergySaving() {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+            return;
+
+        }
         try {
             showProgressDialog(getActivity());
             Call<EnergySavingResponse> call = ISFApp.getAppInstance()
@@ -143,7 +156,7 @@ public class HomeFragment extends BaseFragment {
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             currentCons = response.body().getCurrentCons();
-                            setView(response.body());
+                          setView(response.body());
                         } else {
                             ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
                         }
@@ -183,6 +196,11 @@ public class HomeFragment extends BaseFragment {
                     hideProgressDialog();
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                            MyPref.getInstance(getActivity()).writeFloatPrefs(MyPref.TOTAL_CURRENT_CONSUMPTION_BUILDING, response.body().getCurrentCons().getValue());
+                            MyPref.getInstance(getActivity()).writeFloatPrefs(MyPref.TOTAL_WEEK_CONSUMPTION_BUILDING, response.body().getLastWeekCons().getValue());
+                            MyPref.getInstance(getActivity()).writePrefs(MyPref.TOTAL_CURRENT_CONSUMPTION_BUILDING_UNIT, response.body().getCurrentCons().getUnit());
+
+
                             setViewforBuilding(response.body());
                         } else {
                             ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());

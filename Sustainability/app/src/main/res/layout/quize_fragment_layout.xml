@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:clickable="true"
     android:background="@drawable/splash"
     android:orientation="vertical">
 
@@ -13,16 +15,18 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical">
 
+
+
         <net.alexandroid.utils.indicators.IndicatorsView
             android:id="@+id/indicatorsView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_14sdp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_10sdp"
-            app:indicatorSize="@dimen/_8sdp"
-            app:paddingBetweenIndicators="@dimen/_16sdp"
-            app:selectedDrawable="@drawable/selected_indicator"
-            app:unSelectedDrawable="@drawable/unselected_indicator" />
+            app:indicatorSize="@dimen/_10sdp"
+            app:paddingBetweenIndicators="@dimen/_15sdp"
+            app:selectedDrawable="@drawable/selected_selector_quiz_indicator"
+            app:unSelectedDrawable="@drawable/unselected_selector_quiz_indicator" />
 
         <com.gdc.isfacademy.view.customs.otherlibs.CustomViewPager
             android:id="@+id/viewpager"

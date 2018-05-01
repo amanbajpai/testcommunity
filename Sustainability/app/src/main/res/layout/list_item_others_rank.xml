@@ -5,22 +5,23 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_2sdp"
-        android:layout_marginBottom="@dimen/_2sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:paddingBottom="@dimen/_15sdp"
-            android:paddingTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_12sdp"
+            android:paddingTop="@dimen/_12sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_centerVertical="true"
+                android:textColor="@color/challange_text_color"
                 android:id="@+id/people_rank_text"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
@@ -37,7 +38,7 @@
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
-                android:textColor="#42505d"
+                android:textColor="@color/challange_text_color"
                 android:id="@+id/name_text"
                 android:text="Sebrina"
                 android:layout_marginLeft="@dimen/_50sdp"
@@ -50,7 +51,7 @@
                 android:id="@+id/rank_points_text"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_alignParentRight="true"
-                android:textColor="#42505d"
+                android:textColor="@color/challange_text_color"
                 android:text="2,3456"
                 android:textSize="@dimen/_15sdp"
                 android:layout_centerVertical="true"

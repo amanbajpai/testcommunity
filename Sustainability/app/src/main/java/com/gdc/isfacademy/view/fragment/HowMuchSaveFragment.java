@@ -37,14 +37,15 @@ public class HowMuchSaveFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.how_much_saved_layout, null);
         Bundle bundle = getArguments();
         currentCons= (EnergySavingResponse.CurrentCons) bundle.getSerializable(AppConstants.CURRENT_ENERGY_UNIT);
-        Log.d("conumption", "" + currentCons.getValue() + " " + currentCons.getUnit());
 
-        currentWeekConsumption = (AppCompatTextView) view.findViewById(R.id.currentWeekConsumption);
-        energyUnit = (AppCompatTextView) view.findViewById(R.id.energyUnit);
+        if(currentCons!=null){
+            Log.d("conumption", "" + currentCons.getValue() + " " + currentCons.getUnit());
+            currentWeekConsumption = (AppCompatTextView) view.findViewById(R.id.currentWeekConsumption);
+            energyUnit = (AppCompatTextView) view.findViewById(R.id.energyUnit);
+            currentWeekConsumption.setText(String.format("%.2f",currentCons.getValue()));
+            energyUnit.setText(currentCons.getUnit());
+        }
 
-
-        currentWeekConsumption.setText(String.format("%.2f",currentCons.getValue()));
-        energyUnit.setText(currentCons.getUnit());
         return view;
     }
 

@@ -46,12 +46,13 @@
                     android:textSize="@dimen/_14sdp" />
 
                 <ImageView
+                    android:tint="@color/color_try_later_bg"
                     android:id="@+id/lock"
-                    android:src="@drawable/padlock"
+                    android:src="@drawable/locked"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/expires_days_text"
-                    android:layout_width="@dimen/_12sdp"
-                    android:layout_height="@dimen/_12sdp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                     android:id="@+id/expires_days_text"

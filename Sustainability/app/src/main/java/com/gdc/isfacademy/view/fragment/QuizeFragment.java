@@ -1,6 +1,5 @@
 package com.gdc.isfacademy.view.fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -69,7 +68,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
         indicatorsView.setSmoothTransition(true);
 
-        indicatorsView.setIndicatorsClickChangePage(true);
+        indicatorsView.setIndicatorsClickChangePage(false);
 
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -124,7 +123,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             }
 
             quizePagerAdapter.notifyDataSetChanged();
-            indicatorsView.setViewPager(viewpager);
+           indicatorsView.setViewPager(viewpager);
 
             addToDb(response);
         } catch (Exception ex) {

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.gdc.isfacademy.R;
+import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.utils.BackManager;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.fragment.AddFriendFragment;
@@ -57,6 +58,13 @@ public class HomeActivity extends BaseActivity implements
         setSupportActionBar(toolbar);
         getSupportFragmentManager().addOnBackStackChangedListener(this);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ISFApp.getAppInstance().trackScreenView("Home Screen");
 
     }
 

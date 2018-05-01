@@ -108,7 +108,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         otheresRankViewHolder.rankIcon.setImageResource(R.drawable.third_place);
                         otheresRankViewHolder.points.setText(challangeRankLists.get(position).getValue());
                         otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName());
-                             } else {
+                    } else {
                         otheresRankViewHolder.postion.setVisibility(View.INVISIBLE);
                         otheresRankViewHolder.rankIcon.setVisibility(View.VISIBLE);
                         otheresRankViewHolder.rankIcon.setImageResource(R.drawable.third_place);
@@ -160,6 +160,81 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     }
 
+    private void setMyView(int position, RecyclerView.ViewHolder holder) {
+        if (challangeRankLists.get(position).isCheckIsme()) {
+            if (holder instanceof TopRankedViewHolder) {
+                TopRankedViewHolder topRankedViewHolder = (TopRankedViewHolder) holder;
+                topRankedViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
+                topRankedViewHolder.name.setTypeface(topRankedViewHolder.name.getTypeface(), Typeface.BOLD);
+                topRankedViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
+                topRankedViewHolder.points.setTypeface(topRankedViewHolder.points.getTypeface(), Typeface.BOLD);
+                topRankedViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
+            } else if (holder instanceof OtheresRankViewHolder) {
+                OtheresRankViewHolder otheresRankViewHolder = (OtheresRankViewHolder) holder;
+                switch (position) {
+                    case 1:
+                        otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
+                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
+                        otheresRankViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
+
+                        break;
+                    case 2:
+                        otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
+                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
+                        otheresRankViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
+
+                        break;
+                    default:
+                        otheresRankViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
+                        otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
+                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
+                        otheresRankViewHolder.postion.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
+
+                }
+            }
+        } else {
+            if (holder instanceof TopRankedViewHolder) {
+                TopRankedViewHolder topRankedViewHolder = (TopRankedViewHolder) holder;
+                topRankedViewHolder.name.setTypeface(topRankedViewHolder.name.getTypeface(), Typeface.NORMAL);
+                topRankedViewHolder.points.setTypeface(topRankedViewHolder.points.getTypeface(), Typeface.NORMAL);
+                topRankedViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+                topRankedViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+
+            } else if (holder instanceof OtheresRankViewHolder) {
+                OtheresRankViewHolder otheresRankViewHolder = (OtheresRankViewHolder) holder;
+                switch (position) {
+                    case 1:
+                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+                        otheresRankViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+
+                        break;
+                    case 2:
+                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+                        otheresRankViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+
+                        break;
+                    default:
+                        otheresRankViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+
+                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+                        otheresRankViewHolder.postion.setTextColor(context.getResources().getColor(R.color.challange_text_color));
+
+                }
+            }
+        }
+    }
 
     public class TopRankedViewHolder extends RecyclerView.ViewHolder {
 
@@ -186,81 +261,6 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             postion = (OpenSansLightTextview) itemView.findViewById(R.id.people_rank_text);
             points = (OpenSansLightTextview) itemView.findViewById(R.id.rank_points_text);
             rankIcon = (ImageView) itemView.findViewById(R.id.rank_icon);
-        }
-    }
-
-    private void setMyView(int position, RecyclerView.ViewHolder holder)
-    {
-        if (String.valueOf(challangeRankLists.get(position).getStudentId())
-                .equalsIgnoreCase(MyPref.getInstance(context).readPrefs(AppConstants.STUDENT_ID)))
-        {
-            if (holder instanceof TopRankedViewHolder)
-            {
-                TopRankedViewHolder topRankedViewHolder = (TopRankedViewHolder) holder;
-                topRankedViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                topRankedViewHolder.name.setTypeface(topRankedViewHolder.name.getTypeface(), Typeface.BOLD);
-                topRankedViewHolder.points.setTypeface(topRankedViewHolder.points.getTypeface(), Typeface.BOLD);
-                topRankedViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
-            }
-            else if (holder instanceof OtheresRankViewHolder)
-            {
-                OtheresRankViewHolder otheresRankViewHolder = (OtheresRankViewHolder) holder;
-                switch (position)
-                {
-                    case 1:
-                            otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                            otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
-                            otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
-                            otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
-                        break;
-                    case 2:
-                            otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                            otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
-                            otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
-                            otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
-                        break;
-                        default:
-                            otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                            otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
-                            otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
-                            otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
-                            otheresRankViewHolder.postion.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
-
-                }
-            }
-        }
-        else
-        {
-            if (holder instanceof TopRankedViewHolder)
-            {
-                TopRankedViewHolder topRankedViewHolder = (TopRankedViewHolder) holder;
-                topRankedViewHolder.name.setTypeface(topRankedViewHolder.name.getTypeface(), Typeface.NORMAL);
-                topRankedViewHolder.points.setTypeface(topRankedViewHolder.points.getTypeface(), Typeface.NORMAL);
-                topRankedViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.black));
-            }
-            else if (holder instanceof OtheresRankViewHolder)
-            {
-                OtheresRankViewHolder otheresRankViewHolder = (OtheresRankViewHolder) holder;
-                switch (position)
-                {
-                    case 1:
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.black));
-                        break;
-                    case 2:
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.black));
-                        break;
-                    default:
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.black));
-                        otheresRankViewHolder.postion.setTextColor(context.getResources().getColor(android.R.color.black));
-
-                }
-            }
         }
     }
 

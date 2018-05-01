@@ -101,7 +101,7 @@ public class ChallengeFragment extends BaseFragment {
         add_friend_tv.setOnClickListener(this);
         start_quize_image.setOnClickListener(this);
 
-       /* challangeRankLists = (ArrayList<ChallangeRankList>) ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
+      /*  challangeRankLists = (ArrayList<ChallangeRankList>) ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
                 .queryBuilder().where(ChallangeRankListDao.Properties.Type.eq(AppConstants.RANK_TYPE_FRIEND)).list();
         if (challangeRankLists != null && challangeRankLists.size() > 0) {
             challengeAdapter.updateList(getActivity(), challangeRankLists);
@@ -131,7 +131,7 @@ public class ChallengeFragment extends BaseFragment {
                 ((HomeActivity) getActivity()).pushFragments(new AddFriendFragment(), null, true);
                 break;
             case R.id.friendsRankBtn:
-               /* challangeRankLists.clear();
+             /*   challangeRankLists.clear();
                 challangeRankLists = (ArrayList<ChallangeRankList>) ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
                         .queryBuilder().where(ChallangeRankListDao.Properties.Type.eq(AppConstants.RANK_TYPE_FRIEND)).list();
                 if (challangeRankLists != null && challangeRankLists.size() > 0) {
@@ -180,8 +180,8 @@ public class ChallengeFragment extends BaseFragment {
             return;
         }
 
-//        if (challangeRankLists == null || challangeRankLists.size() == 0)
-//            showProgressDialog(getActivity());
+       /* if (challangeRankLists == null || challangeRankLists.size() == 0)
+           showProgressDialog(getActivity());*/
         showProgressDialog(getActivity());
         Call<RankingParentResponse> call = ISFApp.getAppInstance()
                 .getApi()
@@ -220,15 +220,14 @@ public class ChallengeFragment extends BaseFragment {
                                 }
                                 challangeRankLists.add(challangeRankList);
                             }
-
-                           /* List<ChallangeRankList> deleteList = ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
+/*
+                            List<ChallangeRankList> deleteList = ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
                                     .queryBuilder().where(ChallangeRankListDao.Properties.Type.eq(type)).list();
 
                             ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao().deleteInTx(deleteList);
 
                             ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao().
-                                    insertInTx(challangeRankLists);
-*/
+                                    insertInTx(challangeRankLists);*/
 
                             challengeAdapter.updateList(getActivity(), challangeRankLists);
 

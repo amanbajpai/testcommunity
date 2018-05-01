@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.gdc.isfacademy.R;
@@ -22,6 +23,7 @@ public class ProfileFragment extends BaseFragment {
 
     private XRecyclerView recycler_view;
     private android.content.Context context;
+    ImageView btnInstagram,btnGooglePlus,btnWeChat,btnSnapChat,btnWhatsApp;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,17 @@ public class ProfileFragment extends BaseFragment {
         AppCompatTextView studentname=(AppCompatTextView)voucherHeader.findViewById(R.id.studentName);
         studentname.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_NAME));
         studentHouse.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE));
+        btnInstagram=(ImageView)voucherHeader.findViewById(R.id.btn_instagram);
+        btnGooglePlus=(ImageView)voucherHeader.findViewById(R.id.btn_google_plus);
+        btnSnapChat=(ImageView)voucherHeader.findViewById(R.id.btn_snapchat);
+        btnWhatsApp=(ImageView)voucherHeader.findViewById(R.id.btn_whatsapp);
+        btnWeChat=(ImageView)voucherHeader.findViewById(R.id.btn_we_chat);
+
+/*        btnInstagram.setEnabled(false);
+        btnWhatsApp.setEnabled(false);
+        btnGooglePlus.setEnabled(false);
+        btnSnapChat.setEnabled(false);*/
+
         ProfileAdapter adapter = new ProfileAdapter(context);
         recycler_view.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(context, LinearLayout.VERTICAL,false);
