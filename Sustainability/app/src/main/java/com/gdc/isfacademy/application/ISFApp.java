@@ -2,6 +2,7 @@ package com.gdc.isfacademy.application;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.googleanalitics.AnalyticsTrackers;
 import com.gdc.isfacademy.model.DaoMaster;
@@ -15,6 +16,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import io.fabric.sdk.android.Fabric;
 import org.greenrobot.greendao.database.Database;
 
 import java.io.IOException;
@@ -39,6 +41,7 @@ public class ISFApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         appInstance = ISFApp.this;
         retrofit = getApiClient(ApiConstants.API_SERVER_URL);
         api = retrofit.create(Api.class);

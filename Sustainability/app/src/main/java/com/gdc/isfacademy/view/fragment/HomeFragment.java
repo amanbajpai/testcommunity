@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
+import com.gdc.isfacademy.utils.TimeAgo;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 import com.google.gson.Gson;
@@ -37,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -277,6 +280,18 @@ public class HomeFragment extends BaseFragment {
             Float lastValue = response.getLastWeekCons().getValue();
 
 
+           /* Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(response.getLastWeekCons().getLastUpdateTs());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
+
+            Date date1=dateFormat.parse("06/5/2018 19:55:00");
+            TimeAgo timeAgo = new TimeAgo().locale(getActivity()).with(dateFormat);
+            String result = timeAgo.getTimeAgo(date1);
+            Log.d("time is",result);*/
+
+
+
+
             String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
             String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", lastValue, unit);
 
@@ -337,5 +352,11 @@ public class HomeFragment extends BaseFragment {
             ex.printStackTrace();
         }
     }
+
+
+
+
+
+
 
 }

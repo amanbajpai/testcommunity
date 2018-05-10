@@ -51,8 +51,11 @@ import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static android.R.attr.password;
 
@@ -409,6 +412,44 @@ public class ProjectUtil {
         int c = (int) ((f) + 0.5f);
         float n = f + 0.5f;
         return (n - c) % 2 == 0 ? (int) f : c;
+    }
+
+
+
+
+    public void timeAgo(String date){
+
+        try
+        {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss 'GMT'Z yyyy");
+            Date past = dateFormat.parse(date);
+            Date now = new Date();
+            long seconds= TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
+            long minutes= TimeUnit.MILLISECONDS.toMinutes(now.getTime() - past.getTime());
+            long hours=TimeUnit.MILLISECONDS.toHours(now.getTime() - past.getTime());
+            long days=TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime());
+          System.out.println(TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime()) + " days ago");
+
+            if(seconds<60)
+            {
+                System.out.println(seconds+" seconds ago");
+            }
+            else if(minutes<60)
+            {
+                System.out.println(minutes+" minutes ago");
+            }
+            else if(hours<24)
+            {
+                System.out.println(hours+" hours ago");
+            }
+            else
+            {
+                System.out.println(days+" days ago");
+            }
+        }
+        catch (Exception j){
+            j.printStackTrace();
+        }
     }
 
 

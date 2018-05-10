@@ -71,7 +71,6 @@ public class QuizeCompletedFragement extends BaseFragment {
         super.onClick(view);
         int id = view.getId();
         switch (id) {
-
             case R.id.share_tv:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);

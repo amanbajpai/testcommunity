@@ -230,8 +230,9 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                         finishQuiz(finalCorrect, true);
                     } else if (response.body().getResponseCode().equalsIgnoreCase("C0701")) {
                         finishQuiz(finalCorrect, false);
+                        ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
+
                     }
-                    ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
                 }
 
                 @Override

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ga_trackingId" translatable="false">UA-118460960-1</string>
 
+    <!--Client tracking id-->
+    <string name="ga_trackingId" translatable="false">UA-118783967-1</string>
 
+    <!--
+    DEMO Tracking Id
+        <string name="ga_trackingId" translatable="false">UA-118460960-1</string>
+    -->
 
 
     <integer name="ga_sessionTimeout">300</integer>
@@ -19,9 +24,9 @@
     <screenName name="com.gdc.isfacademy.view.activity.LoginActivity">Login Screen</screenName>
 
 
-
     <screenName name="com.gdc.isfacademy.view.fragment.HomeFragment">Home Screen</screenName>
-    <screenName name="com.gdc.isfacademy.view.fragment.ChallengeFragment">Challenge Screen</screenName>
+    <screenName name="com.gdc.isfacademy.view.fragment.ChallengeFragment">Challenge Screen
+    </screenName>
     <screenName name="com.gdc.isfacademy.view.fragment.RewardsFragment">Reward Screen</screenName>
 
     <screenName name="com.gdc.isfacademy.view.fragment.ProfileFragment">Profile Screen</screenName>

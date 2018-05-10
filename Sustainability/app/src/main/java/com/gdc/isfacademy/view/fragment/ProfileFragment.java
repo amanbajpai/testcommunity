@@ -42,6 +42,7 @@ public class ProfileFragment extends BaseFragment {
         return view;
     }
 
+
     private void initView(View view) {
 
         recycler_view = (XRecyclerView) view.findViewById(R.id.recycler_profile);
@@ -54,7 +55,7 @@ public class ProfileFragment extends BaseFragment {
         AppCompatTextView studentname=(AppCompatTextView)voucherHeader.findViewById(R.id.studentName);
         studentname.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_NAME));
         studentHouse.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE));
-        btnInstagram=(ImageView)voucherHeader.findViewById(R.id.btn_instagram);
+        btnInstagram=(ImageView) voucherHeader.findViewById(R.id.btn_instagram);
         btnGooglePlus=(ImageView)voucherHeader.findViewById(R.id.btn_google_plus);
         btnSnapChat=(ImageView)voucherHeader.findViewById(R.id.btn_snapchat);
         btnWhatsApp=(ImageView)voucherHeader.findViewById(R.id.btn_whatsapp);

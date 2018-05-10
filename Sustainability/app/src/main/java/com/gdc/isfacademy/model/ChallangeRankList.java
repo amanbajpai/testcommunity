@@ -22,7 +22,6 @@ public class ChallangeRankList {
 
     @Id(autoincrement = true)
     Long id;
-
     @SerializedName("studentId")
     @Expose
     String studentId;
@@ -60,9 +59,8 @@ public class ChallangeRankList {
 
 
     @Generated(hash = 2020211321)
-    public ChallangeRankList(Long id, String studentId, String studentName, String house,
-            String value, String lastUpdateDate, String lastUpdateTs, String unit,
-            String type, boolean checkIsme) {
+    public ChallangeRankList(Long id, String studentId, String studentName, String house, String value,
+                             String lastUpdateDate, String lastUpdateTs, String unit, String type, boolean checkIsme) {
         this.id = id;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -82,10 +80,6 @@ public class ChallangeRankList {
 
     public boolean isCheckIsme() {
         return checkIsme;
-    }
-
-    public void setCheckIsme(boolean checkIsme) {
-        this.checkIsme = checkIsme;
     }
 
     public String getStudentId() {
@@ -154,6 +148,10 @@ public class ChallangeRankList {
 
     public boolean getCheckIsme() {
         return this.checkIsme;
+    }
+
+    public void setCheckIsme(boolean checkIsme) {
+        this.checkIsme = checkIsme;
     }
 
     public Long getId() {

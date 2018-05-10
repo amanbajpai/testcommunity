@@ -1,6 +1,5 @@
 package com.gdc.isfacademy.view.fragment;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,9 +14,9 @@ import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
+import com.gdc.isfacademy.database.DbHalper;
 import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.model.ChallangeRankListDao;
-import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
@@ -30,7 +29,6 @@ import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -101,8 +99,7 @@ public class ChallengeFragment extends BaseFragment {
         add_friend_tv.setOnClickListener(this);
         start_quize_image.setOnClickListener(this);
 
-      /*  challangeRankLists = (ArrayList<ChallangeRankList>) ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
-                .queryBuilder().where(ChallangeRankListDao.Properties.Type.eq(AppConstants.RANK_TYPE_FRIEND)).list();
+     /*   challangeRankLists = DbHalper.getInstance().getRankingAccrodingToType(AppConstants.RANK_TYPE_FRIEND);
         if (challangeRankLists != null && challangeRankLists.size() > 0) {
             challengeAdapter.updateList(getActivity(), challangeRankLists);
 
@@ -132,8 +129,7 @@ public class ChallengeFragment extends BaseFragment {
                 break;
             case R.id.friendsRankBtn:
              /*   challangeRankLists.clear();
-                challangeRankLists = (ArrayList<ChallangeRankList>) ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
-                        .queryBuilder().where(ChallangeRankListDao.Properties.Type.eq(AppConstants.RANK_TYPE_FRIEND)).list();
+                challangeRankLists = DbHalper.getInstance().getRankingAccrodingToType(AppConstants.RANK_TYPE_FRIEND);
                 if (challangeRankLists != null && challangeRankLists.size() > 0) {
                     challengeAdapter.updateList(getActivity(), challangeRankLists);
 
@@ -146,9 +142,8 @@ public class ChallengeFragment extends BaseFragment {
 
                 break;
             case R.id.houseRankBtn:
-               /* challangeRankLists.clear();
-                challangeRankLists = (ArrayList<ChallangeRankList>) ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
-                        .queryBuilder().where(ChallangeRankListDao.Properties.Type.eq(AppConstants.RANK_TYPE_HOUSE)).list();
+         /*       challangeRankLists.clear();
+                challangeRankLists = DbHalper.getInstance().getRankingAccrodingToType(AppConstants.RANK_TYPE_HOUSE);
                 if (challangeRankLists != null && challangeRankLists.size() > 0) {
                     challengeAdapter.updateList(getActivity(), challangeRankLists);
 
@@ -180,7 +175,7 @@ public class ChallengeFragment extends BaseFragment {
             return;
         }
 
-       /* if (challangeRankLists == null || challangeRankLists.size() == 0)
+        /*if (challangeRankLists == null || challangeRankLists.size() == 0)
            showProgressDialog(getActivity());*/
         showProgressDialog(getActivity());
         Call<RankingParentResponse> call = ISFApp.getAppInstance()
@@ -220,14 +215,8 @@ public class ChallengeFragment extends BaseFragment {
                                 }
                                 challangeRankLists.add(challangeRankList);
                             }
-/*
-                            List<ChallangeRankList> deleteList = ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao()
-                                    .queryBuilder().where(ChallangeRankListDao.Properties.Type.eq(type)).list();
 
-                            ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao().deleteInTx(deleteList);
-
-                            ISFApp.getAppInstance().getDaoSession().getChallangeRankListDao().
-                                    insertInTx(challangeRankLists);*/
+                            //DbHalper.getInstance().insertChallangeRankingList(challangeRankLists,type);
 
                             challengeAdapter.updateList(getActivity(), challangeRankLists);
 

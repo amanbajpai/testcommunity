@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_weight="0.92">
+            android:layout_weight="0.94">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -253,7 +253,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.92">
+            android:layout_weight="0.94">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

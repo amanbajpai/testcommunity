@@ -80,15 +80,21 @@
     <string name="txt_search">Search</string>
     <string name="txt_send_request">SEND REQUEST</string>
     <string name="txt_try_later">TRY LATER</string>
-
     <string name="txt_enable_notification">Enable open app \"The ISF Sustainability App\"</string>
     <string name="txt_daily_challange">It\'s time for your DAILY CHALLENGE!"</string>
-
-
-
     <string name="answer_limit_exceeds">You already completed today\'s quize</string>
     <string name="something_went_wrong">Something went wrong.</string>
     <string name="txt_send_to">send_to</string>;
 
 
+    <!--Profile Screen-->
+
+    <string name="just_now">Just now</string>
+    <string name="a_min_ago">1 minute ago</string>
+    <string name="mins_ago">" minutes ago"</string>
+    <string name="a_hour_ago">1 hour ago</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="days_ago">" days ago"</string>
+    <string name="week_ago">" week ago"</string>
+    <string name="weeks_ago">" weeks ago"</string>
 </resources>

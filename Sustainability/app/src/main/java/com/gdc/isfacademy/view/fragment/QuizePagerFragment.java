@@ -34,10 +34,6 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
-            Log.d("print",""+getArguments().getString("data"));
-
-        }
     }
 
     @Nullable

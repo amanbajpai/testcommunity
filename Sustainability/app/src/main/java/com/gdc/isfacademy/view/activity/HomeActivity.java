@@ -49,7 +49,6 @@ public class HomeActivity extends BaseActivity implements
         init();
         setNavagionDrawer();
         setBottomNavigation();
-
     }
 
     public void setUpToolbar() {
@@ -237,27 +236,27 @@ public class HomeActivity extends BaseActivity implements
         switch (name) {
             case HomeFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-               // searchIcon.setVisibility(View.VISIBLE);
+                // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case RewardsFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-              //  searchIcon.setVisibility(View.VISIBLE);
+                //  searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case ChallengeFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-               // searchIcon.setVisibility(View.VISIBLE);
+                // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case ProfileFragment.TAG:
                 sliderIcon.setVisibility(View.VISIBLE);
-               // searchIcon.setVisibility(View.VISIBLE);
+                // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.GONE);
                 break;
             case HowMuchSaveFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
-             //   searchIcon.setVisibility(View.VISIBLE);
+                //   searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case AddFriendFragment.TAG:
@@ -267,12 +266,12 @@ public class HomeActivity extends BaseActivity implements
                 break;
             case QuizeFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
-              //  searchIcon.setVisibility(View.VISIBLE);
+                //  searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case QuizeCompletedFragement.TAG:
                 sliderIcon.setVisibility(View.GONE);
-               // searchIcon.setVisibility(View.VISIBLE);
+                // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);
                 break;
 
