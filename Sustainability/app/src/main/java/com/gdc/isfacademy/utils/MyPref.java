@@ -26,10 +26,6 @@ public class MyPref {
     public static final String TOTAL_WEEK_CONSUMPTION_BUILDING="weekConsumptionBuilding";
     public static final String TOTAL_CURRENT_CONSUMPTION_BUILDING_UNIT="currentConsumptionBuildingUnit";
     public static final String QUIZ_COUNT="quiz_count";
-
-
-
-
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
 
