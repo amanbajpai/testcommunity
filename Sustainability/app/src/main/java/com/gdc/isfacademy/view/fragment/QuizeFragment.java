@@ -228,7 +228,9 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                     hideProgressDialog();
                     if (response.body().getResponseCode().equalsIgnoreCase("success")) {
                         finishQuiz(finalCorrect, true);
+                        MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,finalCorrect);
                     } else if (response.body().getResponseCode().equalsIgnoreCase("C0701")) {
+                        MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,finalCorrect);
                         finishQuiz(finalCorrect, false);
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 

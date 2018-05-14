@@ -117,7 +117,6 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                     }
                 } else {
-
                     int a = position + 1;
                     String rankIs = String.valueOf(a);
                     if (challangeRankLists.get(position).isCheckIsme()) {

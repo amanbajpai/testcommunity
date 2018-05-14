@@ -34,6 +34,7 @@ public class ProfileFragment extends BaseFragment {
         ProfileFragment profileFragment = new ProfileFragment();
         return profileFragment;
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -82,6 +82,7 @@ public class ChallengeFragment extends BaseFragment {
         houseRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.houseRankBtn);
         friendsRankBtn.setOnClickListener(this);
         houseRankBtn.setOnClickListener(this);
+        ImageView start_quize_image=(ImageView)voucherHeader.findViewById(R.id.start_quize_image);
 
         friendsRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.friend_selector));
         houseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
@@ -105,6 +106,14 @@ public class ChallengeFragment extends BaseFragment {
 
         }*/
         getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
+
+        String answeredDate = MyPref.getInstance(getActivity())
+                .readPrefs(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID));
+        if (!ProjectUtil.getTodayDate().equalsIgnoreCase(answeredDate)) {
+            start_quize_image.setImageResource(R.drawable.challenge_header);
+        } else {
+            start_quize_image.setImageResource(R.drawable.challenge_header_result);
+        }
 
     }
 
@@ -162,7 +171,11 @@ public class ChallengeFragment extends BaseFragment {
                 if (!ProjectUtil.getTodayDate().equalsIgnoreCase(answeredDate)) {
                     ((HomeActivity) getActivity()).pushFragments(new QuizeFragment(), null, true);
                 } else {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.answer_limit_exceeds), Toast.LENGTH_SHORT).show();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(AppConstants.ANSWER_COUNT, MyPref.getInstance(getActivity()).readIntegerPrefs(MyPref.QUIZ_COUNT));
+                    ((HomeActivity) getActivity()).pushFragments(QuizeCompletedFragement.newInstance(), bundle, true);
+
+                    // Toast.makeText(getActivity(), getResources().getString(R.string.answer_limit_exceeds), Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

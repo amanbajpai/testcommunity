@@ -30,21 +30,47 @@
         android:layout_gravity="center_horizontal"
         android:text="You have earned your daily points " />
 
-
-    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-        android:id="@+id/share_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_20sdp"
-        android:paddingRight="@dimen/_20sdp"
-        android:clickable="true"
-        android:background="@drawable/blue_rect_bg"
-        android:paddingTop="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_12sdp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sdp"
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_gravity="center_horizontal"
-        android:text="Share" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+            android:id="@+id/share_tv"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:clickable="true"
+            android:background="@drawable/blue_rect_bg"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_12sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:layout_gravity="center_horizontal"
+            android:text="Share" />
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+            android:id="@+id/doneQuiz"
+            android:visibility="gone"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:clickable="true"
+            android:background="@drawable/blue_rect_bg"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_12sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:layout_gravity="center_horizontal"
+            android:text="Done" />
+
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
