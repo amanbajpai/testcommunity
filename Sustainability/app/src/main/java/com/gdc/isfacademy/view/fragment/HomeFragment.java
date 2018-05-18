@@ -73,7 +73,6 @@ public class HomeFragment extends BaseFragment {
         View layout = inflater.inflate(R.layout.home_fragment, container, false);
         initView(layout);
         getEnergySaving();
-
         return layout;
     }
 

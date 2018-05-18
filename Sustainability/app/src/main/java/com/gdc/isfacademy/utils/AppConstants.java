@@ -10,7 +10,6 @@ public class AppConstants {
     public static final int OTHERS_RANK_VIEW=1;
     public static final String API_KEY="25a64d9a-b9c8-44d9-9a7d-e76aa39913429086752942922195079";
     public static final String CONTENT_TYPE="application/json";
-    public static final int  ERROR_LOG=1;
     public static final String REQUEST="Request :";
     public static final String RESPONSE="Response :";
 
@@ -25,5 +24,9 @@ public class AppConstants {
     public static final String ANSWER_COUNT="answerCount";
     public static final String CURRENT_ENERGY_CONSUMPTION="cec";
     public static final String CURRENT_ENERGY_UNIT="currentEnergyUnit";
+
+    public static final int  ERROR_LOG=1;
+    public static final int  DEBUG_LOG=0;
+    public static final int REQUEST_LOCATION=101;
 
 }

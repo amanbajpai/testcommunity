@@ -81,11 +81,12 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'org.greenrobot:greendao:3.2.2'
-    compile 'com.google.android.gms:play-services-analytics:10.2.0'
-    compile 'com.google.firebase:firebase-core:10.2.0'
+    compile 'com.google.android.gms:play-services-analytics:11.0.4'
     compile('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
         transitive = true;
     }
+    compile 'com.google.android.gms:play-services-location:11.0.4'
+
 
 
 }

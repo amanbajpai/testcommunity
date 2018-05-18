@@ -63,7 +63,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/color_text_and_spinner"
-                            android:textSize="@dimen/_32sdp" />
+                            android:textSize="@dimen/_25sdp" />
 
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
@@ -328,17 +328,17 @@
 
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                        android:id="@+id/value_km"
+                        android:id="@+id/value_carbon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_toLeftOf="@+id/kgText"
-                        android:text="0"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_toLeftOf="@+id/unitCarbon"
+                        android:maxLength="6"
                         android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_45sdp" />
+                        android:textSize="@dimen/_25sdp" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                        android:id="@+id/kgText"
+                        android:id="@+id/unitCarbon"
                         android:layout_alignParentBottom="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

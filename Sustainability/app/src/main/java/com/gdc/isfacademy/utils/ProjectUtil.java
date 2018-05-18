@@ -230,6 +230,7 @@ public class ProjectUtil {
                 showInvalidTimeDialog(context);
 
             } else {
+
                 Log.e("hoursValid", "" + hour);
                 MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, true);
 

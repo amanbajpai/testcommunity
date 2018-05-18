@@ -37,6 +37,7 @@ public class ISFApp extends Application {
     private Api api;
     private DaoSession daoSession;
 
+//CASTLEY	Alexander	10010006	A24cFuxs
 
     @Override
     public void onCreate() {
@@ -48,6 +49,10 @@ public class ISFApp extends Application {
 
         AnalyticsTrackers.initialize(this);
         AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
+
+        Tracker tracker=getGoogleAnalyticsTracker();
+        tracker.enableAdvertisingIdCollection(true);
+
 
 
 
