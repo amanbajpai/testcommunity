@@ -22,6 +22,8 @@ public interface ApiConstants {
         public static final String GET_BUILDING_ENERGY_SAVING="getBuildingEnergySaving";
         public static final String SUBMIT_SHARE_POINTS="submitShare";
         public static final String GET_STUDENT_FOOT_PRINT="getStudentFootPrint";
+        public static final String GET_STUDENT_COST_SAVED="getStudentCostSaved";
+        public static final String CHECK_STUDENT_QUESTION="checkStudentQuestion";
 
     }
 

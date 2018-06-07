@@ -39,6 +39,7 @@
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:id="@+id/this_week_tv"
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -48,7 +49,20 @@
                         android:text="@string/this_week"
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_11sdp" />
-
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/spinner"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:background="@drawable/spineer_drop_down"
+                            android:dropDownVerticalOffset="25dp"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_25sdp" />
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -199,16 +213,24 @@
                                 android:textSize="@dimen/_12sdp" />
 
                         </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                                android:layout_width="wrap_content"
+                                android:maxLines="1"
+                                android:id="@+id/hotChoclateText"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/_1sdp"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_15sdp" />
+
+                        </RelativeLayout>
 
 
-                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_20sdp"
-                            android:text="X0"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/_15sdp" />
 
 
                     </LinearLayout>

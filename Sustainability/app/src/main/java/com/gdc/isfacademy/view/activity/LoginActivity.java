@@ -210,7 +210,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
             Log.d("address", "" + address );
             return address;
-        } catch (IOException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         return address;

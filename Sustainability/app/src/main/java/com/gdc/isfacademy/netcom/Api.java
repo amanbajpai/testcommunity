@@ -6,6 +6,8 @@ import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.LoginParentResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.model.StudentFootPrintResponse;
+import com.gdc.isfacademy.model.StudentSavedCostResponse;
+import com.gdc.isfacademy.utils.AppConstants;
 
 import org.json.JSONObject;
 
@@ -78,5 +80,19 @@ public interface Api {
     Call<StudentFootPrintResponse> getStudentFootPrint(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                        @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                        @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
+
+
+    @GET(ApiConstants.ApiUrls.GET_STUDENT_COST_SAVED)
+    Call<StudentSavedCostResponse> getStudentCostSaved(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                       @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                                       @Query(ApiConstants.ApiParams.TYPE) String type);
+    @GET(ApiConstants.ApiUrls.CHECK_STUDENT_QUESTION)
+    Call<CommonResponse> checkStudenQuestions(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                       @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
+
 
 }

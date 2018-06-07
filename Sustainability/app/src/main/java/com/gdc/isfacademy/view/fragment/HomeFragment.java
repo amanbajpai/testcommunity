@@ -158,8 +158,13 @@ public class HomeFragment extends BaseFragment {
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             currentCons = response.body().getCurrentCons();
-                          setView(response.body());
+                            setView(response.body());
                         } else {
+                            percentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                            percentArrow.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light), android.graphics.PorterDuff.Mode.SRC_IN);
+                            percentArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
+                            percentArrow.setVisibility(View.GONE);
+                            zerpPercentSave.setVisibility(View.VISIBLE);
                             ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
                         }
                     }
@@ -205,6 +210,10 @@ public class HomeFragment extends BaseFragment {
 
                             setViewforBuilding(response.body());
                         } else {
+                            buildingPercentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                            buildingEnergyStatusArrow.setVisibility(View.GONE);
+                            buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
+                            zeroPercentSavedBuilding.setVisibility(View.VISIBLE);
                             ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 
                         }

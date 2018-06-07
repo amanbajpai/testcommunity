@@ -17,6 +17,7 @@ import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.database.DbHalper;
 import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.model.ChallangeRankListDao;
+import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
@@ -46,6 +47,7 @@ public class ChallengeFragment extends BaseFragment {
     AppCompatTextView friendsRankBtn, houseRankBtn;
     private OpenSansSemiBoldTextView add_friend_tv;
     private ImageView start_quize_image;
+    String isQusetionAnswerSubmited="";
 
     public static ChallengeFragment newInstance() {
         ChallengeFragment challengeFragment = new ChallengeFragment();
@@ -82,7 +84,6 @@ public class ChallengeFragment extends BaseFragment {
         houseRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.houseRankBtn);
         friendsRankBtn.setOnClickListener(this);
         houseRankBtn.setOnClickListener(this);
-        ImageView start_quize_image=(ImageView)voucherHeader.findViewById(R.id.start_quize_image);
 
         friendsRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.friend_selector));
         houseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
@@ -99,6 +100,8 @@ public class ChallengeFragment extends BaseFragment {
         start_quize_image = (ImageView) voucherHeader.findViewById(R.id.start_quize_image);
         add_friend_tv.setOnClickListener(this);
         start_quize_image.setOnClickListener(this);
+        getQuizSubmittedStatus();
+
 
      /*   challangeRankLists = DbHalper.getInstance().getRankingAccrodingToType(AppConstants.RANK_TYPE_FRIEND);
         if (challangeRankLists != null && challangeRankLists.size() > 0) {
@@ -107,13 +110,13 @@ public class ChallengeFragment extends BaseFragment {
         }*/
         getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
 
-        String answeredDate = MyPref.getInstance(getActivity())
+     /*   String answeredDate = MyPref.getInstance(getActivity())
                 .readPrefs(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID));
         if (!ProjectUtil.getTodayDate().equalsIgnoreCase(answeredDate)) {
             start_quize_image.setImageResource(R.drawable.challenge_header);
         } else {
             start_quize_image.setImageResource(R.drawable.challenge_header_result);
-        }
+        }*/
 
     }
 
@@ -165,20 +168,70 @@ public class ChallengeFragment extends BaseFragment {
                 break;
 
             case R.id.start_quize_image:
-                String answeredDate = MyPref.getInstance(getActivity())
-                        .readPrefs(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID));
-
-                if (!ProjectUtil.getTodayDate().equalsIgnoreCase(answeredDate)) {
+                if (isQusetionAnswerSubmited.equalsIgnoreCase("false")) {
                     ((HomeActivity) getActivity()).pushFragments(new QuizeFragment(), null, true);
-                } else {
+                } else if(isQusetionAnswerSubmited.equalsIgnoreCase("true")) {
                     Bundle bundle = new Bundle();
                     bundle.putInt(AppConstants.ANSWER_COUNT, MyPref.getInstance(getActivity()).readIntegerPrefs(MyPref.QUIZ_COUNT));
                     ((HomeActivity) getActivity()).pushFragments(QuizeCompletedFragement.newInstance(), bundle, true);
-
-                    // Toast.makeText(getActivity(), getResources().getString(R.string.answer_limit_exceeds), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    ProjectUtil.showToast(getActivity(),getString(R.string.txt_try_again));
                 }
                 break;
         }
+    }
+
+
+    private void getQuizSubmittedStatus() {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
+            return;
+        }
+        showProgressDialog(getActivity());
+        Call<CommonResponse> call = ISFApp.getAppInstance()
+                .getApi()
+                .checkStudenQuestions(AppConstants.API_KEY,
+                        AppConstants.CONTENT_TYPE,
+                        MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+
+        ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                hideProgressDialog();
+                if (response.body() != null) {
+                    if(response.body().getResponseCode()!=null){
+                        if(response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)){
+                            if(response.body().isSubmitted().equalsIgnoreCase("true")){
+                                isQusetionAnswerSubmited=response.body().isSubmitted();
+                                if(response.body().getCorrect()!=null){
+                                    MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,Integer.parseInt(response.body().getCorrect()));
+                                }
+                                start_quize_image.setImageResource(R.drawable.challenge_header_result);
+                            }
+                            else if(response.body().isSubmitted().equalsIgnoreCase("false")){
+                                isQusetionAnswerSubmited=response.body().isSubmitted();
+                                start_quize_image.setImageResource(R.drawable.challenge_header);
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                t.printStackTrace();
+                hideProgressDialog();
+            }
+        });
+
     }
 
 
@@ -232,6 +285,11 @@ public class ChallengeFragment extends BaseFragment {
                             //DbHalper.getInstance().insertChallangeRankingList(challangeRankLists,type);
 
                             challengeAdapter.updateList(getActivity(), challangeRankLists);
+
+                        } else {
+                            challangeRankLists = new ArrayList<ChallangeRankList>();
+                            challengeAdapter.updateList(getActivity(), challangeRankLists);
+
 
                         }
                     } else {

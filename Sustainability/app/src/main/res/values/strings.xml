@@ -97,4 +97,18 @@
     <string name="days_ago">" days ago"</string>
     <string name="week_ago">" week ago"</string>
     <string name="weeks_ago">" weeks ago"</string>
+
+
+    <!--SpinnerItem-->
+    <string name="txt_daily">daily</string>
+    <string name="txt_cycle_small">cycle</string>
+    <string name="txt_monthly_small">monthly</string>
+
+    <string name="txt_today">Today</string>
+    <string name="txt_cycle">Cycle</string>
+    <string name="txt_monthly">Monthly</string>
+
+    <!--valdation msg-->
+    <string name="txt_try_again">Something went wrong,please refresh again.</string>
+
 </resources>
