@@ -41,6 +41,7 @@ import android.widget.Toast;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.receivers.AlarmReceiver;
+import com.gdc.isfacademy.receivers.QuizeReminderReciever;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.activity.LoginActivity;
 import com.gdc.isfacademy.view.activity.SplashActivity;
@@ -216,6 +217,36 @@ public class ProjectUtil {
     }
 
 
+    public static void setAlarmReminder(Context context) {
+        try {
+            AlarmManager alarmMgr;
+            PendingIntent alarmIntent;
+            if (!MyPref.getInstance(context).hasAlarmSetReminder()) {
+                Log.e("alaram set", "set");
+                MyPref.getInstance(context).setHasAlarmSetReminder(true);
+                MyPref.getInstance(context).setAlarmTimeReminder("17");
+
+                // Set the alarm to start at approximately 5:00 p.m.
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.set(Calendar.HOUR_OF_DAY, 17);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+
+
+                alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(context, QuizeReminderReciever.class);
+                alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+
+                alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, alarmIntent);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void checkTime(Context context) {
         try {
             Calendar calendar = Calendar.getInstance();
@@ -226,13 +257,13 @@ public class ProjectUtil {
 
             if (hour >= 8 && hour < 16) {
                 Log.e("hoursInvalide", "" + hour);
-                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, false);
-                showInvalidTimeDialog(context);
+               // MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, false);
+              //  showInvalidTimeDialog(context);
 
             } else {
 
                 Log.e("hoursValid", "" + hour);
-                MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, true);
+               // MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, true);
 
             }
         } catch (Exception ex) {
@@ -302,7 +333,7 @@ public class ProjectUtil {
     }
 
 
-    public static void sendNotification() {
+    public static void sendNotification(String message) {
         try {
             //MyPref.getInstance(KalamanseeApp.getAppInstance().getApplicationContext()).writeBooleanPrefs("test",true);
 
@@ -318,9 +349,10 @@ public class ProjectUtil {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(ISFApp.getAppInstance().getApplicationContext())
                     .setSmallIcon(getNotificationIconnew())
                     .setLargeIcon(BitmapFactory.decodeResource(ISFApp.getAppInstance().getApplicationContext().getResources(), R.drawable.app_icon))
-                    .setContentTitle(ISFApp.getAppInstance().getApplicationContext().getString(R.string.txt_daily_challange))
+                    .setContentTitle("Daily challenge!")
+                    .setContentText(message)
                     .setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setColor(R.color.black)
+                    .setColor(R.color.white)
                     .setSound(defaultSoundUri)
                     .setContentIntent(contentIntent);
             Notification notification =
@@ -340,7 +372,7 @@ public class ProjectUtil {
 
     private static int getNotificationIconnew() {
         boolean useWhiteIcon = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
-        return useWhiteIcon ? R.drawable.app_icon : R.drawable.app_icon;
+        return useWhiteIcon ? R.drawable.app_icon : R.drawable.icon_push;
     }
 
 

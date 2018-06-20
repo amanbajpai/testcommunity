@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/tools"
-    android:clickable="true"
     android:background="@drawable/splash"
+    android:clickable="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,7 +14,6 @@
         android:layout_above="@+id/pager_bottom_layout"
         android:layout_alignParentTop="true"
         android:orientation="vertical">
-
 
 
         <net.alexandroid.utils.indicators.IndicatorsView
@@ -72,7 +71,7 @@
             android:clickable="true"
             android:enabled="false"
             android:gravity="center"
-            android:text="Next"
+            android:text="Check"
             android:textAllCaps="false"
             android:visibility="visible" />
 

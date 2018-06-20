@@ -21,6 +21,9 @@ public class BootCompleteReceiver  extends BroadcastReceiver {
             MyPref.getInstance(context).setAlarmTime("0");
             MyPref.getInstance(context).setHasAlarmSet(false);
             ProjectUtil.setAlarm(context);
+            if(MyPref.getInstance(context).readIntegerPrefs(MyPref.QUIZ_COUNT)==0){
+                ProjectUtil.setAlarmReminder(context);
+            }
         }
     }
 }

@@ -53,6 +53,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         initViews();
         ProjectUtil.setAlarm(this);
 
+       /* if(MyPref.getInstance(this).readIntegerPrefs(MyPref.QUIZ_COUNT)==0){
+        }*/
+
     }
 
     public void initViews() {
@@ -68,16 +71,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_with_student_id_btn:
-                if (MyPref.getInstance(LoginActivity.this).readBooleanPrefs(MyPref.IS_VALID_TIME)) {
-                    /*Intent intent = new Intent(mContext, HomeActivity.class);
+               /* if (MyPref.getInstance(LoginActivity.this).readBooleanPrefs(MyPref.IS_VALID_TIME)) {
+                    *//*Intent intent = new Intent(mContext, HomeActivity.class);
                     startActivity(intent);
-                    finish();*/
+                    finish();*//*
                     locationUtils = new LocationUtils(this, this,true);
 
 
                 } else {
                     ProjectUtil.showInvalidTimeDialog(LoginActivity.this);
-                }
+                }*/
+                locationUtils = new LocationUtils(this, this, true);
 
 
                 break;
@@ -94,6 +98,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         dialog.setTitle("LOGIN");
         final OpenSansLightEditText nameET = (OpenSansLightEditText) view.findViewById(R.id.nameET);
         final OpenSansLightEditText passET = (OpenSansLightEditText) view.findViewById(R.id.passET);
+
         TextView okBT = (TextView) view.findViewById(R.id.okBT);
         TextView cancelBT = (TextView) view.findViewById(R.id.cancelBT);
         okBT.setOnClickListener(new View.OnClickListener() {
@@ -187,11 +192,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
 
     @Override
-    public void navigate(double lat, double longi,boolean isFromLogin) {
+    public void navigate(double lat, double longi, boolean isFromLogin) {
         latitude = lat;
         longitude = longi;
         hideProgressDialog();
-        if(isFromLogin){
+        if (isFromLogin) {
             showLoginDialog(mContext);
         }
         getAddressFromUserCurrentLocation();
@@ -208,7 +213,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         try {
             addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
             address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            Log.d("address", "" + address );
+            Log.d("address", "" + address);
             return address;
         } catch (Throwable e) {
             e.printStackTrace();
@@ -216,6 +221,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         return address;
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {

@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.gdc.isfacademy.R;
+import com.gdc.isfacademy.application.ISFApp;
+import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 
 /**
@@ -19,8 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         ProjectUtil.checkTime(context);
-        ProjectUtil.sendNotification();
-
+        ProjectUtil.sendNotification(ISFApp.getAppInstance().getApplicationContext().getString(R.string.txt_daily_challange));
         Log.e(TAG, "AlarmReceiver:onReceive() called");
     }
 }

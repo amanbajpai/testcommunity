@@ -62,6 +62,9 @@
         <receiver
             android:name=".receivers.AlarmReceiver"
             android:enabled="true"/>
+        <receiver
+            android:name=".receivers.QuizeReminderReciever"
+            android:enabled="true"/>
 
         <!--
         Optionally, register AnalyticsReceiver and AnalyticsService to support background
@@ -97,7 +100,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="24ac6de87ecc433fcc5148c36f1c9ba842321be8" />
+            android:value="9891a1e0e8fd631d4a4c6b13bea0b5b20747b133" />
     </application>
 
 </manifest>

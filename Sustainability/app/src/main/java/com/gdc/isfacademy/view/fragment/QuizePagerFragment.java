@@ -23,13 +23,12 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
     QuizeListAdapter quizeListAdapter;
     List<Options> optionList;
     OpenSansLightTextview questionTv, questionNoTv;
-    // private CardView answer_three, answer_two, answer_one;
-    private XRecyclerView pager_recylerview;
-
     Question question;
     String questionNo, totalQuestion;
-
+    int selectedPosition = 0;
     QuizeFragment quizeFragment;
+    // private CardView answer_three, answer_two, answer_one;
+    private XRecyclerView pager_recylerview;
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -49,10 +48,10 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
 
         question = getArguments().getParcelable("question");
         questionNo = getArguments().getString("questionNo");
-        totalQuestion = getArguments().getString("totalQuestion");
         optionList = question.getOptions();
+        totalQuestion = getArguments().getString("totalQuestion");
 
-        quizeFragment = ((QuizeFragment)QuizePagerFragment.this.getParentFragment());
+        quizeFragment = ((QuizeFragment) QuizePagerFragment.this.getParentFragment());
 
         pager_recylerview = (XRecyclerView) view.findViewById(R.id.pager_recylerview);
         pager_recylerview.setLoadingMoreEnabled(false);
@@ -77,7 +76,7 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
         answer_two.setOnClickListener(this);
         answer_one.setOnClickListener(this);*/
         questionTv.setText(question.getQuestion());
-        questionNoTv.setText(questionNo+"/"+totalQuestion);
+        questionNoTv.setText(questionNo + "/" + totalQuestion);
     }
 
 
@@ -100,8 +99,8 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
     public void onClick(int id, int pos) {
         switch (id) {
             case R.id.answerView:
-
-                boolean isCorrect = question.getAnswer().equalsIgnoreCase(String.valueOf(pos+1));
+                selectedPosition = pos;
+                boolean isCorrect = question.getAnswer().equalsIgnoreCase(String.valueOf(pos + 1));
 
                 for (int i = 0; i < optionList.size(); i++) {
                     optionList.get(i).setSelected(false);
@@ -109,6 +108,7 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
 
                 question.setAnswered(true);
                 question.setCorrect(isCorrect);
+                question.setUserSelectedAnswer(pos);
                 optionList.get(pos).setSelected(true);
                 quizeListAdapter.notifyDataSetChanged();
 
@@ -122,4 +122,14 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
         }
 
     }
+
+    public void showWrongAnswerView() {
+        quizeListAdapter.setWrongAnswerView();
+        quizeListAdapter.setRightAnswerView();
+    }
+
+    public void showRightAnswerView() {
+        quizeListAdapter.setRightAnswerView();
+    }
+
 }

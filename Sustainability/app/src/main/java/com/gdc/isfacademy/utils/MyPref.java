@@ -47,6 +47,11 @@ public class MyPref {
         editor.putString("alarmTime", alarmTime);
         editor.commit();
     }
+    public void setAlarmTimeReminder(String alarmTime)
+    {
+        editor.putString("alarmTime", alarmTime);
+        editor.commit();
+    }
 
     public String getAlarmTime()
     {
@@ -62,6 +67,16 @@ public class MyPref {
     public boolean hasAlarmSet()
     {
         return sharedPreferences.getBoolean("hasAlarmSet", false);
+    }
+
+    public void setHasAlarmSetReminder(Boolean hasAlarmSet)
+    {
+        editor.putBoolean("hasAlarmSetReminder", hasAlarmSet);
+        editor.commit();
+    }
+
+    public boolean hasAlarmSetReminder()
+    {return sharedPreferences.getBoolean("hasAlarmSetReminder", false);
     }
 
 
@@ -93,7 +108,7 @@ public class MyPref {
     }
 
     public Integer readIntegerPrefs(String pref_name) {
-        return sharedPreferences.getInt(pref_name, 0);
+        return sharedPreferences.getInt(pref_name, -1);
     }
     public void clearPrefs() {
         editor.clear();

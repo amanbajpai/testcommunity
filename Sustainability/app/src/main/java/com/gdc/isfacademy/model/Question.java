@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @Entity(
         // Whether an all properties constructor should be generated.
         // A no-args constructor is always required.
@@ -28,31 +27,74 @@ import java.util.List;
 )
 public class Question implements Parcelable {
 
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
+        @Override
+        public Question createFromParcel(Parcel source) {
+            return new Question(source);
+        }
+
+        @Override
+        public Question[] newArray(int size) {
+            return new Question[size];
+        }
+    };
     @Id(autoincrement = true)
     Long id;
-
     @Transient
     boolean answered;
-
     @Transient
     boolean correct;
-
+    @Transient
+    boolean isQuestionChecked = false;
     @SerializedName("questionId")
     @Expose
     private Integer questionId;
-
     @SerializedName("question")
     @Expose
     private String question;
-
     @SerializedName("options")
     @Expose
     @ToMany(referencedJoinProperty = "questionId")
     private List<Options> options = null;
-
     @SerializedName("answer")
     @Expose
     private String answer;
+
+    @Expose
+    private int userSelectedAnswer = -1;
+
+    /**
+     * Used to resolve relations
+     */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
+    /**
+     * Used for active entity operations.
+     */
+    @Generated(hash = 891254763)
+    private transient QuestionDao myDao;
+
+    public Question() {
+    }
+
+    protected Question(Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.questionId = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.question = in.readString();
+        this.options = new ArrayList<Options>();
+        in.readList(this.options, Options.class.getClassLoader());
+        this.answer = in.readString();
+    }
+
+    @Generated(hash = 338450575)
+    public Question(Long id, Integer questionId, String question, String answer,
+            int userSelectedAnswer) {
+        this.id = id;
+        this.questionId = questionId;
+        this.question = question;
+        this.answer = answer;
+        this.userSelectedAnswer = userSelectedAnswer;
+    }
 
     public Long getId() {
         return id;
@@ -128,6 +170,22 @@ public class Question implements Parcelable {
         this.correct = correct;
     }
 
+    public boolean isQuestionChecked() {
+        return isQuestionChecked;
+    }
+
+    public void setQuestionChecked(boolean questionChecked) {
+        isQuestionChecked = questionChecked;
+    }
+
+    public int getUserSelectedAnswer() {
+        return userSelectedAnswer;
+    }
+
+    public void setUserSelectedAnswer(int userSelectedAnswer) {
+        this.userSelectedAnswer = userSelectedAnswer;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -142,7 +200,9 @@ public class Question implements Parcelable {
         dest.writeString(this.answer);
     }
 
-    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
+    /**
+     * Resets a to-many relationship, making the next get call to query for a fresh result.
+     */
     @Generated(hash = 37457025)
     public synchronized void resetOptions() {
         options = null;
@@ -190,44 +250,4 @@ public class Question implements Parcelable {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getQuestionDao() : null;
     }
-
-    public Question() {
-    }
-
-    protected Question(Parcel in) {
-        this.id = (Long) in.readValue(Long.class.getClassLoader());
-        this.questionId = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.question = in.readString();
-        this.options = new ArrayList<Options>();
-        in.readList(this.options, Options.class.getClassLoader());
-        this.answer = in.readString();
-    }
-
-    @Generated(hash = 1354499475)
-    public Question(Long id, Integer questionId, String question, String answer) {
-        this.id = id;
-        this.questionId = questionId;
-        this.question = question;
-        this.answer = answer;
-    }
-
-    public static final Creator<Question> CREATOR = new Creator<Question>() {
-        @Override
-        public Question createFromParcel(Parcel source) {
-            return new Question(source);
-        }
-
-        @Override
-        public Question[] newArray(int size) {
-            return new Question[size];
-        }
-    };
-
-    /** Used to resolve relations */
-    @Generated(hash = 2040040024)
-    private transient DaoSession daoSession;
-
-    /** Used for active entity operations. */
-    @Generated(hash = 891254763)
-    private transient QuestionDao myDao;
 }

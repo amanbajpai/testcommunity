@@ -24,14 +24,16 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
     List<Options> optionList;
     QuizeListAdapter.OnListItemClick onListItemClick;
     Question question;
+    QuizeListAdapter.Holder mHolder = null;
+    QuizeListAdapter.Holder correctAnswermHolder = null;
+    int clickedPos = -1;
 
     public QuizeListAdapter(Context context, List<Options> optionList) {
         this.context = context;
         this.optionList = optionList;
     }
 
-    public void setQuestion(Question question)
-    {
+    public void setQuestion(Question question) {
         this.question = question;
     }
 
@@ -48,27 +50,63 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
     }
 
     @Override
-    public void onBindViewHolder(QuizeListAdapter.Holder holder, final int position) {
+    public void onBindViewHolder(final QuizeListAdapter.Holder holder, final int position) {
 
         holder.columnName.setText(getPrefix(position));
-
+        holder.answerText.setTextColor(R.color.black);
         holder.answerText.setText(optionList.get(position).getOption());
 
+        if (question.getAnswer().equalsIgnoreCase(String.valueOf(position + 1))) {
+            correctAnswermHolder = holder;
+        }
         holder.answerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onListItemClick.onClick(v.getId(),position);
+                if (question.isQuestionChecked()) {
+                    return;
+                }
+                clickedPos = position;
+                mHolder = holder;
+                mHolder.answerText.setTextColor(context.getResources().getColor(R.color.black));
+                mHolder.columnName.setTextColor(context.getResources().getColor(R.color.black));
+                onListItemClick.onClick(v.getId(), position);
             }
         });
 
-        if (optionList.get(position).isSelected())
-        {
-            holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
+        if (!question.isQuestionChecked()) {
+            holder.answerView.setEnabled(true);
+            if (optionList.get(position).isSelected()) {
+                holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
+            } else {
+                holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white));
+            }
+        } else {
+            holder.answerView.setEnabled(false);
+            if (question.getUserSelectedAnswer() == position) {
+                if (question.getUserSelectedAnswer() == Integer.parseInt(question.getAnswer())) {
+                    holder.answerText.setTextColor(context.getResources().getColor(R.color.white));
+                    holder.columnName.setTextColor(context.getResources().getColor(R.color.white));
+                    holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
+                } else {
+                    holder.answerText.setTextColor(context.getResources().getColor(R.color.white));
+                    holder.columnName.setTextColor(context.getResources().getColor(R.color.white));
+                    holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.red_light));
+                }
+
+            } else {
+                if (position == Integer.parseInt(question.getAnswer())) {
+                    holder.answerText.setTextColor(context.getResources().getColor(R.color.white));
+                    holder.columnName.setTextColor(context.getResources().getColor(R.color.white));
+                    holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
+                } else {
+                    holder.answerText.setTextColor(context.getResources().getColor(R.color.black));
+                    holder.columnName.setTextColor(context.getResources().getColor(R.color.black));
+                    holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white));
+                }
+
+            }
         }
-        else
-        {
-            holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white));
-        }
+
     }
 
     @Override
@@ -76,36 +114,45 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
         return optionList.size();
     }
 
+    private String getPrefix(int position) {
+        if (position == 0) {
+            return "A.";
+        } else if (position == 1) {
+            return "B.";
+        } else if (position == 2) {
+            return "C.";
+        } else if (position == 3) {
+            return "D.";
+        }
+        return "";
+    }
+
+    public void setWrongAnswerView() {
+        mHolder.answerText.setTextColor(context.getResources().getColor(R.color.white));
+        mHolder.columnName.setTextColor(context.getResources().getColor(R.color.white));
+        mHolder.answerView.setBackgroundColor(context.getResources().getColor(R.color.red_light));
+    }
+
+    public void setRightAnswerView() {
+        correctAnswermHolder.answerText.setTextColor(context.getResources().getColor(R.color.white));
+        correctAnswermHolder.columnName.setTextColor(context.getResources().getColor(R.color.white));
+        correctAnswermHolder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
+    }
+
+
     public interface OnListItemClick {
         void onClick(int id, int pos);
     }
 
     class Holder extends RecyclerView.ViewHolder {
         CardView answerView;
-        AppCompatTextView columnName,answerText;
+        AppCompatTextView columnName, answerText;
 
         public Holder(View itemView) {
             super(itemView);
             answerView = (CardView) itemView.findViewById(R.id.answerView);
-            columnName=(AppCompatTextView)itemView.findViewById(R.id.columnName);
-            answerText=(AppCompatTextView)itemView.findViewById(R.id.answerText);
+            columnName = (AppCompatTextView) itemView.findViewById(R.id.columnName);
+            answerText = (AppCompatTextView) itemView.findViewById(R.id.answerText);
         }
-    }
-
-    private String getPrefix(int position)
-    {
-        if (position==0){
-            return "A.";
-        }
-        else if(position==1){
-            return "B.";
-        }
-        else if(position==2){
-            return "C.";
-        }
-        else if(position==3){
-            return "D.";
-        }
-        return "";
     }
 }

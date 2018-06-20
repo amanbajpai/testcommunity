@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.utils.BackManager;
+import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.fragment.AddFriendFragment;
 import com.gdc.isfacademy.view.fragment.ChallengeFragment;
@@ -49,6 +50,9 @@ public class HomeActivity extends BaseActivity implements
         init();
         setNavagionDrawer();
         setBottomNavigation();
+        ProjectUtil.setAlarmReminder(this);
+
+
     }
 
     public void setUpToolbar() {

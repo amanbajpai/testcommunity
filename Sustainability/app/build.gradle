@@ -59,7 +59,7 @@ allprojects {
 }
 
 greendao {
-    schemaVersion 16
+    schemaVersion 17
 }
 
 
@@ -82,7 +82,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'com.google.android.gms:play-services-analytics:11.0.4'
-    compile('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') {
         transitive = true;
     }
     compile 'com.google.android.gms:play-services-location:11.0.4'

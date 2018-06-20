@@ -82,6 +82,8 @@
     <string name="txt_try_later">TRY LATER</string>
     <string name="txt_enable_notification">Enable open app \"The ISF Sustainability App\"</string>
     <string name="txt_daily_challange">It\'s time for your DAILY CHALLENGE!"</string>
+    <string name="txt_quize_reminder">This is a reminder for your daily challenge</string>
+
     <string name="answer_limit_exceeds">You already completed today\'s quize</string>
     <string name="something_went_wrong">Something went wrong.</string>
     <string name="txt_send_to">send_to</string>;
@@ -110,5 +112,8 @@
 
     <!--valdation msg-->
     <string name="txt_try_again">Something went wrong,please refresh again.</string>
+    <string name="txt_next">Next</string>
+    <string name="txt_check">Check</string>
+    <string name="txt_finish">Finish</string>
 
 </resources>

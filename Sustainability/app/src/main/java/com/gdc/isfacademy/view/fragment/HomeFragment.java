@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.BuildingEnergySaving;
+import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
@@ -60,6 +61,7 @@ public class HomeFragment extends BaseFragment {
         HomeFragment homeFragment = new HomeFragment();
         return homeFragment;
     }
+    public static boolean isQuizSubmited=false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +75,10 @@ public class HomeFragment extends BaseFragment {
         View layout = inflater.inflate(R.layout.home_fragment, container, false);
         initView(layout);
         getEnergySaving();
+        if(!isQuizSubmited){
+            getQuizSubmittedStatus();
+        }
+
         return layout;
     }
 
@@ -174,7 +180,9 @@ public class HomeFragment extends BaseFragment {
 
                 @Override
                 public void onFailure(Call<EnergySavingResponse> call, Throwable t) {
-                    ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                    if(getActivity()!=null){
+                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                    }
                     t.printStackTrace();
                     getEnergySavingBuildingConsumption();
 
@@ -245,7 +253,7 @@ public class HomeFragment extends BaseFragment {
             String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
             String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", lastValue, unit);
 
-            Typeface externalFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSans-Semibold_0.ttf");
+            Typeface externalFont = Typeface.createFromAsset(ISFApp.getAppInstance().getApplicationContext().getAssets(), "fonts/OpenSans-Semibold_0.ttf");
             buildingThisWeekStatus.setTypeface(externalFont, Typeface.BOLD);
             buildingThisWeekStatus.setText(currentCons);
             buildingLastWeekStatus.setText(lastWeekCons);
@@ -256,9 +264,9 @@ public class HomeFragment extends BaseFragment {
                 float percentage = (currentValue / lastValue) * 100;
 
                 actualSaving = 100 - percentage;
-                buildingEnergyStatusArrow.setColorFilter(ContextCompat.getColor(getActivity(), R.color.home_bottom_card_text_color), android.graphics.PorterDuff.Mode.SRC_IN);
-                buildingPercentTextview.setTextColor(ContextCompat.getColor(getActivity(), R.color.home_bottom_card_text_color));
-                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.down_arrow));
+                buildingEnergyStatusArrow.setColorFilter(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.home_bottom_card_text_color), android.graphics.PorterDuff.Mode.SRC_IN);
+                buildingPercentTextview.setTextColor(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.home_bottom_card_text_color));
+                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.down_arrow));
                 buildingEnergyStatusArrow.setVisibility(View.VISIBLE);
                 zeroPercentSavedBuilding.setVisibility(View.GONE);
             } else // Energy Lost
@@ -266,7 +274,7 @@ public class HomeFragment extends BaseFragment {
                 actualSaving = 0.0f;
                 buildingPercentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
                 buildingEnergyStatusArrow.setVisibility(View.GONE);
-                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
+                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.up_arrow));
                 zeroPercentSavedBuilding.setVisibility(View.VISIBLE);
 
             }
@@ -311,8 +319,8 @@ public class HomeFragment extends BaseFragment {
             {
                 float percentage = (currentValue / lastValue) * 100;
                 actualSaving = 100 - percentage;
-                percentArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.down_arrow_energy));
-                percentTextview.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                percentArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.down_arrow_energy));
+                percentTextview.setTextColor(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.color_text_and_spinner));
                 zerpPercentSave.setVisibility(View.GONE);
                 percentArrow.setVisibility(View.VISIBLE);
 
@@ -321,8 +329,8 @@ public class HomeFragment extends BaseFragment {
             {
                 actualSaving = 0.0f;
                 percentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
-                percentArrow.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light), android.graphics.PorterDuff.Mode.SRC_IN);
-                percentArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
+                percentArrow.setColorFilter(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), android.R.color.holo_red_light), android.graphics.PorterDuff.Mode.SRC_IN);
+                percentArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.up_arrow));
                 percentArrow.setVisibility(View.GONE);
                 zerpPercentSave.setVisibility(View.VISIBLE);
 
@@ -362,6 +370,58 @@ public class HomeFragment extends BaseFragment {
     }
 
 
+    private void getQuizSubmittedStatus() {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
+            return;
+        }
+  //      showProgressDialog(getActivity());
+        Call<CommonResponse> call = ISFApp.getAppInstance()
+                .getApi()
+                .checkStudenQuestions(AppConstants.API_KEY,
+                        AppConstants.CONTENT_TYPE,
+                        MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+
+        ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                hideProgressDialog();
+                isQuizSubmited=true;
+                if (response.body() != null) {
+
+                    if(response.body().getResponseCode()!=null){
+                        if(response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)){
+                            if(response.body().isSubmitted().equalsIgnoreCase("true")){
+                                if(response.body().getCorrect()!=null){
+                                    MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,Integer.parseInt(response.body().getCorrect()));
+                                }
+                            }
+                            else if(response.body().isSubmitted().equalsIgnoreCase("false")){
+                                MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,-1);
+
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+              //  ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                t.printStackTrace();
+                isQuizSubmited=false;
+
+                //  hideProgressDialog();
+            }
+        });
+
+    }
 
 
 

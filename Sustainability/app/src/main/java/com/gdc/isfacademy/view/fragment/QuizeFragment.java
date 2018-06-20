@@ -3,14 +3,17 @@ package com.gdc.isfacademy.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.CommonResponse;
+import com.gdc.isfacademy.model.Question;
 import com.gdc.isfacademy.model.QuestionsResponse;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
@@ -57,6 +60,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         viewpager = (CustomViewPager) view.findViewById(R.id.viewpager);
         previousBt = (Button) view.findViewById(R.id.pager_previous_bt);
         nextBt = (Button) view.findViewById(R.id.pager_next_bt);
+        nextBt.setText(getString(R.string.txt_check));
         finishBt = (Button) view.findViewById(R.id.pager_finish_bt);
         quizePagerAdapter = new QuizePagerAdapter(getChildFragmentManager(), fragmentList);
         viewpager.setAdapter(quizePagerAdapter);
@@ -121,9 +125,13 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
                 fragmentList.add(fragment);
             }
-
+            try {
+                viewpager.setOffscreenPageLimit(4);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             quizePagerAdapter.notifyDataSetChanged();
-           indicatorsView.setViewPager(viewpager);
+            indicatorsView.setViewPager(viewpager);
 
             addToDb(response);
         } catch (Exception ex) {
@@ -152,13 +160,15 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             }
 
             if (position + 1 == fragmentList.size()) {
-                nextBt.setVisibility(View.GONE);
-                finishBt.setVisibility(View.VISIBLE);
-
+                if (fragmentList.get(position).question.isQuestionChecked()) {
+                    nextBt.setVisibility(View.GONE);
+                    finishBt.setVisibility(View.VISIBLE);
+                }
                 if (fragmentList.get(position).question.isAnswered()) {
                     finishBt.setEnabled(true);
                     finishBt.setClickable(true);
                 } else {
+
                     finishBt.setEnabled(false);
                     finishBt.setClickable(false);
                 }
@@ -183,17 +193,83 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
         switch (view.getId()) {
             case R.id.pager_previous_bt:
-
+                nextBt.setText(getString(R.string.txt_next));
                 int position1 = viewpager.getCurrentItem();
                 if (position1 > 0)
                     viewpager.setCurrentItem(position1 - 1, true);
                 break;
 
             case R.id.pager_next_bt:
+                //Check if Answer is correct locally
+                QuizePagerFragment questionQuizePagerFragment = fragmentList.get(viewpager.getCurrentItem());
 
-                int position2 = viewpager.getCurrentItem();
-                if (position2 < fragmentList.size() - 1)
-                    viewpager.setCurrentItem(position2 + 1, true);
+                if (questionQuizePagerFragment.question.isQuestionChecked()) {
+                   /* if (questionQuizePagerFragment.question.isAnswered()) {
+                        nextBt.setText("Check");
+                    }
+                   */
+                    fragmentList.get(viewpager.getCurrentItem()).showRightAnswerView();
+                    int position2 = viewpager.getCurrentItem();
+                    if (position2 < fragmentList.size() - 1)
+                        viewpager.setCurrentItem(position2 + 1, true);
+                    if (position2 + 1 == fragmentList.size()) {
+                        if (fragmentList.get(position2).question.isQuestionChecked()) {
+                            nextBt.setVisibility(View.GONE);
+                            finishBt.setVisibility(View.VISIBLE);
+                        }
+                    } else {
+                        if (fragmentList.get(position2 + 1).question.isQuestionChecked()) {
+                            nextBt.setText(getString(R.string.txt_next));
+                        } else {
+                            nextBt.setText(getString(R.string.txt_check));
+                        }
+                    }
+                } else {
+                    questionQuizePagerFragment.question.setQuestionChecked(true);
+                    boolean isCorrect = questionQuizePagerFragment.question.isCorrect();
+                    nextBt.setText(getString(R.string.txt_check));
+                    if (isCorrect) {
+                        nextBt.setText(getString(R.string.txt_next));
+                       /* if(fragmentList.get(viewpager.getCurrentItem() + 1).question.isQuestionChecked()){
+                            nextBt.setText("Next");
+                        }else{
+                            nextBt.setText("Check");
+                        }
+*/
+                        //  nextBt.setText("Next");
+                        fragmentList.get(viewpager.getCurrentItem()).showRightAnswerView();
+                        int position2 = viewpager.getCurrentItem();
+                        if (viewpager.getCurrentItem() + 1 == fragmentList.size()) {
+                            if (fragmentList.get(viewpager.getCurrentItem()).question.isQuestionChecked()) {
+                                nextBt.setVisibility(View.GONE);
+                                finishBt.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            nextBt.setVisibility(View.VISIBLE);
+                            finishBt.setVisibility(View.GONE);
+                            nextBt.setText(getString(R.string.txt_next));
+                        }
+                      /*  if (position2 < fragmentList.size() - 1)
+                            viewpager.setCurrentItem(position2 + 1, true);
+                    */
+                    } else {
+                        if (viewpager.getCurrentItem() + 1 == fragmentList.size()) {
+                            if (fragmentList.get(viewpager.getCurrentItem()).question.isQuestionChecked()) {
+                                nextBt.setVisibility(View.GONE);
+                                finishBt.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            nextBt.setVisibility(View.VISIBLE);
+                            finishBt.setVisibility(View.GONE);
+                            nextBt.setText(getString(R.string.txt_next));
+                        }
+
+                        fragmentList.get(viewpager.getCurrentItem()).showWrongAnswerView();
+                    }
+
+                }
+
+
                 break;
 
             case R.id.pager_finish_bt:
@@ -209,6 +285,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                 if (fragmentList.get(i).question.isCorrect())
                     correct++;
             }
+            Log.d("correct",""+correct);
 
             showProgressDialog(getActivity());
             Call<CommonResponse> call = ISFApp.getAppInstance()
@@ -228,9 +305,9 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                     hideProgressDialog();
                     if (response.body().getResponseCode().equalsIgnoreCase("success")) {
                         finishQuiz(finalCorrect, true);
-                        MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,finalCorrect);
+                        MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT, finalCorrect);
                     } else if (response.body().getResponseCode().equalsIgnoreCase("C0701")) {
-                        MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,finalCorrect);
+                        MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT, finalCorrect);
                         finishQuiz(finalCorrect, false);
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 
