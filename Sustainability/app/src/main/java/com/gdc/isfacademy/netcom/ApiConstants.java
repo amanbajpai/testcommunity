@@ -24,6 +24,10 @@ public interface ApiConstants {
         public static final String GET_STUDENT_FOOT_PRINT="getStudentFootPrint";
         public static final String GET_STUDENT_COST_SAVED="getStudentCostSaved";
         public static final String CHECK_STUDENT_QUESTION="checkStudentQuestion";
+        public static final String GET_DAILY_CONSUMPTION_RETRIVE_LIST="retrieveDailyConsList";
+        public static final String GET_STUDENT_BADGES="retrieveStudentBadges";
+        public static final String GET_STUDENT_LOGS="retrieveStudentLog";
+        public static final String GET_STUDENT_REWARDS="retrieveStudentRewards";
 
     }
 

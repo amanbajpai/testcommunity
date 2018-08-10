@@ -61,7 +61,7 @@
     <string name="which_equals_to">which equals to..</string>
     <string name="for_comparision">for comparision</string>
     <string name="select_other_item">Select other item</string>
-    <string name="which_wastes">which wastes..</string>
+    <string name="which_wastes">which needs..</string>
     <string name="dashboard">Dashboard</string>
     <string name="friend">Friend</string>
     <string name="txt_cancel">Cancel</string>
@@ -115,5 +115,17 @@
     <string name="txt_next">Next</string>
     <string name="txt_check">Check</string>
     <string name="txt_finish">Finish</string>
+
+
+    <!--Instruction Text-->
+
+    <string name="txt_one">The world is counting on you!!!!!</string>
+    <string name="txt_two">Really? You\'re gonna leave the air con on?</string>
+    <string name="txt_three">Why you leave light on eh?!</string>
+    <string name="txt_four">The AC is cooler than you!</string>
+    <string name="txt_five">Save Energy!!</string>
+    <string name="txt_six">Remember to switch off your lights when you are not using it.</string>
+
+
 
 </resources>

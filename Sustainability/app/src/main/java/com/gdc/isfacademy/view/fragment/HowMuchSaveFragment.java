@@ -35,6 +35,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,9 +44,11 @@ import retrofit2.Response;
 public class HowMuchSaveFragment extends BaseFragment {
 
     public static final String TAG = "HowMuchSaveFragment";
-    AppCompatTextView currentWeekConsumption, energyUnit, cost_tv,valueCarbon, hotChoclateText, unitCarbon, valueTree, how_much_save_label;
+    AppCompatTextView currentWeekConsumption, energyUnit, cost_tv, valueCarbon, hotChoclateText, unitCarbon, valueTree, how_much_save_label;
     EnergySavingResponse.CurrentCons currentCons;
     AppCompatSpinner costSaveSpinner;
+    AppCompatTextView randomSaveInstructionText;
+    public static int countInstruction=0;
 
 
     public static HowMuchSaveFragment newInstance() {
@@ -68,8 +71,8 @@ public class HowMuchSaveFragment extends BaseFragment {
 
         if (currentCons != null) {
             Log.d("conumption", "" + currentCons.getValue() + " " + currentCons.getUnit());
-          //  currentWeekConsumption.setText(String.format("%.2f", currentCons.getValue()));
-           // energyUnit.setText(currentCons.getUnit());
+            //  currentWeekConsumption.setText(String.format("%.2f", currentCons.getValue()));
+            // energyUnit.setText(currentCons.getUnit());
         }
         getStudentCostSaving(getString(R.string.txt_daily));
         getStudentFootPrint();
@@ -78,7 +81,7 @@ public class HowMuchSaveFragment extends BaseFragment {
     }
 
     public void init(View view) {
-        cost_tv=(AppCompatTextView)view.findViewById(R.id.cost_tv);
+        cost_tv = (AppCompatTextView) view.findViewById(R.id.cost_tv);
         how_much_save_label = (AppCompatTextView) view.findViewById(R.id.how_much_save_label);
         hotChoclateText = (AppCompatTextView) view.findViewById(R.id.hotChoclateText);
         costSaveSpinner = (AppCompatSpinner) view.findViewById(R.id.spinner);
@@ -87,7 +90,40 @@ public class HowMuchSaveFragment extends BaseFragment {
         valueCarbon = (AppCompatTextView) view.findViewById(R.id.value_carbon);
         unitCarbon = (AppCompatTextView) view.findViewById(R.id.unitCarbon);
         valueTree = (AppCompatTextView) view.findViewById(R.id.valueTree);
+        randomSaveInstructionText = (AppCompatTextView) view.findViewById(R.id.randomSaveInstructionText);
         setItemForSpinner();
+        setRandomInstruction();
+    }
+
+
+    public void setRandomInstruction() {
+        if(countInstruction==6){
+            countInstruction=1;
+        }
+        else {
+            countInstruction=countInstruction+1;
+        }
+
+        Log.e("countInstruction",""+countInstruction);
+
+        if(countInstruction==1){
+            randomSaveInstructionText.setText(getString(R.string.txt_one));
+        }
+        else  if(countInstruction==2){
+            randomSaveInstructionText.setText(getString(R.string.txt_two));
+        }
+        else  if(countInstruction==3){
+            randomSaveInstructionText.setText(getString(R.string.txt_three));
+        }
+        else  if(countInstruction==4){
+            randomSaveInstructionText.setText(getString(R.string.txt_four));
+        }else  if(countInstruction==5){
+            randomSaveInstructionText.setText(getString(R.string.txt_five));
+        }
+        else  if(countInstruction==6){
+            randomSaveInstructionText.setText(getString(R.string.txt_six));
+        }
+
     }
 
 
@@ -100,20 +136,18 @@ public class HowMuchSaveFragment extends BaseFragment {
 
 
         HighLightArrayAdapter adapter = new HighLightArrayAdapter(getActivity(), R.layout.spinner_selcted_item,
-                charSequenceItems,costSaveSpinner);
+                charSequenceItems, costSaveSpinner);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         costSaveSpinner.setAdapter(adapter);
         costSaveSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i==0){
+                if (i == 0) {
                     getStudentCostSaving(getString(R.string.txt_daily));
-                }
-                else if(i==1){
+                } else if (i == 1) {
                     getStudentCostSaving(getString(R.string.txt_cycle_small));
-                }
-                else if(i==2){
+                } else if (i == 2) {
                     getStudentCostSaving(getString(R.string.txt_monthly_small));
 
                 }
@@ -162,7 +196,7 @@ public class HowMuchSaveFragment extends BaseFragment {
 
                         if (response.body().getSaveCost() != null && !response.body().getSaveCost().equalsIgnoreCase("")) {
                             String value = new BigDecimal(response.body().getSaveCost()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                            cost_tv.setText("$"+value);
+                            cost_tv.setText("$" + value);
                         }
                     } else {
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());

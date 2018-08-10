@@ -238,7 +238,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 */
                         //  nextBt.setText("Next");
                         fragmentList.get(viewpager.getCurrentItem()).showRightAnswerView();
-                        int position2 = viewpager.getCurrentItem();
+//                        int position2 = viewpager.getCurrentItem();
                         if (viewpager.getCurrentItem() + 1 == fragmentList.size()) {
                             if (fragmentList.get(viewpager.getCurrentItem()).question.isQuestionChecked()) {
                                 nextBt.setVisibility(View.GONE);

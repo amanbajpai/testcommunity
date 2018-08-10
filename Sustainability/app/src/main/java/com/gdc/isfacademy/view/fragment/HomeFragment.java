@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -36,6 +37,7 @@ import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 import com.google.gson.Gson;
 
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -78,9 +80,9 @@ public class HomeFragment extends BaseFragment {
         if(!isQuizSubmited){
             getQuizSubmittedStatus();
         }
-
         return layout;
     }
+
 
     @Override
     public void onResume() {
@@ -214,8 +216,6 @@ public class HomeFragment extends BaseFragment {
                             MyPref.getInstance(getActivity()).writeFloatPrefs(MyPref.TOTAL_CURRENT_CONSUMPTION_BUILDING, response.body().getCurrentCons().getValue());
                             MyPref.getInstance(getActivity()).writeFloatPrefs(MyPref.TOTAL_WEEK_CONSUMPTION_BUILDING, response.body().getLastWeekCons().getValue());
                             MyPref.getInstance(getActivity()).writePrefs(MyPref.TOTAL_CURRENT_CONSUMPTION_BUILDING_UNIT, response.body().getCurrentCons().getUnit());
-
-
                             setViewforBuilding(response.body());
                         } else {
                             buildingPercentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
@@ -223,7 +223,6 @@ public class HomeFragment extends BaseFragment {
                             buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
                             zeroPercentSavedBuilding.setVisibility(View.VISIBLE);
                             ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
-
                         }
                     }
 
@@ -294,17 +293,6 @@ public class HomeFragment extends BaseFragment {
 
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
-
-
-           /* Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(response.getLastWeekCons().getLastUpdateTs());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
-
-            Date date1=dateFormat.parse("06/5/2018 19:55:00");
-            TimeAgo timeAgo = new TimeAgo().locale(getActivity()).with(dateFormat);
-            String result = timeAgo.getTimeAgo(date1);
-            Log.d("time is",result);*/
-
 
 
 

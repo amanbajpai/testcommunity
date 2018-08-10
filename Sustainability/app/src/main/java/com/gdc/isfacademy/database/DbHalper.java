@@ -13,7 +13,7 @@ import java.util.List;
     *
     *
     * Class responsible for "All DATABASE CRUD OPERATIONS" ,
-    * Insert or update all Student Housing data class.
+    * Insert or update all StudentRetriveDailyCons Housing data class.
     *
     *
     * */

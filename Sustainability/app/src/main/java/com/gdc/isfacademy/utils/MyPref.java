@@ -110,6 +110,7 @@ public class MyPref {
     public Integer readIntegerPrefs(String pref_name) {
         return sharedPreferences.getInt(pref_name, -1);
     }
+
     public void clearPrefs() {
         editor.clear();
         editor.commit();
