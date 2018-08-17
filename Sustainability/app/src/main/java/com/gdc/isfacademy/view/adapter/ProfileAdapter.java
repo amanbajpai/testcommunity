@@ -2,8 +2,6 @@ package com.gdc.isfacademy.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 
+@SuppressWarnings("ALL")
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> {
 
     Context context;
@@ -47,7 +46,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.list_item_post_profile_layout, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.list_item_post_profile_layout, null);
 
         Holder holder = new Holder(view);
         return holder;
@@ -106,9 +105,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
 
 
     class Holder extends RecyclerView.ViewHolder {
-        LinearLayout labelStudengLog;
-        AppCompatTextView studentMessageTv, date_log_tv, points_log_tv;
-        ImageView type_log_imagview;
+        final LinearLayout labelStudengLog;
+        final AppCompatTextView studentMessageTv;
+        final AppCompatTextView date_log_tv;
+        final AppCompatTextView points_log_tv;
+        final ImageView type_log_imagview;
 
         public Holder(View itemView) {
             super(itemView);

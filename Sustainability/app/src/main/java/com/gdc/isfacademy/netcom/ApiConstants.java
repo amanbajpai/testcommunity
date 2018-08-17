@@ -2,16 +2,14 @@ package com.gdc.isfacademy.netcom;
 
 import com.gdc.isfacademy.BuildConfig;
 
-/**
- * Created by ashishthakur on 17/4/18.
- */
 
+
+@SuppressWarnings("ALL")
 public interface ApiConstants {
+    String API_SERVER_URL = BuildConfig.BASE_URL;
 
-    public static final String API_SERVER_URL = BuildConfig.BASE_URL;
 
-
-    public static class ApiUrls {
+     class ApiUrls {
         /*
         * API Names
         * */
@@ -31,7 +29,7 @@ public interface ApiConstants {
 
     }
 
-    public class ApiParams {
+     class ApiParams {
         /*
      *
      * Common Post Params

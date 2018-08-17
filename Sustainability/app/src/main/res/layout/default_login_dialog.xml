@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -58,7 +59,7 @@
     <LinearLayout
 
         android:layout_marginBottom="@dimen/_15sdp"
-        android:gravity="right"
+        android:gravity="end"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_15sdp"
@@ -74,7 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:text="Yes" />
+            android:text="@string/txt_yes"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:textColor="@color/white"
@@ -84,7 +86,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textAllCaps="false"
-            android:text="No" />
+            android:text="@string/txt_no"
+            tools:ignore="RtlHardcoded" />
     </LinearLayout>
 
 </LinearLayout>

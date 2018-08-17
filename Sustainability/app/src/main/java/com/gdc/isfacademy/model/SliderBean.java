@@ -4,6 +4,7 @@ package com.gdc.isfacademy.model;
  * Created by ashishthakur on 29/3/18.
  */
 
+@SuppressWarnings("ALL")
 public class SliderBean {
     String sliderItem;
 

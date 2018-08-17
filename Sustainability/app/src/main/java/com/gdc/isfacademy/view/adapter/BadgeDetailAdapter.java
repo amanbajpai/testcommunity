@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
@@ -9,22 +10,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.BadgeStudentResponse;
-import com.gdc.isfacademy.model.RewardStudentResponse;
 import com.gdc.isfacademy.utils.AppConstants;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Created by ashishthakur on 15/8/18.
- */
 
+
+@SuppressWarnings("ALL")
 public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.Holder> {
 
     Context context;
@@ -50,11 +47,12 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
     @Override
     public BadgeDetailAdapter.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.list_items_badge_detail, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.list_items_badge_detail, null);
         BadgeDetailAdapter.Holder holder = new BadgeDetailAdapter.Holder(view);
         return holder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(BadgeDetailAdapter.Holder holder, final int position) {
         holder.seekbar.setOnTouchListener(new View.OnTouchListener() {
@@ -280,7 +278,7 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
             if (value < AppConstants.VALUE_FRIENDLY_BRONZE) {
                 holder.iv_badge.setImageResource(R.drawable.friendly_locked);
                 if (value < AppConstants.VALUE_BROADCASTER_BRONZE) {
-                    holder.iv_badge.setImageResource(R.drawable.broadcaster_locked);
+                    holder.iv_badge.setImageResource(R.drawable.friendly_locked);
                     float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                     holder.seekBarText.setText("" + valueCheck + "/" + AppConstants.VALUE_FRIENDLY_BRONZE);
                     holder.seekbar.setMax((int) AppConstants.VALUE_FRIENDLY_BRONZE);
@@ -437,10 +435,6 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
                 holder.seekbar.setProgress((int) valueCheck);
 
             }
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase("10")) {
-
-            holder.card_view.setVisibility(View.GONE);
-
         }
 
 
@@ -452,7 +446,7 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
     }
 
     public interface OnRewardItemClickListner {
-        public void onClick(int id, int pos);
+        void onClick(int id, int pos);
     }
 
     class Holder extends RecyclerView.ViewHolder {

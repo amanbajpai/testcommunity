@@ -10,9 +10,7 @@ import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.fragment.HomeFragment;
 
-/**
- * Created by ashishthakur on 8/6/18.
- */
+
 
 public class QuizeReminderReciever extends BroadcastReceiver {
     @Override

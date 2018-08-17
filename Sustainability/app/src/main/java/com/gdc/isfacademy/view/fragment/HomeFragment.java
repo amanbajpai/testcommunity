@@ -1,20 +1,13 @@
 package com.gdc.isfacademy.view.fragment;
 
 import android.animation.ValueAnimator;
-import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,31 +23,23 @@ import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.BuildingEnergySaving;
 import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
-import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
-import com.gdc.isfacademy.utils.TimeAgo;
 import com.gdc.isfacademy.view.activity.HomeActivity;
-import com.gdc.isfacademy.view.activity.LoginActivity;
 import com.gdc.isfacademy.view.adapter.HighLightArrayAdapter;
-import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 import com.google.gson.Gson;
 
-import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends BaseFragment {
+@SuppressWarnings("ALL")
+public class HomeFragment extends BaseFragment implements View.OnClickListener{
     public static final String TAG = "HomeFragment";
     public static boolean isQuizSubmited = false;
     public SeekBar seekbar;
@@ -65,7 +50,7 @@ public class HomeFragment extends BaseFragment {
     AppCompatSpinner spinner;
     private RelativeLayout how_much_save_rl;
     private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
-            buildingLastWeekStatus, percentTextview, buildingPercentTextview;
+            buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv;
 
     public static HomeFragment newInstance() {
         HomeFragment homeFragment = new HomeFragment();
@@ -101,6 +86,7 @@ public class HomeFragment extends BaseFragment {
 
     private void initView(View layout) {
         spinner = (AppCompatSpinner) layout.findViewById(R.id.spinner);
+        comparison_tv = (AppCompatTextView) layout.findViewById(R.id.comparuison_tv);
         currentCosumptionDate = (AppCompatTextView) layout.findViewById(R.id.currentCosumptionDate);
         zerpPercentSave = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSaved);
         zeroPercentSavedBuilding = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSavedBuilding);
@@ -116,6 +102,7 @@ public class HomeFragment extends BaseFragment {
         buildingLastWeekStatus = (TextView) layout.findViewById(R.id.school_full_status_text);
         studentHouse = (AppCompatTextView) layout.findViewById(R.id.studentHouse);
         studentHouse.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE));
+        comparison_tv.setText(getString(R.string.txt_compariosn_today_cycle));
 
         how_much_save_rl.setOnClickListener(this);
         seekbar.setOnTouchListener(new View.OnTouchListener() {
@@ -135,12 +122,12 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void onClick(View view) {
-        super.onClick(view);
         int id = view.getId();
         switch (id) {
             case R.id.how_much_save_rl:
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(AppConstants.CURRENT_ENERGY_UNIT, currentCons);
+                bundle.putString(AppConstants.PICK_ENERGY_SAVING_DATE,currentCosumptionDate.getText().toString().trim());
                 ((HomeActivity) getActivity()).pushFragments(HowMuchSaveFragment.newInstance(), bundle, true);
                 break;
 
@@ -168,9 +155,12 @@ public class HomeFragment extends BaseFragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
                     getEnergySaving(getString(R.string.txt_daily));
+                    comparison_tv.setText(getString(R.string.txt_compariosn_today_cycle));
                 } else if (i == 1) {
+                    comparison_tv.setText(getString(R.string.txt_compariosn_today_cycle));
                     getEnergySaving(getString(R.string.txt_cycle_small));
                 } else if (i == 2) {
+                    comparison_tv.setText(getString(R.string.txt_compariosn_month));
                     getEnergySaving(getString(R.string.txt_monthly_small));
 
                 }
@@ -339,7 +329,7 @@ public class HomeFragment extends BaseFragment {
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
 
-            currentCosumptionDate.setText("Up to " + response.getCurrentCons().getLastUpdateDate());
+            currentCosumptionDate.setText(getString(R.string.txt_up_to) + "" + response.getCurrentCons().getLastUpdateDate());
 
 
 

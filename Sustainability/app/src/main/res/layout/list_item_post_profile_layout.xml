@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -9,7 +10,8 @@
         android:padding="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_margin="@dimen/_5sdp"
@@ -51,17 +53,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/_5sdp">
+            android:padding="@dimen/_5sdp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_centerVertical="true"
                     android:id="@+id/type_image"
                     android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp">
+                    android:layout_height="@dimen/_15sdp"
+                    tools:ignore="ContentDescription">
 
                 </ImageView>
                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
@@ -72,7 +75,8 @@
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:text=""
                     android:textColor="@color/light_text_color"
-                    android:textSize="@dimen/_9sdp" />
+                    android:textSize="@dimen/_9sdp"
+                    tools:ignore="RtlHardcoded" />
 
 
             </LinearLayout>
@@ -94,8 +98,9 @@
                    android:layout_weight=".5"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
-                   android:text="23 may 2018"
-                   android:textSize="@dimen/_9sdp" />
+                   android:text=""
+                   android:textSize="@dimen/_9sdp"
+                   tools:ignore="NestedWeights" />
                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                    android:layout_width="0dp"
                    android:layout_weight=".5"
@@ -104,7 +109,7 @@
                    android:gravity="end"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
-                   android:text="+30pts"
+                   android:text=""
                    android:textSize="@dimen/_9sdp" />
 
 

@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 
 
+@SuppressWarnings("ALL")
 public class EnergySavingResponse {
 
     @SerializedName("responseMessage")

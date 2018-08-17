@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
             android:layout_width="match_parent"
@@ -18,7 +20,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_16sdp"
             android:gravity="center"
-            android:text="Share to"
+            android:text="@string/txt_share_to"
             android:textColor="@color/dark_gray"
             android:textSize="@dimen/_16sdp" />
 
@@ -28,7 +30,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_5sdp"
             android:gravity="center"
-            android:text="Will also share to your profile too"
+            android:text="@string/txt_also_share_profile"
             android:textColor="@color/dark_gray"
             android:textSize="@dimen/_11sdp" />
 
@@ -45,27 +47,31 @@
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginRight="@dimen/_20sdp"
-                android:src="@drawable/ic_instagram" />
+                android:src="@drawable/ic_instagram"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageView
                 android:id="@+id/whats_app_image"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginRight="@dimen/_20sdp"
-                android:src="@drawable/ic_whats_app" />
+                android:src="@drawable/ic_whats_app"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageView
                 android:id="@+id/google_image"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginRight="@dimen/_20sdp"
-                android:src="@drawable/ic_google" />
+                android:src="@drawable/ic_google"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageView
                 android:id="@+id/chat_image"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:src="@drawable/ic_share" />
+                android:src="@drawable/ic_share"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -82,14 +88,13 @@
             android:paddingRight="@dimen/_17sdp"
             android:paddingTop="@dimen/_5sdp"
             app:textAllCaps="true"
-            android:text="Share to my profile only"
+            android:text="@string/txt_share_to_my_profile"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp" />
 
 
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:id="@+id/cancel_tv"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.utils;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
@@ -21,6 +22,8 @@ import android.provider.Settings;
  * For Geocoder read this : http://stackoverflow.com/questions/472313/android-reverse-geocoding-getfromlocation
  */
 
+@SuppressWarnings("ALL")
+@SuppressLint("Registered")
 public class GPSTracker extends Service implements LocationListener {
 
     private final Context mContext;
@@ -153,11 +156,7 @@ public class GPSTracker extends Service implements LocationListener {
     }
 
     public boolean getLocationUpdate() {
-        if (location != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return location != null;
     }
 
     /**

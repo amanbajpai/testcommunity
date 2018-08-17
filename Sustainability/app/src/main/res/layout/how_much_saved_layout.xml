@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash">
+    android:background="@drawable/splash"
+    tools:ignore="Overdraw">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="13dp">
+        android:layout_marginEnd="13dp"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="ScrollViewSize">
 
 
             <android.support.v7.widget.CardView
@@ -38,10 +42,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/how_much_i_saved"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_14sdp"
+                        tools:ignore="RelativeOverlap" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                        android:id="@+id/this_week_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -51,13 +55,15 @@
                         android:text="@string/this_week"
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_11sdp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded" />
 
                     <LinearLayout
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="RtlHardcoded">
 
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/spinner"
@@ -92,7 +98,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:text="@string/kwh"
-                            android:textSize="@dimen/_13sdp" />
+                            android:textSize="@dimen/_13sdp"
+                            tools:ignore="RtlHardcoded" />
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:layout_width="wrap_content"
@@ -103,7 +110,8 @@
                             android:inputType="textMultiLine"
                             android:text="@string/cost_hk"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_11sdp"
+                            tools:ignore="RtlHardcoded" />
 
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
@@ -111,9 +119,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_12sdp"
-                            android:text="0"
+                            android:text="@string/txt_zero"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_32sdp" />
+                            android:textSize="@dimen/_32sdp"
+                            tools:ignore="RtlHardcoded" />
 
 
                     </LinearLayout>
@@ -138,17 +147,18 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:baselineAligned="false">
 
                     <LinearLayout
-                        android:id="@+id/left_layout"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
@@ -176,7 +186,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="@dimen/_5sdp"
-                                android:src="@drawable/small_arrow" />
+                                android:src="@drawable/small_arrow"
+                                tools:ignore="ContentDescription" />
 
 
                         </LinearLayout>
@@ -193,7 +204,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/middle_layout"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -211,7 +221,8 @@
                                 android:layout_width="@dimen/_50sdp"
                                 android:layout_height="@dimen/_50sdp"
                                 android:layout_gravity="center_horizontal"
-                                android:src="@drawable/hot_cho" />
+                                android:src="@drawable/hot_cho"
+                                tools:ignore="ContentDescription" />
 
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                                 android:layout_width="wrap_content"
@@ -237,7 +248,8 @@
                                 android:layout_marginRight="@dimen/_1sdp"
                                 android:maxLines="1"
                                 android:textColor="@color/gray"
-                                android:textSize="@dimen/_15sdp" />
+                                android:textSize="@dimen/_15sdp"
+                                tools:ignore="RtlHardcoded" />
 
                         </RelativeLayout>
 
@@ -268,7 +280,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/info" />
+                    android:src="@drawable/info"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                     android:layout_width="match_parent"
@@ -280,7 +293,8 @@
                     android:layout_toRightOf="@+id/infoImagView"
                     android:text="@string/how_to_save_more_money"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_12sdp"
+                    tools:ignore="RtlHardcoded" />
 
                 <ImageView
                     android:id="@+id/rightArrowImagView"
@@ -290,7 +304,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:src="@drawable/small_arrow"
-                    android:tint="@color/white" />
+                    android:tint="@color/white"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
 
             </RelativeLayout>
 
@@ -357,16 +372,17 @@
                         android:text="@string/txt_this_month"
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_14sdp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded" />
 
                     <LinearLayout
-                        android:id="@+id/this_month_tv"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/carbon_foot_label"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_toRightOf="@id/consumption_label"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="RtlHardcoded">
 
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/spinnerfootPrint"
@@ -387,7 +403,8 @@
                         android:layout_toLeftOf="@+id/unitCarbon"
                         android:maxLength="6"
                         android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_25sdp" />
+                        android:textSize="@dimen/_25sdp"
+                        tools:ignore="RelativeOverlap,RtlHardcoded" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/unitCarbon"
@@ -396,10 +413,10 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
                         android:paddingBottom="@dimen/_5sdp"
-                        android:text="kg"
+                        android:text="@string/txt_kg"
                         android:textSize="@dimen/_15sdp"
 
-                        />
+                        tools:ignore="RtlHardcoded" />
 
 
                 </RelativeLayout>
@@ -422,7 +439,6 @@
                     android:padding="@dimen/_15sdp">
 
                     <LinearLayout
-                        android:id="@+id/left_layout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -447,7 +463,8 @@
                             android:text="@string/select_other_item"
                             android:textColor="@color/color_text_and_spinner"
                             android:textSize="@dimen/_12sdp"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            tools:ignore="RtlHardcoded" />
 
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
@@ -461,18 +478,19 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/middle_layout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/valueTree"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="RelativeOverlap,RtlHardcoded">
 
                         <ImageView
                             android:layout_width="@dimen/_50sdp"
                             android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/tree" />
+                            android:src="@drawable/tree"
+                            tools:ignore="ContentDescription" />
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
@@ -493,9 +511,10 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_20sdp"
-                        android:text="X0"
+                        android:text="@string/txt_x_zero"
                         android:textColor="@color/gray"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        tools:ignore="RtlHardcoded" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
@@ -517,7 +536,8 @@
                         android:textSize="@dimen/_15sdp"
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:text="@string/txt_conumption_target"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:ignore="RtlHardcoded" />
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:id="@+id/upto_date_tv"
@@ -527,8 +547,10 @@
                         android:textColor="@color/color_text_and_spinner"
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:text=""
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:ignore="RtlHardcoded" />
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_10sdp"
                         android:layout_below="@+id/consumption_target_tv"
@@ -537,18 +559,20 @@
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
-                            android:text="20%"
+                            android:text="@string/txt_twenty_percent"
                             android:layout_toLeftOf="@+id/down_Arrow"
                             android:textSize="@dimen/_20sdp"
                             android:textColor="@color/color_text_and_spinner"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlHardcoded" />
                         <ImageView
                             android:tint="@color/color_text_and_spinner"
                             android:id="@+id/down_Arrow"
                             android:layout_alignParentRight="true"
                             android:src="@drawable/down_arrow"
                             android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp" />
+                            android:layout_height="@dimen/_25sdp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
 
                     </RelativeLayout>
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
@@ -559,16 +583,17 @@
                         android:layout_marginTop="@dimen/_3sdp"
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:text="@string/txt_compared_to"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:ignore="RtlHardcoded" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                         android:layout_width="wrap_content"
-                        android:id="@+id/unit_graph_text"
                         android:layout_below="@+id/compariosn_text"
                         android:textSize="@dimen/_12sdp"
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:text="@string/kwh"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:ignore="RtlHardcoded" />
 
                     <HorizontalScrollView
                         android:layout_marginTop="@dimen/_10sdp"
@@ -580,7 +605,8 @@
                             android:layout_gravity="center"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            tools:ignore="ScrollViewSize">
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/linechart"

@@ -5,10 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by ashishthakur on 20/4/18.
- */
 
+
+@SuppressWarnings("ALL")
 public class BuildingEnergySaving {
 
     @SerializedName("responseMessage")

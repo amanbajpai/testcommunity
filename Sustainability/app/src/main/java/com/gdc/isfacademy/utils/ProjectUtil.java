@@ -34,10 +34,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
@@ -48,7 +45,6 @@ import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.activity.LoginActivity;
 import com.gdc.isfacademy.view.activity.SplashActivity;
 import com.gdc.isfacademy.view.customs.customfonts.CustomTFSpan;
-import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 
 import java.io.IOException;
@@ -60,12 +56,11 @@ import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static android.R.attr.password;
-
 /**
  * Created by ashishthakur on 29/3/18.
  */
 
+@SuppressWarnings("ALL")
 public class ProjectUtil {
 
 
@@ -122,8 +117,9 @@ public class ProjectUtil {
                 item.setChecked(item.getItemData().isChecked());
             }
         } catch (NoSuchFieldException e) {
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -149,7 +145,7 @@ public class ProjectUtil {
 
         final Dialog dialog = new Dialog(context);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.share_dialog, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.share_dialog, null);
         OpenSansSemiBoldTextView cancel_tv = (OpenSansSemiBoldTextView) view.findViewById(R.id.cancel_tv);
         OpenSansSemiBoldTextView profile_share_tv = (OpenSansSemiBoldTextView) view.findViewById(R.id.profile_share_tv);
         ImageView chat_image = (ImageView) view.findViewById(R.id.chat_image);
@@ -456,7 +452,7 @@ public class ProjectUtil {
 
         try
         {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss 'GMT'Z yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss 'GMT'Z yyyy");
             Date past = dateFormat.parse(date);
             Date now = new Date();
             long seconds= TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
@@ -515,7 +511,7 @@ public class ProjectUtil {
             if(context==null){
                 context=ISFApp.getAppInstance().getApplicationContext();
             }
-            InputMethodManager imm = (InputMethodManager) ((Activity)context).getSystemService(Activity.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
             if (imm.isActive()){
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0); // hide
             }

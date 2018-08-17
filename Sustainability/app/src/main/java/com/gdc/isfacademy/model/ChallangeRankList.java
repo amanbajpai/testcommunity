@@ -7,9 +7,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
-/**
- * Created by ashishthakur on 9/4/18.
- */
+
 @Entity(
         // Whether an all properties constructor should be generated.
         // A no-args constructor is always required.

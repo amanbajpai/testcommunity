@@ -1,6 +1,7 @@
 package com.gdc.isfacademy.view.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -17,8 +18,8 @@ import android.widget.ImageView;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.utils.BackManager;
-import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
+import com.gdc.isfacademy.view.fragment.AboutISfFragment;
 import com.gdc.isfacademy.view.fragment.AddFriendFragment;
 import com.gdc.isfacademy.view.fragment.BadgeDetailFragment;
 import com.gdc.isfacademy.view.fragment.ChallengeFragment;
@@ -30,6 +31,7 @@ import com.gdc.isfacademy.view.fragment.QuizeCompletedFragement;
 import com.gdc.isfacademy.view.fragment.QuizeFragment;
 import com.gdc.isfacademy.view.fragment.RewardsFragment;
 
+@SuppressWarnings("ALL")
 public class HomeActivity extends BaseActivity implements
         LeftMenuFragment.FragmentDrawerListener,
         View.OnClickListener,
@@ -181,6 +183,25 @@ public class HomeActivity extends BaseActivity implements
     @Override
     public void onLeftMenuDrawerSelected(View view, int position) {
         drawerLayout.closeDrawer(containerFrag);
+        switch (position) {
+            case 0:
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.Visionaries777.isfacademy");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+                else {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.Visionaries777.isfacademy")));
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.Visionaries777.isfacademy&hl=en")));
+                    }
+                }
+                break;
+            case 1:
+                pushFragments(AboutISfFragment.newInstance(),null,false);
+                break;
+
+        }
 
 
     }
@@ -280,6 +301,11 @@ public class HomeActivity extends BaseActivity implements
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case BadgeDetailFragment.TAG:
+                sliderIcon.setVisibility(View.GONE);
+                // searchIcon.setVisibility(View.VISIBLE);
+                backBtn.setVisibility(View.VISIBLE);
+                break;
+            case AboutISfFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
                 // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);

@@ -1,16 +1,12 @@
 package com.gdc.isfacademy.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-
 /*Class id used to store the app data in share perfrence*/
+@SuppressWarnings("ALL")
 public class MyPref {
 
     private static final String PERFERENCE_NAME = "ISF";
@@ -29,6 +25,7 @@ public class MyPref {
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
 
+    @SuppressLint("CommitPrefEdits")
     public static MyPref getInstance(Context context)
     {
         if (instance == null)

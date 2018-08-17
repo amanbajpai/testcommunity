@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -25,7 +26,8 @@
                 android:id="@+id/people_rank_text"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
             <ImageView
                 android:visibility="invisible"
                 android:src="@drawable/first_place"
@@ -34,28 +36,31 @@
                 android:id="@+id/rank_icon"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
                 android:textColor="@color/challange_text_color"
                 android:id="@+id/name_text"
-                android:text="Sebrina"
+                android:text=""
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_toLeftOf="@+id/rank_points_text"
                 android:textSize="@dimen/_15sdp"
                 android:layout_centerVertical="true"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded" />
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="wrap_content"
                 android:id="@+id/rank_points_text"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/challange_text_color"
-                android:text="2,3456"
+                android:text=""
                 android:textSize="@dimen/_15sdp"
                 android:layout_centerVertical="true"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded" />
 
 
         </RelativeLayout>

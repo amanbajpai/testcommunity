@@ -16,10 +16,11 @@ import java.util.List;
  * Created by ashishthakur on 29/3/18.
  */
 
+@SuppressWarnings("ALL")
 public class LeftMenuAdapter extends RecyclerView.Adapter<LeftMenuAdapter.MyViewHolder> {
-    List<SliderBean> data;
-    private LayoutInflater inflater;
-    private Context context;
+    final List<SliderBean> data;
+    private final LayoutInflater inflater;
+    private final Context context;
 
     public LeftMenuAdapter(Context context, List<SliderBean> data) {
         this.context = context;
@@ -56,7 +57,7 @@ public class LeftMenuAdapter extends RecyclerView.Adapter<LeftMenuAdapter.MyView
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        AppCompatTextView list_item;
+        final AppCompatTextView list_item;
 
         public MyViewHolder(View itemView) {
             super(itemView);

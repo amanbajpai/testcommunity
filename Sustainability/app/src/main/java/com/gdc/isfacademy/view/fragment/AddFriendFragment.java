@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText;
 import java.util.ArrayList;
 
 
+@SuppressWarnings("ALL")
 public class AddFriendFragment extends BaseFragment implements FriendListAdapter.OnItemClick {
     public static final String TAG = "AddFriendFragment";
     ArrayList<FriendsBeanList> friendsBeanLists;
@@ -42,7 +44,7 @@ public class AddFriendFragment extends BaseFragment implements FriendListAdapter
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_friend_fragment, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.add_friend_fragment, null);
         initView(view);
         return view;
     }

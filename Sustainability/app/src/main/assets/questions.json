@@ -445,25 +445,7 @@
         }
       ],
       "answer": "1"
-    },
-    {
-      "questionId": 25,
-      "question": "Which of the following industries could be negatively affected by global warming?",
-      "options": [
-        {
-          "option": "Wine-making"
-        },
-        {
-          "option": "Insurance"
-        },
-        {
-          "option": "Commercial fishing"
-        },
-        {
-          "option": "All of the above"
-        }
-      ],
-      "answer": "4"
     }
+
   ]
 }

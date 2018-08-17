@@ -12,12 +12,10 @@ import com.gdc.isfacademy.view.activity.HomeActivity;
 
 
 
-public class BaseFragment extends Fragment implements View.OnClickListener{
+@SuppressWarnings("ALL")
+public class BaseFragment extends Fragment{
     View rootView;
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+
 
     @Nullable
     @Override
@@ -25,10 +23,7 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    @Override
-    public void onClick(View view) {
 
-    }
 
 
     /**
@@ -48,4 +43,5 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
             ((HomeActivity)getActivity()).hideProgressDialog();
         }
     }
+
 }

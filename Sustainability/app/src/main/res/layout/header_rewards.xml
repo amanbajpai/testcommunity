@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -24,7 +25,8 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_toLeftOf="@+id/reward_icons"
                 android:textColor="#4d4d4d"
-                android:textSize="@dimen/_14sdp" />
+                android:textSize="@dimen/_14sdp"
+                tools:ignore="RtlHardcoded" />
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                 android:id="@+id/sub_title_text"
@@ -37,7 +39,8 @@
                 android:layout_toLeftOf="@+id/reward_icons"
                 android:text="@string/txt_top_ranked"
                 android:textColor="#989fa4"
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_10sdp"
+                tools:ignore="RtlHardcoded" />
 
 
             <ImageView
@@ -47,7 +50,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:src="@drawable/group" />
+                android:src="@drawable/group"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                 android:id="@+id/gift_text"
@@ -58,7 +62,8 @@
                 android:layout_marginLeft="@dimen/_1sdp"
                 android:layout_toLeftOf="@+id/reward_icons"
                 android:textColor="#2addd0"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/_12sdp"
+                tools:ignore="RtlHardcoded" />
 
 
         </RelativeLayout>

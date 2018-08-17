@@ -4,6 +4,7 @@ package com.gdc.isfacademy.model;
  * Created by ashishthakur on 7/6/18.
  */
 
+@SuppressWarnings("ALL")
 public class StudentSavedCostResponse extends CommonResponse {
     String saveEnergy;
     String saveCost;

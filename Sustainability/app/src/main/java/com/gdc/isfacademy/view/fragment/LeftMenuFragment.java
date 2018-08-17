@@ -22,6 +22,7 @@ import com.gdc.isfacademy.view.adapter.LeftMenuAdapter;
 import java.util.ArrayList;
 
 
+@SuppressWarnings("ALL")
 public class LeftMenuFragment extends BaseFragment {
 
 /*    RecyclerView recyclerView;
@@ -73,16 +74,6 @@ public class LeftMenuFragment extends BaseFragment {
 
     public void setDrawerListener(FragmentDrawerListener listener) {
         this.drawerListener = listener;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 
     @Override
@@ -157,11 +148,6 @@ public class LeftMenuFragment extends BaseFragment {
                 getActivity().invalidateOptionsMenu();
             }
 
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, slideOffset);
-                //  toolbar.setAlpha(1 - slideOffset / 2);
-            }
         };
         mDrawerToggle.setDrawerIndicatorEnabled(false);
 
@@ -175,25 +161,20 @@ public class LeftMenuFragment extends BaseFragment {
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
 
-
-    public static interface ClickListener {
-        public void onClick(View view, int position);
-        public void onLongClick(View view, int position);
+    public interface ClickListener {
+        void onClick(View view, int position);
+         void onLongClick(View view, int position);
     }
 
     public interface FragmentDrawerListener {
-        public void onLeftMenuDrawerSelected(View view, int position);
+         void onLeftMenuDrawerSelected(View view, int position);
     }
 
     static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
-        private GestureDetector gestureDetector;
-        private ClickListener clickListener;
+        private final GestureDetector gestureDetector;
+        private final ClickListener clickListener;
 
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
             this.clickListener = clickListener;

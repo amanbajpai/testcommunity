@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
@@ -18,10 +19,11 @@ import java.util.List;
  * Created by ashishthakur on 16/4/18.
  */
 
+@SuppressWarnings("ALL")
 public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Holder> {
 
-    Context context;
-    List<Options> optionList;
+    final Context context;
+    final List<Options> optionList;
     QuizeListAdapter.OnListItemClick onListItemClick;
     Question question;
     QuizeListAdapter.Holder mHolder = null;
@@ -44,11 +46,12 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
     @Override
     public QuizeListAdapter.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.list_items_quize, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.list_items_quize, null);
         QuizeListAdapter.Holder holder = new QuizeListAdapter.Holder(view);
         return holder;
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(final QuizeListAdapter.Holder holder, final int position) {
 
@@ -145,8 +148,9 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
     }
 
     class Holder extends RecyclerView.ViewHolder {
-        CardView answerView;
-        AppCompatTextView columnName, answerText;
+        final CardView answerView;
+        final AppCompatTextView columnName;
+        final AppCompatTextView answerText;
 
         public Holder(View itemView) {
             super(itemView);

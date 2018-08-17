@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash"
     android:clickable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    custom:ignore="Overdraw">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,9 +56,10 @@
             android:background="@drawable/quize_btn_selector"
             android:clickable="true"
             android:gravity="center"
-            android:text="Previous"
+            android:text="@string/txt_previous"
             android:textAllCaps="false"
-            android:visibility="gone" />
+            android:visibility="gone"
+            custom:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/pager_next_bt"
@@ -71,9 +73,10 @@
             android:clickable="true"
             android:enabled="false"
             android:gravity="center"
-            android:text="Check"
+            android:text="@string/txt_check_quiz"
             android:textAllCaps="false"
-            android:visibility="visible" />
+            android:visibility="visible"
+            custom:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/pager_finish_bt"
@@ -85,9 +88,10 @@
             android:background="@drawable/quize_btn_selector"
             android:clickable="true"
             android:gravity="center"
-            android:text="Finish"
+            android:text="@string/txt_finish_quiz"
             android:textAllCaps="false"
-            android:visibility="gone" />
+            android:visibility="gone"
+            custom:ignore="ButtonStyle" />
 
     </LinearLayout>
 

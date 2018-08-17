@@ -4,6 +4,7 @@ buildscript {
     }
 
     dependencies {
+        //noinspection GradleDynamicVersion
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
@@ -16,14 +17,16 @@ repositories {
 
 apply plugin: 'org.greenrobot.greendao'
 
+//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.energybox.isf"
         minSdkVersion 21
+        //noinspection OldTargetApi
         targetSdkVersion 25
-        versionCode 18
+        versionCode 20
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -36,14 +39,18 @@ android {
 
     productFlavors {
 
+        //noinspection GroovyMissingReturnStatement
+        //noinspection GroovyMissingReturnStatement
         developementFlavour {
             buildConfigField "String", "BASE_URL", "\"https://gapi.g-hub.com/core/v2/isf/\""
 
         }
+        //noinspection GroovyMissingReturnStatement,GroovyMissingReturnStatement
         productionFlavour {
             buildConfigField "String", "BASE_URL", "\"https://mapi-v1.g-hub.com/core/v2/isf/\""
 
         }
+        //noinspection GroovyMissingReturnStatement
         stagingFlavour {
             buildConfigField "String", "BASE_URL", "\"https://gapi.g-hub.com/core/v2/isf/\""
 

@@ -3,7 +3,7 @@
 
     <!--Login Screen String-->
 
-    <string name="txt_please_wait">Please wait...</string>
+    <string name="txt_please_wait">Please wait…</string>
     <string name="txt_network_error">Please check your internet connection</string>
 
     <string name="txt_sustainability">Sustainability App</string>
@@ -14,6 +14,8 @@
     <string name="txt_validate_password">Please enter your password</string>
     <string name="txt_enter_student_id">Enter Student Id</string>
     <string name="txt_enter_password">Enter Password</string>
+    <string name="txt_yes">Yes</string>
+    <string name="txt_no">No</string>
 
     <!--Bottom Navigation Bar Strings-->
     <string name="txt_home">Home</string>
@@ -23,12 +25,10 @@
 
     <!--Common Strings-->
     <string name="dialog_btn_no">No</string>
-    <string name="dialog_title_logout">Exit</string>
     <string name="dialog_message_exit">Are you sure you want to exit?</string>
     <string name="app_restriction_message">You can\'t use app between 8 AM to 4 PM.</string>
 
     <string name="dialog_btn_yes">Yes</string>
-    <string name="txt_Cancel">Cancel</string>
     <string name="txt_menu">Menu</string>
     <string name="open">open</string>
     <string name="close">close</string>
@@ -44,9 +44,10 @@
     <string name="txt_energy_saving">Energy Saving</string>
     <string name="txt_consumption">My Consumption</string>
     <string name="txt_this_month">Today</string>
-    <string name="txt_this_compare">Compare to Same Time Last Week</string>
+    <string name="txt_this_compare">Compare to same time last cycle</string>
     <string name="txt_school_energy_saving_txt">Total Energy Saving in School</string>
-    <string name="txt_date_upto">Upto 31 may 2017</string>
+    <string name="txt_date_upto">Up to 31 may 2017</string>
+    <string name="txt_up_to">Up to </string>
 
 
     <!--how much save screen-->
@@ -63,39 +64,44 @@
     <string name="how_to_save_more_money">how to save more money ?</string>
     <string name="select_other_goods">select other goods</string>
     <string name="which_equals_to">which equals to..</string>
-    <string name="for_comparision">for comparision</string>
+    <string name="for_comparision">for comparison</string>
     <string name="select_other_item">Select other item</string>
     <string name="which_wastes">which needs..</string>
     <string name="dashboard">Leaderboard</string>
     <string name="friend">Friend</string>
     <string name="txt_cancel">Cancel</string>
     <string name="txt_saved">Saved</string>
-    <string name="txt_conumption_target">My Consumption target</string>
-    <string name="txt_compared_to">Compare to last year same time.</string>
+    <string name="txt_conumption_target">My Consumption </string>
+    <string name="txt_compared_to">Compare to school average</string>
     <string name="dummy_text">Lorem ipsum dolor sit amet, non congue eros in eget mauris mattis, quam nulla. Orci non id diam accumsan mi, est amet provident nulla elementum quis torquent.</string>
     <string name="dummy_text_answer">Lorem ipsum dolor sit amet, non congue eros in eget mauris mattis, quam nulla.</string>
-    
-    
+    <string name="txt_zero_percent">0%</string>
+    <string name="txt_zero_kwh">0 kWh</string>
+    <string name="txt_dash_zero_kwh"> /0 kWh</string>
+    <string name="txt_zero">0</string>
+    <string name="txt_kg">kg</string>
+    <string name="txt_x_zero">X0</string>
+    <string name="txt_twenty_percent">20%</string>
+    <string name="txt_x">x</string>
+    <string name="txt_compariosn_today_cycle">Compare to same time last cycle</string>
+    <string name="txt_compariosn_month">Compare to same time last month</string>
+
+
     <!--Rewards Screen Strings-->
-    <string name="txt_good_job_text">Good job! you\'re the Top 1%. </string>
     <string name="txt_top_ranked">You ranked 7 out of the whole school in may.</string>
     <string name="txt_gift">Here is your Gift!</string>
     <string name="txt_a_cup_of_free_drink">A cup of Free Drink Under $10.</string>
-    <string name="txt_expires">Expires in 7d</string>
     <string name="txt_reward_text">Congratulations!  You\'re Top 5 students out of the entire school.
 Here\'s your gift!</string>
     <string name="title_when_offline">Get high scores and win the prizes!</string>
     <string name="txt_no_reward_text">Do better next time and win the prize!</string>
+    <string name="txt_unlock">Unlock</string>
 
     <!--Friends add Strings-->
     <string name="txt_search">Search</string>
-    <string name="txt_send_request">SEND REQUEST</string>
-    <string name="txt_try_later">TRY LATER</string>
-    <string name="txt_enable_notification">Enable open app \"The ISF Sustainability App\"</string>
     <string name="txt_daily_challange">It\'s time for your daily challenge!"</string>
     <string name="txt_quize_reminder">This is a reminder for your daily challenge</string>
 
-    <string name="answer_limit_exceeds">You already completed today\'s quize</string>
     <string name="something_went_wrong">Something went wrong.</string>
     <string name="txt_send_to">send_to</string>;
 
@@ -113,13 +119,7 @@ Here\'s your gift!</string>
     <string name="points_history">Points History</string>
     <string name="profile_date">Date</string>
     <string name="profile_points">Points</string>
-    <string name="daily_quiz_result">You Shared your daily quiz results</string>
-    <string name="points">+20pts</string>
-    <string name="date_text">14 aug 2018</string>
     <string name="profile_you_have_saved">% of energy is saved.</string>
-    <string name="profile_you_saved_unit">kWH today</string>
-    <string name="profile_building_saved">The school building saved</string>
-    <string name="profile_building_percentage_save">% today</string>
     <string name="badge_text">Badges</string>
     <string name="txt_no_badges_alloted">No unlocked badges</string>
     <string name="txt_shared_daily_result">Daily quiz result is shared. (max. 5 times)</string>
@@ -127,6 +127,7 @@ Here\'s your gift!</string>
     <string name="txt_points_in_your_daily_quiz">Daily quiz is completed with</string>
     <string name="txt_pts">pts.</string>
     <string name="txt_no_badge_list">No badges alloted yet</string>
+    <string name="txt_dash">--</string>
 
     <!--SpinnerItem-->
     <string name="txt_daily">daily</string>
@@ -142,7 +143,6 @@ Here\'s your gift!</string>
     <string name="txt_try_again">Something went wrong,please refresh again.</string>
     <string name="txt_next">Next</string>
     <string name="txt_check">Check</string>
-    <string name="txt_finish">Finish</string>
 
 
     <!--Instruction Text-->
@@ -183,7 +183,25 @@ Here\'s your gift!</string>
     <string name="title_badge_champion">Champion</string>
     <string name="txt_badge_champion_description">Get your house to win the champion.</string>
 
+    <!--Quiz Screen String-->
 
+    <string name="txt_well_done">Well done.</string>
+    <string name="txt_earned_points">You have earned your daily points</string>
+    <string name="txt_share">Share</string>
+    <string name="txt_done">Done</string>
+    <string name="txt_dot_a">A.</string>
+    <string name="txt_previous">Previous</string>
+    <string name="txt_check_quiz">Check</string>
+    <string name="txt_finish_quiz">Finish</string>
+
+    <!--Dialog Strings-->
+    <string name="txt_share_to">Share to</string>
+    <string name="txt_also_share_profile">Will also share to your profile too</string>
+    <string name="txt_share_to_my_profile">Share to my profile only</string>
+
+
+    <!--Challange Screen-->
+    <string name="txt_house">House</string>
 
 
 

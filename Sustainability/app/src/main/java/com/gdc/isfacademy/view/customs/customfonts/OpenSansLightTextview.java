@@ -5,9 +5,6 @@ import android.graphics.Typeface;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
-/**
- * Created by ashishthakur on 29/3/18.
- */
 
 public class OpenSansLightTextview extends AppCompatTextView {
 

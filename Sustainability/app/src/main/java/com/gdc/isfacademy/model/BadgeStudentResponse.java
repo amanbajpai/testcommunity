@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+@SuppressWarnings("ALL")
 public class BadgeStudentResponse implements Serializable {
 
     @SerializedName("badgesType")
@@ -13,6 +14,12 @@ public class BadgeStudentResponse implements Serializable {
     @SerializedName("value")
     @Expose
     private String value;
+
+
+    public BadgeStudentResponse(String badgesType, String value) {
+        this.badgesType = badgesType;
+        this.value = value;
+    }
 
     public String getBadgesType() {
         return badgesType;

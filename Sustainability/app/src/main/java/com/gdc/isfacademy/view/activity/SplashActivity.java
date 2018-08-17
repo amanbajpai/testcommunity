@@ -1,7 +1,5 @@
 package com.gdc.isfacademy.view.activity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +8,8 @@ import android.os.Bundle;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
-import com.gdc.isfacademy.utils.ProjectUtil;
 
-import java.util.Calendar;
-
+@SuppressWarnings("ALL")
 public class SplashActivity extends AppCompatActivity {
     Context mContext;
 

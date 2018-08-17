@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Created by ashishthakur on 19/4/18.
  */
 
+@SuppressWarnings("ALL")
 public class RankingParentResponse extends CommonResponse {
     ArrayList<ChallangeRankList>rankings;
 

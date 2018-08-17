@@ -11,9 +11,6 @@ import com.gdc.isfacademy.model.StudentFootPrintResponse;
 import com.gdc.isfacademy.model.StudentLogResponse;
 import com.gdc.isfacademy.model.StudentRewardResponse;
 import com.gdc.isfacademy.model.StudentSavedCostResponse;
-import com.gdc.isfacademy.utils.AppConstants;
-
-import org.json.JSONObject;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -24,10 +21,9 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-/**
- * Created by ashishthakur on 17/4/18.
- */
 
+
+@SuppressWarnings("ALL")
 public interface Api {
 
     /*

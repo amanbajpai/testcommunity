@@ -2,7 +2,6 @@ package com.gdc.isfacademy.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdc.isfacademy.application.ISFApp;
-import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.RewardStudentResponse;
 import com.gdc.isfacademy.model.StudentRewardResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
@@ -19,7 +17,6 @@ import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.gdc.isfacademy.model.RewardListResponse;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.view.adapter.RewardsAdapter;
 
@@ -31,6 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
+@SuppressWarnings("ALL")
 public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRewardItemClickListner {
     public static final String TAG = "RewardsFragment";
 

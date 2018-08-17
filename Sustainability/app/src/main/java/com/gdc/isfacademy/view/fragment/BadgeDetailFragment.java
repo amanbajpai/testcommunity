@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,16 +16,15 @@ import com.gdc.isfacademy.view.adapter.BadgeDetailAdapter;
 
 import java.util.ArrayList;
 
-/**
- * Created by ashishthakur on 15/8/18.
- */
 
+@SuppressWarnings("ALL")
 public class BadgeDetailFragment extends BaseFragment {
     public static final String TAG = "BadgeDetailFragment";
-    private BadgeDetailAdapter badgeDetailAdapter;
+    ArrayList<BadgeStudentResponse> badgeStudentResponses;
+    ArrayList<BadgeStudentResponse> localBadgeStudentResponses;
 
+    private BadgeDetailAdapter badgeDetailAdapter;
     private RecyclerView badge_detail_recylerview;
-ArrayList<BadgeStudentResponse>badgeStudentResponses;
 
     public static BadgeDetailFragment newInstance() {
         BadgeDetailFragment badgeDetailFragment = new BadgeDetailFragment();
@@ -32,25 +32,53 @@ ArrayList<BadgeStudentResponse>badgeStudentResponses;
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.badge_detail_fragment, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.badge_detail_fragment, null);
         init(view);
 
         return view;
     }
 
 
-    public void init(View view){
-        badgeStudentResponses=new ArrayList<>();
+
+    public void init(View view) {
+        badgeStudentResponses = new ArrayList<>();
         Bundle bundle = getArguments();
         badgeStudentResponses = (ArrayList<BadgeStudentResponse>) bundle.getSerializable("list");
-        badge_detail_recylerview=(RecyclerView)view.findViewById(R.id.badge_detail_recylerview);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        localBadgeStudentResponses=new ArrayList<>();
+        localBadgeStudentResponses.add(new BadgeStudentResponse("1","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("2","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("3","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("4","0"));
+        //localBadgeStudentResponses.add(new BadgeStudentResponse("5","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("6","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("7","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("8","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("9","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("10","0"));
+
+        for (int i=0;i<localBadgeStudentResponses.size();i++){
+
+            for (int j=0;j<badgeStudentResponses.size();j++){
+                if(localBadgeStudentResponses.get(i).getBadgesType().equalsIgnoreCase(badgeStudentResponses.get(j).getBadgesType())){
+                    localBadgeStudentResponses.get(i).setBadgesType(badgeStudentResponses.get(j).getBadgesType());
+                    localBadgeStudentResponses.get(i).setValue(badgeStudentResponses.get(j).getValue());
+
+                }
+            }
+        }
+
+        Log.e("size",""+localBadgeStudentResponses.size());
+
+
+
+
+        badge_detail_recylerview = (RecyclerView) view.findViewById(R.id.badge_detail_recylerview);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         badge_detail_recylerview.setLayoutManager(linearLayoutManager);
-        badgeDetailAdapter=new BadgeDetailAdapter(getActivity(),badgeStudentResponses);
+        badgeDetailAdapter = new BadgeDetailAdapter(getActivity(), localBadgeStudentResponses);
         badge_detail_recylerview.setAdapter(badgeDetailAdapter);
 
     }

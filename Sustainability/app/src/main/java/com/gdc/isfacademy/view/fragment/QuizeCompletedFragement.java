@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
-import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.model.CommonResponse;
-import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
@@ -28,7 +27,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class QuizeCompletedFragement extends BaseFragment {
+@SuppressWarnings("ALL")
+public class QuizeCompletedFragement extends BaseFragment implements View.OnClickListener{
 
     public static final String TAG = "QuizeCompletedFragement";
     HomeActivity activity;
@@ -55,7 +55,7 @@ public class QuizeCompletedFragement extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.completed_quize_layout, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.completed_quize_layout, null);
         initView(view);
         return view;
     }
@@ -68,7 +68,6 @@ public class QuizeCompletedFragement extends BaseFragment {
 
     @Override
     public void onClick(View view) {
-        super.onClick(view);
         int id = view.getId();
         switch (id) {
             case R.id.share_tv:

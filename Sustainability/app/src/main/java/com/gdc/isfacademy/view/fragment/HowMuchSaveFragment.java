@@ -1,28 +1,21 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
-import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.model.EnergySavingResponse;
-import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.model.RetrieveDailyConsResponse;
 import com.gdc.isfacademy.model.StudentFootPrintResponse;
 import com.gdc.isfacademy.model.StudentSavedCostResponse;
@@ -46,7 +39,6 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,6 +47,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressWarnings("ALL")
 public class HowMuchSaveFragment extends BaseFragment implements
         OnChartGestureListener,
         OnChartValueSelectedListener {
@@ -69,6 +62,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
     ArrayList<String> xVals;
     ArrayList<Entry> yaxisValueForStudent, getYaxisValueForSchoolAvg, targetValue;
     private LineChart mChart;
+    private String dateEnergySaving;
 
     public static HowMuchSaveFragment newInstance() {
         HowMuchSaveFragment howMuchSaveFragment = new HowMuchSaveFragment();
@@ -83,11 +77,11 @@ public class HowMuchSaveFragment extends BaseFragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.how_much_saved_layout, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.how_much_saved_layout, null);
         init(view);
         Bundle bundle = getArguments();
         currentCons = (EnergySavingResponse.CurrentCons) bundle.getSerializable(AppConstants.CURRENT_ENERGY_UNIT);
-
+        dateEnergySaving=bundle.getString(AppConstants.PICK_ENERGY_SAVING_DATE);
         if (currentCons != null) {
             Log.d("conumption", "" + currentCons.getValue() + " " + currentCons.getUnit());
             //  currentWeekConsumption.setText(String.format("%.2f", currentCons.getValue()));
@@ -130,10 +124,11 @@ public class HowMuchSaveFragment extends BaseFragment implements
         randomSaveInstructionText = (AppCompatTextView) view.findViewById(R.id.randomSaveInstructionText);
         setItemForSpinner();
         setRandomInstruction();
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat month_date = new SimpleDateFormat("dd MMMM yyyy");
-        String currentDate = month_date.format(cal.getTime());
-        upto_date_tv.setText("Upto"+" "+currentDate);
+       /* Calendar cal = Calendar.getInstance();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat month_date = new SimpleDateFormat("dd MMMM yyyy");
+        cal.add(Calendar.DATE, -1);
+        String currentDate = month_date.format(cal.getTime());*/
+        upto_date_tv.setText(dateEnergySaving);
     }
 
 
@@ -143,9 +138,6 @@ public class HowMuchSaveFragment extends BaseFragment implements
         } else {
             countInstruction = countInstruction + 1;
         }
-
-        Log.e("countInstruction", "" + countInstruction);
-
         if (countInstruction == 1) {
             randomSaveInstructionText.setText(getString(R.string.txt_one));
         } else if (countInstruction == 2) {
@@ -283,7 +275,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                         }
                         if (response.body().getComparison() != null && !response.body().getComparison().equalsIgnoreCase("")) {
                             String value = new BigDecimal(response.body().getComparison()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                            hotChoclateText.setText("x" + value);
+                            hotChoclateText.setText(getString(R.string.txt_x)+""+ value);
                         }
 
                         if (response.body().getSaveCost() != null && !response.body().getSaveCost().equalsIgnoreCase("")) {
@@ -345,7 +337,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                             }
                             if (response.body().getTree().getValue() != null && !response.body().getTree().getValue().equalsIgnoreCase("")) {
                                 String value = new BigDecimal(response.body().getTree().getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                                valueTree.setText("x" + value);
+                                valueTree.setText(getString(R.string.txt_x)+""+ value);
                             }
 
                         }
@@ -402,41 +394,58 @@ public class HowMuchSaveFragment extends BaseFragment implements
                 hideProgressDialog();
                 if (response.body() != null) {
                     if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                        if (response.body().getStudent() != null && response.body().getStudent().size() > 0) {
-                            if (response.body().getTarget() != null) {
-                                //    float value = new BigDecimal(response.body().getTarget()).setScale(1, BigDecimal.ROUND_UP).floatValue();
-                                if (response.body().getTarget().contains(".")) {
-                                    String targetValues = response.body().getTarget().substring(0, response.body().getTarget().indexOf("."));
-                                    targetValue.add(new Entry(0, 0));
-                                    Log.e("target", "" + targetValues);
-                                    targetValue.add(new Entry(Float.parseFloat(targetValues), response.body().getStudent().size() - 1));
-                                } else {
-                                    targetValue.add(new Entry(0, 0));
-                                    Log.e("target", "" + response.body().getTarget());
-                                    targetValue.add(new Entry(Float.parseFloat(response.body().getTarget()), response.body().getStudent().size() - 1));
+                        if(response.body().getStudent()!=null&&response.body().getStudent().size()>0
+                                &&response.body().getAvg()!=null&&response.body().getAvg().size()>0) {
 
+                            if(response.body().getStudent().size()>=response.body().getAvg().size()) {
+                                for (int i = 0; i < response.body().getStudent().size(); i++) {
+                                    xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
+                                    Log.e("xAxisDateFromStudent", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
+
+                                }
+                            }
+                            else {
+                                for (int i = 0; i < response.body().getAvg().size(); i++) {
+                                    xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
+                                    Log.e("xAxisDateFromAvg", "" + ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
+
+                                }
+                            }
+
+
+                            if (response.body().getStudent() != null && response.body().getStudent().size() > 0) {
+                                if (response.body().getTarget() != null) {
+                                    //    float value = new BigDecimal(response.body().getTarget()).setScale(1, BigDecimal.ROUND_UP).floatValue();
+                                    if (response.body().getTarget().contains(".")) {
+                                        String targetValues = response.body().getTarget().substring(0, response.body().getTarget().indexOf("."));
+                                        targetValue.add(new Entry(0, 0));
+                                        Log.e("target", "" + targetValues);
+                                        targetValue.add(new Entry(Float.parseFloat(targetValues), response.body().getStudent().size() - 1));
+                                    } else {
+                                        targetValue.add(new Entry(0, 0));
+                                        Log.e("target", "" + response.body().getTarget());
+                                        targetValue.add(new Entry(Float.parseFloat(response.body().getTarget()), response.body().getStudent().size() - 1));
+
+                                    }
+
+                                }
+                                for (int i = 0; i < response.body().getStudent().size(); i++) {
+                                    float value = new BigDecimal(response.body().getStudent().get(i).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+                                    Log.e("valuesStudent", "" + value);
+                                    yaxisValueForStudent.add(new Entry(value, i));
                                 }
 
                             }
-                            for (int i = 0; i < response.body().getStudent().size(); i++) {
-                                xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
-                                Log.e("date", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
-                                float value = new BigDecimal(response.body().getStudent().get(i).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
-                                Log.e("valuesStudent", "" + value);
-                                yaxisValueForStudent.add(new Entry(value, i));
+                            if (response.body().getAvg() != null && response.body().getAvg().size() > 0) {
+                                for (int i = 0; i < response.body().getAvg().size(); i++) {
+                                    float value = new BigDecimal(response.body().getAvg().get(i).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+                                    Log.e("valuesForSchool", "" + value);
+                                    getYaxisValueForSchoolAvg.add(new Entry(value, i));
+                                }
                             }
+                            setData();
 
                         }
-                        if (response.body().getAvg() != null && response.body().getAvg().size() > 0) {
-                            for (int i = 0; i < response.body().getAvg().size(); i++) {
-                                float value = new BigDecimal(response.body().getAvg().get(i).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
-                                Log.e("valuesForSchool", "" + value);
-                                getYaxisValueForSchoolAvg.add(new Entry(value, i));
-                            }
-                        }
-                        setData();
-
-
                     } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                         ProjectUtil.logoutFromApp(getActivity());
                     } else {
@@ -489,7 +498,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
         set1.setDrawValues(true);
 
         set2 = new LineDataSet(getYaxisValueForSchoolAvg, "school avg");
-        set2.setFillAlpha(110);
+        set2.enableDashedLine(10f, 5f, 0f);
+        set2.enableDashedHighlightLine(10f, 5f, 0f);
         set2.setColor(Color.parseColor("#BF1CD9"));
         set2.setCircleColor(Color.parseColor("#BF1CD9"));
         set2.setLineWidth(1f);

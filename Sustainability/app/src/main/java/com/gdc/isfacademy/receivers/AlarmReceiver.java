@@ -7,13 +7,11 @@ import android.util.Log;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
-import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 
-/**
- * Created by ashishthakur on 10/4/18.
- */
 
+
+@SuppressWarnings("ALL")
 public class AlarmReceiver extends BroadcastReceiver {
 
     private final String TAG = "AlarmReceiver";

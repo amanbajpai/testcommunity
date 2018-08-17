@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context="com.gdc.isfacademy.view.activity.LoginActivity">
+    tools:context="com.gdc.isfacademy.view.activity.LoginActivity"
+    tools:ignore="Overdraw">
 
 
     <LinearLayout
@@ -20,7 +20,8 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/school_logo" />
+            android:src="@drawable/school_logo"
+            tools:ignore="ContentDescription" />
 
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:layout_width="wrap_content"
@@ -66,7 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="RtlHardcoded">
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
             android:layout_width="wrap_content"
             android:padding="@dimen/_5sdp"
@@ -79,7 +81,8 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/companylogo" />
+            android:src="@drawable/companylogo"
+            tools:ignore="ContentDescription" />
 
 
 

@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -26,10 +27,8 @@ import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,6 +38,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
+@SuppressWarnings("ALL")
 public class LoginActivity extends BaseActivity implements View.OnClickListener, NavigateAfterGetLocation {
 
     public static double latitude, longitude;
@@ -94,7 +94,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         final Dialog dialog = new Dialog(context, android.R.style.Theme_Holo_Dialog);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.default_login_dialog, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.default_login_dialog, null);
         dialog.setTitle("LOGIN");
         final OpenSansLightEditText nameET = (OpenSansLightEditText) view.findViewById(R.id.nameET);
         final OpenSansLightEditText passET = (OpenSansLightEditText) view.findViewById(R.id.passET);

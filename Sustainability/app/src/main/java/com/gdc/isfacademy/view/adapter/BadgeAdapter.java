@@ -1,14 +1,12 @@
 package com.gdc.isfacademy.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.BadgeStudentResponse;
@@ -16,10 +14,8 @@ import com.gdc.isfacademy.utils.AppConstants;
 
 import java.util.List;
 
-/**
- * Created by ashishthakur on 15/8/18.
- */
 
+@SuppressWarnings("ALL")
 public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
 
     public boolean isAnyBadgeAllot = false;
@@ -45,7 +41,7 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
     @Override
     public BadgeAdapter.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.list_items_badge, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.list_items_badge, null);
         BadgeAdapter.Holder holder = new BadgeAdapter.Holder(view);
         return holder;
     }
@@ -53,6 +49,15 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
     @Override
     public void onBindViewHolder(BadgeAdapter.Holder holder, final int position) {
 
+        /*
+        *
+        *
+        * Here we check all  badge type with @AppConstants.ID_ENERGY_SAVING,@AppConstants.ID_QUIZHOLIC
+        * @AppConstants.ID_PERSISTANT,@AppConstants.ID_PERFECTION,@AppConstants.ID_BROADCASTER,@AppConstants.ID_FRIENDLY,
+        * @AppConstants.ID_PERFECTION,@AppConstants.ID_LEGENDARY,@AppConstants.ID_SUPERIOR_SPECLIST,@AppConstants.ID_CHAMPION.
+        * according to that we allote badge to the stduents.
+        *
+        * */
         if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_ENERGY_SAVING)) {
             if (badgeStudentResponses.get(position).getValue() != null) {
                 float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
@@ -74,7 +79,6 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
                 } else if (value >= AppConstants.VALUE_ENERGY_SAVING_HIDDEN) {
                     holder.iv_badge.setImageResource(R.drawable.energy_saving_hidden_badge);
                     isAnyBadgeAllot = true;
-
                 }
             }
 
@@ -270,12 +274,7 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
 
             }
         }
-        else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase("10")) {
-            holder.iv_badge.setVisibility(View.GONE);
-            isAnyBadgeAllot = false;
 
-
-        }
 
     }
 
@@ -289,7 +288,7 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
     }
 
     class Holder extends RecyclerView.ViewHolder {
-        public ImageView iv_badge;
+        public final ImageView iv_badge;
 
         public Holder(View itemView) {
             super(itemView);

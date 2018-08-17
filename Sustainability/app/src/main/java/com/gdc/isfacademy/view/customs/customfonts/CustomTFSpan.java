@@ -5,13 +5,11 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.TypefaceSpan;
 
-/**
- * Created by ashishthakur on 10/4/18.
- */
 
+@SuppressWarnings("ALL")
 public class CustomTFSpan extends TypefaceSpan {
 
-    private Typeface typeface;
+    private final Typeface typeface;
 
     public CustomTFSpan(Typeface typeface) {
         super("");

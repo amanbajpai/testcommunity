@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.view.ContextThemeWrapper;
 
 import com.gdc.isfacademy.R;
@@ -12,6 +11,7 @@ import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.ProjectUtil;
 
 
+@SuppressWarnings("ALL")
 public class BaseActivity extends AppCompatActivity {
     ProgressDialog mProgressDialog;
 

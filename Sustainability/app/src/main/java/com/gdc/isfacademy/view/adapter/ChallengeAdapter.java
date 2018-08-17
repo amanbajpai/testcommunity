@@ -2,9 +2,7 @@ package com.gdc.isfacademy.view.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +11,13 @@ import android.widget.ImageView;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.utils.AppConstants;
-import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview;
 
 import java.util.ArrayList;
 
-/**
- * Created by ashishthakur on 6/4/18.
- */
 
+
+@SuppressWarnings("ALL")
 public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
@@ -238,8 +234,10 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public class TopRankedViewHolder extends RecyclerView.ViewHolder {
 
-        OpenSansLightTextview name, postion, points;
-        ImageView rankIcon;
+        final OpenSansLightTextview name;
+        final OpenSansLightTextview postion;
+        final OpenSansLightTextview points;
+        final ImageView rankIcon;
 
         public TopRankedViewHolder(View itemView) {
             super(itemView);
@@ -252,8 +250,10 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public class OtheresRankViewHolder extends RecyclerView.ViewHolder {
-        OpenSansLightTextview name, postion, points;
-        ImageView rankIcon;
+        final OpenSansLightTextview name;
+        final OpenSansLightTextview postion;
+        final OpenSansLightTextview points;
+        final ImageView rankIcon;
 
         public OtheresRankViewHolder(View itemView) {
             super(itemView);

@@ -37,16 +37,17 @@ import java.util.ArrayList;
 /**
  * Created by ashishthakur on 05/09/17.
  */
+@SuppressWarnings("ALL")
 public class LocationUtils implements LocationListener, GoogleApiClient.ConnectionCallbacks {
 
     private LocationManager locationManager;
     private GoogleApiClient googleApiClient;
     private boolean isGPSEnabled = false;
     private boolean isNetworkEnabled = false;
-    private Context mContext;
-    private Activity activity;
+    private final Context mContext;
+    private final Activity activity;
     private Fragment fragment;
-    private boolean isFromLogin;
+    private final boolean isFromLogin;
 
     LocationListener locationListner = new LocationListener() {
         @Override

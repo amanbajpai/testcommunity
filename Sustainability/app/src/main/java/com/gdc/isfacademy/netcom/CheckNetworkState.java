@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+@SuppressWarnings("ALL")
 public class CheckNetworkState {
 
     /**
@@ -16,11 +17,7 @@ public class CheckNetworkState {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork != null) { // connected to the internet
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                return true;
-            } else {
-                return activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE;
-            }
+            return activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE;
         } else {
             return false;
         }

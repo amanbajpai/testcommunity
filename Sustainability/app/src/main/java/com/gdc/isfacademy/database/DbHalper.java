@@ -1,7 +1,5 @@
 package com.gdc.isfacademy.database;
 
-import android.content.Context;
-
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.model.ChallangeRankListDao;
@@ -18,6 +16,7 @@ import java.util.List;
     *
     * */
 
+@SuppressWarnings("ALL")
 public class DbHalper {
 
     public static DbHalper dbHalper;

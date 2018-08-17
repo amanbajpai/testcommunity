@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -8,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.CommonResponse;
-import com.gdc.isfacademy.model.Question;
 import com.gdc.isfacademy.model.QuestionsResponse;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
@@ -33,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
+@SuppressWarnings("ALL")
 public class QuizeFragment extends BaseFragment implements View.OnClickListener {
 
     public static final String TAG = "QuizeFragment";
@@ -42,6 +42,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
     private CustomViewPager viewpager;
     private IndicatorsView indicatorsView;
 
+    @SuppressLint("InflateParams")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,12 +97,6 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         nextBt.setOnClickListener(this);
         finishBt.setOnClickListener(this);
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        initView(rootView);
     }
 
     private void createList() {

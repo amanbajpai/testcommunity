@@ -1,9 +1,9 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +18,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.List;
 
 
+@SuppressWarnings("ALL")
 public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter.OnListItemClick {
     public static final String TAG = "QuizePagerFragment";
     QuizeListAdapter quizeListAdapter;
@@ -30,15 +31,10 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
     // private CardView answer_three, answer_two, answer_one;
     private XRecyclerView pager_recylerview;
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.quize_pager_fragment, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.quize_pager_fragment, null);
         initView(view);
         quizeFragment = (QuizeFragment) getParentFragment();
         return view;
@@ -80,20 +76,14 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
     }
 
 
-    @Override
+    /*@Override
     public void onClick(View view) {
         super.onClick(view);
 
         int id = view.getId();
         switch (id) {
-
-          /*  case R.id.answer_three:
-            case R.id.answer_two:
-            case R.id.answer_one:
-                ((HomeActivity) getActivity()).pushFragments(new QuizeCompletedFragement(), null, true);
-                break;*/
         }
-    }
+    }*/
 
     @Override
     public void onClick(int id, int pos) {

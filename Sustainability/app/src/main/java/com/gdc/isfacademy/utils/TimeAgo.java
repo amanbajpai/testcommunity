@@ -1,4 +1,5 @@
 package com.gdc.isfacademy.utils;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import java.util.Date;
  * Created by ashishthakur on 7/5/18.
  */
 
+@SuppressWarnings("ALL")
 public class TimeAgo {
 
     SimpleDateFormat simpleDateFormat, dateFormat;
@@ -22,7 +24,7 @@ public class TimeAgo {
     Date dateTimeNow;
     String timeFromData;
     String pastDate;
-    String sDateTimeNow;
+    final String sDateTimeNow;
 
     @Nullable
     Context context;
@@ -35,6 +37,7 @@ public class TimeAgo {
     private static final int MONTHS_MILLIS = 4 * WEEKS_MILLIS;
     //private static final int YEARS_MILLIS = 12 * MONTHS_MILLIS;
 
+    @SuppressLint("SimpleDateFormat")
     public TimeAgo() {
 
         simpleDateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
@@ -56,6 +59,7 @@ public class TimeAgo {
         return this;
     }
 
+    @SuppressLint("SimpleDateFormat")
     public TimeAgo with(@NonNull SimpleDateFormat simpleDateFormat) {
         this.simpleDateFormat = simpleDateFormat;
         this.dateFormat = new SimpleDateFormat(simpleDateFormat.toPattern().split(" ")[0]);

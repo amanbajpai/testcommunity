@@ -3,7 +3,6 @@ package com.gdc.isfacademy.application;
 import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
-import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.googleanalitics.AnalyticsTrackers;
 import com.gdc.isfacademy.model.DaoMaster;
 import com.gdc.isfacademy.model.DaoSession;
@@ -19,11 +18,6 @@ import com.google.gson.GsonBuilder;
 import io.fabric.sdk.android.Fabric;
 import org.greenrobot.greendao.database.Database;
 
-import java.io.IOException;
-
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -31,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by ashishthakur on 29/3/18.
  */
 
+@SuppressWarnings("ALL")
 public class ISFApp extends Application {
     static ISFApp appInstance;
     private Retrofit retrofit;

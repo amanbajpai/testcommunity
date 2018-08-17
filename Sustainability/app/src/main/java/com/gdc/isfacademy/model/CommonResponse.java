@@ -1,9 +1,8 @@
 package com.gdc.isfacademy.model;
 
-/**
- * Created by ashishthakur on 17/4/18.
- */
 
+
+@SuppressWarnings("ALL")
 public class CommonResponse {
     String responseCode;
     String responseMessage;

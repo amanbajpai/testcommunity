@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Created by ashishthakur on 10/5/18.
  */
 
+@SuppressWarnings("ALL")
 public class GetRecordsHelper extends DbHalper {
 
 

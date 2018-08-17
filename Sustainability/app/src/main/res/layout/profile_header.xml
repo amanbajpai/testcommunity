@@ -35,7 +35,8 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_toRightOf="@+id/profile_image"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded">
 
                 <LinearLayout
 
@@ -51,7 +52,7 @@
                         android:drawablePadding="@dimen/_5sdp"
                         android:maxLines="1"
                         android:padding="@dimen/_5sdp"
-                        android:text="jane Doe"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13sdp" />
 
@@ -69,7 +70,8 @@
                         android:paddingRight="@dimen/_3sdp"
                         android:paddingTop="@dimen/_2sdp"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp"
+                        tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -88,9 +90,10 @@
                         android:drawablePadding="@dimen/_5sdp"
                         android:drawableTint="@android:color/darker_gray"
                         android:padding="@dimen/_5sdp"
-                        android:text="--"
+                        android:text="@string/txt_dash"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_11sdp" />
+                        android:textSize="@dimen/_11sdp"
+                        tools:ignore="RtlHardcoded,UnusedAttribute" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
@@ -100,9 +103,10 @@
                         android:drawablePadding="@dimen/_5sdp"
                         android:drawableTint="@android:color/darker_gray"
                         android:padding="@dimen/_5sdp"
-                        android:text="--"
+                        android:text="@string/txt_dash"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_11sdp" />
+                        android:textSize="@dimen/_11sdp"
+                        tools:ignore="RtlHardcoded,UnusedAttribute" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
@@ -112,9 +116,10 @@
                         android:drawablePadding="@dimen/_5sdp"
                         android:drawableTint="@android:color/darker_gray"
                         android:padding="@dimen/_5sdp"
-                        android:text="--"
+                        android:text="@string/txt_dash"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_11sdp" />
+                        android:textSize="@dimen/_11sdp"
+                        tools:ignore="RtlHardcoded,UnusedAttribute" />
                 </LinearLayout>
 
                 <View
@@ -131,21 +136,24 @@
                     android:layout_marginTop="@dimen/_3sdp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_2sdp">
+                    android:padding="@dimen/_2sdp"
+                    tools:ignore="RtlHardcoded">
 
                     <ImageView
                         android:id="@+id/btn_instagram"
                         android:layout_width="@dimen/_12sdp"
                         android:layout_height="@dimen/_12sdp"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:src="@drawable/ic_instagram" />
+                        android:src="@drawable/ic_instagram"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/btn_whatsapp"
                         android:layout_width="@dimen/_12sdp"
                         android:layout_height="@dimen/_12sdp"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:src="@drawable/ic_whats_app" />
+                        android:src="@drawable/ic_whats_app"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/btn_google_plus"
@@ -153,21 +161,24 @@
                         android:layout_height="@dimen/_15sdp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:src="@drawable/ic_google" />
+                        android:src="@drawable/ic_google"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <ImageView
                         android:id="@+id/btn_snapchat"
                         android:layout_width="@dimen/_12sdp"
                         android:layout_height="@dimen/_12sdp"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:src="@drawable/ic_share" />
+                        android:src="@drawable/ic_share"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <ImageView
                         android:id="@+id/btn_we_chat"
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:src="@drawable/ic_we_chat" />
+                        android:src="@drawable/ic_we_chat"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -184,7 +195,8 @@
         android:layout_height="@dimen/_45sdp"
         android:layout_marginLeft="@dimen/_8sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        card_view:cardBackgroundColor="@color/white">
+        card_view:cardBackgroundColor="@color/white"
+        tools:ignore="RtlHardcoded">
 
         <RelativeLayout
             android:id="@+id/badgeRelativeLayout"
@@ -200,7 +212,8 @@
                 android:layout_centerVertical="true"
                 android:text="@string/badge_text"
                 android:layout_alignParentLeft="true"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded" />
             <LinearLayout
                 android:id="@+id/badge_icon_layout"
                 android:layout_marginRight="@dimen/_15sdp"
@@ -241,7 +254,8 @@
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
                 android:src="@drawable/arrow_right"
-                android:tint="@color/color_text_and_spinner" />
+                android:tint="@color/color_text_and_spinner"
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
 
         </RelativeLayout>

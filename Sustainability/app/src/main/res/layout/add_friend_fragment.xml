@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="Overdraw">
 
 
 
         <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/main_content"
             android:background="@color/white_transparent"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
             <android.support.design.widget.AppBarLayout
-                android:id="@+id/appBar"
                 android:background="@android:color/transparent"
                 app:elevation="0dp"
                 app:contentInsetEnd="0dp"
@@ -40,14 +40,16 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_10sdp"
                         android:background="@drawable/search_view_bg"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="UselessParent">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_7sdp"
-                            android:src="@drawable/search_toolbar" />
+                            android:src="@drawable/search_toolbar"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText
                             android:layout_width="0dp"
@@ -58,14 +60,16 @@
                             android:id="@+id/search_edit_text"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingLeft="@dimen/_10sdp" />
+                            android:paddingLeft="@dimen/_10sdp"
+                            tools:ignore="RtlHardcoded,RtlSymmetry" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="@dimen/_7sdp"
-                            android:src="@android:drawable/ic_btn_speak_now" />
+                            android:src="@android:drawable/ic_btn_speak_now"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
                     </LinearLayout>
 
                 </LinearLayout>

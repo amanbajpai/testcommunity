@@ -4,7 +4,8 @@ package com.gdc.isfacademy.utils;
  * Created by ashishthakur on 18/5/18.
  */
 
+@SuppressWarnings("ALL")
 public interface NavigateAfterGetLocation {
-    public void navigate(double lat,double longi,boolean isFromLogin);
+     void navigate(double lat,double longi,boolean isFromLogin);
 
 }

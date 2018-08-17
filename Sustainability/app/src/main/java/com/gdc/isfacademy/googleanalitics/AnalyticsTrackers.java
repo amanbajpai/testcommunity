@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.googleanalitics;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.gdc.isfacademy.R;
@@ -13,6 +14,7 @@ import java.util.Map;
  * Created by ashishthakur on 22/2/18.
  */
 
+@SuppressWarnings("ALL")
 public class AnalyticsTrackers {
 
     public enum Target {
@@ -20,6 +22,7 @@ public class AnalyticsTrackers {
         // Add more trackers here if you need, and update the code in #get(Target) below
     }
 
+    @SuppressLint("StaticFieldLeak")
     private static AnalyticsTrackers sInstance;
 
     public static synchronized void initialize(Context context) {

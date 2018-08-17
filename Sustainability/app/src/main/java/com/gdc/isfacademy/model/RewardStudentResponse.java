@@ -3,6 +3,7 @@ package com.gdc.isfacademy.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("ALL")
 public class RewardStudentResponse {
     @SerializedName("isfRewardsId")
     @Expose

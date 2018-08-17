@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,11 +18,12 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
+@SuppressWarnings("ALL")
 public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Holder> implements Filterable{
 
-    Context context;
+    final Context context;
     ArrayList<FriendsBeanList>friendsBeanLists;
-    ArrayList<FriendsBeanList>fillterdFriendsBeanLists;
+    final ArrayList<FriendsBeanList>fillterdFriendsBeanLists;
     ArrayList<FriendsBeanList> filterList;
 
     OnItemClick onItemClick;
@@ -36,7 +38,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ho
         fillterdFriendsBeanLists=friendsBeanLists;
     }
     public interface OnItemClick{
-        public void onClick(int id,int pos);
+        void onClick(int id, int pos);
     }
 
     public void setOnItemClick(OnItemClick onItemClick) {
@@ -46,7 +48,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ho
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.add_friend_item, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.add_friend_item, null);
 //        View view1 =LayoutInflater.from(context).inflate(R.layout.add_friend_item,null);
         Holder holder = new Holder(view);
         return holder;
@@ -59,6 +61,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ho
 
 
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(Holder holder, final int position) {
         holder.profile_name.setText(friendsBeanLists.get(position).getName());
@@ -99,8 +102,9 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ho
 
     class Holder extends RecyclerView.ViewHolder {
 
-        CircleImageView profile_image;
-        OpenSansLightTextview action_tv, profile_name;
+        final CircleImageView profile_image;
+        final OpenSansLightTextview action_tv;
+        final OpenSansLightTextview profile_name;
 
         public Holder(View itemView) {
             super(itemView);
@@ -110,7 +114,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Ho
         }
     }
     private class UserFilter extends Filter {
-        FilterResults results = new FilterResults();
+        final FilterResults results = new FilterResults();
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {

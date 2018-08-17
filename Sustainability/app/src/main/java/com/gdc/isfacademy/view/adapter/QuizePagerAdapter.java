@@ -10,6 +10,7 @@ import java.util.List;
 
 
 
+@SuppressWarnings("ALL")
 public class QuizePagerAdapter extends FragmentStatePagerAdapter {
     List<QuizePagerFragment> fragmentList;
 

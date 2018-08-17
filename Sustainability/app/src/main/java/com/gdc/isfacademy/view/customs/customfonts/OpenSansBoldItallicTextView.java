@@ -5,9 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
-/**
- * Created by ashishthakur on 5/4/18.
- */
+
 
 public class OpenSansBoldItallicTextView extends AppCompatTextView {
     public OpenSansBoldItallicTextView(Context context) {

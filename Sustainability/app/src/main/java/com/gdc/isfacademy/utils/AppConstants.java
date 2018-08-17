@@ -1,9 +1,8 @@
 package com.gdc.isfacademy.utils;
 
-/**
- * Created by ashishthakur on 29/3/18.
- */
 
+
+@SuppressWarnings("ALL")
 public class AppConstants {
     public static final int SPLASH_HOLD_TIME = 3000;
     public static final int TOP_RANKED_VIEW=0;
@@ -34,11 +33,12 @@ public class AppConstants {
     public static final String ID_QUIZHOLIC="2";
     public static final String ID_PERSISTANT="3";
     public static final String ID_PERFECTION="4";
-    public static final String ID_BROADCASTER="5";
-    public static final String ID_FRIENDLY="6";
-    public static final String ID_LEGENDARY="7";
-    public static final String ID_SUPERIOR_SPECLIST="8";
-    public static final String ID_CHAMPION="9";
+    public static final String ID_BROADCASTER="6";
+    public static final String ID_FRIENDLY="7";
+    public static final String ID_LEGENDARY="8";
+    public static final String ID_SUPERIOR_SPECLIST="9";
+    public static final String ID_CHAMPION="10";
+
 
     public static final float VALUE_ENERGY_SAVING_BRNOZE=5;
     public static final float VALUE_ENERGY_SAVING_SILVER=10;
@@ -91,6 +91,10 @@ public class AppConstants {
     public static final String typeStudenLogBuilding="building";
     public static final String typeStudenLogShare="share";
     public static final String typeStudenLogChallange="challenge";
+
+    public static final String LIST_BADGE="list";
+    public static final int UPDATE_BADGE_TIME=1000;
+    public static final String PICK_ENERGY_SAVING_DATE="date";
 
 
 

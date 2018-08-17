@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,13 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
-import com.gdc.isfacademy.database.DbHalper;
 import com.gdc.isfacademy.model.ChallangeRankList;
-import com.gdc.isfacademy.model.ChallangeRankListDao;
 import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
@@ -36,7 +34,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ChallengeFragment extends BaseFragment {
+@SuppressWarnings("ALL")
+public class ChallengeFragment extends BaseFragment implements View.OnClickListener {
     public static final String TAG = "ExploreFragment";
 
     public XRecyclerView challenge_recylerview;
@@ -65,7 +64,7 @@ public class ChallengeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.challenge_fragment, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.challenge_fragment, null);
         initView(view);
         return view;
     }
@@ -132,7 +131,6 @@ public class ChallengeFragment extends BaseFragment {
 
     @Override
     public void onClick(View view) {
-        super.onClick(view);
         int id = view.getId();
         switch (id) {
 

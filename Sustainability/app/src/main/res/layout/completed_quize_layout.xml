@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="Overdraw">
 
     <ImageView
         android:layout_width="@dimen/_230sdp"
         android:layout_height="@dimen/_230sdp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_20sdp"
-        android:src="@drawable/hat_icon" />
+        android:src="@drawable/hat_icon"
+        tools:ignore="ContentDescription" />
 
 
     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
@@ -20,7 +23,7 @@
         android:textSize="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_gravity="center_horizontal"
-        android:text="Well done." />
+        android:text="@string/txt_well_done" />
 
     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
         android:layout_width="wrap_content"
@@ -28,7 +31,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
         android:layout_gravity="center_horizontal"
-        android:text="You have earned your daily points " />
+        android:text="@string/txt_earned_points" />
 
     <LinearLayout
         android:gravity="center"
@@ -50,9 +53,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             android:layout_gravity="center_horizontal"
-            android:text="Share" />
+            android:text="@string/txt_share" />
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-            android:id="@+id/doneQuiz"
             android:visibility="gone"
             android:layout_margin="@dimen/_5sdp"
             android:layout_width="wrap_content"
@@ -66,7 +68,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             android:layout_gravity="center_horizontal"
-            android:text="Done" />
+            android:text="@string/txt_done" />
 
 
 

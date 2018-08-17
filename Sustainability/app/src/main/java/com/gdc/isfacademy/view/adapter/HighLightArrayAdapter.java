@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -16,10 +17,12 @@ import com.gdc.isfacademy.R;
  * Created by ashishthakur on 7/6/18.
  */
 
+@SuppressWarnings("ALL")
 public class HighLightArrayAdapter extends ArrayAdapter<CharSequence> {
 
-    Context context;CharSequence[] objects;
-    AppCompatSpinner spinner;
+    final Context context;
+    final CharSequence[] objects;
+    final AppCompatSpinner spinner;
 
 
     public HighLightArrayAdapter(Context context, int resource, CharSequence[] objects, AppCompatSpinner spinner) {
@@ -33,7 +36,7 @@ public class HighLightArrayAdapter extends ArrayAdapter<CharSequence> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View spinnerItem = inflater.inflate(R.layout.spinner_cost, null);
+        @SuppressLint("InflateParams") View spinnerItem = inflater.inflate(R.layout.spinner_cost, null);
         TextView mytext= (TextView)spinnerItem.findViewById(R.id.spinnerItem);
         mytext.setText(objects[position]);
 

@@ -4,6 +4,7 @@ package com.gdc.isfacademy.model;
  * Created by ashishthakur on 18/5/18.
  */
 
+@SuppressWarnings("ALL")
 public class StudentFootPrintResponse extends CommonResponse {
 
     public CO2 co2;

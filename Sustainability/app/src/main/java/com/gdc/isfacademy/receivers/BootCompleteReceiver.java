@@ -7,9 +7,7 @@ import android.content.Intent;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 
-/**
- * Created by ashishthakur on 10/4/18.
- */
+
 
 public class BootCompleteReceiver  extends BroadcastReceiver {
 
