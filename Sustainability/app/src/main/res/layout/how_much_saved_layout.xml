@@ -7,7 +7,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="13dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +42,6 @@
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:id="@+id/this_week_tv"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -48,21 +50,25 @@
                         android:drawableRight="@drawable/small_arrow"
                         android:text="@string/this_week"
                         android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_11sdp" />
+                        android:textSize="@dimen/_11sdp"
+                        android:visibility="gone" />
+
                     <LinearLayout
-                        android:layout_alignParentRight="true"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:orientation="horizontal">
+
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/spinner"
-                            android:gravity="center"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_25sdp"
                             android:layout_gravity="center"
                             android:background="@drawable/spineer_drop_down"
                             android:dropDownVerticalOffset="25dp"
-                            android:layout_width="@dimen/_60sdp"
-                            android:layout_height="@dimen/_25sdp" />
+                            android:gravity="center" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,6 +99,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/_13sdp"
                             android:gravity="center"
+                            android:layout_gravity="center_horizontal"
                             android:inputType="textMultiLine"
                             android:text="@string/cost_hk"
                             android:textColor="@color/black"
@@ -104,7 +111,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_12sdp"
-                            android:text="$0"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_32sdp" />
 
@@ -151,6 +158,7 @@
                             android:textSize="@dimen/_13sdp" />
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -176,6 +184,7 @@
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
+                            android:visibility="gone"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_3sdp"
                             android:text="@string/for_comparision"
@@ -208,29 +217,29 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:text="Hot chocolate"
+                                android:text="@string/hot_choklate"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_12sdp" />
 
                         </LinearLayout>
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
+
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                                android:layout_width="wrap_content"
-                                android:maxLines="1"
                                 android:id="@+id/hotChoclateText"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginRight="@dimen/_1sdp"
+                                android:maxLines="1"
                                 android:textColor="@color/gray"
                                 android:textSize="@dimen/_15sdp" />
 
                         </RelativeLayout>
-
-
 
 
                     </LinearLayout>
@@ -295,8 +304,8 @@
                 android:padding="@dimen/_1sdp">
 
                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                    android:layout_width="match_parent"
                     android:id="@+id/randomSaveInstructionText"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/_5sdp"
@@ -322,7 +331,7 @@
                         android:id="@+id/carbon_foot_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Carbon footprint"
+                        android:text="@string/carbon_footprint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp" />
 
@@ -331,13 +340,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/carbon_foot_label"
-                        android:text="consumption of"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:text="@string/consumption_of"
                         android:textColor="@color/dark_gray"
                         android:textSize="@dimen/_14sdp" />
 
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                        android:id="@+id/this_month_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/carbon_foot_label"
@@ -347,10 +356,30 @@
                         android:drawableRight="@drawable/small_arrow"
                         android:text="@string/txt_this_month"
                         android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_14sdp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/this_month_tv"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/carbon_foot_label"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_toRightOf="@id/consumption_label"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/spinnerfootPrint"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/spineer_drop_down"
+                            android:dropDownVerticalOffset="25dp"
+                            android:gravity="center" />
+                    </LinearLayout>
 
 
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/value_carbon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -362,12 +391,12 @@
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/unitCarbon"
-                        android:layout_alignParentBottom="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
-                        android:text="kg"
                         android:paddingBottom="@dimen/_5sdp"
+                        android:text="kg"
                         android:textSize="@dimen/_15sdp"
 
                         />
@@ -396,12 +425,13 @@
                         android:id="@+id/left_layout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_centerVertical="true"
                         android:orientation="vertical">
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_2sdp"
                             android:text="@string/which_wastes"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_13sdp" />
@@ -410,29 +440,32 @@
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_gravity="center"
                             android:drawablePadding="@dimen/_10sdp"
                             android:drawableRight="@drawable/small_arrow"
+                            android:gravity="center_vertical"
                             android:text="@string/select_other_item"
                             android:textColor="@color/color_text_and_spinner"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="gone" />
 
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:text="@string/for_comparision"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_11sdp"
+                            android:visibility="gone" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_toLeftOf="@+id/valueTree"
                         android:id="@+id/middle_layout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/valueTree"
                         android:orientation="vertical">
 
                         <ImageView
@@ -446,7 +479,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Tree"
+                            android:text="@string/trees"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12sdp" />
 
@@ -454,10 +487,10 @@
 
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                        android:layout_width="wrap_content"
                         android:id="@+id/valueTree"
-                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:text="X0"
@@ -468,16 +501,98 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_height="@dimen/_320sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp">
 
-                <ImageView
+                <RelativeLayout
+                    android:layout_marginBottom="@dimen/_7sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_200sdp"
-                    android:src="@drawable/graph" />
+                    android:layout_height="match_parent">
 
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:id="@+id/consumption_target_tv"
+                        android:textSize="@dimen/_15sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/txt_conumption_target"
+                        android:layout_height="wrap_content" />
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                        android:layout_width="wrap_content"
+                        android:id="@+id/upto_date_tv"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_below="@+id/consumption_target_tv"
+                        android:textSize="@dimen/_12sdp"
+                        android:textColor="@color/color_text_and_spinner"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text=""
+                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_below="@+id/consumption_target_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                            android:layout_width="wrap_content"
+                            android:text="20%"
+                            android:layout_toLeftOf="@+id/down_Arrow"
+                            android:textSize="@dimen/_20sdp"
+                            android:textColor="@color/color_text_and_spinner"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:tint="@color/color_text_and_spinner"
+                            android:id="@+id/down_Arrow"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/down_arrow"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp" />
+
+                    </RelativeLayout>
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/compariosn_text"
+                        android:layout_below="@+id/upto_date_tv"
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:text="@string/txt_compared_to"
+                        android:layout_height="wrap_content" />
+
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/unit_graph_text"
+                        android:layout_below="@+id/compariosn_text"
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:text="@string/kwh"
+                        android:layout_height="wrap_content" />
+
+                    <HorizontalScrollView
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_below="@+id/compariosn_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.github.mikephil.charting.charts.LineChart
+                                android:id="@+id/linechart"
+                                android:minWidth="@dimen/_250sdp"
+                                android:minHeight="@dimen/_200sdp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                    </HorizontalScrollView>
+
+
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
 
 

@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Dialog;
@@ -31,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -484,6 +486,45 @@ public class ProjectUtil {
             j.printStackTrace();
         }
     }
+
+
+
+    public static void logoutFromApp(Context context){
+        MyPref.getInstance(context).writePrefs(AppConstants.STUDENT_KEY, "");
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+        ((Activity)context).finish();
+    }
+
+
+    /*
+    *
+    * Get date from timestamp
+    *
+    * */
+
+    @SuppressLint("SimpleDateFormat")
+    public static String toDate(long timestamp) {
+        Date date = new Date(timestamp);
+        return new SimpleDateFormat("d/M").format(date);
+
+         }
+
+    public static void hideKeyboard(Context context){
+        try {
+            if(context==null){
+                context=ISFApp.getAppInstance().getApplicationContext();
+            }
+            InputMethodManager imm = (InputMethodManager) ((Activity)context).getSystemService(Activity.INPUT_METHOD_SERVICE);
+            if (imm.isActive()){
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0); // hide
+            }
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 

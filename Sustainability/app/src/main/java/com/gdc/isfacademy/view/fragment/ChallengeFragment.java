@@ -292,7 +292,9 @@ public class ChallengeFragment extends BaseFragment {
 
 
                         }
-                    } else {
+                    } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                        ProjectUtil.logoutFromApp(getActivity());
+                    }else {
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 
                     }

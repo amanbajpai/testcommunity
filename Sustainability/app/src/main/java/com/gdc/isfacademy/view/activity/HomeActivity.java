@@ -20,6 +20,7 @@ import com.gdc.isfacademy.utils.BackManager;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.fragment.AddFriendFragment;
+import com.gdc.isfacademy.view.fragment.BadgeDetailFragment;
 import com.gdc.isfacademy.view.fragment.ChallengeFragment;
 import com.gdc.isfacademy.view.fragment.HomeFragment;
 import com.gdc.isfacademy.view.fragment.HowMuchSaveFragment;
@@ -274,6 +275,11 @@ public class HomeActivity extends BaseActivity implements
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case QuizeCompletedFragement.TAG:
+                sliderIcon.setVisibility(View.GONE);
+                // searchIcon.setVisibility(View.VISIBLE);
+                backBtn.setVisibility(View.VISIBLE);
+                break;
+            case BadgeDetailFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
                 // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);

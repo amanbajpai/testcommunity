@@ -51,10 +51,14 @@
 
     <!--how much save screen-->
     <string name="txt_how_much_saved">How much have I actually saved?</string>
-    <string name="how_much_i_saved">How much I saved</string>
+    <string name="how_much_i_saved">costs HK$</string>
+    <string name="carbon_footprint">Carbon footprint</string>
+    <string name="consumption_of">consumption of</string>
     <string name="this_week">Today</string>
     <string name="kwh">kWh</string>
-    <string name="cost_hk">costs \n HK</string>
+    <string name="trees">Tree</string>
+    <string name="hot_choklate">Hot chocolate</string>
+    <string name="cost_hk">costs \n HK$</string>
     <string name="turn_off_your_a_c_when_you_re_not_in_classroom">Turn off your A/C when you\'re not in Classroom</string>
     <string name="how_to_save_more_money">how to save more money ?</string>
     <string name="select_other_goods">select other goods</string>
@@ -62,9 +66,12 @@
     <string name="for_comparision">for comparision</string>
     <string name="select_other_item">Select other item</string>
     <string name="which_wastes">which needs..</string>
-    <string name="dashboard">Dashboard</string>
+    <string name="dashboard">Leaderboard</string>
     <string name="friend">Friend</string>
     <string name="txt_cancel">Cancel</string>
+    <string name="txt_saved">Saved</string>
+    <string name="txt_conumption_target">My Consumption target</string>
+    <string name="txt_compared_to">Compare to last year same time.</string>
     <string name="dummy_text">Lorem ipsum dolor sit amet, non congue eros in eget mauris mattis, quam nulla. Orci non id diam accumsan mi, est amet provident nulla elementum quis torquent.</string>
     <string name="dummy_text_answer">Lorem ipsum dolor sit amet, non congue eros in eget mauris mattis, quam nulla.</string>
     
@@ -75,13 +82,17 @@
     <string name="txt_gift">Here is your Gift!</string>
     <string name="txt_a_cup_of_free_drink">A cup of Free Drink Under $10.</string>
     <string name="txt_expires">Expires in 7d</string>
+    <string name="txt_reward_text">Congratulations!  You\'re Top 5 students out of the entire school.
+Here\'s your gift!</string>
+    <string name="title_when_offline">Get high scores and win the prizes!</string>
+    <string name="txt_no_reward_text">Do better next time and win the prize!</string>
 
     <!--Friends add Strings-->
     <string name="txt_search">Search</string>
     <string name="txt_send_request">SEND REQUEST</string>
     <string name="txt_try_later">TRY LATER</string>
     <string name="txt_enable_notification">Enable open app \"The ISF Sustainability App\"</string>
-    <string name="txt_daily_challange">It\'s time for your DAILY CHALLENGE!"</string>
+    <string name="txt_daily_challange">It\'s time for your daily challenge!"</string>
     <string name="txt_quize_reminder">This is a reminder for your daily challenge</string>
 
     <string name="answer_limit_exceeds">You already completed today\'s quize</string>
@@ -99,12 +110,29 @@
     <string name="days_ago">" days ago"</string>
     <string name="week_ago">" week ago"</string>
     <string name="weeks_ago">" weeks ago"</string>
-
+    <string name="points_history">Points History</string>
+    <string name="profile_date">Date</string>
+    <string name="profile_points">Points</string>
+    <string name="daily_quiz_result">You Shared your daily quiz results</string>
+    <string name="points">+20pts</string>
+    <string name="date_text">14 aug 2018</string>
+    <string name="profile_you_have_saved">% of energy is saved.</string>
+    <string name="profile_you_saved_unit">kWH today</string>
+    <string name="profile_building_saved">The school building saved</string>
+    <string name="profile_building_percentage_save">% today</string>
+    <string name="badge_text">Badges</string>
+    <string name="txt_no_badges_alloted">No unlocked badges</string>
+    <string name="txt_shared_daily_result">Daily quiz result is shared. (max. 5 times)</string>
+    <string name="txt_correct_answer">correct answers</string>
+    <string name="txt_points_in_your_daily_quiz">Daily quiz is completed with</string>
+    <string name="txt_pts">pts.</string>
+    <string name="txt_no_badge_list">No badges alloted yet</string>
 
     <!--SpinnerItem-->
     <string name="txt_daily">daily</string>
     <string name="txt_cycle_small">cycle</string>
     <string name="txt_monthly_small">monthly</string>
+    <string name="txt_month_graph">month</string>
 
     <string name="txt_today">Today</string>
     <string name="txt_cycle">Cycle</string>
@@ -125,6 +153,37 @@
     <string name="txt_four">The AC is cooler than you!</string>
     <string name="txt_five">Save Energy!!</string>
     <string name="txt_six">Remember to switch off your lights when you are not using it.</string>
+
+
+    <!--Badge Allotment Screen-->
+    <string name="title_badge_energy_saving">Energy Saver</string>
+    <string name="txt_badge_energy_saving_description">kWh you saved.</string>
+
+    <string name="title_badge_quizholic">Quizzaholic</string>
+    <string name="txt_badge_quizholic_description">Completed daily quizzes.</string>
+
+    <string name="title_badge_persistent">Persistent</string>
+    <string name="txt_badge_persistent_description">Completed daily quizzes contintuously.</string>
+
+    <string name="title_badge_perfection">Perfection</string>
+    <string name="txt_badge_perfection_description">Finished all questions without wrong answers.</string>
+
+    <string name="title_badge_broadcaster">Broadcaster</string>
+    <string name="txt_badge_broadcaster_description">Share your daily result to different channels.</string>
+
+    <string name="title_badge_friendly">Friendly</string>
+    <string name="txt_badge_friendly_description">Added a friend to your leaderboard.</string>
+
+    <string name="title_badge_legendary">Legendary</string>
+    <string name="txt_badge_legendary_description">Get to the top 5% of your house.</string>
+
+    <string name="title_badge_superior">Superior Specialist</string>
+    <string name="txt_badge_superior_description">Get to the top 10% of your friends</string>
+
+    <string name="title_badge_champion">Champion</string>
+    <string name="txt_badge_champion_description">Get your house to win the champion.</string>
+
+
 
 
 

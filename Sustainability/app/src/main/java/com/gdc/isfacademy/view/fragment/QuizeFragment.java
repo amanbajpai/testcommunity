@@ -112,21 +112,21 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
             fragmentList.clear();
 
-            for (int i = 0; i < 5; i++, answeredCount++) {
+            for (int i = 0; i < 3; i++, answeredCount++) {
 
                 QuizePagerFragment fragment = new QuizePagerFragment();
 
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("question", response.getQuestions().get(answeredCount));
                 bundle.putString("questionNo", String.valueOf(i + 1));
-                bundle.putString("totalQuestion", String.valueOf(5));
+                bundle.putString("totalQuestion", String.valueOf(3));
 
                 fragment.setArguments(bundle);
 
                 fragmentList.add(fragment);
             }
             try {
-                viewpager.setOffscreenPageLimit(4);
+                viewpager.setOffscreenPageLimit(2);
             } catch (Exception e) {
                 e.printStackTrace();
             }

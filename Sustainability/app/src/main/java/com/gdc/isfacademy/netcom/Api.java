@@ -5,7 +5,11 @@ import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.LoginParentResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
+import com.gdc.isfacademy.model.RetrieveDailyConsResponse;
+import com.gdc.isfacademy.model.StudentBadgeResponse;
 import com.gdc.isfacademy.model.StudentFootPrintResponse;
+import com.gdc.isfacademy.model.StudentLogResponse;
+import com.gdc.isfacademy.model.StudentRewardResponse;
 import com.gdc.isfacademy.model.StudentSavedCostResponse;
 import com.gdc.isfacademy.utils.AppConstants;
 
@@ -62,7 +66,8 @@ public interface Api {
     @GET(ApiConstants.ApiUrls.GET_STUDENTS_ENERGY_SAVING)
     Call<EnergySavingResponse> getStudentEnergySaving(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                       @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
-                                                      @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+                                                      @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                                      @Query(ApiConstants.ApiParams.TYPE) String type);
 
     @GET(ApiConstants.ApiUrls.GET_BUILDING_ENERGY_SAVING)
     Call<BuildingEnergySaving> getBuildingStudentEnergySaving(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
@@ -72,15 +77,15 @@ public interface Api {
 
     @GET(ApiConstants.ApiUrls.SUBMIT_SHARE_POINTS)
     Call<CommonResponse> submitSharePoints(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
-                                                      @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
-                                                      @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+                                           @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                           @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
 
     @GET(ApiConstants.ApiUrls.GET_STUDENT_FOOT_PRINT)
     Call<StudentFootPrintResponse> getStudentFootPrint(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                        @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
-                                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
-
+                                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                                       @Query(ApiConstants.ApiParams.TYPE) String type);
 
 
     @GET(ApiConstants.ApiUrls.GET_STUDENT_COST_SAVED)
@@ -88,11 +93,31 @@ public interface Api {
                                                        @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                        @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                        @Query(ApiConstants.ApiParams.TYPE) String type);
+
     @GET(ApiConstants.ApiUrls.CHECK_STUDENT_QUESTION)
     Call<CommonResponse> checkStudenQuestions(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
-                                                       @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
-                                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+                                              @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                              @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
+    @GET(ApiConstants.ApiUrls.GET_STUDENT_REWARDS)
+    Call<StudentRewardResponse> getStudentRewards(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                  @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                  @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
+    @GET(ApiConstants.ApiUrls.GET_DAILY_CONSUMPTION_RETRIVE_LIST)
+    Call<RetrieveDailyConsResponse> getDailyConsumptionGraphList(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                                 @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                                 @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                                                 @Query(ApiConstants.ApiParams.TYPE) String type);
+
+    @GET(ApiConstants.ApiUrls.GET_STUDENT_LOGS)
+    Call<StudentLogResponse> getStudentLogs(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                            @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                            @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
+    @GET(ApiConstants.ApiUrls.GET_STUDENT_BADGES)
+    Call<StudentBadgeResponse> getStudentBadges(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                              @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                              @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
 }

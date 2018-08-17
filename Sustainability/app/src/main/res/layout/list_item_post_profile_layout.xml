@@ -1,71 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
-    <android.support.v7.widget.CardView
+    <RelativeLayout
+        android:padding="@dimen/_5sdp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        app:cardBackgroundColor="@color/white"
-        android:layout_marginRight="@dimen/_10sdp">
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:layout_margin="@dimen/_5sdp"
+            android:weightSum="2"
+            android:id="@+id/labelStudengLog"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/_8sdp">
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/light_text_color"
+                android:text="@string/points_history"
+                android:layout_height="wrap_content" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/dummy" />
-
-                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_weight="1"
-                    android:text="jane Doe shared a photo"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp" />
-
-                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="1w"
-                    android:textSize="@dimen/_12sdp" />
-            </LinearLayout>
-
-            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp"
-                android:text="Couldn't understand why can't people turn off light when they go.#Turn Off "
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_250sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profile" />
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:textColor="@color/light_text_color"
+                android:layout_weight=".5"
+                android:text="@string/profile_date"
+                android:layout_height="wrap_content" />
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
+                android:layout_width="0dp"
+                android:gravity="end"
+                android:layout_weight=".5"
+                android:text="@string/profile_points"
+                android:textColor="@color/light_text_color"
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/detailLayout"
+            android:weightSum="2"
+            android:layout_below="@+id/labelStudengLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/type_image"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp">
+
+                </ImageView>
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                    android:layout_width="wrap_content"
+                    android:id="@+id/studentMessageTv"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:text=""
+                    android:textColor="@color/light_text_color"
+                    android:textSize="@dimen/_9sdp" />
+
+
+            </LinearLayout>
+
+
+           <LinearLayout
+               android:weightSum="1"
+               android:layout_weight="1"
+               android:layout_gravity="center_vertical"
+               android:orientation="horizontal"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content">
+
+               <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                   android:layout_width="0dp"
+                   android:id="@+id/date_log_tv"
+                   android:gravity="center"
+                   android:textColor="@color/light_text_color"
+                   android:layout_weight=".5"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:text="23 may 2018"
+                   android:textSize="@dimen/_9sdp" />
+               <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                   android:layout_width="0dp"
+                   android:layout_weight=".5"
+                   android:textColor="@color/color_text_and_spinner"
+                   android:id="@+id/points_log_tv"
+                   android:gravity="end"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:text="+30pts"
+                   android:textSize="@dimen/_9sdp" />
+
+
+
+           </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <View
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_below="@+id/detailLayout"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp">
+
+        </View>
+
+
+    </RelativeLayout>
 
 </LinearLayout>

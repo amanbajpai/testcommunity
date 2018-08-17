@@ -9,8 +9,10 @@ import android.widget.RelativeLayout;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.RewardListResponse;
+import com.gdc.isfacademy.model.RewardStudentResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ashishthakur on 5/4/18.
@@ -19,16 +21,22 @@ import java.util.ArrayList;
 public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.Holder> {
 
     Context context;
-    ArrayList<RewardListResponse> rewardListResponses;
+    List<RewardStudentResponse> rewardListResponses;
     OnRewardItemClickListner onRewardItemClickListner;
 
     public RewardsAdapter(Context context) {
         this.context = context;
     }
 
-    public RewardsAdapter(Context context, ArrayList<RewardListResponse> rewardListResponses) {
+    public RewardsAdapter(Context context, List<RewardStudentResponse> rewardListResponses) {
         this.context = context;
         this.rewardListResponses = rewardListResponses;
+    }
+
+    public void setList(Context context, List<RewardStudentResponse> rewardListResponses) {
+        this.context = context;
+        this.rewardListResponses = rewardListResponses;
+        notifyDataSetChanged();
     }
 
     public void setOnRewardItemClickListner(OnRewardItemClickListner onRewardItemClickListner) {

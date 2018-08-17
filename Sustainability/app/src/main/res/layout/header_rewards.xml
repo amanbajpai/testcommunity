@@ -18,17 +18,17 @@
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:id="@+id/title_text"
+                android:text="@string/title_when_offline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_toLeftOf="@+id/reward_icons"
-                android:maxLines="1"
-                android:text="@string/txt_good_job_text"
                 android:textColor="#4d4d4d"
                 android:textSize="@dimen/_14sdp" />
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                 android:id="@+id/sub_title_text"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title_text"
@@ -57,7 +57,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_1sdp"
                 android:layout_toLeftOf="@+id/reward_icons"
-                android:text="@string/txt_gift"
                 android:textColor="#2addd0"
                 android:textSize="@dimen/_12sdp" />
 

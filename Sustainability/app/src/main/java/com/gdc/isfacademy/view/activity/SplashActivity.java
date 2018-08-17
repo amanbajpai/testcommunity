@@ -35,7 +35,8 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(AppConstants.SPLASH_HOLD_TIME);
-                    if(MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_KEY).equalsIgnoreCase("")){
+                    if(MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_KEY).
+                            equalsIgnoreCase("")){
                         startActivity(new Intent(mContext, LoginActivity.class));
                         finish();
                     }

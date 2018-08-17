@@ -28,5 +28,72 @@ public class AppConstants {
     public static final int  ERROR_LOG=1;
     public static final int  DEBUG_LOG=0;
     public static final int REQUEST_LOCATION=101;
+    public static final String ERROR_CODE_STUDENT_KEY_NOT_MATCHED="C0703";
+
+    public static final String ID_ENERGY_SAVING="1";
+    public static final String ID_QUIZHOLIC="2";
+    public static final String ID_PERSISTANT="3";
+    public static final String ID_PERFECTION="4";
+    public static final String ID_BROADCASTER="5";
+    public static final String ID_FRIENDLY="6";
+    public static final String ID_LEGENDARY="7";
+    public static final String ID_SUPERIOR_SPECLIST="8";
+    public static final String ID_CHAMPION="9";
+
+    public static final float VALUE_ENERGY_SAVING_BRNOZE=5;
+    public static final float VALUE_ENERGY_SAVING_SILVER=10;
+    public static final float VALUE_ENERGY_SAVING_GOLD=30;
+    public static final float VALUE_ENERGY_SAVING_HIDDEN=50;
+
+    public static final float VALUE_QUIZHOLIC_BRONZE=10;
+    public static final float VALUE_QUIZHOLIC_SILVER=20;
+    public static final float VALUE_QUIZHOLIC_GOLDE=50;
+    public static final float VALUE_QUIZHOLIC_HIDDEN=100;
+
+    public static final float VALUE_PERSISTANT_BRONZE=5;
+    public static final float VALUE_PERSISTANT_SILVER=10;
+    public static final float VALUE_PERSISTANT_GOLD=20;
+    public static final float VALUE_PERSISTANT_HIDDEN=50;
+
+    public static final float VALUE_PERFECTION_BRONZE=5;
+    public static final float VALUE_PERFECTION_SILVER=10;
+    public static final float VALUE_PERFECTION_GOLD=20;
+    public static final float VALUE_PERFECTION_HIDDEN=50;
+
+    public static final float VALUE_BROADCASTER_BRONZE=30;
+    public static final float VALUE_BROADCASTER_SILVER=80;
+    public static final float VALUE_BROADCASTER_GOLD=150;
+    public static final float VALUE_BROADCASTER_HIDDEN=300;
+
+    public static final float VALUE_FRIENDLY_BRONZE=5;
+    public static final float VALUE_FRIENDLY_SILVER=15;
+    public static final float VALUE_FRIENDLY_GOLD=50;
+    public static final float VALUE_FRIENDLY_HIDDEN=100;
+
+    public static final float VALUE_LEGENDARY_BRONZE=1;
+    public static final float VALUE_LEGENDARY_SILVER=2;
+    public static final float VALUE_LEGENDARY_GOLD=5;
+    public static final float VALUE_LEGENDARY_HIDDEN=10;
+
+    public static final float VALUE_SUPERIOR_SPECLIST_BRONZE=1;
+    public static final float VALUE_SUPERIOR_SPECLIST_SILVER=2;
+    public static final float VALUE_SUPERIOR_SPECLIST_GOLD=5;
+    public static final float VALUE_SUPERIOR_SPECLIST_HIDDEN=10;
+
+
+    public static final float VALUE_CHAMPION_BRONZE=1;
+    public static final float VALUE_CHAMPION_SILVER=2;
+    public static final float VALUE_CHAMPION_GOLD=5;
+    public static final float VALUE_CHAMPION_HIDDEN=10;
+
+
+    public static final String typeStudenLogUser="user";
+    public static final String typeStudenLogBuilding="building";
+    public static final String typeStudenLogShare="share";
+    public static final String typeStudenLogChallange="challenge";
+
+
+
+
 
 }

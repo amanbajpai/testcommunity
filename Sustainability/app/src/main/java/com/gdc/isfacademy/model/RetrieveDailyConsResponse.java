@@ -20,7 +20,7 @@ public class RetrieveDailyConsResponse {
     private List<AvgRetriveDailyConsumption> avgRetriveDailyConsumptions;
     @SerializedName("target")
     @Expose
-    private Object target;
+    private String target;
 
     public String getResponseMessage() {
         return responseMessage;
@@ -54,11 +54,11 @@ public class RetrieveDailyConsResponse {
         this.avgRetriveDailyConsumptions = avg;
     }
 
-    public Object getTarget() {
+    public String getTarget() {
         return target;
     }
 
-    public void setTarget(Object target) {
+    public void setTarget(String target) {
         this.target = target;
     }
 

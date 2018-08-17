@@ -23,7 +23,7 @@ android {
         applicationId "com.energybox.isf"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 15
+        versionCode 18
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -59,7 +59,7 @@ allprojects {
 }
 
 greendao {
-    schemaVersion 17
+    schemaVersion 20
 }
 
 
@@ -85,6 +85,8 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') {
         transitive = true;
     }
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+
     compile 'com.google.android.gms:play-services-location:11.0.4'
 
 

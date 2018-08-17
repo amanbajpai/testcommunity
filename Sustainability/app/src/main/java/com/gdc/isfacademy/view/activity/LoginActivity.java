@@ -151,6 +151,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void onResponse(Call<LoginParentResponse> call, Response<LoginParentResponse> response) {
                 hideProgressDialog();
+                ProjectUtil.hideKeyboard(LoginActivity.this);
+
                 ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                 if (response.body() != null) {
                     LoginParentResponse loginParentResponse = response.body();
@@ -183,6 +185,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void onFailure(Call<LoginParentResponse> call, Throwable t) {
                 t.printStackTrace();
+                ProjectUtil.hideKeyboard(LoginActivity.this);
                 hideProgressDialog();
             }
         });

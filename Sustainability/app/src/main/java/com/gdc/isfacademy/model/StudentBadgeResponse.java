@@ -16,7 +16,7 @@ public class StudentBadgeResponse {
     private String responseCode;
     @SerializedName("badges")
     @Expose
-    private List<Badge> badges = null;
+    private List<BadgeStudentResponse> badgeStudentResponses;
 
     public String getResponseMessage() {
         return responseMessage;
@@ -34,12 +34,12 @@ public class StudentBadgeResponse {
         this.responseCode = responseCode;
     }
 
-    public List<Badge> getBadges() {
-        return badges;
+    public List<BadgeStudentResponse> getBadgeStudentResponses() {
+        return badgeStudentResponses;
     }
 
-    public void setBadges(List<Badge> badges) {
-        this.badges = badges;
+    public void setBadgeStudentResponses(List<BadgeStudentResponse> badgeStudentResponses) {
+        this.badgeStudentResponses = badgeStudentResponses;
     }
 
 }

@@ -7,16 +7,16 @@ public class StudentRetriveDailyCons {
 
     @SerializedName("ts")
     @Expose
-    private Integer ts;
+    private String ts;
     @SerializedName("value")
     @Expose
     private Double value;
 
-    public Integer getTs() {
+    public String getTs() {
         return ts;
     }
 
-    public void setTs(Integer ts) {
+    public void setTs(String ts) {
         this.ts = ts;
     }
 

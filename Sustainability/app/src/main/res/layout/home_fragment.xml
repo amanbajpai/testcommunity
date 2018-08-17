@@ -60,7 +60,6 @@
                     android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:padding="@dimen/_1sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:orientation="vertical"
@@ -70,7 +69,6 @@
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                             android:layout_width="match_parent"
-                            android:padding="@dimen/_1sdp"
                             android:textColor="@color/semi_light_color"
                             android:layout_toLeftOf="@+id/icon_user"
                             android:textSize="@dimen/_13sdp"
@@ -78,30 +76,37 @@
                             android:text="@string/txt_energy_saving"
                             android:layout_height="wrap_content" />
                         <LinearLayout
-                            android:padding="@dimen/_1sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                                 android:layout_width="wrap_content"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center_vertical"
                                 android:textColor="@color/light_text_color"
                                 android:textSize="@dimen/_11sdp"
                                 android:text="@string/txt_consumption"
                                 android:layout_height="wrap_content" />
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                            <LinearLayout
+                                android:layout_marginLeft="@dimen/_6sdp"
+                                android:layout_alignParentRight="true"
                                 android:layout_width="wrap_content"
-                                android:drawablePadding="@dimen/_3sdp"
-                                android:drawableRight="@drawable/small_arrow"
-                                android:layout_marginLeft="@dimen/_3sdp"
-                                android:textColor="@color/color_text_and_spinner"
-                                android:textSize="@dimen/_11sdp"
-                                android:text="@string/txt_this_month"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <android.support.v7.widget.AppCompatSpinner
+                                    android:id="@+id/spinner"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/spineer_drop_down"
+                                    android:dropDownVerticalOffset="25dp"
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_25sdp" />
+                            </LinearLayout>
+
 
 
                         </LinearLayout>
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                             android:layout_width="match_parent"
-                            android:padding="@dimen/_1sdp"
                             android:textColor="@color/light_text_color"
                             android:layout_toLeftOf="@+id/icon_user"
                             android:textSize="@dimen/_10sdp"
@@ -130,7 +135,7 @@
                         android:layout_alignParentBottom="true"
                         android:text="0%"
                         android:id="@+id/percentTextview"
-                        android:textSize="@dimen/_30sdp"
+                        android:textSize="@dimen/_25sdp"
                         android:textColor="@color/color_text_and_spinner"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_width="wrap_content"
@@ -139,7 +144,7 @@
                         android:id="@+id/percentArrow"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_7sdp"
                         android:layout_toRightOf="@+id/percentTextview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -165,7 +170,7 @@
                     android:id="@+id/progressBar"
                     android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_55sdp">
+                    android:layout_height="@dimen/_45sdp">
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:layout_width="wrap_content"
@@ -324,7 +329,7 @@
                         android:text="0%"
                         android:layout_above="@+id/school_kwh_text_status"
                         android:id="@+id/buildingPercentTextview"
-                        android:textSize="@dimen/_30sdp"
+                        android:textSize="@dimen/_25sdp"
                         android:textColor="@color/home_bottom_card_text_color"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_20sdp"
@@ -332,7 +337,7 @@
                         android:layout_height="wrap_content" />
                     <ImageView
                         android:id="@+id/buildingEnergyStatusArrow"
-                        android:layout_marginBottom="@dimen/_30sdp"
+                        android:layout_marginBottom="@dimen/_25sdp"
                         android:layout_above="@+id/school_kwh_text_status"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_toRightOf="@+id/buildingPercentTextview"
@@ -340,8 +345,8 @@
                         android:layout_height="wrap_content" />
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
                         android:id="@+id/zeroPercentSavedBuilding"
-                        android:layout_marginBottom="@dimen/_30sdp"
-                        android:text="Saved"
+                        android:layout_marginBottom="@dimen/_25sdp"
+                        android:text="@string/txt_saved"
                         android:visibility="gone"
                         android:textSize="@dimen/_14sdp"
                         android:textColor="@android:color/holo_red_light"

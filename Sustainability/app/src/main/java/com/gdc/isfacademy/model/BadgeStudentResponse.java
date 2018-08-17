@@ -3,28 +3,30 @@ package com.gdc.isfacademy.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Badge {
+import java.io.Serializable;
+
+public class BadgeStudentResponse implements Serializable {
 
     @SerializedName("badgesType")
     @Expose
-    private Integer badgesType;
+    private String badgesType;
     @SerializedName("value")
     @Expose
-    private Double value;
+    private String value;
 
-    public Integer getBadgesType() {
+    public String getBadgesType() {
         return badgesType;
     }
 
-    public void setBadgesType(Integer badgesType) {
+    public void setBadgesType(String  badgesType) {
         this.badgesType = badgesType;
     }
 
-    public Double getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(String value) {
         this.value = value;
     }
 

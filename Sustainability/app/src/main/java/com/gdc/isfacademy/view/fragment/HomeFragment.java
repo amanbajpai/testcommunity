@@ -1,6 +1,7 @@
 package com.gdc.isfacademy.view.fragment;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.content.res.AppCompatResources;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Base64;
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -34,11 +37,14 @@ import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.utils.TimeAgo;
 import com.gdc.isfacademy.view.activity.HomeActivity;
+import com.gdc.isfacademy.view.activity.LoginActivity;
+import com.gdc.isfacademy.view.adapter.HighLightArrayAdapter;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 import com.google.gson.Gson;
 
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -50,11 +56,13 @@ import retrofit2.Response;
 
 public class HomeFragment extends BaseFragment {
     public static final String TAG = "HomeFragment";
+    public static boolean isQuizSubmited = false;
     public SeekBar seekbar;
     AppCompatTextView studentHouse, currentCosumptionDate;
     EnergySavingResponse.CurrentCons currentCons;
     ImageView percentArrow, buildingEnergyStatusArrow;
     AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding;
+    AppCompatSpinner spinner;
     private RelativeLayout how_much_save_rl;
     private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
             buildingLastWeekStatus, percentTextview, buildingPercentTextview;
@@ -63,7 +71,6 @@ public class HomeFragment extends BaseFragment {
         HomeFragment homeFragment = new HomeFragment();
         return homeFragment;
     }
-    public static boolean isQuizSubmited=false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,10 +83,11 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.home_fragment, container, false);
         initView(layout);
-        getEnergySaving();
-        if(!isQuizSubmited){
+        getEnergySaving(getString(R.string.txt_daily));
+        if (!isQuizSubmited) {
             getQuizSubmittedStatus();
         }
+        setItemForSpinner();
         return layout;
     }
 
@@ -92,6 +100,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initView(View layout) {
+        spinner = (AppCompatSpinner) layout.findViewById(R.id.spinner);
         currentCosumptionDate = (AppCompatTextView) layout.findViewById(R.id.currentCosumptionDate);
         zerpPercentSave = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSaved);
         zeroPercentSavedBuilding = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSavedBuilding);
@@ -118,10 +127,9 @@ public class HomeFragment extends BaseFragment {
 
         setSeekbarValue(0.0f);
 
-        Calendar cal = Calendar.getInstance();
+      /*  Calendar cal = Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("dd MMMM yyyy");
-        String currentDate = month_date.format(cal.getTime());
-        currentCosumptionDate.setText("Up to " + currentDate);
+        String currentDate = month_date.format(cal.getTime());*/
     }
 
 
@@ -131,10 +139,9 @@ public class HomeFragment extends BaseFragment {
         int id = view.getId();
         switch (id) {
             case R.id.how_much_save_rl:
-                HowMuchSaveFragment fragment = new HowMuchSaveFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(AppConstants.CURRENT_ENERGY_UNIT, currentCons);
-                ((HomeActivity) getActivity()).pushFragments(fragment, bundle, true);
+                ((HomeActivity) getActivity()).pushFragments(HowMuchSaveFragment.newInstance(), bundle, true);
                 break;
 
         }
@@ -142,12 +149,47 @@ public class HomeFragment extends BaseFragment {
     }
 
 
+    public void setItemForSpinner() {
+        final ArrayList<String> spinnerItemList = new ArrayList<>();
+        spinnerItemList.add(getString(R.string.txt_today));
+        spinnerItemList.add(getString(R.string.txt_cycle));
+        spinnerItemList.add(getString(R.string.txt_monthly));
+        final CharSequence[] charSequenceItems = spinnerItemList.toArray(new CharSequence[spinnerItemList.size()]);
 
-    private void getEnergySaving() {
+
+        HighLightArrayAdapter adapter = new HighLightArrayAdapter(getActivity(), R.layout.spinner_selcted_item,
+                charSequenceItems, spinner);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0, false);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    getEnergySaving(getString(R.string.txt_daily));
+                } else if (i == 1) {
+                    getEnergySaving(getString(R.string.txt_cycle_small));
+                } else if (i == 2) {
+                    getEnergySaving(getString(R.string.txt_monthly_small));
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
+
+    private void getEnergySaving(String type) {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
             return;
-
         }
         try {
             showProgressDialog(getActivity());
@@ -155,7 +197,8 @@ public class HomeFragment extends BaseFragment {
                     .getApi()
                     .getStudentEnergySaving(AppConstants.API_KEY,
                             AppConstants.CONTENT_TYPE,
-                            MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+                            MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY),
+                            type);
 
             ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
 
@@ -167,6 +210,8 @@ public class HomeFragment extends BaseFragment {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             currentCons = response.body().getCurrentCons();
                             setView(response.body());
+                        } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                            ProjectUtil.logoutFromApp(getActivity());
                         } else {
                             percentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
                             percentArrow.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light), android.graphics.PorterDuff.Mode.SRC_IN);
@@ -182,7 +227,7 @@ public class HomeFragment extends BaseFragment {
 
                 @Override
                 public void onFailure(Call<EnergySavingResponse> call, Throwable t) {
-                    if(getActivity()!=null){
+                    if (getActivity() != null) {
                         ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
                     }
                     t.printStackTrace();
@@ -294,6 +339,18 @@ public class HomeFragment extends BaseFragment {
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
 
+            currentCosumptionDate.setText("Up to " + response.getCurrentCons().getLastUpdateDate());
+
+
+
+           /* Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(response.getLastWeekCons().getLastUpdateTs());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
+
+            Date date1=dateFormat.parse("06/5/2018 19:55:00");
+            TimeAgo timeAgo = new TimeAgo().locale(getActivity()).with(dateFormat);
+            String result = timeAgo.getTimeAgo(date1);
+            Log.d("time is",result);*/
 
 
             String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
@@ -363,7 +420,7 @@ public class HomeFragment extends BaseFragment {
             ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
             return;
         }
-  //      showProgressDialog(getActivity());
+        //      showProgressDialog(getActivity());
         Call<CommonResponse> call = ISFApp.getAppInstance()
                 .getApi()
                 .checkStudenQuestions(AppConstants.API_KEY,
@@ -377,18 +434,17 @@ public class HomeFragment extends BaseFragment {
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                 ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                 hideProgressDialog();
-                isQuizSubmited=true;
+                isQuizSubmited = true;
                 if (response.body() != null) {
 
-                    if(response.body().getResponseCode()!=null){
-                        if(response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)){
-                            if(response.body().isSubmitted().equalsIgnoreCase("true")){
-                                if(response.body().getCorrect()!=null){
-                                    MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,Integer.parseInt(response.body().getCorrect()));
+                    if (response.body().getResponseCode() != null) {
+                        if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                            if (response.body().isSubmitted().equalsIgnoreCase("true")) {
+                                if (response.body().getCorrect() != null) {
+                                    MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT, Integer.parseInt(response.body().getCorrect()));
                                 }
-                            }
-                            else if(response.body().isSubmitted().equalsIgnoreCase("false")){
-                                MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,-1);
+                            } else if (response.body().isSubmitted().equalsIgnoreCase("false")) {
+                                MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT, -1);
 
                             }
                         }
@@ -401,18 +457,15 @@ public class HomeFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
-              //  ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                //  ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
                 t.printStackTrace();
-                isQuizSubmited=false;
+                isQuizSubmited = false;
 
                 //  hideProgressDialog();
             }
         });
 
     }
-
-
-
 
 
 }

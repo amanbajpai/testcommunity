@@ -26,4 +26,10 @@
     <color name="color_cofffe">#734d4d4d</color>
     <color name="disable">#4d42505D</color>
     <color name="challange_text_color">#42505d</color>
+
+    <color name="badge_color_student">#00DCCF</color>
+    <color name="badge_color_school">#BF1CD9</color>
+
+    <color name="txt_color_profile_logs">#989fa4</color>
+
 </resources>
