@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
@@ -47,6 +48,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
     private OpenSansSemiBoldTextView add_friend_tv;
     private ImageView start_quize_image;
     String isQusetionAnswerSubmited="";
+    private TextView startNowTv;
 
     public static ChallengeFragment newInstance() {
         ChallengeFragment challengeFragment = new ChallengeFragment();
@@ -73,12 +75,14 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         challangeRankLists = new ArrayList<>();
         // challangeRankLists = getList();
         challenge_recylerview = (XRecyclerView) view.findViewById(R.id.challenge_recylerview);
+
         challenge_recylerview.setLoadingMoreEnabled(false);
         challenge_recylerview.setPullRefreshEnabled(false);
         View voucherHeader = LayoutInflater.from(getActivity()).inflate(R.layout.header_challange,
                 (ViewGroup) view.findViewById(android.R.id.content), false);
 
         challenge_recylerview.addHeaderView(voucherHeader);
+        startNowTv=(TextView)voucherHeader.findViewById(R.id.startNowTv);
         friendsRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.friendsRankBtn);
         houseRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.houseRankBtn);
         friendsRankBtn.setOnClickListener(this);
@@ -98,7 +102,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         challenge_recylerview.setAdapter(challengeAdapter);
         start_quize_image = (ImageView) voucherHeader.findViewById(R.id.start_quize_image);
         add_friend_tv.setOnClickListener(this);
-        start_quize_image.setOnClickListener(this);
+        startNowTv.setOnClickListener(this);
         getQuizSubmittedStatus();
 
 
@@ -165,7 +169,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                 getStudentRanking(AppConstants.RANK_TYPE_HOUSE);
                 break;
 
-            case R.id.start_quize_image:
+            case R.id.startNowTv:
                 if (isQusetionAnswerSubmited.equalsIgnoreCase("false")) {
                     ((HomeActivity) getActivity()).pushFragments(new QuizeFragment(), null, true);
                 } else if(isQusetionAnswerSubmited.equalsIgnoreCase("true")) {
@@ -262,8 +266,10 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                             String studenId = MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID);
                             challangeRankLists.clear();
                             for (int i = 0; i < response.body().getRankings().size(); i++) {
+                                int rank=i+1;
                                 ChallangeRankList challangeRankList = new ChallangeRankList();
-                                challangeRankList.setCheckIsme(response.body().getRankings().get(i).getCheckIsme());
+                               // challangeRankList.setCheckIsme(response.body().getRankings().get(i).getCheckIsme());
+                                challangeRankList.setRanking(""+rank);
                                 challangeRankList.setHouse(response.body().getRankings().get(i).getHouse());
                                 challangeRankList.setLastUpdateDate(response.body().getRankings().get(i).getLastUpdateDate());
                                 challangeRankList.setLastUpdateTs(response.body().getRankings().get(i).getLastUpdateTs());

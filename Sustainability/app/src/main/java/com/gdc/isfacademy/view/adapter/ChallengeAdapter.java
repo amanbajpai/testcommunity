@@ -161,44 +161,48 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             if (holder instanceof TopRankedViewHolder) {
                 TopRankedViewHolder topRankedViewHolder = (TopRankedViewHolder) holder;
                 topRankedViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                topRankedViewHolder.name.setTypeface(topRankedViewHolder.name.getTypeface(), Typeface.BOLD);
+                topRankedViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
+                topRankedViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                 topRankedViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
-                topRankedViewHolder.points.setTypeface(topRankedViewHolder.points.getTypeface(), Typeface.BOLD);
+                topRankedViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                 topRankedViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
             } else if (holder instanceof OtheresRankViewHolder) {
                 OtheresRankViewHolder otheresRankViewHolder = (OtheresRankViewHolder) holder;
                 switch (position) {
                     case 1:
+                        otheresRankViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
                         otheresRankViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
 
                         break;
                     case 2:
+                        otheresRankViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
                         otheresRankViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
 
                         break;
                     default:
+                        otheresRankViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.name.setTextColor(context.getResources().getColor(android.R.color.black));
                         otheresRankViewHolder.name.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.BOLD);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.BOLD);
+                        otheresRankViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.points.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
                         otheresRankViewHolder.postion.setTextColor(context.getResources().getColor(android.R.color.holo_blue_light));
-
                 }
             }
         } else {
             if (holder instanceof TopRankedViewHolder) {
                 TopRankedViewHolder topRankedViewHolder = (TopRankedViewHolder) holder;
-                topRankedViewHolder.name.setTypeface(topRankedViewHolder.name.getTypeface(), Typeface.NORMAL);
-                topRankedViewHolder.points.setTypeface(topRankedViewHolder.points.getTypeface(), Typeface.NORMAL);
+                topRankedViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
+                topRankedViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
+                topRankedViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
                 topRankedViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
                 topRankedViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
 
@@ -206,27 +210,28 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 OtheresRankViewHolder otheresRankViewHolder = (OtheresRankViewHolder) holder;
                 switch (position) {
                     case 1:
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
                         otheresRankViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
 
                         break;
                     case 2:
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
                         otheresRankViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
 
                         break;
                     default:
+                        otheresRankViewHolder.postion.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.name.setTextColor(context.getResources().getColor(R.color.challange_text_color));
-
-                        otheresRankViewHolder.name.setTypeface(otheresRankViewHolder.name.getTypeface(), Typeface.NORMAL);
-                        otheresRankViewHolder.points.setTypeface(otheresRankViewHolder.points.getTypeface(), Typeface.NORMAL);
+                        otheresRankViewHolder.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
+                        otheresRankViewHolder.points.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light_0.ttf"), Typeface.NORMAL);
                         otheresRankViewHolder.points.setTextColor(context.getResources().getColor(R.color.challange_text_color));
                         otheresRankViewHolder.postion.setTextColor(context.getResources().getColor(R.color.challange_text_color));
-
                 }
             }
         }

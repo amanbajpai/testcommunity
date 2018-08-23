@@ -61,6 +61,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/user_building_type"
                     android:id="@+id/type_image"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
@@ -73,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_4sdp"
-                    android:text=""
+                    android:text="100.0% of energy is saved(personal)"
                     android:textColor="@color/light_text_color"
                     android:textSize="@dimen/_9sdp"
                     tools:ignore="RtlHardcoded" />
@@ -98,7 +100,7 @@
                    android:layout_weight=".5"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
-                   android:text=""
+                   android:text="16/Aug/2018"
                    android:textSize="@dimen/_9sdp"
                    tools:ignore="NestedWeights" />
                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
@@ -109,7 +111,7 @@
                    android:gravity="end"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
-                   android:text=""
+                   android:text="+288.00pts"
                    android:textSize="@dimen/_9sdp" />
 
 

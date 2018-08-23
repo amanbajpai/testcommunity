@@ -38,6 +38,7 @@
     <string name="txt_about_isf">About ISF</string>
     <string name="txt_terms_condition">Terms &amp; Conditions</string>
     <string name="txt_privacy_policy">Privacy Policy</string>
+    <string name="txt_logout">Logout</string>
 
     <!--Home Screen Strings-->
     <string name="txt_house_a">House A</string>
@@ -63,10 +64,10 @@
     <string name="turn_off_your_a_c_when_you_re_not_in_classroom">Turn off your A/C when you\'re not in Classroom</string>
     <string name="how_to_save_more_money">how to save more money ?</string>
     <string name="select_other_goods">select other goods</string>
-    <string name="which_equals_to">which equals to..</string>
+    <string name="which_equals_to">which equals to</string>
     <string name="for_comparision">for comparison</string>
     <string name="select_other_item">Select other item</string>
-    <string name="which_wastes">which needs..</string>
+    <string name="which_wastes">which needs</string>
     <string name="dashboard">Leaderboard</string>
     <string name="friend">Friend</string>
     <string name="txt_cancel">Cancel</string>
@@ -119,7 +120,9 @@ Here\'s your gift!</string>
     <string name="points_history">Points History</string>
     <string name="profile_date">Date</string>
     <string name="profile_points">Points</string>
-    <string name="profile_you_have_saved">% of energy is saved.</string>
+    <string name="profile_you_have_saved_user">% of energy is saved (personal)</string>
+    <string name="profile_you_have_saved_building">% of energy is saved (school building)</string>
+
     <string name="badge_text">Badges</string>
     <string name="txt_no_badges_alloted">No unlocked badges</string>
     <string name="txt_shared_daily_result">Daily quiz result is shared. (max. 5 times)</string>
@@ -163,7 +166,7 @@ Here\'s your gift!</string>
     <string name="txt_badge_quizholic_description">Completed daily quizzes.</string>
 
     <string name="title_badge_persistent">Persistent</string>
-    <string name="txt_badge_persistent_description">Completed daily quizzes contintuously.</string>
+    <string name="txt_badge_persistent_description">Completed daily quizzes continuously.</string>
 
     <string name="title_badge_perfection">Perfection</string>
     <string name="txt_badge_perfection_description">Finished all questions without wrong answers.</string>
@@ -198,7 +201,7 @@ Here\'s your gift!</string>
     <string name="txt_share_to">Share to</string>
     <string name="txt_also_share_profile">Will also share to your profile too</string>
     <string name="txt_share_to_my_profile">Share to my profile only</string>
-
+    <string name="dialog_message_logout">Are you sure you want to logout?</string>
 
     <!--Challange Screen-->
     <string name="txt_house">House</string>

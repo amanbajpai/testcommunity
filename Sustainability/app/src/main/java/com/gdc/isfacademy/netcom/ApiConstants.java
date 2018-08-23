@@ -26,6 +26,7 @@ public interface ApiConstants {
         public static final String GET_STUDENT_BADGES="retrieveStudentBadges";
         public static final String GET_STUDENT_LOGS="retrieveStudentLog";
         public static final String GET_STUDENT_REWARDS="retrieveStudentRewards";
+        public static final String GET_STUDENT_STATUS ="retrieveStudentStatus";
 
     }
 

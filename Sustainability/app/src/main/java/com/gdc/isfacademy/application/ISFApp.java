@@ -31,6 +31,7 @@ public class ISFApp extends Application {
     private Retrofit retrofit;
     private Api api;
     private DaoSession daoSession;
+    Database db;
 
 //CASTLEY	Alexander	10010006	A24cFuxs
 
@@ -52,7 +53,7 @@ public class ISFApp extends Application {
 
 
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "isf-db");
-        Database db = helper.getWritableDb();
+         db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
 
     }
@@ -65,6 +66,10 @@ public class ISFApp extends Application {
     }
     public Api getApi() {
         return api;
+    }
+
+    public Database getDataBase() {
+        return db;
     }
 
 

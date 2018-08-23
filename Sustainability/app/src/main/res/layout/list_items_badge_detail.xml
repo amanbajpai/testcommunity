@@ -71,9 +71,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
+                        android:ellipsize="end"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="@dimen/_9sdp" />
+
                 </LinearLayout>
 
 
@@ -81,6 +83,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_2sdp">
+
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/hiddenBadgeView"
+                        android:background="@drawable/progress_bar_hidden"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_15sdp" />
 
 
                     <SeekBar
@@ -101,8 +110,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true">
 
-                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
                             android:id="@+id/seekBarText"
+                            android:text=""
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white" />

@@ -39,9 +39,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +53,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
     public static final String TAG = "HowMuchSaveFragment";
     public static int countInstruction = 0;
     public String typeCheck;
-    AppCompatTextView currentWeekConsumption,upto_date_tv, energyUnit, cost_tv, valueCarbon, hotChoclateText, unitCarbon, valueTree, how_much_save_label;
+    AppCompatTextView currentWeekConsumption, upto_date_tv, energyUnit, cost_tv, valueCarbon, hotChoclateText, unitCarbon, valueTree, how_much_save_label;
     EnergySavingResponse.CurrentCons currentCons;
     AppCompatSpinner costSaveSpinner, spinnerfootPrint;
     AppCompatTextView randomSaveInstructionText;
@@ -74,24 +72,13 @@ public class HowMuchSaveFragment extends BaseFragment implements
         super.onCreate(savedInstanceState);
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.how_much_saved_layout, null);
-        init(view);
-        Bundle bundle = getArguments();
-        currentCons = (EnergySavingResponse.CurrentCons) bundle.getSerializable(AppConstants.CURRENT_ENERGY_UNIT);
-        dateEnergySaving=bundle.getString(AppConstants.PICK_ENERGY_SAVING_DATE);
-        if (currentCons != null) {
-            Log.d("conumption", "" + currentCons.getValue() + " " + currentCons.getUnit());
-            //  currentWeekConsumption.setText(String.format("%.2f", currentCons.getValue()));
-            // energyUnit.setText(currentCons.getUnit());
-        }
-        getGraphData(getString(R.string.txt_month_graph));
-        getStudentCostSaving(getString(R.string.txt_daily));
-        getStudentFootPrint(getString(R.string.txt_daily));
-        setItemForFootPrintSpinner();
 
+        init(view);
         // add data
 
 
@@ -99,18 +86,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
     }
 
     public void init(View view) {
-        xVals = new ArrayList<>();
-        yaxisValueForStudent = new ArrayList<>();
-        getYaxisValueForSchoolAvg = new ArrayList<>();
-        targetValue = new ArrayList<>();
-
-        mChart = (LineChart) view.findViewById(R.id.linechart);
-        mChart.setDragEnabled(false);
-        mChart.setClickable(false);
-        mChart.getLegend().setForm(Legend.LegendForm.SQUARE);
-        mChart.getLegend().setTextSize(12);
-        mChart.setDoubleTapToZoomEnabled(false);
-        upto_date_tv=(AppCompatTextView)view.findViewById(R.id.upto_date_tv);
+        upto_date_tv = (AppCompatTextView) view.findViewById(R.id.upto_date_tv);
         spinnerfootPrint = (AppCompatSpinner) view.findViewById(R.id.spinnerfootPrint);
         cost_tv = (AppCompatTextView) view.findViewById(R.id.cost_tv);
         how_much_save_label = (AppCompatTextView) view.findViewById(R.id.how_much_save_label);
@@ -121,14 +97,35 @@ public class HowMuchSaveFragment extends BaseFragment implements
         valueCarbon = (AppCompatTextView) view.findViewById(R.id.value_carbon);
         unitCarbon = (AppCompatTextView) view.findViewById(R.id.unitCarbon);
         valueTree = (AppCompatTextView) view.findViewById(R.id.valueTree);
+        mChart = (LineChart) view.findViewById(R.id.linechart);
         randomSaveInstructionText = (AppCompatTextView) view.findViewById(R.id.randomSaveInstructionText);
+
+        xVals = new ArrayList<>();
+        yaxisValueForStudent = new ArrayList<>();
+        getYaxisValueForSchoolAvg = new ArrayList<>();
+        targetValue = new ArrayList<>();
+        mChart.setDragEnabled(false);
+        mChart.setClickable(false);
+        mChart.getLegend().setForm(Legend.LegendForm.SQUARE);
+        mChart.getLegend().setTextSize(12);
+        mChart.setDoubleTapToZoomEnabled(false);
         setItemForSpinner();
         setRandomInstruction();
-       /* Calendar cal = Calendar.getInstance();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat month_date = new SimpleDateFormat("dd MMMM yyyy");
-        cal.add(Calendar.DATE, -1);
-        String currentDate = month_date.format(cal.getTime());*/
+        Bundle bundle = getArguments();
+        currentCons = (EnergySavingResponse.CurrentCons) bundle.getSerializable(AppConstants.CURRENT_ENERGY_UNIT);
+        dateEnergySaving = bundle.getString(AppConstants.PICK_ENERGY_SAVING_DATE);
+        if (currentCons != null) {
+            Log.d("conumption", "" + currentCons.getValue() + " " + currentCons.getUnit());
+            //  currentWeekConsumption.setText(String.format("%.2f", currentCons.getValue()));
+            // energyUnit.setText(currentCons.getUnit());
+        }
         upto_date_tv.setText(dateEnergySaving);
+
+
+        getGraphData(getString(R.string.txt_month_graph));
+        getStudentCostSaving(getString(R.string.txt_daily));
+        getStudentFootPrint(getString(R.string.txt_daily));
+        setItemForFootPrintSpinner();
     }
 
 
@@ -271,11 +268,21 @@ public class HowMuchSaveFragment extends BaseFragment implements
                         energyUnit.setText(response.body().getUnit());
                         if (response.body().getSaveEnergy() != null && !response.body().getSaveEnergy().equalsIgnoreCase("")) {
                             String value = new BigDecimal(response.body().getSaveEnergy()).setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-                            currentWeekConsumption.setText(value);
+                            try {
+                                currentWeekConsumption.setText(value);
+
+                            } catch (Throwable e) {
+                                e.printStackTrace();
+                            }
                         }
                         if (response.body().getComparison() != null && !response.body().getComparison().equalsIgnoreCase("")) {
                             String value = new BigDecimal(response.body().getComparison()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                            hotChoclateText.setText(getString(R.string.txt_x)+""+ value);
+                            try {
+                                hotChoclateText.setText(getString(R.string.txt_x) + "" + value);
+
+                            } catch (Throwable e) {
+                                e.printStackTrace();
+                            }
                         }
 
                         if (response.body().getSaveCost() != null && !response.body().getSaveCost().equalsIgnoreCase("")) {
@@ -329,15 +336,24 @@ public class HowMuchSaveFragment extends BaseFragment implements
                         if (response.body().getCo2() != null) {
 
                             if (response.body().getCo2().getValue() != null && !response.body().getCo2().getValue().equalsIgnoreCase("")) {
-                                unitCarbon.setText(response.body().getCo2().getUnit());
-                                String value = new BigDecimal(response.body().getCo2().getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                                valueCarbon.setText(value);
+                                try {
+                                    unitCarbon.setText(response.body().getCo2().getUnit());
+                                    String value = new BigDecimal(response.body().getCo2().getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
+                                    valueCarbon.setText(value);
+
+                                } catch (Throwable e) {
+                                    e.printStackTrace();
+                                }
 
 
                             }
                             if (response.body().getTree().getValue() != null && !response.body().getTree().getValue().equalsIgnoreCase("")) {
-                                String value = new BigDecimal(response.body().getTree().getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                                valueTree.setText(getString(R.string.txt_x)+""+ value);
+                                try {
+                                    String value = new BigDecimal(response.body().getTree().getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
+                                    valueTree.setText(getString(R.string.txt_x) + "" + value);
+                                } catch (Throwable e) {
+                                    e.printStackTrace();
+                                }
                             }
 
                         }
@@ -394,17 +410,16 @@ public class HowMuchSaveFragment extends BaseFragment implements
                 hideProgressDialog();
                 if (response.body() != null) {
                     if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                        if(response.body().getStudent()!=null&&response.body().getStudent().size()>0
-                                &&response.body().getAvg()!=null&&response.body().getAvg().size()>0) {
+                        if (response.body().getStudent() != null && response.body().getStudent().size() > 0
+                                && response.body().getAvg() != null && response.body().getAvg().size() > 0) {
 
-                            if(response.body().getStudent().size()>=response.body().getAvg().size()) {
+                            if (response.body().getStudent().size() >= response.body().getAvg().size()) {
                                 for (int i = 0; i < response.body().getStudent().size(); i++) {
                                     xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
                                     Log.e("xAxisDateFromStudent", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
 
                                 }
-                            }
-                            else {
+                            } else {
                                 for (int i = 0; i < response.body().getAvg().size(); i++) {
                                     xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
                                     Log.e("xAxisDateFromAvg", "" + ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
@@ -484,8 +499,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
         // set1.setFillColor(Color.RED);
 
         // set the line to be drawn like this "- - - - - -"
-        set1.enableDashedLine(10f, 5f, 0f);
-        set1.enableDashedHighlightLine(10f, 5f, 0f);
+       /* set1.enableDashedLine(10f, 5f, 0f);
+        set1.enableDashedHighlightLine(10f, 5f, 0f);*/
         set1.setColor(Color.parseColor("#00DCCF"));
         set1.setCircleColor(Color.parseColor("#00DCCF"));
         set1.setLineWidth(1f);
@@ -498,8 +513,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
         set1.setDrawValues(true);
 
         set2 = new LineDataSet(getYaxisValueForSchoolAvg, "school avg");
-        set2.enableDashedLine(10f, 5f, 0f);
-        set2.enableDashedHighlightLine(10f, 5f, 0f);
+       /* set2.enableDashedLine(10f, 5f, 0f);
+        set2.enableDashedHighlightLine(10f, 5f, 0f);*/
         set2.setColor(Color.parseColor("#BF1CD9"));
         set2.setCircleColor(Color.parseColor("#BF1CD9"));
         set2.setLineWidth(1f);
@@ -539,21 +554,28 @@ public class HowMuchSaveFragment extends BaseFragment implements
         // set data
         mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         mChart.fitScreen();
+
+        mChart.setTouchEnabled(true);
+        mChart.setDragEnabled(false);
+        mChart.setScaleEnabled(true);
+        mChart.setScaleXEnabled(true);
+        mChart.setScaleYEnabled(true);
+        mChart.setPinchZoom(true);
+        mChart.setDoubleTapToZoomEnabled(false);
         mChart.setData(data);
         mChart.invalidate();
+
 
     }
 
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-        mChart.fitScreen();
 
     }
 
     @Override
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-        mChart.fitScreen();
 
     }
 
@@ -564,12 +586,10 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
     @Override
     public void onChartDoubleTapped(MotionEvent me) {
-        mChart.fitScreen();
     }
 
     @Override
     public void onChartSingleTapped(MotionEvent me) {
-        mChart.fitScreen();
 
     }
 

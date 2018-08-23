@@ -15,6 +15,7 @@
         card_view:cardBackgroundColor="@color/white">
 
         <RelativeLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -23,8 +24,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_65sdp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/dummy" />
 
@@ -77,44 +78,64 @@
 
 
                 <LinearLayout
+                    android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/energyIcon"
+                        android:src="@drawable/energy_grey"
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp" />
+
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/flash"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:drawableTint="@android:color/darker_gray"
+                        android:id="@+id/energySavingTv"
+                        android:layout_gravity="center_vertical"
                         android:padding="@dimen/_5sdp"
                         android:text="@string/txt_dash"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_11sdp"
                         tools:ignore="RtlHardcoded,UnusedAttribute" />
 
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:id="@+id/graphIcon"
+                        android:src="@drawable/graph_grey"
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp" />
+
+
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:drawableLeft="@drawable/chart"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:drawableTint="@android:color/darker_gray"
                         android:padding="@dimen/_5sdp"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/studentRankingTv"
                         android:text="@string/txt_dash"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_11sdp"
                         tools:ignore="RtlHardcoded,UnusedAttribute" />
 
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:id="@+id/shareIcon"
+                        android:src="@drawable/share_grey"
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp" />
+
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:drawableLeft="@drawable/share"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:drawableTint="@android:color/darker_gray"
+                        android:id="@+id/sharingtv"
+                        android:layout_gravity="center_vertical"
                         android:padding="@dimen/_5sdp"
                         android:text="@string/txt_dash"
                         android:textColor="@color/black"
@@ -206,8 +227,8 @@
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="wrap_content"
                 android:id="@+id/badge_tv"
-                android:textSize="@dimen/_15sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"
                 android:text="@string/badge_text"
@@ -217,7 +238,7 @@
             <LinearLayout
                 android:id="@+id/badge_icon_layout"
                 android:layout_marginRight="@dimen/_15sdp"
-                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_45sdp"
                 android:layout_toRightOf="@+id/badge_tv"
                 android:layout_toLeftOf="@+id/detailBadgeIv"
                 android:layout_width="match_parent"

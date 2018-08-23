@@ -2,12 +2,14 @@ package com.gdc.isfacademy.view.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -110,6 +112,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     passET.setError(getString(R.string.txt_validate_password));
 
                 } else {
+                    ProjectUtil.hideKeyboardFrom(LoginActivity.this,nameET);
+                    ProjectUtil.hideKeyboardFrom(LoginActivity.this,passET);
                     dialog.cancel();
                     loginUser(nameET.getText().toString().trim(), passET.getText().toString().trim());
                 }
@@ -151,8 +155,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void onResponse(Call<LoginParentResponse> call, Response<LoginParentResponse> response) {
                 hideProgressDialog();
-                ProjectUtil.hideKeyboard(LoginActivity.this);
-
                 ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                 if (response.body() != null) {
                     LoginParentResponse loginParentResponse = response.body();
@@ -171,8 +173,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 loginParentResponse.getStudentInfo().getStudentKey());
                         MyPref.getInstance(mContext).writePrefs(AppConstants.STUDENT_HOUSE,
                                 loginParentResponse.getStudentInfo().getStudentHouse());
+
                         Intent intent = new Intent(mContext, HomeActivity.class);
-                        startActivity(intent);
+                        startActivity(intent, ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
                         finish();
                     }
 

@@ -1,5 +1,6 @@
 package com.gdc.isfacademy.view.activity;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -33,12 +34,12 @@ public class SplashActivity extends AppCompatActivity {
                     Thread.sleep(AppConstants.SPLASH_HOLD_TIME);
                     if(MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_KEY).
                             equalsIgnoreCase("")){
-                        startActivity(new Intent(mContext, LoginActivity.class));
-                        finish();
+                        startActivity(new Intent(mContext, LoginActivity.class), ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
+                        finishAfterTransition();
                     }
                     else {
-                        startActivity(new Intent(mContext, HomeActivity.class));
-                        finish();
+                        startActivity(new Intent(mContext, HomeActivity.class), ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
+                        finishAfterTransition();
                     }
 
 

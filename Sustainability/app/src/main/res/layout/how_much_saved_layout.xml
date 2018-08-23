@@ -67,7 +67,7 @@
 
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/spinner"
-                            android:layout_width="@dimen/_60sdp"
+                            android:layout_width="@dimen/_52sdp"
                             android:layout_height="@dimen/_25sdp"
                             android:layout_gravity="center"
                             android:background="@drawable/spineer_drop_down"
@@ -358,7 +358,7 @@
                         android:layout_marginTop="@dimen/_3sdp"
                         android:text="@string/consumption_of"
                         android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_12sdp" />
 
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
@@ -371,7 +371,7 @@
                         android:drawableRight="@drawable/small_arrow"
                         android:text="@string/txt_this_month"
                         android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:visibility="gone"
                         tools:ignore="RtlHardcoded" />
 
@@ -379,14 +379,14 @@
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/carbon_foot_label"
-                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
                         android:layout_toRightOf="@id/consumption_label"
                         android:orientation="horizontal"
                         tools:ignore="RtlHardcoded">
 
                         <android.support.v7.widget.AppCompatSpinner
                             android:id="@+id/spinnerfootPrint"
-                            android:layout_width="@dimen/_60sdp"
+                            android:layout_width="@dimen/_52sdp"
                             android:layout_height="@dimen/_25sdp"
                             android:layout_gravity="center"
                             android:background="@drawable/spineer_drop_down"
@@ -398,24 +398,24 @@
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/value_carbon"
                         android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_2sdp"
                         android:layout_toLeftOf="@+id/unitCarbon"
                         android:maxLength="6"
+                        android:text="45.7"
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_25sdp"
                         tools:ignore="RelativeOverlap,RtlHardcoded" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                         android:id="@+id/unitCarbon"
+                        android:layout_marginTop="@dimen/_18sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
-                        android:paddingBottom="@dimen/_5sdp"
                         android:text="@string/txt_kg"
-                        android:textSize="@dimen/_15sdp"
-
+                        android:textSize="@dimen/_12sdp"
                         tools:ignore="RtlHardcoded" />
 
 

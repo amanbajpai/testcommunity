@@ -22,7 +22,6 @@
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_centerVertical="true"
-                android:textColor="@color/challange_text_color"
                 android:id="@+id/people_rank_text"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
@@ -41,12 +40,11 @@
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
-                android:textColor="@color/challange_text_color"
                 android:id="@+id/name_text"
                 android:text=""
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_toLeftOf="@+id/rank_points_text"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 tools:ignore="RtlHardcoded" />
@@ -55,7 +53,6 @@
                 android:id="@+id/rank_points_text"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/challange_text_color"
                 android:text=""
                 android:textSize="@dimen/_15sdp"
                 android:layout_centerVertical="true"

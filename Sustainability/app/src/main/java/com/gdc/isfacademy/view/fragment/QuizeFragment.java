@@ -103,7 +103,8 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         try {
             int answeredCount = MyPref.getInstance(getActivity()).getAnsweredCount();
 
-            QuestionsResponse response = new Gson().fromJson(ProjectUtil.loadJSONFromAsset(getActivity()), QuestionsResponse.class);
+            QuestionsResponse response = new Gson().fromJson(ProjectUtil.loadJSONFromAsset(getActivity()),
+                    QuestionsResponse.class);
 
             fragmentList.clear();
 

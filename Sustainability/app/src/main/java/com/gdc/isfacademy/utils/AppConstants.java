@@ -93,8 +93,16 @@ public class AppConstants {
     public static final String typeStudenLogChallange="challenge";
 
     public static final String LIST_BADGE="list";
-    public static final int UPDATE_BADGE_TIME=1000;
+    public static final int UPDATE_BADGE_TIME=700;
     public static final String PICK_ENERGY_SAVING_DATE="date";
+
+
+    public static final String HIDDEN="A";
+    public static final String GOLD="B";
+    public static final String SILVER="C";
+    public static final String BRONZE="D";
+    public static final String LOCKED="E";
+
 
 
 

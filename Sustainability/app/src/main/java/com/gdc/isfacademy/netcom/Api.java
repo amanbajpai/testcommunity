@@ -11,6 +11,7 @@ import com.gdc.isfacademy.model.StudentFootPrintResponse;
 import com.gdc.isfacademy.model.StudentLogResponse;
 import com.gdc.isfacademy.model.StudentRewardResponse;
 import com.gdc.isfacademy.model.StudentSavedCostResponse;
+import com.gdc.isfacademy.model.StudentStatusResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -115,5 +116,10 @@ public interface Api {
     Call<StudentBadgeResponse> getStudentBadges(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                               @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                               @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
+    @GET(ApiConstants.ApiUrls.GET_STUDENT_STATUS)
+    Call<StudentStatusResponse> getStudentStatus(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                 @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                 @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
 }

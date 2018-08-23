@@ -125,11 +125,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         int id = view.getId();
         switch (id) {
             case R.id.how_much_save_rl:
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(AppConstants.CURRENT_ENERGY_UNIT, currentCons);
-                bundle.putString(AppConstants.PICK_ENERGY_SAVING_DATE,currentCosumptionDate.getText().toString().trim());
-                ((HomeActivity) getActivity()).pushFragments(HowMuchSaveFragment.newInstance(), bundle, true);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(AppConstants.CURRENT_ENERGY_UNIT, currentCons);
+                        bundle.putString(AppConstants.PICK_ENERGY_SAVING_DATE,currentCosumptionDate.getText().toString().trim());
+                        ((HomeActivity) getActivity()).pushFragments(new HowMuchSaveFragment(), bundle, true);
+                    }
+                },500);
+
                 break;
+
+
 
         }
 
@@ -329,7 +337,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
 
-            currentCosumptionDate.setText(getString(R.string.txt_up_to) + "" + response.getCurrentCons().getLastUpdateDate());
+            currentCosumptionDate.setText(getString(R.string.txt_up_to) + " " + response.getCurrentCons().getLastUpdateDate());
 
 
 

@@ -40,12 +40,11 @@
 
             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                 android:layout_width="match_parent"
-                android:textColor="#42505d"
                 android:text=""
                 android:id="@+id/name_text"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_toLeftOf="@+id/rank_points_text"
-                android:textSize="@dimen/_25sdp"
+                android:textSize="@dimen/_20sdp"
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 tools:ignore="RtlHardcoded" />
@@ -54,7 +53,6 @@
                 android:id="@+id/rank_points_text"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_alignParentRight="true"
-                android:textColor="#42505d"
                 android:text=""
                 android:textSize="@dimen/_15sdp"
                 android:layout_centerVertical="true"

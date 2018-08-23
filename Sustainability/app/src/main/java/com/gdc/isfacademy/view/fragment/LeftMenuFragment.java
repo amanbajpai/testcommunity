@@ -92,6 +92,8 @@ public class LeftMenuFragment extends BaseFragment {
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_about_isf)));
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_terms_condition)));
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_privacy_policy)));
+        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_logout)));
+
     }
 
 

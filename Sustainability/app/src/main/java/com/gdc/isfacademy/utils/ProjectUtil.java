@@ -2,6 +2,7 @@ package com.gdc.isfacademy.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.Notification;
@@ -39,6 +40,7 @@ import android.widget.Toast;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
+import com.gdc.isfacademy.model.BadgeStudentResponse;
 import com.gdc.isfacademy.receivers.AlarmReceiver;
 import com.gdc.isfacademy.receivers.QuizeReminderReciever;
 import com.gdc.isfacademy.view.activity.HomeActivity;
@@ -51,6 +53,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -255,13 +258,13 @@ public class ProjectUtil {
 
             if (hour >= 8 && hour < 16) {
                 Log.e("hoursInvalide", "" + hour);
-               // MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, false);
-              //  showInvalidTimeDialog(context);
+                // MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, false);
+                //  showInvalidTimeDialog(context);
 
             } else {
 
                 Log.e("hoursValid", "" + hour);
-               // MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, true);
+                // MyPref.getInstance(context).writeBooleanPrefs(MyPref.IS_VALID_TIME, true);
 
             }
         } catch (Exception ex) {
@@ -374,7 +377,6 @@ public class ProjectUtil {
     }
 
 
-
     public static String loadJSONFromAsset(Context context) {
         String json = null;
         try {
@@ -391,49 +393,37 @@ public class ProjectUtil {
         return json;
     }
 
-    public static String getTodayDate()
-    {
+    public static String getTodayDate() {
         String date = "";
-        try
-        {
+        try {
             Calendar calendar = Calendar.getInstance();
 
-            date = calendar.get(Calendar.DAY_OF_MONTH)+"-"+calendar.get(Calendar.MONTH)+"-"+calendar.get(Calendar.YEAR);
-        }
-        catch (Exception ex)
-        {
+            date = calendar.get(Calendar.DAY_OF_MONTH) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.YEAR);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         return date;
     }
 
-    public static ProgressDialog showDialog(Context context)
-    {
+    public static ProgressDialog showDialog(Context context) {
         ProgressDialog progressDialog = null;
-        try
-        {
+        try {
             progressDialog = new ProgressDialog(context);
             progressDialog.setMessage("Loading...");
             progressDialog.setCancelable(false);
             progressDialog.show();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return progressDialog;
     }
 
-    public static ProgressDialog dismissDialog(ProgressDialog progressDialog)
-    {
-        try
-        {
+    public static ProgressDialog dismissDialog(ProgressDialog progressDialog) {
+        try {
             if (progressDialog != null && progressDialog.isShowing())
                 progressDialog.dismiss();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return progressDialog;
@@ -445,51 +435,20 @@ public class ProjectUtil {
         return (n - c) % 2 == 0 ? (int) f : c;
     }
 
-
-
-
-    public void timeAgo(String date){
-
-        try
-        {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss 'GMT'Z yyyy");
-            Date past = dateFormat.parse(date);
-            Date now = new Date();
-            long seconds= TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
-            long minutes= TimeUnit.MILLISECONDS.toMinutes(now.getTime() - past.getTime());
-            long hours=TimeUnit.MILLISECONDS.toHours(now.getTime() - past.getTime());
-            long days=TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime());
-          System.out.println(TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime()) + " days ago");
-
-            if(seconds<60)
-            {
-                System.out.println(seconds+" seconds ago");
-            }
-            else if(minutes<60)
-            {
-                System.out.println(minutes+" minutes ago");
-            }
-            else if(hours<24)
-            {
-                System.out.println(hours+" hours ago");
-            }
-            else
-            {
-                System.out.println(days+" days ago");
-            }
-        }
-        catch (Exception j){
-            j.printStackTrace();
-        }
-    }
-
-
-
-    public static void logoutFromApp(Context context){
+    public static void logoutFromApp(Context context) {
+        ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
+        MyPref.getInstance(context).clearPrefs();
         MyPref.getInstance(context).writePrefs(AppConstants.STUDENT_KEY, "");
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
-        ((Activity)context).finish();
+        ((Activity) context).finish();
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static String toDate(long timestamp) {
+        Date date = new Date(timestamp);
+        return new SimpleDateFormat("d/M").format(date);
+
     }
 
 
@@ -499,29 +458,281 @@ public class ProjectUtil {
     *
     * */
 
-    @SuppressLint("SimpleDateFormat")
-    public static String toDate(long timestamp) {
-        Date date = new Date(timestamp);
-        return new SimpleDateFormat("d/M").format(date);
-
-         }
-
-    public static void hideKeyboard(Context context){
+    public static void hideKeyboard(Context context) {
         try {
-            if(context==null){
-                context=ISFApp.getAppInstance().getApplicationContext();
+            if (context == null) {
+                context = ISFApp.getAppInstance().getApplicationContext();
             }
             InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            if (imm.isActive()){
+            if (imm.isActive()) {
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0); // hide
             }
-        }catch (Throwable e){
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 
     }
 
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
+    public static void logoutFromAppMenu(final Context mContext) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.AlertDialogTheme);
+        builder.setTitle(R.string.app_name)
+                .setMessage(fromHtmlAlert(mContext.getResources().getString(R.string.dialog_message_logout)))
+
+                .setPositiveButton(R.string.dialog_btn_yes, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
+                        MyPref.getInstance(mContext).clearPrefs();
+                        Intent intent=new Intent(mContext,LoginActivity.class);
+                        ((Activity) mContext).startActivity(intent, ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
+                        ((Activity) mContext).finishAfterTransition();
+
+                    }
+
+                })
+                .setNegativeButton(R.string.dialog_btn_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+        Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+        nbutton.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_and_spinner));
+        Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        pbutton.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_and_spinner));
+    }
+
+
+
+       /*
+    *
+    *
+    * Alert dialog if user want to logout from app
+    *
+    * */
+
+    public static String getValue(float value) {
+        String formattedValue = Integer.toString((int) value);
+        return formattedValue;
+    }
+
+    public void timeAgo(String date) {
+
+        try {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss 'GMT'Z yyyy");
+            Date past = dateFormat.parse(date);
+            Date now = new Date();
+            long seconds = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(now.getTime() - past.getTime());
+            long hours = TimeUnit.MILLISECONDS.toHours(now.getTime() - past.getTime());
+            long days = TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime());
+            System.out.println(TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime()) + " days ago");
+
+            if (seconds < 60) {
+                System.out.println(seconds + " seconds ago");
+            } else if (minutes < 60) {
+                System.out.println(minutes + " minutes ago");
+            } else if (hours < 24) {
+                System.out.println(hours + " hours ago");
+            } else {
+                System.out.println(days + " days ago");
+            }
+        } catch (Exception j) {
+            j.printStackTrace();
+        }
+    }
+
+
+    public static ArrayList<BadgeStudentResponse>getBadgeList(ArrayList<BadgeStudentResponse>badgeStudentResponses){
+        for (int position=0;position<badgeStudentResponses.size();position++){
+            if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_ENERGY_SAVING)) {
+                if (badgeStudentResponses.get(position).getValue() != null) {
+                    float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                    if (value < AppConstants.VALUE_ENERGY_SAVING_BRNOZE) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.energy_saver_locked);
+                    } else if (value >= AppConstants.VALUE_ENERGY_SAVING_BRNOZE && value < AppConstants.VALUE_ENERGY_SAVING_SILVER) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.energy_saving_bronze_badge);
+                    } else if (value >= AppConstants.VALUE_ENERGY_SAVING_SILVER && value < AppConstants.VALUE_ENERGY_SAVING_GOLD) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.energy_saving_silver_badge);
+                    } else if (value >= AppConstants.VALUE_ENERGY_SAVING_GOLD && value < AppConstants.VALUE_ENERGY_SAVING_HIDDEN) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.energy_saving_gold_badge);
+                    } else if (value >= AppConstants.VALUE_ENERGY_SAVING_HIDDEN) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.energy_saving_hidden_badge);
+
+                    }
+                }
+            }
+            else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_QUIZHOLIC)) {
+                if (badgeStudentResponses.get(position).getValue() != null) {
+                    float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                    if (value < AppConstants.VALUE_QUIZHOLIC_BRONZE) {
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.quizholic_locked);
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                    } else if (value >= AppConstants.VALUE_QUIZHOLIC_BRONZE && value < AppConstants.VALUE_QUIZHOLIC_SILVER) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.quiz_holic_bronze_badge);
+                    } else if (value >= AppConstants.VALUE_QUIZHOLIC_SILVER && value < AppConstants.VALUE_QUIZHOLIC_GOLDE) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.quiz_holic_silver_badge);
+                    } else if (value >= AppConstants.VALUE_QUIZHOLIC_GOLDE && value < AppConstants.VALUE_QUIZHOLIC_HIDDEN) {
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.quiz_holic_gold_badge);
+                    } else if (value >= AppConstants.VALUE_QUIZHOLIC_HIDDEN) {
+                        badgeStudentResponses.get(position).setResourceIdImage(R.drawable.quiz_holic_hidden_badge);
+                        badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                    }
+                }
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_PERSISTANT)) {
+                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                if (value < AppConstants.VALUE_PERSISTANT_BRONZE) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.persistent_locked);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                } else if (value >= AppConstants.VALUE_PERSISTANT_BRONZE && value < AppConstants.VALUE_PERSISTANT_SILVER) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.persistent_bronze_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                } else if (value >= AppConstants.VALUE_PERSISTANT_SILVER && value < AppConstants.VALUE_PERSISTANT_GOLD) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.persistent_silver_badge);
+                } else if (value >= AppConstants.VALUE_PERSISTANT_GOLD && value < AppConstants.VALUE_PERSISTANT_HIDDEN) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.persitent_gold_badge);
+                } else if (value >= AppConstants.VALUE_PERSISTANT_HIDDEN) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.persistent_hidden_badge);
+                }
+
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_PERFECTION)) {
+                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                if (value < AppConstants.VALUE_PERFECTION_BRONZE) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.perfection_locked);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                } else if (value >= AppConstants.VALUE_PERFECTION_BRONZE && value < AppConstants.VALUE_PERFECTION_SILVER) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.perfection_bronze_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                } else if (value >= AppConstants.VALUE_PERFECTION_SILVER && value < AppConstants.VALUE_PERFECTION_GOLD) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.perfection_silver_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                } else if (value >= AppConstants.VALUE_PERFECTION_GOLD && value < AppConstants.VALUE_PERFECTION_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.perfection_gold_badge);
+
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                } else if (value >= AppConstants.VALUE_PERFECTION_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.perfection_hidden_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                }
+
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_BROADCASTER)) {
+                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                if (value < AppConstants.VALUE_BROADCASTER_BRONZE) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.broadcaster_locked);
+                } else if (value >= AppConstants.VALUE_BROADCASTER_BRONZE && value < AppConstants.VALUE_BROADCASTER_SILVER) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.broadcaster_bronze_badge);
+                } else if (value >= AppConstants.VALUE_BROADCASTER_SILVER && value < AppConstants.VALUE_BROADCASTER_GOLD) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.broadcaster_silver_badge);
+                } else if (value >= AppConstants.VALUE_BROADCASTER_GOLD && value < AppConstants.VALUE_BROADCASTER_HIDDEN) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.brodcaster_gold_badge);
+                } else if (value >= AppConstants.VALUE_BROADCASTER_HIDDEN) {
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.broadcaster_hidden_badge);
+                }
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_FRIENDLY)) {
+                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                if (value < AppConstants.VALUE_FRIENDLY_BRONZE) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.friendly_locked);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                } else if (value >= AppConstants.VALUE_FRIENDLY_BRONZE && value < AppConstants.VALUE_FRIENDLY_SILVER) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.friendly_bronze_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                } else if (value >= AppConstants.VALUE_FRIENDLY_SILVER && value < AppConstants.VALUE_FRIENDLY_GOLD) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.friendly_silver_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                } else if (value >= AppConstants.VALUE_FRIENDLY_GOLD && value < AppConstants.VALUE_FRIENDLY_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.friendly_gold_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                } else if (value >= AppConstants.VALUE_FRIENDLY_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.friendly_hidden_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                }
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_LEGENDARY)) {
+                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                if (value < AppConstants.VALUE_LEGENDARY_BRONZE) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.legendary_locked);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                } else if (value >= AppConstants.VALUE_LEGENDARY_BRONZE && value < AppConstants.VALUE_LEGENDARY_SILVER) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.legendary_bronze_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                } else if (value >= AppConstants.VALUE_LEGENDARY_SILVER && value < AppConstants.VALUE_LEGENDARY_GOLD) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.legendary_silver_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                } else if (value >= AppConstants.VALUE_LEGENDARY_GOLD && value < AppConstants.VALUE_LEGENDARY_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.legendary_gold_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                } else if (value >= AppConstants.VALUE_LEGENDARY_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.legendary_hidden_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                }
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_SUPERIOR_SPECLIST)) {
+                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+                if (value < AppConstants.VALUE_SUPERIOR_SPECLIST_BRONZE) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.superior_locked);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_BRONZE && value < AppConstants.VALUE_SUPERIOR_SPECLIST_SILVER) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.superior_brnoze_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_SILVER && value < AppConstants.VALUE_SUPERIOR_SPECLIST_GOLD) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.superior_silver_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_GOLD && value < AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.superior_gold_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.superior_hidden_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                }
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_CHAMPION)) {
+                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
+
+                if (value < AppConstants.VALUE_CHAMPION_BRONZE) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.champion_locked);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.LOCKED);
+                } else if (value >= AppConstants.VALUE_CHAMPION_BRONZE && value < AppConstants.VALUE_CHAMPION_SILVER) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.champion_bronze_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.BRONZE);
+                } else if (value >= AppConstants.VALUE_CHAMPION_SILVER && value < AppConstants.VALUE_CHAMPION_GOLD) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.champion_silver_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.SILVER);
+                } else if (value >= AppConstants.VALUE_CHAMPION_GOLD && value < AppConstants.VALUE_CHAMPION_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.champion_gold_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.GOLD);
+                } else if (value >= AppConstants.VALUE_CHAMPION_HIDDEN) {
+                    badgeStudentResponses.get(position).setResourceIdImage(R.drawable.champion_hidden_badge);
+                    badgeStudentResponses.get(position).setBadgeAllotedFor(AppConstants.HIDDEN);
+                }
+            }
+
+        }
+
+        return badgeStudentResponses;
+
+
+    }
 
 
 }

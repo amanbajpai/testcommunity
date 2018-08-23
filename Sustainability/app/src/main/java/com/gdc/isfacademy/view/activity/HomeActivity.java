@@ -170,7 +170,6 @@ public class HomeActivity extends BaseActivity implements
                     && fragmentManager.getBackStackEntryCount() == 0)) {
                 fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
             }
-
             fragmentTransaction.add(R.id.fragment_container, fragment, fragment.getClass().getSimpleName());
             fragmentTransaction.commit();
 
@@ -199,6 +198,9 @@ public class HomeActivity extends BaseActivity implements
                 break;
             case 1:
                 pushFragments(AboutISfFragment.newInstance(),null,false);
+                break;
+            case 4:
+                ProjectUtil.logoutFromAppMenu(HomeActivity.this);
                 break;
 
         }
@@ -320,4 +322,8 @@ public class HomeActivity extends BaseActivity implements
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         fragment.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
+
 }

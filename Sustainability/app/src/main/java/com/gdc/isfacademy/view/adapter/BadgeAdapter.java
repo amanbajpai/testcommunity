@@ -12,6 +12,8 @@ import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.BadgeStudentResponse;
 import com.gdc.isfacademy.utils.AppConstants;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -33,6 +35,12 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
 
     public void setList(Context context, List<BadgeStudentResponse> rewardListResponses) {
         this.context = context;
+        Collections.sort(rewardListResponses, new Comparator<BadgeStudentResponse>() {
+            @Override
+            public int compare(BadgeStudentResponse s1, BadgeStudentResponse s2) {
+                return s1.getBadgeAllotedFor().compareTo(s2.getBadgeAllotedFor());
+            }
+        });
         this.badgeStudentResponses = rewardListResponses;
         notifyDataSetChanged();
     }
@@ -58,229 +66,32 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.Holder> {
         * according to that we allote badge to the stduents.
         *
         * */
-        if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_ENERGY_SAVING)) {
-            if (badgeStudentResponses.get(position).getValue() != null) {
-                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-                if (value < AppConstants.VALUE_ENERGY_SAVING_BRNOZE) {
-                    holder.iv_badge.setVisibility(View.GONE);
-                    isAnyBadgeAllot = false;
-                } else if (value >= AppConstants.VALUE_ENERGY_SAVING_BRNOZE && value < AppConstants.VALUE_ENERGY_SAVING_SILVER) {
-                    holder.iv_badge.setImageResource(R.drawable.energy_saving_bronze_badge);
-                    isAnyBadgeAllot = true;
-
-                } else if (value >= AppConstants.VALUE_ENERGY_SAVING_SILVER && value < AppConstants.VALUE_ENERGY_SAVING_GOLD) {
-                    holder.iv_badge.setImageResource(R.drawable.energy_saving_silver_badge);
-                    isAnyBadgeAllot = true;
-
-                } else if (value >= AppConstants.VALUE_ENERGY_SAVING_GOLD && value < AppConstants.VALUE_ENERGY_SAVING_HIDDEN) {
-                    holder.iv_badge.setImageResource(R.drawable.energy_saving_gold_badge);
-                    isAnyBadgeAllot = true;
-
-                } else if (value >= AppConstants.VALUE_ENERGY_SAVING_HIDDEN) {
-                    holder.iv_badge.setImageResource(R.drawable.energy_saving_hidden_badge);
-                    isAnyBadgeAllot = true;
-                }
-            }
 
 
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_QUIZHOLIC)) {
-            if (badgeStudentResponses.get(position).getValue() != null) {
-                float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-                if (value < AppConstants.VALUE_QUIZHOLIC_BRONZE) {
-                    holder.iv_badge.setVisibility(View.GONE);
-                    isAnyBadgeAllot = false;
-
-                } else if (value >= AppConstants.VALUE_QUIZHOLIC_BRONZE && value < AppConstants.VALUE_QUIZHOLIC_SILVER) {
-                    holder.iv_badge.setImageResource(R.drawable.quiz_holic_bronze_badge);
-                    isAnyBadgeAllot = true;
-
-                } else if (value >= AppConstants.VALUE_QUIZHOLIC_SILVER && value < AppConstants.VALUE_QUIZHOLIC_GOLDE) {
-                    holder.iv_badge.setImageResource(R.drawable.quiz_holic_silver_badge);
-                    isAnyBadgeAllot = true;
-
-                } else if (value >= AppConstants.VALUE_QUIZHOLIC_GOLDE && value < AppConstants.VALUE_QUIZHOLIC_HIDDEN) {
-                    holder.iv_badge.setImageResource(R.drawable.quiz_holic_gold_badge);
-                    isAnyBadgeAllot = true;
-
-                } else if (value >= AppConstants.VALUE_QUIZHOLIC_HIDDEN) {
-                    holder.iv_badge.setImageResource(R.drawable.quiz_holic_hidden_badge);
-                    isAnyBadgeAllot = true;
-
-                }
-            }
-
-
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_PERSISTANT)) {
-            float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-            if (value < AppConstants.VALUE_PERSISTANT_BRONZE) {
-                holder.iv_badge.setVisibility(View.GONE);
-                isAnyBadgeAllot = false;
-
-            } else if (value >= AppConstants.VALUE_PERSISTANT_BRONZE && value < AppConstants.VALUE_PERSISTANT_SILVER) {
-                holder.iv_badge.setImageResource(R.drawable.persistent_bronze_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_PERSISTANT_SILVER && value < AppConstants.VALUE_PERSISTANT_GOLD) {
-                holder.iv_badge.setImageResource(R.drawable.persistent_silver_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_PERSISTANT_GOLD && value < AppConstants.VALUE_PERSISTANT_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.persitent_gold_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_PERSISTANT_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.persistent_hidden_badge);
-                isAnyBadgeAllot = true;
-
-            }
-
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_PERFECTION)) {
-            float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-            if (value < AppConstants.VALUE_PERFECTION_BRONZE) {
-                holder.iv_badge.setVisibility(View.GONE);
-                isAnyBadgeAllot = false;
-
-            } else if (value >= AppConstants.VALUE_PERFECTION_BRONZE && value < AppConstants.VALUE_PERFECTION_SILVER) {
-                holder.iv_badge.setImageResource(R.drawable.perfection_bronze_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_PERFECTION_SILVER && value < AppConstants.VALUE_PERFECTION_GOLD) {
-                holder.iv_badge.setImageResource(R.drawable.perfection_silver_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_PERFECTION_GOLD && value < AppConstants.VALUE_PERFECTION_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.perfection_gold_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_PERFECTION_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.perfection_hidden_badge);
-                isAnyBadgeAllot = true;
-
-            }
-
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_BROADCASTER)) {
-            float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-            if (value < AppConstants.VALUE_BROADCASTER_BRONZE) {
-                holder.iv_badge.setVisibility(View.GONE);
-                isAnyBadgeAllot = false;
-
-            } else if (value >= AppConstants.VALUE_BROADCASTER_BRONZE && value < AppConstants.VALUE_BROADCASTER_SILVER) {
-                holder.iv_badge.setImageResource(R.drawable.broadcaster_bronze_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_BROADCASTER_SILVER && value < AppConstants.VALUE_BROADCASTER_GOLD) {
-                holder.iv_badge.setImageResource(R.drawable.broadcaster_silver_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_BROADCASTER_GOLD && value < AppConstants.VALUE_BROADCASTER_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.brodcaster_gold_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_BROADCASTER_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.broadcaster_hidden_badge);
-                isAnyBadgeAllot = true;
-
-            }
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_FRIENDLY)) {
-            float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-            if (value < AppConstants.VALUE_FRIENDLY_BRONZE) {
-                holder.iv_badge.setVisibility(View.GONE);
-                isAnyBadgeAllot = false;
-
-            } else if (value >= AppConstants.VALUE_FRIENDLY_BRONZE && value < AppConstants.VALUE_FRIENDLY_SILVER) {
-                holder.iv_badge.setImageResource(R.drawable.friendly_bronze_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_FRIENDLY_SILVER && value < AppConstants.VALUE_FRIENDLY_GOLD) {
-                holder.iv_badge.setImageResource(R.drawable.friendly_silver_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_FRIENDLY_GOLD && value < AppConstants.VALUE_FRIENDLY_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.friendly_gold_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_FRIENDLY_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.friendly_hidden_badge);
-                isAnyBadgeAllot = true;
-
-            }
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_LEGENDARY)) {
-            float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-            if (value < AppConstants.VALUE_LEGENDARY_BRONZE) {
-                holder.iv_badge.setVisibility(View.GONE);
-                isAnyBadgeAllot = false;
-
-            } else if (value >= AppConstants.VALUE_LEGENDARY_BRONZE && value < AppConstants.VALUE_LEGENDARY_SILVER) {
-                holder.iv_badge.setImageResource(R.drawable.legendary_bronze_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_LEGENDARY_SILVER && value < AppConstants.VALUE_LEGENDARY_GOLD) {
-                holder.iv_badge.setImageResource(R.drawable.legendary_silver_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_LEGENDARY_GOLD && value < AppConstants.VALUE_LEGENDARY_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.legendary_gold_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_LEGENDARY_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.legendary_hidden_badge);
-                isAnyBadgeAllot = true;
-
-            }
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_SUPERIOR_SPECLIST)) {
-            float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-            if (value < AppConstants.VALUE_SUPERIOR_SPECLIST_BRONZE) {
-                holder.iv_badge.setVisibility(View.GONE);
-                isAnyBadgeAllot = false;
-
-            } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_BRONZE && value < AppConstants.VALUE_SUPERIOR_SPECLIST_SILVER) {
-                holder.iv_badge.setImageResource(R.drawable.superior_brnoze_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_SILVER && value < AppConstants.VALUE_SUPERIOR_SPECLIST_GOLD) {
-                holder.iv_badge.setImageResource(R.drawable.superior_silver_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_GOLD && value < AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.superior_gold_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.superior_hidden_badge);
-                isAnyBadgeAllot = true;
-
-            }
-        } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_CHAMPION)) {
-            float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
-            if (value < AppConstants.VALUE_CHAMPION_BRONZE) {
-                holder.iv_badge.setVisibility(View.GONE);
-                isAnyBadgeAllot = false;
-
-            } else if (value >= AppConstants.VALUE_CHAMPION_BRONZE && value < AppConstants.VALUE_CHAMPION_SILVER) {
-                holder.iv_badge.setImageResource(R.drawable.champion_bronze_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_CHAMPION_SILVER && value < AppConstants.VALUE_CHAMPION_GOLD) {
-                holder.iv_badge.setImageResource(R.drawable.champion_silver_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_CHAMPION_GOLD && value < AppConstants.VALUE_CHAMPION_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.champion_gold_badge);
-                isAnyBadgeAllot = true;
-
-            } else if (value >= AppConstants.VALUE_CHAMPION_HIDDEN) {
-                holder.iv_badge.setImageResource(R.drawable.champion_hidden_badge);
-                isAnyBadgeAllot = true;
-
-            }
+        if(badgeStudentResponses.get(position).getBadgeAllotedFor().equalsIgnoreCase(AppConstants.HIDDEN)||
+                badgeStudentResponses.get(position).getBadgeAllotedFor().equalsIgnoreCase(AppConstants.GOLD)||
+                badgeStudentResponses.get(position).getBadgeAllotedFor().equalsIgnoreCase(AppConstants.SILVER)||
+                badgeStudentResponses.get(position).getBadgeAllotedFor().equalsIgnoreCase(AppConstants.BRONZE)){
+            isAnyBadgeAllot=true;
         }
+
+        if(!badgeStudentResponses.get(position).getBadgeAllotedFor().equalsIgnoreCase(AppConstants.LOCKED)){
+            holder.iv_badge.setImageResource(badgeStudentResponses.get(position).getResourceIdImage());
+        }
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return badgeStudentResponses.size();
+        if(badgeStudentResponses.size()<=5){
+            return badgeStudentResponses.size();
+
+        }
+        else {
+            return 5;
+        }
     }
 
     public boolean isBadgeAlloted() {

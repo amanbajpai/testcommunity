@@ -63,11 +63,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
 
         if (logStudentResponses.get(position).getType().equalsIgnoreCase(AppConstants.typeStudenLogUser)) {
             String value = new BigDecimal(logStudentResponses.get(position).getCount()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-            holder.studentMessageTv.setText( ""+value + context.getString(R.string.profile_you_have_saved));
+            holder.studentMessageTv.setText( ""+value + context.getString(R.string.profile_you_have_saved_user));
             holder.type_log_imagview.setImageResource(R.drawable.user_building_type);
         } else if (logStudentResponses.get(position).getType().equalsIgnoreCase(AppConstants.typeStudenLogBuilding)) {
             String value = new BigDecimal(logStudentResponses.get(position).getCount()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-            holder.studentMessageTv.setText(""+value + context.getString(R.string.profile_you_have_saved));
+            holder.studentMessageTv.setText(""+value + context.getString(R.string.profile_you_have_saved_building));
             holder.type_log_imagview.setImageResource(R.drawable.user_building_type);
 
         }
@@ -90,7 +90,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
         }
 
         if (logStudentResponses.get(position).getValue() != null) {
-            String points = new BigDecimal(logStudentResponses.get(position).getValue()).setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+            String points = new BigDecimal(logStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
             holder.points_log_tv.setText("+"+points+context.getString(R.string.txt_pts));
         }
 

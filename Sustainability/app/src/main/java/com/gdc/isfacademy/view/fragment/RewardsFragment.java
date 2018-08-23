@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.RewardStudentResponse;
 import com.gdc.isfacademy.model.StudentRewardResponse;
+import com.gdc.isfacademy.model.StudentStatusResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
@@ -107,31 +108,92 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                 @Override
                 public void onResponse(Call<StudentRewardResponse> call, Response<StudentRewardResponse> response) {
                     ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
-                    hideProgressDialog();
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             if (response.body().getRewards() != null && response.body().getRewards().size() > 0) {
                                 rewardListResponses=response.body().getRewards();
                                 rewardsAdapter.setList(getActivity(),rewardListResponses);
-                                title_reward_text.setText(getString(R.string.txt_reward_text));
-                                gift_text.setVisibility(View.GONE);
-                                gift_text.setText(getString(R.string.txt_gift));
+                            }
 
-                            }
-                            else {
-                                gift_text.setVisibility(View.GONE);
-                                title_reward_text.setText(getString(R.string.txt_no_reward_text));
-                            }
                         }
                         else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
+                        }
+                    }
+                    getStudentStatus();
+
+                }
+
+                @Override
+                public void onFailure(Call<StudentRewardResponse> call, Throwable t) {
+                    getStudentStatus();
+
+                    if (getActivity() != null) {
+                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                    }
+                    t.printStackTrace();
+                }
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    private void getStudentStatus() {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+            return;
+
+        }
+        try {
+            Call<StudentStatusResponse> call = ISFApp.getAppInstance()
+                    .getApi()
+                    .getStudentStatus(AppConstants.API_KEY,
+                            AppConstants.CONTENT_TYPE,
+                            MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+
+            ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+            call.enqueue(new Callback<StudentStatusResponse>() {
+                @Override
+                public void onResponse(Call<StudentStatusResponse> call, Response<StudentStatusResponse> response) {
+                    ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                    hideProgressDialog();
+                    if (response.body() != null) {
+                        if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                            if(response.body().getIsfStudentStatus()!=null){
+                                if(response.body().getIsfStudentStatus().getRankingCount()!=null){
+                                    if(Integer.parseInt(response.body().getIsfStudentStatus().getRankingCount())<=5){
+                                        title_reward_text.setText(getString(R.string.txt_reward_text));
+                                        gift_text.setVisibility(View.GONE);
+                                        gift_text.setText(getString(R.string.txt_gift));
+                                    }
+                                    else {
+                                        gift_text.setVisibility(View.GONE);
+                                        title_reward_text.setText(getString(R.string.txt_no_reward_text));
+                                    }
+
+                                }
+                                else {
+                                    gift_text.setVisibility(View.GONE);
+                                    title_reward_text.setText(getString(R.string.txt_no_reward_text));
+                                }
+
+                            }
+                        } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                            ProjectUtil.logoutFromApp(getActivity());
+                        }
+                        else {
+                            gift_text.setVisibility(View.GONE);
+                            title_reward_text.setText(getString(R.string.txt_no_reward_text));
                         }
                     }
 
                 }
 
                 @Override
-                public void onFailure(Call<StudentRewardResponse> call, Throwable t) {
+                public void onFailure(Call<StudentStatusResponse> call, Throwable t) {
                     if (getActivity() != null) {
                         ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
                     }
@@ -143,5 +205,6 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
             ex.printStackTrace();
         }
     }
+
 
 }

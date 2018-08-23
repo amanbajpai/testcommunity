@@ -55,10 +55,19 @@ public class ChallangeRankList {
     @Expose
     boolean checkIsme = false;
 
+    String ranking;
 
-    @Generated(hash = 2020211321)
+    public String getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(String ranking) {
+        this.ranking = ranking;
+    }
+
+    @Generated(hash = 1003762975)
     public ChallangeRankList(Long id, String studentId, String studentName, String house, String value,
-                             String lastUpdateDate, String lastUpdateTs, String unit, String type, boolean checkIsme) {
+            String lastUpdateDate, String lastUpdateTs, String unit, String type, boolean checkIsme, String ranking) {
         this.id = id;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -69,6 +78,7 @@ public class ChallangeRankList {
         this.unit = unit;
         this.type = type;
         this.checkIsme = checkIsme;
+        this.ranking = ranking;
     }
 
     @Generated(hash = 20761602)

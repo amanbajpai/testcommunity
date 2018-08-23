@@ -26,5 +26,5 @@
     android:paddingBottom="@dimen/_2sdp"
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
-    android:textSize="@dimen/_12sdp"
+    android:textSize="@dimen/_10sdp"
     android:textAlignment="inherit"/>

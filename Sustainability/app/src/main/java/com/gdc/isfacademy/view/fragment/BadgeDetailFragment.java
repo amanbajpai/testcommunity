@@ -48,7 +48,7 @@ public class BadgeDetailFragment extends BaseFragment {
         Bundle bundle = getArguments();
         badgeStudentResponses = (ArrayList<BadgeStudentResponse>) bundle.getSerializable("list");
         localBadgeStudentResponses=new ArrayList<>();
-        localBadgeStudentResponses.add(new BadgeStudentResponse("1","0"));
+        localBadgeStudentResponses.add(new BadgeStudentResponse("1","0.00"));
         localBadgeStudentResponses.add(new BadgeStudentResponse("2","0"));
         localBadgeStudentResponses.add(new BadgeStudentResponse("3","0"));
         localBadgeStudentResponses.add(new BadgeStudentResponse("4","0"));

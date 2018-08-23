@@ -15,10 +15,36 @@ public class BadgeStudentResponse implements Serializable {
     @Expose
     private String value;
 
+    @SerializedName("badgeAllotedFor")
+    @Expose
+    private String badgeAllotedFor;
+
+    @SerializedName("resourceIdImage")
+    @Expose
+    private int resourceIdImage;
+
+    public int getResourceIdImage() {
+        return resourceIdImage;
+    }
+
+    public void setResourceIdImage(int resourceIdImage) {
+        this.resourceIdImage = resourceIdImage;
+    }
+
+    public String getBadgeAllotedFor() {
+        return badgeAllotedFor;
+    }
+
+    public void setBadgeAllotedFor(String badgeAllotedFor) {
+        this.badgeAllotedFor = badgeAllotedFor;
+    }
 
     public BadgeStudentResponse(String badgesType, String value) {
         this.badgesType = badgesType;
         this.value = value;
+    }
+    public BadgeStudentResponse(String badgeAllotedFor) {
+        this.badgeAllotedFor = badgeAllotedFor;
     }
 
     public String getBadgesType() {
