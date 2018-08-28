@@ -28,12 +28,11 @@ import retrofit2.Response;
 
 
 @SuppressWarnings("ALL")
-public class QuizeCompletedFragement extends BaseFragment implements View.OnClickListener{
-
+public class QuizeCompletedFragement extends BaseFragment implements View.OnClickListener {
     public static final String TAG = "QuizeCompletedFragement";
-    HomeActivity activity;
-    Context context;
-    int count;
+    private HomeActivity activity;
+    private Context context;
+    private int count;
     private OpenSansSemiBoldTextView share_tv;
 
     public static QuizeCompletedFragement newInstance() {
@@ -76,8 +75,6 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "Earned" + " " + count + " " + "Points in ISF Community Quiz");
                 sendIntent.setType("text/plain");
                 startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
-
-                // ProjectUtil.showShareDialog(context, this);
                 break;
 
             case R.id.profile_share_tv:
@@ -92,9 +89,6 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
             ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
             return;
         }
-
-//        if (challangeRankLists == null || challangeRankLists.size() == 0)
-//            showProgressDialog(getActivity());
         showProgressDialog(getActivity());
         Call<CommonResponse> call = ISFApp.getAppInstance()
                 .getApi()
@@ -113,8 +107,7 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
                     if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                         ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
 
-                    }
-                    else {
+                    } else {
                         ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
 
                     }
@@ -123,7 +116,6 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
 
 
             }
-
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
                 ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
@@ -140,15 +132,11 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 101) {
+        if (requestCode == AppConstants.SHARE_QUIZ_RESULT_STATUS) {
             if (resultCode == Activity.RESULT_OK) {
                 submitShare();
-
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 submitShare();
-
-                Log.e("cancel", "Cancel");
             }
         }
     }

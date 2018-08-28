@@ -36,9 +36,9 @@ import retrofit2.Response;
 public class QuizeFragment extends BaseFragment implements View.OnClickListener {
 
     public static final String TAG = "QuizeFragment";
-    List<QuizePagerFragment> fragmentList;
-    QuizePagerAdapter quizePagerAdapter;
-    Button previousBt, nextBt, finishBt;
+    private List<QuizePagerFragment> fragmentList;
+    private QuizePagerAdapter quizePagerAdapter;
+    private Button previousBt, nextBt, finishBt;
     private CustomViewPager viewpager;
     private IndicatorsView indicatorsView;
 
@@ -56,7 +56,6 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
     }
 
     private void initView(View view) {
-
         fragmentList = new ArrayList<>();
         viewpager = (CustomViewPager) view.findViewById(R.id.viewpager);
         previousBt = (Button) view.findViewById(R.id.pager_previous_bt);
@@ -83,7 +82,6 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
             @Override
             public void onPageSelected(int position) {
-
                 setView();
             }
 
@@ -105,20 +103,15 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
             QuestionsResponse response = new Gson().fromJson(ProjectUtil.loadJSONFromAsset(getActivity()),
                     QuestionsResponse.class);
-
             fragmentList.clear();
 
             for (int i = 0; i < 3; i++, answeredCount++) {
-
                 QuizePagerFragment fragment = new QuizePagerFragment();
-
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("question", response.getQuestions().get(answeredCount));
-                bundle.putString("questionNo", String.valueOf(i + 1));
-                bundle.putString("totalQuestion", String.valueOf(3));
-
+                bundle.putParcelable(AppConstants.QUESTION, response.getQuestions().get(answeredCount));
+                bundle.putString(AppConstants.QUESTION_NUMBER, String.valueOf(i + 1));
+                bundle.putString(AppConstants.TOTAL_QUESTION, String.valueOf(3));
                 fragment.setArguments(bundle);
-
                 fragmentList.add(fragment);
             }
             try {
@@ -198,12 +191,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             case R.id.pager_next_bt:
                 //Check if Answer is correct locally
                 QuizePagerFragment questionQuizePagerFragment = fragmentList.get(viewpager.getCurrentItem());
-
                 if (questionQuizePagerFragment.question.isQuestionChecked()) {
-                   /* if (questionQuizePagerFragment.question.isAnswered()) {
-                        nextBt.setText("Check");
-                    }
-                   */
                     fragmentList.get(viewpager.getCurrentItem()).showRightAnswerView();
                     int position2 = viewpager.getCurrentItem();
                     if (position2 < fragmentList.size() - 1)
@@ -226,15 +214,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                     nextBt.setText(getString(R.string.txt_check));
                     if (isCorrect) {
                         nextBt.setText(getString(R.string.txt_next));
-                       /* if(fragmentList.get(viewpager.getCurrentItem() + 1).question.isQuestionChecked()){
-                            nextBt.setText("Next");
-                        }else{
-                            nextBt.setText("Check");
-                        }
-*/
-                        //  nextBt.setText("Next");
                         fragmentList.get(viewpager.getCurrentItem()).showRightAnswerView();
-//                        int position2 = viewpager.getCurrentItem();
                         if (viewpager.getCurrentItem() + 1 == fragmentList.size()) {
                             if (fragmentList.get(viewpager.getCurrentItem()).question.isQuestionChecked()) {
                                 nextBt.setVisibility(View.GONE);
@@ -245,9 +225,6 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                             finishBt.setVisibility(View.GONE);
                             nextBt.setText(getString(R.string.txt_next));
                         }
-                      /*  if (position2 < fragmentList.size() - 1)
-                            viewpager.setCurrentItem(position2 + 1, true);
-                    */
                     } else {
                         if (viewpager.getCurrentItem() + 1 == fragmentList.size()) {
                             if (fragmentList.get(viewpager.getCurrentItem()).question.isQuestionChecked()) {
@@ -262,7 +239,6 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
                         fragmentList.get(viewpager.getCurrentItem()).showWrongAnswerView();
                     }
-
                 }
 
 
@@ -281,7 +257,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                 if (fragmentList.get(i).question.isCorrect())
                     correct++;
             }
-            Log.d("correct",""+correct);
+            Log.d("correct", "" + correct);
 
             showProgressDialog(getActivity());
             Call<CommonResponse> call = ISFApp.getAppInstance()

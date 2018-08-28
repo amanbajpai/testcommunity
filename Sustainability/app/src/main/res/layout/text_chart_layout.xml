@@ -24,8 +24,7 @@
     android:textColor="@color/color_text_and_spinner"
     android:layout_width="match_parent"
     android:text=""
-    android:paddingBottom="@dimen/_2sdp"
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
-    android:textSize="@dimen/_11sdp"
+    android:textSize="@dimen/_12sdp"
     android:textAlignment="inherit"/>

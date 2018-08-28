@@ -306,9 +306,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 float percentage = (currentValue / lastValue) * 100;
 
                 actualSaving = 100 - percentage;
-                buildingEnergyStatusArrow.setColorFilter(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.home_bottom_card_text_color), android.graphics.PorterDuff.Mode.SRC_IN);
-                buildingPercentTextview.setTextColor(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.home_bottom_card_text_color));
-                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.down_arrow));
+                buildingEnergyStatusArrow.setColorFilter(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.color_text_and_spinner), android.graphics.PorterDuff.Mode.SRC_IN);
+                buildingPercentTextview.setTextColor(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.color_text_and_spinner));
+                buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.down_arrow_energy));
                 buildingEnergyStatusArrow.setVisibility(View.VISIBLE);
                 zeroPercentSavedBuilding.setVisibility(View.GONE);
             } else // Energy Lost

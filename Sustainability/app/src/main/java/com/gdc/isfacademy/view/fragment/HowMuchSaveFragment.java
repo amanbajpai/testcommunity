@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
@@ -55,12 +56,14 @@ public class HowMuchSaveFragment extends BaseFragment implements
     public String typeCheck;
     AppCompatTextView currentWeekConsumption, upto_date_tv, energyUnit, cost_tv, valueCarbon, hotChoclateText, unitCarbon, valueTree, how_much_save_label;
     EnergySavingResponse.CurrentCons currentCons;
-    AppCompatSpinner costSaveSpinner, spinnerfootPrint;
+    AppCompatSpinner costSaveSpinner, spinnerfootPrint,spinnerChart;
     AppCompatTextView randomSaveInstructionText;
     ArrayList<String> xVals;
     ArrayList<Entry> yaxisValueForStudent, getYaxisValueForSchoolAvg, targetValue;
     private LineChart mChart;
     private String dateEnergySaving;
+    String aFloat;
+    private LinearLayout chartView;
 
     public static HowMuchSaveFragment newInstance() {
         HowMuchSaveFragment howMuchSaveFragment = new HowMuchSaveFragment();
@@ -86,6 +89,14 @@ public class HowMuchSaveFragment extends BaseFragment implements
     }
 
     public void init(View view) {
+        spinnerChart=(AppCompatSpinner)view.findViewById(R.id.spinnerChart);
+        chartView=(LinearLayout)view.findViewById(R.id.chartView);
+        mChart = new LineChart(getActivity()) ;//just populating data, etc
+        chartView.addView(mChart);
+        mChart.getLayoutParams().height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+        mChart.getLayoutParams().width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+        mChart.invalidate();
+
         upto_date_tv = (AppCompatTextView) view.findViewById(R.id.upto_date_tv);
         spinnerfootPrint = (AppCompatSpinner) view.findViewById(R.id.spinnerfootPrint);
         cost_tv = (AppCompatTextView) view.findViewById(R.id.cost_tv);
@@ -97,7 +108,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         valueCarbon = (AppCompatTextView) view.findViewById(R.id.value_carbon);
         unitCarbon = (AppCompatTextView) view.findViewById(R.id.unitCarbon);
         valueTree = (AppCompatTextView) view.findViewById(R.id.valueTree);
-        mChart = (LineChart) view.findViewById(R.id.linechart);
+       // mChart = (LineChart) view.findViewById(R.id.linechart);
         randomSaveInstructionText = (AppCompatTextView) view.findViewById(R.id.randomSaveInstructionText);
 
         xVals = new ArrayList<>();
@@ -126,6 +137,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         getStudentCostSaving(getString(R.string.txt_daily));
         getStudentFootPrint(getString(R.string.txt_daily));
         setItemForFootPrintSpinner();
+        setItemForSpinnerChart();
     }
 
 
@@ -175,7 +187,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                     getYaxisValueForSchoolAvg = new ArrayList<>();
                     targetValue = new ArrayList<>();
                     getStudentCostSaving(getString(R.string.txt_daily));
-                    getGraphData(getString(R.string.txt_month_graph));
+                 //   getGraphData(getString(R.string.txt_month_graph));
 
                 } else if (i == 1) {
                     xVals = new ArrayList<>();
@@ -183,7 +195,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                     getYaxisValueForSchoolAvg = new ArrayList<>();
                     targetValue = new ArrayList<>();
                     getStudentCostSaving(getString(R.string.txt_cycle_small));
-                    getGraphData("cycle");
+                  //  getGraphData(getString(R.string.txt_month_graph));
 
                 } else if (i == 2) {
                     xVals = new ArrayList<>();
@@ -191,7 +203,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                     getYaxisValueForSchoolAvg = new ArrayList<>();
                     targetValue = new ArrayList<>();
                     getStudentCostSaving(getString(R.string.txt_monthly_small));
-                    getGraphData(getString(R.string.txt_month_graph));
+                 //   getGraphData(getString(R.string.txt_month_graph));
 
                 }
 
@@ -204,6 +216,51 @@ public class HowMuchSaveFragment extends BaseFragment implements
         });
 
     }
+
+
+
+    public void setItemForSpinnerChart() {
+        final ArrayList<String> spinnerItemList = new ArrayList<>();
+        spinnerItemList.add(getString(R.string.txt_monthly));
+        spinnerItemList.add(getString(R.string.txt_cycle));
+        final CharSequence[] charSequenceItems = spinnerItemList.toArray(new CharSequence[spinnerItemList.size()]);
+
+
+        HighLightArrayAdapter adapter = new HighLightArrayAdapter(getActivity(), R.layout.text_chart_layout,
+                charSequenceItems, spinnerChart);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerChart.setAdapter(adapter);
+        spinnerChart.setSelection(0, false);
+        spinnerChart.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    xVals = new ArrayList<>();
+                    yaxisValueForStudent = new ArrayList<>();
+                    getYaxisValueForSchoolAvg = new ArrayList<>();
+                    targetValue = new ArrayList<>();
+                    getGraphData(getString(R.string.txt_month_graph));
+
+                } else if (i == 1) {
+                    xVals = new ArrayList<>();
+                    yaxisValueForStudent = new ArrayList<>();
+                    getYaxisValueForSchoolAvg = new ArrayList<>();
+                    targetValue = new ArrayList<>();
+                    getGraphData(getString(R.string.txt_cycle_small));
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
 
 
     public void setItemForFootPrintSpinner() {
@@ -417,12 +474,14 @@ public class HowMuchSaveFragment extends BaseFragment implements
                                 for (int i = 0; i < response.body().getStudent().size(); i++) {
                                     xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
                                     Log.e("xAxisDateFromStudent", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
-
+                                    aFloat=response.body().getStudent().get(response.body().getStudent().size()-1).getTs();
                                 }
                             } else {
                                 for (int i = 0; i < response.body().getAvg().size(); i++) {
                                     xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
                                     Log.e("xAxisDateFromAvg", "" + ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
+                                    aFloat=response.body().getAvg().get(response.body().getAvg().size()-1).getTs();
+
 
                                 }
                             }
@@ -491,6 +550,9 @@ public class HowMuchSaveFragment extends BaseFragment implements
         YAxis leftYAxis = mChart.getAxisLeft();
         leftYAxis.setAxisMinValue(0);
 
+
+     // mChart.getXAxis().setAxisMaxValue(aFloat);
+
         LineDataSet set1, set2, set3;
 
         // create a dataset and give it a type
@@ -556,7 +618,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.fitScreen();
 
         mChart.setTouchEnabled(true);
-        mChart.setDragEnabled(false);
+        mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
         mChart.setScaleXEnabled(true);
         mChart.setScaleYEnabled(true);

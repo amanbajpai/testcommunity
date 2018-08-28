@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.fabric.sdk.android.Fabric;
+
 import org.greenrobot.greendao.database.Database;
 
 import retrofit2.Retrofit;
@@ -28,12 +29,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @SuppressWarnings("ALL")
 public class ISFApp extends Application {
     static ISFApp appInstance;
+    Database db;
     private Retrofit retrofit;
     private Api api;
     private DaoSession daoSession;
-    Database db;
 
 //CASTLEY	Alexander	10010006	A24cFuxs
+
+    public static ISFApp getAppInstance() {
+        if (appInstance == null) {
+            appInstance = new ISFApp();
+        }
+        return appInstance;
+    }
 
     @Override
     public void onCreate() {
@@ -46,24 +54,14 @@ public class ISFApp extends Application {
         AnalyticsTrackers.initialize(this);
         AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
 
-        Tracker tracker=getGoogleAnalyticsTracker();
+        Tracker tracker = getGoogleAnalyticsTracker();
         tracker.enableAdvertisingIdCollection(true);
-
-
-
-
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "isf-db");
-         db = helper.getWritableDb();
+        db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
 
     }
 
-    public static ISFApp getAppInstance() {
-        if (appInstance == null) {
-            appInstance = new ISFApp();
-        }
-        return appInstance;
-    }
     public Api getApi() {
         return api;
     }
@@ -71,7 +69,6 @@ public class ISFApp extends Application {
     public Database getDataBase() {
         return db;
     }
-
 
 
     private Retrofit getApiClient(String baseUrl) {

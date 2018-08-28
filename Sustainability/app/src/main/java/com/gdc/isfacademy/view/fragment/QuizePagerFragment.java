@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.Options;
 import com.gdc.isfacademy.model.Question;
+import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.view.adapter.QuizeListAdapter;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -21,13 +22,13 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter.OnListItemClick {
     public static final String TAG = "QuizePagerFragment";
-    QuizeListAdapter quizeListAdapter;
-    List<Options> optionList;
-    OpenSansLightTextview questionTv, questionNoTv;
-    Question question;
-    String questionNo, totalQuestion;
     int selectedPosition = 0;
-    QuizeFragment quizeFragment;
+    private QuizeListAdapter quizeListAdapter;
+    private List<Options> optionList;
+    private OpenSansLightTextview questionTv, questionNoTv;
+    public Question question;
+    private String questionNo, totalQuestion;
+    private QuizeFragment quizeFragment;
     // private CardView answer_three, answer_two, answer_one;
     private XRecyclerView pager_recylerview;
 
@@ -42,10 +43,10 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
 
     private void initView(View view) {
 
-        question = getArguments().getParcelable("question");
-        questionNo = getArguments().getString("questionNo");
+        question = getArguments().getParcelable(AppConstants.QUESTION);
+        questionNo = getArguments().getString(AppConstants.QUESTION_NUMBER);
         optionList = question.getOptions();
-        totalQuestion = getArguments().getString("totalQuestion");
+        totalQuestion = getArguments().getString(AppConstants.TOTAL_QUESTION);
 
         quizeFragment = ((QuizeFragment) QuizePagerFragment.this.getParentFragment());
 
@@ -64,26 +65,10 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
         quizeListAdapter.setQuestion(question);
         pager_recylerview.setAdapter(quizeListAdapter);
         quizeListAdapter.setOnListItemClick(this);
-      /*  answer_three = (CardView) view.findViewById(R.id.answer_three);
-        answer_two = (CardView) view.findViewById(R.id.answer_three);
-        answer_one = (CardView) view.findViewById(R.id.answer_three);
-
-        answer_three.setOnClickListener(this);
-        answer_two.setOnClickListener(this);
-        answer_one.setOnClickListener(this);*/
         questionTv.setText(question.getQuestion());
         questionNoTv.setText(questionNo + "/" + totalQuestion);
     }
 
-
-    /*@Override
-    public void onClick(View view) {
-        super.onClick(view);
-
-        int id = view.getId();
-        switch (id) {
-        }
-    }*/
 
     @Override
     public void onClick(int id, int pos) {
@@ -95,19 +80,13 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
                 for (int i = 0; i < optionList.size(); i++) {
                     optionList.get(i).setSelected(false);
                 }
-
                 question.setAnswered(true);
                 question.setCorrect(isCorrect);
                 question.setUserSelectedAnswer(pos);
                 optionList.get(pos).setSelected(true);
                 quizeListAdapter.notifyDataSetChanged();
-
                 quizeFragment.setView();
 
-//                if(pos==optionList.size())
-//                {
-//                    ((HomeActivity) getActivity()).pushFragments(new QuizeCompletedFragement(), null, true);
-//                }
                 break;
         }
 

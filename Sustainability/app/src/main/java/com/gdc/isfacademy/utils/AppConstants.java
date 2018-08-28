@@ -103,6 +103,12 @@ public class AppConstants {
     public static final String BRONZE="D";
     public static final String LOCKED="E";
 
+    public static final String QUESTION="question";
+    public static final String QUESTION_NUMBER="questionNo";
+    public static final String TOTAL_QUESTION="totalQuestion";
+
+    public static final int SHARE_QUIZ_RESULT_STATUS=101;
+
 
 
 

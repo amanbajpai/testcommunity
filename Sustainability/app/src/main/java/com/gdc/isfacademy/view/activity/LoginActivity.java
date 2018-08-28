@@ -187,6 +187,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
             @Override
             public void onFailure(Call<LoginParentResponse> call, Throwable t) {
+                t.getMessage();
                 t.printStackTrace();
                 ProjectUtil.hideKeyboard(LoginActivity.this);
                 hideProgressDialog();
