@@ -23,7 +23,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
-
 @SuppressWarnings("ALL")
 public interface Api {
 
@@ -39,6 +38,7 @@ public interface Api {
     * {"studentId":10010006,"password":"A24cFuxs"}
     * */
 
+
     @Headers({
             "Accept: application/json",
             "Content-Type: application/json"
@@ -48,36 +48,80 @@ public interface Api {
                                     @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                     @Body() RequestBody jsonObject);
 
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+    @POST(ApiConstants.ApiUrls.AUTH + ApiConstants.ApiUrls.LOGIN)
+    Call<LoginParentResponse> loginnew(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                       @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                       @Body() RequestBody jsonObject);
+
+
+
+    /*
+    *
+    * Api call for submitting quiz result answer to server
+    *
+    * */
     @GET(ApiConstants.ApiUrls.SUBMIT_ANSWER)
     Call<CommonResponse> submitQuestion(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                         @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                         @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                         @Query(ApiConstants.ApiParams.CORRECT) String jsonObject);
 
+    /*
+    *
+    *
+    * Api call for gettinga all student list according to there ranking.
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_STUDENTS_RANKINGS)
     Call<RankingParentResponse> getStudentRankings(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                    @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                    @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                    @Query(ApiConstants.ApiParams.TYPE) String type);
 
+    /*
+    *
+    *
+    * Api call to get student energy saving.
+    *
+    * */
+
     @GET(ApiConstants.ApiUrls.GET_STUDENTS_ENERGY_SAVING)
     Call<EnergySavingResponse> getStudentEnergySaving(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                       @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                       @Query(ApiConstants.ApiParams.TYPE) String type);
-
+    /*
+    *
+    *
+    * Api call to get building enrgy saving data
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_BUILDING_ENERGY_SAVING)
     Call<BuildingEnergySaving> getBuildingStudentEnergySaving(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                               @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                               @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
-
+    /*
+    *
+    *
+    * Api call to check quiz result shared on diffrent platform
+    *
+    * */
     @GET(ApiConstants.ApiUrls.SUBMIT_SHARE_POINTS)
     Call<CommonResponse> submitSharePoints(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                            @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                            @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
-
+    /*
+    *
+    *
+    * Api call to get student foot print record
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_STUDENT_FOOT_PRINT)
     Call<StudentFootPrintResponse> getStudentFootPrint(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                        @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
@@ -85,41 +129,105 @@ public interface Api {
                                                        @Query(ApiConstants.ApiParams.TYPE) String type);
 
 
+    /*
+    *
+    *
+    * Api call to get student saved cost data
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_STUDENT_COST_SAVED)
     Call<StudentSavedCostResponse> getStudentCostSaved(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                        @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                        @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                        @Query(ApiConstants.ApiParams.TYPE) String type);
-
+    /*
+    *
+    *
+    * Api call to check quiz submitted for the day or not
+    *
+    * */
     @GET(ApiConstants.ApiUrls.CHECK_STUDENT_QUESTION)
     Call<CommonResponse> checkStudenQuestions(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                               @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                               @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
+    /*
+    *
+    *
+    * Api call for getting reward list of student logged in.
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_STUDENT_REWARDS)
     Call<StudentRewardResponse> getStudentRewards(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                   @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                   @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
+    /*
+    *
+    *
+    * Api call for getting consumption comparison of student and school
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_DAILY_CONSUMPTION_RETRIVE_LIST)
     Call<RetrieveDailyConsResponse> getDailyConsumptionGraphList(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                                  @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                                  @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                                  @Query(ApiConstants.ApiParams.TYPE) String type);
 
+    /*
+    *
+    * Api Call for getting student activity logs.
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_STUDENT_LOGS)
     Call<StudentLogResponse> getStudentLogs(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                             @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                             @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
+    /*
+    *
+    * Api call for getting student badges allotment to student
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_STUDENT_BADGES)
     Call<StudentBadgeResponse> getStudentBadges(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
-                                              @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
-                                              @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+                                                @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 
+    /*
+    *
+    * Api call for getting student status for ranking,challenge count,share count
+    *
+    * */
     @GET(ApiConstants.ApiUrls.GET_STUDENT_STATUS)
     Call<StudentStatusResponse> getStudentStatus(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
                                                  @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                  @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
+    /*
+    *
+    * Api call for retriev student reward token.
+    *
+    * */
+    @GET(ApiConstants.ApiUrls.GET_REWARD_TOKEN)
+    Call<CommonResponse> getRewardToken(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                        @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                        @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                        @Query(ApiConstants.ApiParams.REWARD_ID) String isfRewardsId);
+
+
+    /*
+    *
+    *
+    * Api call to reddem student reward.
+    *
+    * */
+    @GET(ApiConstants.ApiUrls.REDEEM_REWARD)
+    Call<CommonResponse> redeemReward(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                      @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                      @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                      @Query(ApiConstants.ApiParams.REWARD_TOKEN) String token,
+                                      @Query(ApiConstants.ApiParams.PASSWORD_REWARD) String staffCode);
+
 
 }

@@ -14,6 +14,17 @@ public class RewardStudentResponse {
     @SerializedName("expTs")
     @Expose
     private String expTs;
+    @SerializedName("status")
+    @Expose
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     boolean isItemOpen=false;
 

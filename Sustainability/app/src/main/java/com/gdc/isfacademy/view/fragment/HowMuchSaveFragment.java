@@ -38,7 +38,6 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -56,13 +55,13 @@ public class HowMuchSaveFragment extends BaseFragment implements
     public String typeCheck;
     AppCompatTextView currentWeekConsumption, upto_date_tv, energyUnit, cost_tv, valueCarbon, hotChoclateText, unitCarbon, valueTree, how_much_save_label;
     EnergySavingResponse.CurrentCons currentCons;
-    AppCompatSpinner costSaveSpinner, spinnerfootPrint,spinnerChart;
+    AppCompatSpinner costSaveSpinner, spinnerfootPrint, spinnerChart;
     AppCompatTextView randomSaveInstructionText;
     ArrayList<String> xVals;
     ArrayList<Entry> yaxisValueForStudent, getYaxisValueForSchoolAvg, targetValue;
+    String aFloat;
     private LineChart mChart;
     private String dateEnergySaving;
-    String aFloat;
     private LinearLayout chartView;
 
     public static HowMuchSaveFragment newInstance() {
@@ -89,9 +88,9 @@ public class HowMuchSaveFragment extends BaseFragment implements
     }
 
     public void init(View view) {
-        spinnerChart=(AppCompatSpinner)view.findViewById(R.id.spinnerChart);
-        chartView=(LinearLayout)view.findViewById(R.id.chartView);
-        mChart = new LineChart(getActivity()) ;//just populating data, etc
+        spinnerChart = (AppCompatSpinner) view.findViewById(R.id.spinnerChart);
+        chartView = (LinearLayout) view.findViewById(R.id.chartView);
+        mChart = new LineChart(getActivity());//just populating data, etc
         chartView.addView(mChart);
         mChart.getLayoutParams().height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
         mChart.getLayoutParams().width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -108,7 +107,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         valueCarbon = (AppCompatTextView) view.findViewById(R.id.value_carbon);
         unitCarbon = (AppCompatTextView) view.findViewById(R.id.unitCarbon);
         valueTree = (AppCompatTextView) view.findViewById(R.id.valueTree);
-       // mChart = (LineChart) view.findViewById(R.id.linechart);
+        // mChart = (LineChart) view.findViewById(R.id.linechart);
         randomSaveInstructionText = (AppCompatTextView) view.findViewById(R.id.randomSaveInstructionText);
 
         xVals = new ArrayList<>();
@@ -187,7 +186,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                     getYaxisValueForSchoolAvg = new ArrayList<>();
                     targetValue = new ArrayList<>();
                     getStudentCostSaving(getString(R.string.txt_daily));
-                 //   getGraphData(getString(R.string.txt_month_graph));
+                    //   getGraphData(getString(R.string.txt_month_graph));
 
                 } else if (i == 1) {
                     xVals = new ArrayList<>();
@@ -195,7 +194,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                     getYaxisValueForSchoolAvg = new ArrayList<>();
                     targetValue = new ArrayList<>();
                     getStudentCostSaving(getString(R.string.txt_cycle_small));
-                  //  getGraphData(getString(R.string.txt_month_graph));
+                    //  getGraphData(getString(R.string.txt_month_graph));
 
                 } else if (i == 2) {
                     xVals = new ArrayList<>();
@@ -203,7 +202,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                     getYaxisValueForSchoolAvg = new ArrayList<>();
                     targetValue = new ArrayList<>();
                     getStudentCostSaving(getString(R.string.txt_monthly_small));
-                 //   getGraphData(getString(R.string.txt_month_graph));
+                    //   getGraphData(getString(R.string.txt_month_graph));
 
                 }
 
@@ -216,7 +215,6 @@ public class HowMuchSaveFragment extends BaseFragment implements
         });
 
     }
-
 
 
     public void setItemForSpinnerChart() {
@@ -260,7 +258,6 @@ public class HowMuchSaveFragment extends BaseFragment implements
         });
 
     }
-
 
 
     public void setItemForFootPrintSpinner() {
@@ -474,13 +471,11 @@ public class HowMuchSaveFragment extends BaseFragment implements
                                 for (int i = 0; i < response.body().getStudent().size(); i++) {
                                     xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
                                     Log.e("xAxisDateFromStudent", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
-                                    aFloat=response.body().getStudent().get(response.body().getStudent().size()-1).getTs();
                                 }
                             } else {
                                 for (int i = 0; i < response.body().getAvg().size(); i++) {
                                     xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
                                     Log.e("xAxisDateFromAvg", "" + ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
-                                    aFloat=response.body().getAvg().get(response.body().getAvg().size()-1).getTs();
 
 
                                 }
@@ -504,15 +499,15 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
                                 }
                                 for (int i = 0; i < response.body().getStudent().size(); i++) {
-                                    float value = new BigDecimal(response.body().getStudent().get(i).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
-                                    Log.e("valuesStudent", "" + value);
+                                    float value = new BigDecimal(response.body().getStudent().get(i).getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
+                                    Log.e("valuesForAvg", "" + value);
                                     yaxisValueForStudent.add(new Entry(value, i));
                                 }
 
                             }
                             if (response.body().getAvg() != null && response.body().getAvg().size() > 0) {
                                 for (int i = 0; i < response.body().getAvg().size(); i++) {
-                                    float value = new BigDecimal(response.body().getAvg().get(i).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+                                    float value = new BigDecimal(response.body().getAvg().get(i).getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
                                     Log.e("valuesForSchool", "" + value);
                                     getYaxisValueForSchoolAvg.add(new Entry(value, i));
                                 }
@@ -551,7 +546,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         leftYAxis.setAxisMinValue(0);
 
 
-     // mChart.getXAxis().setAxisMaxValue(aFloat);
+        // mChart.getXAxis().setAxisMaxValue(aFloat);
 
         LineDataSet set1, set2, set3;
 
@@ -612,11 +607,17 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
         // create a data object with the datasets
         LineData data = new LineData(xVals, dataSets);
+      /*  data.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+               DecimalFormat mFormat = new DecimalFormat("###,###,##0.0"); // use one decimal
+                return mFormat.format(value);
+            }
+        });*/
 
         // set data
         mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         mChart.fitScreen();
-
         mChart.setTouchEnabled(true);
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
@@ -625,6 +626,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.setPinchZoom(true);
         mChart.setDoubleTapToZoomEnabled(false);
         mChart.setData(data);
+        mChart.setVisibleXRangeMaximum(5);
         mChart.invalidate();
 
 

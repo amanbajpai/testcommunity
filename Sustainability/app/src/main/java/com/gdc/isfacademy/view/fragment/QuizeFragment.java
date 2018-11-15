@@ -31,7 +31,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+/*
+*
+* Class Responsible for Quiz section,start daily Quiz.
+*
+* */
 @SuppressWarnings("ALL")
 public class QuizeFragment extends BaseFragment implements View.OnClickListener {
 
@@ -46,15 +50,19 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         rootView = inflater.inflate(R.layout.quize_fragment_layout, null);
         initView(rootView);
-
         createList();
-
         return rootView;
     }
 
+    /**
+     *
+     *
+     * Initailizing screen views.
+     * @param view used to get the xml objects.
+     *
+     */
     private void initView(View view) {
         fragmentList = new ArrayList<>();
         viewpager = (CustomViewPager) view.findViewById(R.id.viewpager);
@@ -67,36 +75,29 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         indicatorsView = (IndicatorsView) view.findViewById(R.id.indicatorsView);
         viewpager.setOffscreenPageLimit(0);
         viewpager.setEnabled(false);
-
         indicatorsView.setViewPager(viewpager);
-
         indicatorsView.setSmoothTransition(true);
-
         indicatorsView.setIndicatorsClickChangePage(false);
-
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
-
             @Override
             public void onPageSelected(int position) {
                 setView();
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
-
         previousBt.setOnClickListener(this);
         nextBt.setOnClickListener(this);
         finishBt.setOnClickListener(this);
-
     }
 
+    /**
+     * Creating list to show question and answer for daily quiz.
+     */
     private void createList() {
         try {
             int answeredCount = MyPref.getInstance(getActivity()).getAnsweredCount();
@@ -128,6 +129,12 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         }
     }
 
+    /**
+     *
+     * Inserting
+     * @param view used to get the xml objects.
+     *
+     */
     private void addToDb(QuestionsResponse response) {
         try {
             ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
@@ -311,7 +318,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             if (answeredCount == 20)
                 answeredCount = 0;
             else
-                answeredCount += 5;
+                answeredCount += 3;
 
             MyPref.getInstance(getActivity()).setAnsweredCount(answeredCount);
 

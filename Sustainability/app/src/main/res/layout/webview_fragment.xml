@@ -10,7 +10,7 @@
 
     <WebView
         android:padding="@dimen/_10sdp"
-        android:id="@+id/aboutIsfWebView"
+        android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >

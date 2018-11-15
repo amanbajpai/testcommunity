@@ -4,6 +4,7 @@ package com.gdc.isfacademy.utils;
 
 @SuppressWarnings("ALL")
 public class AppConstants {
+
     public static final int SPLASH_HOLD_TIME = 3000;
     public static final int TOP_RANKED_VIEW=0;
     public static final int OTHERS_RANK_VIEW=1;
@@ -108,6 +109,17 @@ public class AppConstants {
     public static final String TOTAL_QUESTION="totalQuestion";
 
     public static final int SHARE_QUIZ_RESULT_STATUS=101;
+    public static final String TRUE="true";
+    public static final String FALSE="false";
+
+    public static final String ABOUT_US_URL="https://www.isf.edu.hk/";
+    public static final String TERMS_AND_CONDITION_URL="https://www.energybox.com/terms-of-sales/";
+    public static final String PRIVACY_POLICY_URL="https://www.energybox.com/privacy-policy/";
+
+    public static final String USED_REWARD="USED";
+    public static final String ACTIVE_REWARD="ACTIVE";
+
+
 
 
 

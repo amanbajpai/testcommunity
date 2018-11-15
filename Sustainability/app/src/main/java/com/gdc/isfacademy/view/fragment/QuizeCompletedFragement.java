@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +59,6 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
     }
 
     private void initView(View view) {
-
         share_tv = (OpenSansSemiBoldTextView) view.findViewById(R.id.share_tv);
         share_tv.setOnClickListener(this);
     }
@@ -76,7 +74,6 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
                 sendIntent.setType("text/plain");
                 startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
                 break;
-
             case R.id.profile_share_tv:
                 break;
 

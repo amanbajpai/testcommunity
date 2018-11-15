@@ -8,6 +8,15 @@ public class CommonResponse {
     String responseMessage;
     String submitted;
     String correct;
+    String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getCorrect() {
         return correct;

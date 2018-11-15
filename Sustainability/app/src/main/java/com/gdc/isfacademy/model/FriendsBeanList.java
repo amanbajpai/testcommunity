@@ -7,7 +7,15 @@ package com.gdc.isfacademy.model;
 @SuppressWarnings("ALL")
 public class FriendsBeanList {
     String name;
-    boolean isRequestSend=false;
+    int viewFlag;
+
+    public int getViewFlag() {
+        return viewFlag;
+    }
+
+    public void setViewFlag(int viewFlag) {
+        this.viewFlag = viewFlag;
+    }
 
     public String getName() {
         return name;
@@ -17,13 +25,7 @@ public class FriendsBeanList {
         this.name = name;
     }
 
-    public boolean isRequestSend() {
-        return isRequestSend;
-    }
 
-    public void setRequestSend(boolean requestSend) {
-        isRequestSend = requestSend;
-    }
 
     public FriendsBeanList(String name) {
         this.name = name;

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gdc.isfacademy.application.ISFApp;
+import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.RewardStudentResponse;
 import com.gdc.isfacademy.model.StudentRewardResponse;
 import com.gdc.isfacademy.model.StudentStatusResponse;
@@ -36,8 +37,9 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
     XRecyclerView rewards_recylerview;
     List<RewardStudentResponse> rewardListResponses;
     RewardsAdapter rewardsAdapter;
-    private AppCompatTextView title_reward_text,gift_text;
-
+    LinearLayoutManager linearLayoutManager;
+    private AppCompatTextView title_reward_text, gift_text;
+    private String redeemToken;
 
     public static RewardsFragment newInstance() {
         RewardsFragment rewardsFragment = new RewardsFragment();
@@ -60,13 +62,13 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
         rewards_recylerview.setPullRefreshEnabled(false);
         View voucherHeader = LayoutInflater.from(getActivity()).inflate(R.layout.header_rewards,
                 (ViewGroup) rootView.findViewById(android.R.id.content), false);
-        title_reward_text=(AppCompatTextView)voucherHeader.findViewById(R.id.title_text);
-        gift_text=(AppCompatTextView)voucherHeader.findViewById(R.id.gift_text);
+        title_reward_text = (AppCompatTextView) voucherHeader.findViewById(R.id.title_text);
+        gift_text = (AppCompatTextView) voucherHeader.findViewById(R.id.gift_text);
         rewards_recylerview.addHeaderView(voucherHeader);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rewards_recylerview.setLayoutManager(linearLayoutManager);
-        rewardsAdapter = new RewardsAdapter(getActivity(), rewardListResponses);
+        rewardsAdapter = new RewardsAdapter(getActivity(), rewardListResponses, rewards_recylerview);
         rewardsAdapter.setOnRewardItemClickListner(this);
         rewards_recylerview.setAdapter(rewardsAdapter);
 
@@ -74,25 +76,61 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
 
 
     @Override
-    public void onClick(int id, int pos) {
+    public void onClick(int id, final int position, String staffCode) {
         switch (id) {
             case R.id.rewards_relative_layout:
-                if (rewardListResponses.get(pos).isItemOpen()) {
+               /* if (rewardListResponses.get(pos).isItemOpen()) {
                     rewardListResponses.get(pos).setItemOpen(false);
                 } else {
                     rewardListResponses.get(pos).setItemOpen(true);
+                }*/
+                redeemToken = "";
+                if (!rewardListResponses.get(position).isItemOpen()) {
+                    for (int i = 0; i < rewardListResponses.size(); i++) {
+                        rewardListResponses.get(i).setItemOpen(false);
+                    }
+                    rewardListResponses.get(position).setItemOpen(true);
+                    rewardsAdapter.notifyDataSetChanged();
+                    rewards_recylerview.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            linearLayoutManager.scrollToPositionWithOffset(position, position);
+                        }
+                    });
+
+                } else {
+                    rewardListResponses.get(position).setItemOpen(false);
+                    rewardsAdapter.notifyDataSetChanged();
+
                 }
+                getTokenForRedeem(rewardListResponses.get(position).getIsfRewardsId());
+
+                break;
+            case R.id.cancelBtn:
+                rewardListResponses.get(position).setItemOpen(false);
+                rewardsAdapter.notifyDataSetChanged();
+                break;
+            case R.id.redeemBtn:
+                redeemReward(redeemToken, staffCode);
+                break;
+            case R.id.closeBtn:
+                rewardListResponses.get(position).setItemOpen(false);
                 rewardsAdapter.notifyDataSetChanged();
                 break;
         }
     }
 
 
+    /*
+    *
+    *
+    * Api call for getting student reward list
+    *
+    * */
     private void getStudentRewards() {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
             return;
-
         }
         try {
             showProgressDialog(getActivity());
@@ -111,12 +149,11 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             if (response.body().getRewards() != null && response.body().getRewards().size() > 0) {
-                                rewardListResponses=response.body().getRewards();
-                                rewardsAdapter.setList(getActivity(),rewardListResponses);
+                                rewardListResponses = response.body().getRewards();
+                                rewardsAdapter.setList(getActivity(), rewardListResponses);
                             }
 
-                        }
-                        else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                        } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
                         }
                     }
@@ -127,6 +164,57 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                 @Override
                 public void onFailure(Call<StudentRewardResponse> call, Throwable t) {
                     getStudentStatus();
+                    if (getActivity() != null) {
+                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                    }
+                    t.printStackTrace();
+                }
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    /*
+    *
+    *
+    * Api call for getting reward item token.
+    *
+    * */
+    private void getTokenForRedeem(String rewardId) {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+            return;
+        }
+        try {
+            showProgressDialog(getActivity());
+            Call<CommonResponse> call = ISFApp.getAppInstance()
+                    .getApi()
+                    .getRewardToken(AppConstants.API_KEY,
+                            AppConstants.CONTENT_TYPE,
+                            MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY),
+                            rewardId);
+
+            ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+            call.enqueue(new Callback<CommonResponse>() {
+                @Override
+                public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                    ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                    hideProgressDialog();
+                    if (response.body() != null) {
+                        if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                            redeemToken = response.body().getToken();
+                        } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                            ProjectUtil.logoutFromApp(getActivity());
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<CommonResponse> call, Throwable t) {
 
                     if (getActivity() != null) {
                         ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
@@ -140,11 +228,68 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
     }
 
 
+    /*
+    *
+    *
+    * Api call for redeem student reward
+    *
+    * */
+    private void redeemReward(String token, String staffCode) {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+            return;
+        }
+        try {
+            showProgressDialog(getActivity());
+            Call<CommonResponse> call = ISFApp.getAppInstance()
+                    .getApi()
+                    .redeemReward(AppConstants.API_KEY,
+                            AppConstants.CONTENT_TYPE,
+                            MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY),
+                            token, staffCode);
+
+            ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+            call.enqueue(new Callback<CommonResponse>() {
+                @Override
+                public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                    ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                    hideProgressDialog();
+                    if (response.body() != null) {
+                        if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                            getStudentRewards();
+                        } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                            ProjectUtil.logoutFromApp(getActivity());
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<CommonResponse> call, Throwable t) {
+
+                    if (getActivity() != null) {
+                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                    }
+                    t.printStackTrace();
+                }
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    /*
+    *
+    *
+    * Api call for getting student current ranking,challange and share status
+    *
+    * */
     private void getStudentStatus() {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
             return;
-
         }
         try {
             Call<StudentStatusResponse> call = ISFApp.getAppInstance()
@@ -162,20 +307,18 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                     hideProgressDialog();
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                            if(response.body().getIsfStudentStatus()!=null){
-                                if(response.body().getIsfStudentStatus().getRankingCount()!=null){
-                                    if(Integer.parseInt(response.body().getIsfStudentStatus().getRankingCount())<=5){
+                            if (response.body().getIsfStudentStatus() != null) {
+                                if (response.body().getIsfStudentStatus().getRankingCount() != null) {
+                                    if (Integer.parseInt(response.body().getIsfStudentStatus().getRankingCount()) <= 5) {
                                         title_reward_text.setText(getString(R.string.txt_reward_text));
                                         gift_text.setVisibility(View.GONE);
                                         gift_text.setText(getString(R.string.txt_gift));
-                                    }
-                                    else {
+                                    } else {
                                         gift_text.setVisibility(View.GONE);
                                         title_reward_text.setText(getString(R.string.txt_no_reward_text));
                                     }
 
-                                }
-                                else {
+                                } else {
                                     gift_text.setVisibility(View.GONE);
                                     title_reward_text.setText(getString(R.string.txt_no_reward_text));
                                 }
@@ -183,8 +326,7 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                             }
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
-                        }
-                        else {
+                        } else {
                             gift_text.setVisibility(View.GONE);
                             title_reward_text.setText(getString(R.string.txt_no_reward_text));
                         }

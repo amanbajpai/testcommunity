@@ -26,10 +26,13 @@ import com.gdc.isfacademy.view.fragment.ChallengeFragment;
 import com.gdc.isfacademy.view.fragment.HomeFragment;
 import com.gdc.isfacademy.view.fragment.HowMuchSaveFragment;
 import com.gdc.isfacademy.view.fragment.LeftMenuFragment;
+import com.gdc.isfacademy.view.fragment.PrivacyPolicyFragment;
 import com.gdc.isfacademy.view.fragment.ProfileFragment;
 import com.gdc.isfacademy.view.fragment.QuizeCompletedFragement;
 import com.gdc.isfacademy.view.fragment.QuizeFragment;
 import com.gdc.isfacademy.view.fragment.RewardsFragment;
+import com.gdc.isfacademy.view.fragment.SendFriendRequestFragment;
+import com.gdc.isfacademy.view.fragment.TermsConditionFragment;
 
 @SuppressWarnings("ALL")
 public class HomeActivity extends BaseActivity implements
@@ -199,6 +202,12 @@ public class HomeActivity extends BaseActivity implements
             case 1:
                 pushFragments(AboutISfFragment.newInstance(),null,false);
                 break;
+            case 2:
+                pushFragments(TermsConditionFragment.newInstance(),null,false);
+                break;
+            case 3:
+                pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
+                break;
             case 4:
                 ProjectUtil.logoutFromAppMenu(HomeActivity.this);
                 break;
@@ -308,6 +317,11 @@ public class HomeActivity extends BaseActivity implements
                 backBtn.setVisibility(View.VISIBLE);
                 break;
             case AboutISfFragment.TAG:
+                sliderIcon.setVisibility(View.GONE);
+                // searchIcon.setVisibility(View.VISIBLE);
+                backBtn.setVisibility(View.VISIBLE);
+                break;
+            case SendFriendRequestFragment.TAG:
                 sliderIcon.setVisibility(View.GONE);
                 // searchIcon.setVisibility(View.VISIBLE);
                 backBtn.setVisibility(View.VISIBLE);

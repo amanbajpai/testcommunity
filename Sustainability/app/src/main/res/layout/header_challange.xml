@@ -85,7 +85,6 @@
 
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:id="@+id/add_friend_tv"
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

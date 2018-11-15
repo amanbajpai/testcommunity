@@ -1,6 +1,5 @@
 package com.gdc.isfacademy.view.fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,31 +11,30 @@ import android.webkit.WebViewClient;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.utils.AppConstants;
 
+/**
+ * Created by ashishthakur on 5/9/18.
+ */
 
-@SuppressWarnings("ALL")
-public class AboutISfFragment extends BaseFragment {
-    public static final String TAG = "AboutISfFragment";
-    WebView webViewAboutUs;
+public class TermsConditionFragment extends BaseFragment {
+    public static final String TAG = "TermsConditionFragment";
+    WebView webviewTermsAndCondition;
 
-    public static AboutISfFragment newInstance() {
-        AboutISfFragment aboutISfFragment = new AboutISfFragment();
-        return aboutISfFragment;
+    public static TermsConditionFragment newInstance() {
+        TermsConditionFragment termsConditionFragment = new TermsConditionFragment();
+        return termsConditionFragment;
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.webview_fragment, null);
-        webViewAboutUs = (WebView) view.findViewById(R.id.webView);
-        webViewAboutUs.getSettings().setJavaScriptEnabled(true);
-        webViewAboutUs.getSettings().setDomStorageEnabled(true);
-        webViewAboutUs.setWebViewClient(new AppWebViewClients());
-        webViewAboutUs.loadUrl(AppConstants.ABOUT_US_URL);
-
-        return view;
+        rootView = inflater.inflate(R.layout.webview_fragment, container, false);
+        webviewTermsAndCondition = (WebView) rootView.findViewById(R.id.webView);
+        webviewTermsAndCondition.getSettings().setJavaScriptEnabled(true);
+        webviewTermsAndCondition.getSettings().setDomStorageEnabled(true);
+        webviewTermsAndCondition.setWebViewClient(new AppWebViewClients());
+        webviewTermsAndCondition.loadUrl(AppConstants.TERMS_AND_CONDITION_URL);
+        return rootView;
     }
-
 
     public class AppWebViewClients extends WebViewClient {
 

@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="13dp"
         tools:ignore="UselessParent">
 
         <LinearLayout
@@ -194,6 +193,8 @@
                         </LinearLayout>
 
 
+
+
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:visibility="gone"
@@ -292,7 +293,7 @@
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_toLeftOf="@+id/rightArrowImagView"
                     android:layout_toRightOf="@+id/infoImagView"
-                    android:text="@string/how_to_save_more_money"
+                    android:text="@string/txt_tips"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp"
                     tools:ignore="RtlHardcoded" />
@@ -304,7 +305,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/small_arrow"
+                    android:src="@drawable/share"
                     android:tint="@color/white"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
