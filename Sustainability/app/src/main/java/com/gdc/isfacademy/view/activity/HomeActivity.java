@@ -30,6 +30,7 @@ import com.gdc.isfacademy.view.fragment.PrivacyPolicyFragment;
 import com.gdc.isfacademy.view.fragment.ProfileFragment;
 import com.gdc.isfacademy.view.fragment.QuizeCompletedFragement;
 import com.gdc.isfacademy.view.fragment.QuizeFragment;
+import com.gdc.isfacademy.view.fragment.RealTimeSchoolFragment;
 import com.gdc.isfacademy.view.fragment.RewardsFragment;
 import com.gdc.isfacademy.view.fragment.SendFriendRequestFragment;
 import com.gdc.isfacademy.view.fragment.TermsConditionFragment;
@@ -187,7 +188,9 @@ public class HomeActivity extends BaseActivity implements
         drawerLayout.closeDrawer(containerFrag);
         switch (position) {
             case 0:
-                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.Visionaries777.isfacademy");
+                pushFragments(RealTimeSchoolFragment.newInstance(),null,false);
+
+              /*  Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.Visionaries777.isfacademy");
                 if (launchIntent != null) {
                     startActivity(launchIntent);//null pointer check in case package name was not found
                 }
@@ -197,7 +200,7 @@ public class HomeActivity extends BaseActivity implements
                     } catch (android.content.ActivityNotFoundException anfe) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.Visionaries777.isfacademy&hl=en")));
                     }
-                }
+                }*/
                 break;
             case 1:
                 pushFragments(AboutISfFragment.newInstance(),null,false);

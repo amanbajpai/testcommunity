@@ -4,6 +4,7 @@ import com.gdc.isfacademy.model.BuildingEnergySaving;
 import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.LoginParentResponse;
+import com.gdc.isfacademy.model.ParentFriendListResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.model.RetrieveDailyConsResponse;
 import com.gdc.isfacademy.model.StudentBadgeResponse;
@@ -58,7 +59,6 @@ public interface Api {
                                        @Body() RequestBody jsonObject);
 
 
-
     /*
     *
     * Api call for submitting quiz result answer to server
@@ -94,6 +94,7 @@ public interface Api {
                                                       @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                       @Query(ApiConstants.ApiParams.TYPE) String type);
+
     /*
     *
     *
@@ -140,6 +141,7 @@ public interface Api {
                                                        @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                        @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                        @Query(ApiConstants.ApiParams.TYPE) String type);
+
     /*
     *
     *
@@ -228,6 +230,55 @@ public interface Api {
                                       @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                       @Query(ApiConstants.ApiParams.REWARD_TOKEN) String token,
                                       @Query(ApiConstants.ApiParams.PASSWORD_REWARD) String staffCode);
+
+
+    /*
+    *
+    * Api call for getting student friend list status
+    *
+    * */
+    @GET(ApiConstants.ApiUrls.RETRIVE_FRIEND_LIST)
+    Call<ParentFriendListResponse> getFriendList(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                 @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                 @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
+    /*
+   *
+   * Api call for accepting friend request
+   *
+   * */
+    @GET(ApiConstants.ApiUrls.ACCEPT_FRIEND_REQUEST)
+    Call<CommonResponse> acceptFriendRequest(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                             @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                             @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                             @Query(ApiConstants.ApiParams.FRIEND_ID) String friendId);
+
+
+    /*
+    *
+    *
+    * Api call for Remove friend from friend list
+    *
+    *
+    * */
+    @GET(ApiConstants.ApiUrls.REMOVE_FRIEND)
+    Call<CommonResponse> removeFriendFromList(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                              @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                              @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                              @Query(ApiConstants.ApiParams.FRIEND_ID) String friendId);
+
+
+    /*
+    *
+    * Api call for sending friend request.
+    *
+    * */
+    @GET(ApiConstants.ApiUrls.SEND_FRIEND_REQUEST_VIA_EMAIL)
+    Call<CommonResponse> sendFriendRequest(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                           @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                           @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
+                                           @Query(ApiConstants.ApiParams.EMAIL) String email,
+                                           @Query(ApiConstants.ApiParams.BODY) String body);
 
 
 }

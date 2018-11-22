@@ -334,4 +334,11 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             ex.printStackTrace();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity) getActivity()).backBtn.setVisibility(View.VISIBLE);
+        ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.GONE);
+    }
 }

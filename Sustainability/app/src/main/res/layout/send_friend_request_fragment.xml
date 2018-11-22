@@ -55,6 +55,7 @@
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicEditText
                         android:layout_width="match_parent"
+                        android:id="@+id/emailAddressEt"
                         app:theme="@style/EditTextTheme"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
@@ -101,6 +102,7 @@
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/bodyEmailEt"
                             android:background="@android:color/transparent"
                             android:layout_height="wrap_content"
                             app:theme="@style/EditTextTheme"
@@ -112,6 +114,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             tools:ignore="RtlHardcoded" />
+
 
 
                     </RelativeLayout>
@@ -140,6 +143,21 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_11sdp"
             />
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+            android:layout_width="match_parent"
+            android:id="@+id/extraText"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            app:theme="@style/EditTextTheme"
+            android:imeOptions="actionSend"
+            android:textColorHint="@color/light_text_color"
+            android:text="@string/txt_plz_check_this_link"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:textColor="@android:color/transparent"
+            android:textSize="@dimen/_12sdp"
+            tools:ignore="RtlHardcoded" />
+
 
     </LinearLayout>
 

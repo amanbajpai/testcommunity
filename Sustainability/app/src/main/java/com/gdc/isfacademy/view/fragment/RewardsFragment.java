@@ -51,7 +51,7 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.rewards_fragment, container, false);
         init();
-        getStudentRewards();
+        getStudentRewards(false);
         return rootView;
     }
 
@@ -97,13 +97,14 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                             linearLayoutManager.scrollToPositionWithOffset(position, position);
                         }
                     });
-
+                    if(rewardListResponses.get(position).getStatus().equalsIgnoreCase(AppConstants.ACTIVE_REWARD)){
+                        getTokenForRedeem(rewardListResponses.get(position).getIsfRewardsId());
+                    }
                 } else {
                     rewardListResponses.get(position).setItemOpen(false);
                     rewardsAdapter.notifyDataSetChanged();
 
                 }
-                getTokenForRedeem(rewardListResponses.get(position).getIsfRewardsId());
 
                 break;
             case R.id.cancelBtn:
@@ -111,7 +112,7 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                 rewardsAdapter.notifyDataSetChanged();
                 break;
             case R.id.redeemBtn:
-                redeemReward(redeemToken, staffCode);
+                redeemReward(redeemToken, staffCode, position);
                 break;
             case R.id.closeBtn:
                 rewardListResponses.get(position).setItemOpen(false);
@@ -127,13 +128,16 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
     * Api call for getting student reward list
     *
     * */
-    private void getStudentRewards() {
+    private void getStudentRewards(boolean fromReward) {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
             return;
         }
         try {
-            showProgressDialog(getActivity());
+            if (!fromReward) {
+                showProgressDialog(getActivity());
+
+            }
             Call<StudentRewardResponse> call = ISFApp.getAppInstance()
                     .getApi()
                     .getStudentRewards(AppConstants.API_KEY,
@@ -234,9 +238,17 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
     * Api call for redeem student reward
     *
     * */
-    private void redeemReward(String token, String staffCode) {
+    private void redeemReward(String token, String staffCode, final int postion) {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+            return;
+        }
+        else if(staffCode.isEmpty()){
+            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.txt_please_enter_staff_code));
+            return;
+        }
+        else if(token.isEmpty()){
+            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.txt_please_genrate_token));
             return;
         }
         try {
@@ -254,12 +266,35 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                 @Override
                 public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                     ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
-                    hideProgressDialog();
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                            getStudentRewards();
+                            ProjectUtil.showToast(getActivity(), getString(R.string.txt_redeem_successfully));
+                            rewardListResponses.get(postion).setItemOpen(false);
+                            rewardsAdapter.notifyDataSetChanged();
+                            getStudentRewards(true);
+                        } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_INVALID_STAFF_CODE)
+                                || response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_INVALID_STAFF_CODE_SECOND)) {
+                            if (response.body().getResponseMessage() != null) {
+                                ProjectUtil.showToast(getActivity(), response.body().getResponseMessage());
+                            } else {
+                                ProjectUtil.showToast(getActivity(), getString(R.string.txt_invalid_staff));
+                            }
+                            hideProgressDialog();
+
+                        } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_INVALID_VOUCHER)) {
+                            if (response.body().getResponseMessage() != null) {
+                                ProjectUtil.showToast(getActivity(), response.body().getResponseMessage());
+                            } else {
+                                ProjectUtil.showToast(getActivity(), getString(R.string.txt_voucher_invalid));
+                            }
+                            hideProgressDialog();
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
+                            hideProgressDialog();
+
+                        } else {
+                            ProjectUtil.showToast(getActivity(), response.body().getResponseMessage());
+                            hideProgressDialog();
                         }
                     }
 
@@ -267,7 +302,7 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
 
                 @Override
                 public void onFailure(Call<CommonResponse> call, Throwable t) {
-
+                    hideProgressDialog();
                     if (getActivity() != null) {
                         ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
                     }

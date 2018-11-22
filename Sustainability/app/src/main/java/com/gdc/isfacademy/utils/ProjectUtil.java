@@ -349,7 +349,7 @@ public class ProjectUtil {
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(ISFApp.getAppInstance().getApplicationContext())
                     .setSmallIcon(getNotificationIconnew())
-                    .setLargeIcon(BitmapFactory.decodeResource(ISFApp.getAppInstance().getApplicationContext().getResources(), R.drawable.app_icon))
+                    .setLargeIcon(BitmapFactory.decodeResource(ISFApp.getAppInstance().getApplicationContext().getResources(), R.drawable.app_icon_school))
                     .setContentTitle("Daily challenge!")
                     .setContentText(message)
                     .setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -373,7 +373,7 @@ public class ProjectUtil {
 
     private static int getNotificationIconnew() {
         boolean useWhiteIcon = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
-        return useWhiteIcon ? R.drawable.app_icon : R.drawable.icon_push;
+        return useWhiteIcon ? R.drawable.app_icon_school : R.drawable.app_icon_school;
     }
 
 

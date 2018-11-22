@@ -12,6 +12,7 @@ import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.Options;
 import com.gdc.isfacademy.model.Question;
 import com.gdc.isfacademy.utils.AppConstants;
+import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.adapter.QuizeListAdapter;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -99,6 +100,13 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
 
     public void showRightAnswerView() {
         quizeListAdapter.setRightAnswerView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity) getActivity()).backBtn.setVisibility(View.VISIBLE);
+        ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.GONE);
     }
 
 }

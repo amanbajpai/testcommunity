@@ -25,6 +25,11 @@ public class AppConstants {
     public static final String CURRENT_ENERGY_CONSUMPTION="cec";
     public static final String CURRENT_ENERGY_UNIT="currentEnergyUnit";
 
+    public static final String RESPONSE_CODE_INVALID_STAFF_CODE="C9904";
+    public static final String RESPONSE_CODE_INVALID_STAFF_CODE_SECOND="C0711";
+    public static final String RESPONSE_CODE_INVALID_VOUCHER="C0707";
+
+
     public static final int  ERROR_LOG=1;
     public static final int  DEBUG_LOG=0;
     public static final int REQUEST_LOCATION=101;
@@ -115,6 +120,8 @@ public class AppConstants {
     public static final String ABOUT_US_URL="https://www.isf.edu.hk/";
     public static final String TERMS_AND_CONDITION_URL="https://www.energybox.com/terms-of-sales/";
     public static final String PRIVACY_POLICY_URL="https://www.energybox.com/privacy-policy/";
+    public static final String REAL_TIME_SITE="http://webxr.s3-accelerate.amazonaws.com/energybox/ConvenienceStore2/index.html";
+
 
     public static final String USED_REWARD="USED";
     public static final String ACTIVE_REWARD="ACTIVE";

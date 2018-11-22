@@ -137,4 +137,10 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
             }
         }
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity) getActivity()).backBtn.setVisibility(View.VISIBLE);
+        ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.GONE);
+    }
 }

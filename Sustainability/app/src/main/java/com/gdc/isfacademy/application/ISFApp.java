@@ -30,8 +30,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ISFApp extends Application {
     static ISFApp appInstance;
     Database db;
-    private Retrofit retrofit,retrofitLogin;
-    private Api api,apiLogin;
+    private Retrofit retrofit, retrofitLogin;
+    private Api api, apiLogin;
     private DaoSession daoSession;
 
 //CASTLEY	Alexander	10010006	A24cFuxs
@@ -46,13 +46,14 @@ public class ISFApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         Fabric.with(this, new Crashlytics());
         appInstance = ISFApp.this;
         retrofit = getApiClient(ApiConstants.API_SERVER_URL);
         api = retrofit.create(Api.class);
 
-        retrofitLogin=getApiClientLogin(ApiConstants.API_LOGIN_URL);
-        apiLogin=retrofitLogin.create(Api.class);
+        retrofitLogin = getApiClientLogin(ApiConstants.API_LOGIN_URL);
+        apiLogin = retrofitLogin.create(Api.class);
 
 
         AnalyticsTrackers.initialize(this);
@@ -69,6 +70,7 @@ public class ISFApp extends Application {
     public Api getApi() {
         return api;
     }
+
     public Api getApiLogin() {
         return apiLogin;
     }
@@ -90,6 +92,7 @@ public class ISFApp extends Application {
         }
         return retrofit;
     }
+
     private Retrofit getApiClientLogin(String baseUrl) {
         if (retrofitLogin == null) {
             Gson gson = new GsonBuilder()

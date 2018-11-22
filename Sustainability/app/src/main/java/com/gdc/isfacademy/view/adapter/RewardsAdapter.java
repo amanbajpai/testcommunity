@@ -2,6 +2,7 @@ package com.gdc.isfacademy.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -151,6 +153,10 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.Holder> 
             holder.redeemLayout.setVisibility(View.GONE);
             holder.alreadyRedeemLayout.setVisibility(View.VISIBLE);
             holder.expires_days_text.setText(context.getString(R.string.txt_flag_redeemed));
+            holder.expires_days_text.setTextColor(ContextCompat.getColor(context,R.color.disable));
+            holder.stausMessage.setTextColor(ContextCompat.getColor(context,R.color.disable));
+            holder.rewardType.setTextColor(ContextCompat.getColor(context,R.color.disable));
+            holder.rewardIcons.setColorFilter(ContextCompat.getColor(context, R.color.disable), android.graphics.PorterDuff.Mode.MULTIPLY);
         }
         else {
             holder.redeemLayout.setVisibility(View.VISIBLE);
@@ -158,6 +164,10 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.Holder> 
             holder.expires_days_text.setText(context.getString(R.string.txt_expires_in)+" "+
                     getDaysDifference(mymethod(new Date().getTime()),
                             mymethod(Long.parseLong(rewardListResponses.get(position).getExpTs())))+"d" );
+            holder.expires_days_text.setTextColor(ContextCompat.getColor(context,R.color.semi_light_color));
+            holder.stausMessage.setTextColor(ContextCompat.getColor(context,R.color.semi_light_color));
+            holder.rewardType.setTextColor(ContextCompat.getColor(context,R.color.semi_light_color));
+            holder.rewardIcons.setColorFilter(ContextCompat.getColor(context, R.color.light_text_color), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         }
         holder.rewardType.setText(rewardListResponses.get(position).getType());
@@ -221,7 +231,7 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.Holder> 
     }
 
 
-   public class Holder extends RecyclerView.ViewHolder {
+    public class Holder extends RecyclerView.ViewHolder {
         final RelativeLayout rewards_relative_layout;
         final LinearLayout qr_code_relative_layout;
         final EditText staffCode;
@@ -230,7 +240,8 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.Holder> 
                 codeTextFour,cancelBtn,redeemBtn,expires_days_text;
         final FrameLayout redeemLayout;
         final LinearLayout alreadyRedeemLayout;
-        final TextView rewardType,closeBtn;
+        final TextView rewardType,closeBtn,stausMessage;
+        final ImageView rewardIcons;
 
         public Holder(View itemView) {
             super(itemView);
@@ -252,6 +263,8 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardsAdapter.Holder> 
             alreadyRedeemLayout=(LinearLayout)itemView.findViewById(R.id.alreadyRedeemLayout);
             rewardType=(TextView)itemView.findViewById(R.id.reward_type);
             closeBtn=(TextView)itemView.findViewById(R.id.closeBtn);
+            stausMessage=(TextView)itemView.findViewById(R.id.staus_message);
+            rewardIcons=(ImageView)itemView.findViewById(R.id.reward_icons);
 
         }
     }

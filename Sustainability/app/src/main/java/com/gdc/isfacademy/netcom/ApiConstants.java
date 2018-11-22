@@ -30,6 +30,12 @@ public interface ApiConstants {
         public static final String GET_REWARD_TOKEN = "retrieveStudentRewardsToken";
         public static final String REDEEM_REWARD = "redeemReward";
 
+        public static final String RETRIVE_FRIEND_LIST="retrieveFriendList";
+        public static final String ACCEPT_FRIEND_REQUEST="confirmFriend";
+        public static final String SEND_FRIEND_REQUEST_VIA_EMAIL="addFriend";
+        public static final String REMOVE_FRIEND="deleteFriend";
+
+
 
 
         /*
@@ -62,6 +68,9 @@ public interface ApiConstants {
         public static final String REWARD_ID="isfRewardsId";
         public static final String REWARD_TOKEN="token";
         public static final String PASSWORD_REWARD="password";
+
+        public static final String FRIEND_ID="friendId";
+        public static final String BODY="body";
 
 
     }

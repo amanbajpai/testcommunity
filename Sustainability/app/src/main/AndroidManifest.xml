@@ -16,7 +16,7 @@
         android:hardwareAccelerated="true"
         android:name="com.gdc.isfacademy.application.ISFApp"
         android:allowBackup="true"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/app_icon_school"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/FullScreenTheme"
@@ -31,6 +31,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name="com.gdc.isfacademy.view.activity.HomeActivity"
             android:launchMode="singleTask"
@@ -99,6 +100,14 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+
+        <!-- Branch install referrer tracking -->
+     <!--   <receiver android:name="io.branch.referral.InstallListener" android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>-->
+
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService"
             android:enabled="true"
             android:exported="false" />
@@ -106,6 +115,13 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="9891a1e0e8fd631d4a4c6b13bea0b5b20747b133" />
+
+        <!-- Branch init -->
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_ikOoj7zG3SMvYw2macgk6bgozroY9ip0" />
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_ohPpf5tQYNLzYA2laaj0YaklAxe2Zaqh" />
+
+        <!-- Branch testing (TestMode "true" to simulate fresh installs on dev environment) -->
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
     </application>
 
 </manifest>

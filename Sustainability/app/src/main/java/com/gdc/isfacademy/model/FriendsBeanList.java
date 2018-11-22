@@ -7,15 +7,8 @@ package com.gdc.isfacademy.model;
 @SuppressWarnings("ALL")
 public class FriendsBeanList {
     String name;
-    int viewFlag;
 
-    public int getViewFlag() {
-        return viewFlag;
-    }
 
-    public void setViewFlag(int viewFlag) {
-        this.viewFlag = viewFlag;
-    }
 
     public String getName() {
         return name;

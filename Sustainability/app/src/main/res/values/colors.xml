@@ -25,5 +25,6 @@
     <color name="color_cofffe">#734d4d4d</color>
     <color name="disable">#4d42505D</color>
     <color name="challange_text_color">#BF42505d</color>
+    <color name="reward_color_active">#F2F2F9FA</color>
 
 </resources>

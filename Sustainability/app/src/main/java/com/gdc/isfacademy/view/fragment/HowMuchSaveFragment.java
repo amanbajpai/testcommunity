@@ -24,6 +24,7 @@ import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
+import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.adapter.HighLightArrayAdapter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -681,4 +682,11 @@ public class HowMuchSaveFragment extends BaseFragment implements
     public void onNothingSelected() {
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity) getActivity()).backBtn.setVisibility(View.VISIBLE);
+        ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.GONE);
+    }
+
 }

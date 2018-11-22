@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.BadgeStudentResponse;
+import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.adapter.BadgeDetailAdapter;
 
 import java.util.ArrayList;
@@ -81,5 +82,13 @@ public class BadgeDetailFragment extends BaseFragment {
         badgeDetailAdapter = new BadgeDetailAdapter(getActivity(), localBadgeStudentResponses);
         badge_detail_recylerview.setAdapter(badgeDetailAdapter);
 
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity) getActivity()).backBtn.setVisibility(View.VISIBLE);
+        ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.GONE);
     }
 }

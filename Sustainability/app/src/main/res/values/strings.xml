@@ -26,6 +26,10 @@
     <!--Common Strings-->
     <string name="dialog_btn_no">No</string>
     <string name="dialog_message_exit">Are you sure you want to exit?</string>
+    <string name="dialog_message_decline_friend_request">Are you sure you want to decline friend request?</string>
+    <string name="dialog_message_delete_friend">Are you sure you want to remove this friend?</string>
+
+
     <string name="app_restriction_message">You can\'t use app between 8 AM to 4 PM.</string>
 
     <string name="dialog_btn_yes">Yes</string>
@@ -104,6 +108,11 @@ Here\'s your gift!</string>
     <string name="txt_reddem">Redeem</string>
     <string name="txt_staff_use_only">(Staff use only)</string>
     <string name="txt_expires_in">Expires in </string>
+    <string name="txt_invalid_staff">Staff code entered is invalid</string>
+    <string name="txt_voucher_invalid">This voucher is invalid</string>
+    <string name="txt_redeem_successfully">Reward redeemed successfully</string>
+    <string name="txt_please_enter_staff_code">Please ask the staff to enter their code to redeem reward</string>
+    <string name="txt_please_genrate_token">Genrate token before redeem reward</string>
 
 
     <!--Friends add Strings-->
@@ -123,6 +132,7 @@ Here\'s your gift!</string>
     <string name="txt_send_friend_req">Send a friend request</string>
     <string name="txt_email_addrress">Email address</string>
     <string name="txt_hint_email_content"> Hi(aakash sharma),this is ashish sending you a friend request.</string>
+    <string name="txt_plz_check_this_link"> Click link to see in app https://energybox.page.link/Posx.</string>
     <string name="txt_Send_btn">Send</string>
 
 
@@ -166,6 +176,7 @@ Here\'s your gift!</string>
     <string name="txt_try_again">Something went wrong,please refresh again.</string>
     <string name="txt_next">Next</string>
     <string name="txt_check">Check</string>
+    <string name="txt_no_records_found">no records found</string>
 
 
     <!--Instruction Text-->
