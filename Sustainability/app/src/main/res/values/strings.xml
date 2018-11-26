@@ -120,7 +120,7 @@ Here\'s your gift!</string>
     <string name="txt_daily_challange">It\'s time for your daily challenge!"</string>
     <string name="txt_quize_reminder">This is a reminder for your daily challenge</string>
     <string name="txt_friend_request_header">Friend Request</string>
-    <string name="txt_all_friends">All Friends (</string>
+    <string name="txt_all_friends">Friends (</string>
     <string name="txt_see_all">See all (</string>
     <string name="txt_see_min">See less</string>
     <string name="txt_accept">Accept</string>

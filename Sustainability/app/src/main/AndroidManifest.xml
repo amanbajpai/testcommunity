@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+
         android:hardwareAccelerated="true"
         android:name="com.gdc.isfacademy.application.ISFApp"
         android:allowBackup="true"
@@ -30,6 +31,21 @@
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Branch URI scheme -->
+            <intent-filter>
+                <data android:scheme="Isfenergybox.isf://" android:host="open" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+            <!-- Branch App Links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="isf.app.link" />
             </intent-filter>
 
         </activity>
@@ -101,12 +117,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Branch install referrer tracking -->
-     <!--   <receiver android:name="io.branch.referral.InstallListener" android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>-->
 
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService"
             android:enabled="true"
@@ -116,12 +126,21 @@
             android:name="io.fabric.ApiKey"
             android:value="9891a1e0e8fd631d4a4c6b13bea0b5b20747b133" />
 
+
+
         <!-- Branch init -->
-        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_ikOoj7zG3SMvYw2macgk6bgozroY9ip0" />
-        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_ohPpf5tQYNLzYA2laaj0YaklAxe2Zaqh" />
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_lbLmsno05pUw3K4vKVrWidfduylf78mM" />
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_poPozbo25dGtZVXyGSAK3idnDxgg70lE" />
 
         <!-- Branch testing (TestMode "true" to simulate fresh installs on dev environment) -->
         <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
-    </application>
+        <!-- Branch install referrer tracking -->
+        <!-- Branch install referrer tracking -->
+        <receiver android:name="io.branch.referral.InstallListener" android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+         </application>
 
 </manifest>

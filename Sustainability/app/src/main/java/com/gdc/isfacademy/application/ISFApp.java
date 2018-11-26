@@ -15,6 +15,8 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import io.branch.referral.Branch;
+import io.branch.referral.BranchApp;
 import io.fabric.sdk.android.Fabric;
 
 import org.greenrobot.greendao.database.Database;
@@ -27,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 @SuppressWarnings("ALL")
-public class ISFApp extends Application {
+public class ISFApp extends BranchApp {
     static ISFApp appInstance;
     Database db;
     private Retrofit retrofit, retrofitLogin;
@@ -46,6 +48,7 @@ public class ISFApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Branch.getAutoInstance(this);
 
         Fabric.with(this, new Crashlytics());
         appInstance = ISFApp.this;

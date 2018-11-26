@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,6 +36,12 @@ import com.gdc.isfacademy.view.fragment.RewardsFragment;
 import com.gdc.isfacademy.view.fragment.SendFriendRequestFragment;
 import com.gdc.isfacademy.view.fragment.TermsConditionFragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import io.branch.referral.Branch;
+import io.branch.referral.BranchError;
+
 @SuppressWarnings("ALL")
 public class HomeActivity extends BaseActivity implements
         LeftMenuFragment.FragmentDrawerListener,
@@ -48,6 +55,8 @@ public class HomeActivity extends BaseActivity implements
     public ImageView backBtn;
     public Toolbar toolbar;
     View containerFrag;
+    public static boolean isFromLink=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -341,6 +350,42 @@ public class HomeActivity extends BaseActivity implements
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Branch branch = Branch.getInstance();
 
+        // Branch init
+        branch.initSession(new Branch.BranchReferralInitListener() {
+            @Override
+            public void onInitFinished(JSONObject referringParams, BranchError error) {
+                if (error == null) {
+                    // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+                    // params will be empty if no data found
+                    // ... insert custom logic here ...
+                    try {
+
+                        Log.e("status linked clicked",""+referringParams.getString("+clicked_branch_link"));
+                        if(referringParams.getString("+clicked_branch_link").equalsIgnoreCase("true")){
+                            isFromLink=true;
+                            bottomNavigationView.setSelectedItemId(R.id.navigation_challenge);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Log.e("BRANCH SDK", referringParams.toString());
+                } else {
+                    Log.e("BRANCH SDK", error.getMessage());
+                }
+                Log.i("test", "called");
+
+            }
+        }, this.getIntent().getData(), this);
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        this.setIntent(intent);
+    }
 
 }

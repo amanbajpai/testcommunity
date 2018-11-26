@@ -44,7 +44,7 @@ import retrofit2.Response;
 @SuppressWarnings("ALL")
 public class ChallengeFragment extends BaseFragment implements View.OnClickListener {
     public static final String TAG = "ExploreFragment";
-
+    public static boolean isDataRefresh = false;
     private XRecyclerView challenge_recylerview;
     private HomeActivity activity;
     private Context context;
@@ -53,7 +53,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
     private AppCompatTextView friendsRankBtn, houseRankBtn;
     private OpenSansSemiBoldTextView add_friend_tv;
     private ImageView start_quize_image;
-    private String isQusetionAnswerSubmited="";
+    private String isQusetionAnswerSubmited = "";
     private TextView startNowTv;
 
     public static ChallengeFragment newInstance() {
@@ -72,7 +72,19 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.challenge_fragment, null);
-        initView(view);
+        if (HomeActivity.isFromLink) {
+            HomeActivity.isFromLink = false;
+            isDataRefresh = false;
+            initView(view);
+            ((HomeActivity) getActivity()).pushFragments(new AddFriendFragment(), null, true);
+        } else {
+            isDataRefresh = true;
+            HomeActivity.isFromLink = false;
+            initView(view);
+            getQuizSubmittedStatus();
+            getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
+
+        }
         return view;
     }
 
@@ -91,7 +103,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         View voucherHeader = LayoutInflater.from(getActivity()).inflate(R.layout.header_challange,
                 (ViewGroup) view.findViewById(android.R.id.content), false);
         challenge_recylerview.addHeaderView(voucherHeader);
-        startNowTv=(TextView)voucherHeader.findViewById(R.id.startNowTv);
+        startNowTv = (TextView) voucherHeader.findViewById(R.id.startNowTv);
         friendsRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.friendsRankBtn);
         houseRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.houseRankBtn);
         friendsRankBtn.setOnClickListener(this);
@@ -108,8 +120,6 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         start_quize_image = (ImageView) voucherHeader.findViewById(R.id.start_quize_image);
         add_friend_tv.setOnClickListener(this);
         startNowTv.setOnClickListener(this);
-        getQuizSubmittedStatus();
-        getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
     }
 
     @Override
@@ -117,6 +127,11 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         super.onResume();
         ((HomeActivity) getActivity()).backBtn.setVisibility(View.GONE);
         ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.VISIBLE);
+        if (!isDataRefresh) {
+            isDataRefresh = true;
+            getQuizSubmittedStatus();
+            getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
+        }
 
 
     }
@@ -146,13 +161,12 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
             case R.id.startNowTv:
                 if (isQusetionAnswerSubmited.equalsIgnoreCase(AppConstants.FALSE)) {
                     ((HomeActivity) getActivity()).pushFragments(new QuizeFragment(), null, true);
-                } else if(isQusetionAnswerSubmited.equalsIgnoreCase(AppConstants.TRUE)) {
+                } else if (isQusetionAnswerSubmited.equalsIgnoreCase(AppConstants.TRUE)) {
                     Bundle bundle = new Bundle();
                     bundle.putInt(AppConstants.ANSWER_COUNT, MyPref.getInstance(getActivity()).readIntegerPrefs(MyPref.QUIZ_COUNT));
                     ((HomeActivity) getActivity()).pushFragments(QuizeCompletedFragement.newInstance(), bundle, true);
-                }
-                else {
-                    ProjectUtil.showToast(getActivity(),getString(R.string.txt_try_again));
+                } else {
+                    ProjectUtil.showToast(getActivity(), getString(R.string.txt_try_again));
                 }
                 break;
         }
@@ -186,23 +200,23 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                 ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                 hideProgressDialog();
                 if (response.body() != null) {
-                    if(response.body().getResponseCode()!=null){
-                        if(response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)){
-                            if(response.body().isSubmitted().equalsIgnoreCase(AppConstants.TRUE)){
-                                isQusetionAnswerSubmited=response.body().isSubmitted();
-                                if(response.body().getCorrect()!=null){
-                                    MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT,Integer.parseInt(response.body().getCorrect()));
+                    if (response.body().getResponseCode() != null) {
+                        if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                            if (response.body().isSubmitted().equalsIgnoreCase(AppConstants.TRUE)) {
+                                isQusetionAnswerSubmited = response.body().isSubmitted();
+                                if (response.body().getCorrect() != null) {
+                                    MyPref.getInstance(getActivity()).writeIntegerPrefs(MyPref.QUIZ_COUNT, Integer.parseInt(response.body().getCorrect()));
                                 }
                                 start_quize_image.setImageResource(R.drawable.challenge_header_result);
-                            }
-                            else if(response.body().isSubmitted().equalsIgnoreCase(AppConstants.FALSE)){
-                                isQusetionAnswerSubmited=response.body().isSubmitted();
+                            } else if (response.body().isSubmitted().equalsIgnoreCase(AppConstants.FALSE)) {
+                                isQusetionAnswerSubmited = response.body().isSubmitted();
                                 start_quize_image.setImageResource(R.drawable.challenge_header);
                             }
                         }
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
                 ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
@@ -214,11 +228,9 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
     }
 
     /**
-     *
-     *
      * Api call for getting getting student ranking in term of type given.
-     * @param type used to get rank according to type friend and gender.
      *
+     * @param type used to get rank according to type friend and gender.
      */
     private void getStudentRanking(final String type) {
         if (!CheckNetworkState.isOnline(getActivity())) {
@@ -246,9 +258,9 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                             String studenId = MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID);
                             challangeRankLists.clear();
                             for (int i = 0; i < response.body().getRankings().size(); i++) {
-                                int rank=i+1;
+                                int rank = i + 1;
                                 ChallangeRankList challangeRankList = new ChallangeRankList();
-                                challangeRankList.setRanking(""+rank);
+                                challangeRankList.setRanking("" + rank);
                                 challangeRankList.setHouse(response.body().getRankings().get(i).getHouse());
                                 challangeRankList.setLastUpdateDate(response.body().getRankings().get(i).getLastUpdateDate());
                                 challangeRankList.setLastUpdateTs(response.body().getRankings().get(i).getLastUpdateTs());
@@ -274,12 +286,11 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                         }
                     } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                         ProjectUtil.logoutFromApp(getActivity());
-                    }else {
+                    } else {
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 
                     }
                 }
-
 
             }
 

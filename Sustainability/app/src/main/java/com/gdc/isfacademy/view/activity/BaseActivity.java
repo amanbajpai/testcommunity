@@ -26,22 +26,45 @@ public class BaseActivity extends AppCompatActivity {
      */
     public void showProgressDialog(Context context) {
 
+
         if (!CheckNetworkState.isOnline(context)) {
             ProjectUtil.showToast(context, context.getString(R.string.txt_network_error));
             return;
         }
-        if (mProgressDialog == null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mProgressDialog = new ProgressDialog(new ContextThemeWrapper(context, R.style.MyProgressDialog));
-            } else {
-                mProgressDialog = new ProgressDialog(context);
+
+        if(Build.VERSION.SDK_INT>Build.VERSION_CODES.N_MR1){
+            if (mProgressDialog == null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mProgressDialog = new ProgressDialog(new ContextThemeWrapper(context, R.style.MyProgressDialog));
+                } else {
+                    mProgressDialog = new ProgressDialog(context);
+                }
+            }
+            if (!mProgressDialog.isShowing()) {
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.setMessage(context.getResources().getString(R.string.txt_please_wait));
+                mProgressDialog.show();
+            }
+/*
+        ProjectUtil.showToast(context,"OREO VERSIOn");
+*/
+        }
+        else {
+            if (mProgressDialog == null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mProgressDialog = new ProgressDialog(new ContextThemeWrapper(context, R.style.MyProgressDialog));
+                } else {
+                    mProgressDialog = new ProgressDialog(context);
+                }
+            }
+            if (!mProgressDialog.isShowing()) {
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.setMessage(context.getResources().getString(R.string.txt_please_wait));
+                mProgressDialog.show();
             }
         }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.setMessage(context.getResources().getString(R.string.txt_please_wait));
-            mProgressDialog.show();
-        }
+
+
     }
 
     /**
