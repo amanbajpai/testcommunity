@@ -2,12 +2,15 @@ package com.gdc.isfacademy.view.fragment;
 
 import android.animation.ValueAnimator;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 @SuppressWarnings("ALL")
-public class HomeFragment extends BaseFragment implements View.OnClickListener{
+public class HomeFragment extends BaseFragment implements View.OnClickListener {
     public static final String TAG = "HomeFragment";
     public static boolean isQuizSubmited = false;
     public SeekBar seekbar;
@@ -48,6 +51,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     ImageView percentArrow, buildingEnergyStatusArrow;
     AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding;
     AppCompatSpinner spinner;
+    String thisWeekStatusValue, lastWeekStatusValue;
     private RelativeLayout how_much_save_rl;
     private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
             buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv;
@@ -130,13 +134,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     public void run() {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable(AppConstants.CURRENT_ENERGY_UNIT, currentCons);
-                        bundle.putString(AppConstants.PICK_ENERGY_SAVING_DATE,currentCosumptionDate.getText().toString().trim());
+                        bundle.putString(AppConstants.PICK_ENERGY_SAVING_DATE, currentCosumptionDate.getText().toString().trim());
                         ((HomeActivity) getActivity()).pushFragments(new HowMuchSaveFragment(), bundle, true);
                     }
-                },500);
+                }, 500);
 
                 break;
-
 
 
         }
@@ -265,6 +268,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                             buildingEnergyStatusArrow.setVisibility(View.GONE);
                             buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
                             zeroPercentSavedBuilding.setVisibility(View.VISIBLE);
+                            zeroPercentSavedBuilding.setTextColor(getResources().getColor(android.R.color.holo_red_light));
                             ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
                         }
                     }
@@ -309,8 +313,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 buildingEnergyStatusArrow.setColorFilter(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.color_text_and_spinner), android.graphics.PorterDuff.Mode.SRC_IN);
                 buildingPercentTextview.setTextColor(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.color_text_and_spinner));
                 buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.down_arrow_energy));
-                buildingEnergyStatusArrow.setVisibility(View.VISIBLE);
-                zeroPercentSavedBuilding.setVisibility(View.GONE);
+                buildingEnergyStatusArrow.setVisibility(View.GONE);
+                zeroPercentSavedBuilding.setVisibility(View.VISIBLE);
+                zeroPercentSavedBuilding.setTextColor(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.color_text_and_spinner));
             } else // Energy Lost
             {
                 actualSaving = 0.0f;
@@ -318,6 +323,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 buildingEnergyStatusArrow.setVisibility(View.GONE);
                 buildingEnergyStatusArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.up_arrow));
                 zeroPercentSavedBuilding.setVisibility(View.VISIBLE);
+                zeroPercentSavedBuilding.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+
 
             }
 
@@ -351,11 +358,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             Log.d("time is",result);*/
 
 
-            String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
-            String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", lastValue, unit);
+            thisWeekStatusValue = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
+            lastWeekStatusValue = String.format(Locale.getDefault(), "  / %.2f %s", lastValue, unit);
+            String text = "<font color=#000000>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
 
-            thisWeekStatus.setText(currentCons);
-            lastWeekStatus.setText(lastWeekCons);
+            thisWeekStatus.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
+            //    lastWeekStatus.setText(lastWeekStatusValue);
 
             float actualSaving;
             if (lastValue > currentValue) // Energy Saved
@@ -400,16 +408,45 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
+                            String text = "";
                             float animProgress = (Float) animation.getAnimatedValue();
                             seekbar.setProgress((int) animProgress);
+                            text = "<font color=#4d4d4d>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
+                            int val = (seekbar.getProgress() * (seekbar.getWidth() - 2 * seekbar.getThumbOffset())) / seekbar.getMax();
+                            if (seekbar.getProgress() < 15) {
+                                text = "<font color=#ffffff>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
+
+                            } else if (seekbar.getProgress() > 15 && seekbar.getProgress() <= 20) {
+                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2));
+                            } else if (seekbar.getProgress() > 20 && seekbar.getProgress() <= 50) {
+                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._56sdp));
+
+                            } else if (seekbar.getProgress() > 50 && seekbar.getProgress() <= 80) {
+                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._90sdp));
+
+                            } else if (seekbar.getProgress() > 80 && seekbar.getProgress() <= 100) {
+                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._100sdp));
+
+                            }
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                thisWeekStatus.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
+
+                            } else {
+                                thisWeekStatus.setText(Html.fromHtml(text));
+
+                            }
                         }
                     });
                     anim.start();
+
                 }
             }, 500);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+
     }
 
 

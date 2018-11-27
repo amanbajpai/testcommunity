@@ -120,6 +120,22 @@ public class HomeActivity extends BaseActivity implements
             public void onDrawerStateChanged(int newState) {
             }
         });
+        leftMenuFragment.privacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawer(containerFrag);
+                pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
+
+            }
+        });
+        leftMenuFragment.termsCondition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawer(containerFrag);
+                pushFragments(TermsConditionFragment.newInstance(),null,false);
+
+            }
+        });
 
     }
 
@@ -212,16 +228,28 @@ public class HomeActivity extends BaseActivity implements
                 }*/
                 break;
             case 1:
-                pushFragments(AboutISfFragment.newInstance(),null,false);
+                //pushFragments(AboutISfFragment.newInstance(),null,false);
+                     Intent launchIntent = getPackageManager().getLaunchIntentForPackage("hk.edu.isf.isfapps");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+                else {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=hk.edu.isf.isfapps")));
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=hk.edu.isf.isfapps&hl=en")));
+                    }
+                }
                 break;
             case 2:
-                pushFragments(TermsConditionFragment.newInstance(),null,false);
+                ProjectUtil.logoutFromAppMenu(HomeActivity.this);
+
+                //pushFragments(TermsConditionFragment.newInstance(),null,false);
                 break;
             case 3:
-                pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
+               // pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
                 break;
             case 4:
-                ProjectUtil.logoutFromAppMenu(HomeActivity.this);
                 break;
 
         }

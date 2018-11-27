@@ -14,6 +14,9 @@ import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.QuestionsResponse;
+import com.gdc.isfacademy.model.QuizParentResponse;
+import com.gdc.isfacademy.model.StudentRewardResponse;
+import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
@@ -93,7 +96,55 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         previousBt.setOnClickListener(this);
         nextBt.setOnClickListener(this);
         finishBt.setOnClickListener(this);
+        //getQuestAnswerListFromServer();
     }
+
+
+    public void getQuestAnswerListFromServer(){
+            if (!CheckNetworkState.isOnline(getActivity())) {
+                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                return;
+            }
+            try {
+                showProgressDialog(getActivity());
+                Call<QuizParentResponse> call = ISFApp.getAppInstance()
+                        .getApi()
+                        .getQuizQuestionAnswer(AppConstants.API_KEY,
+                                AppConstants.CONTENT_TYPE,
+                                MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+
+                ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+                call.enqueue(new Callback<QuizParentResponse>() {
+                    @Override
+                    public void onResponse(Call<QuizParentResponse> call, Response<QuizParentResponse> response) {
+                        hideProgressDialog();
+                        ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                        if (response.body() != null) {
+                            if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+
+                            } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                                ProjectUtil.logoutFromApp(getActivity());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<QuizParentResponse> call, Throwable t) {
+                        if (getActivity() != null) {
+                            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                        }
+                        t.printStackTrace();
+                    }
+                });
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+
+    }
+
 
     /**
      * Creating list to show question and answer for daily quiz.

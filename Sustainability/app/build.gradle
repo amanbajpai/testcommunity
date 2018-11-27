@@ -100,6 +100,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:11.0.4'
     compile project(':xrecyclerview')
     compile 'io.branch.sdk.android:library:3.+'
+    compile 'com.daimajia.numberprogressbar:library:1.4@aar'
+
 
 
 }

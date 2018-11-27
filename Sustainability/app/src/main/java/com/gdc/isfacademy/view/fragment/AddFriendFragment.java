@@ -327,7 +327,8 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
                     hideProgressDialog();
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                            getFriendList();
+                           adapter.removeItemAtPostion(postion);
+                            //getFriendList();
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
                         }

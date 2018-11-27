@@ -54,7 +54,39 @@
     </android.support.v7.widget.RecyclerView>
 
 
+<LinearLayout
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    android:id="@+id/tandc_privacy_policy_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
+    <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/termsCondition"
+        android:background="@drawable/terms_condition_and_privacy_selector"
+        android:clickable="true"
+        android:padding="@dimen/_3sdp"
+        android:textColor="@color/white"
+        android:text="@string/txt_terms_condition"
+        android:textSize="@dimen/_10sdp"
+        android:layout_height="wrap_content" />
+    <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+        android:layout_width="wrap_content"
+        android:clickable="true"
+        android:id="@+id/privacyPolicy"
+        android:background="@drawable/terms_condition_and_privacy_selector"
+        android:padding="@dimen/_3sdp"
+        android:textColor="@color/white"
+        android:text="@string/txt_privacy_policy"
+        android:textSize="@dimen/_10sdp"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>
 
 </RelativeLayout>
 

@@ -47,6 +47,7 @@ public class SendFriendRequestFragment extends BaseFragment {
         send_btn_tv = (TextView) rootView.findViewById(R.id.send_btn_tv);
         emailAddress = (EditText) rootView.findViewById(R.id.emailAddressEt);
         bodyEmail = (EditText) rootView.findViewById(R.id.bodyEmailEt);
+        bodyEmail.setText("Hello,this is"+" "+MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_NAME)+" "+"Sending you a friend Request.");
         extraText = (TextView) rootView.findViewById(R.id.extraText);
 
         send_btn_tv.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +77,7 @@ public class SendFriendRequestFragment extends BaseFragment {
                             AppConstants.CONTENT_TYPE,
                             MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY),
                             email,
-                            body + extraText.getText().toString());
+                            body);
 
             ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
 
@@ -88,6 +89,8 @@ public class SendFriendRequestFragment extends BaseFragment {
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             ProjectUtil.showToast(getActivity(), response.body().getResponseMessage());
+                            emailAddress.setText("");
+                            bodyEmail.setText("");
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
                         } else {

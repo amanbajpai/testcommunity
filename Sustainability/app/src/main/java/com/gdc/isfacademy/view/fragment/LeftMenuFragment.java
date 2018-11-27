@@ -67,6 +67,8 @@ public class LeftMenuFragment extends BaseFragment {
     private FragmentDrawerListener drawerListener;
     private AppCompatTextView txt_menu_label;
     private  ImageView cancel;
+    public AppCompatTextView privacyPolicy,termsCondition;
+
 
     public LeftMenuFragment() {
 
@@ -90,8 +92,8 @@ public class LeftMenuFragment extends BaseFragment {
         sliderBeanArrayList=new ArrayList<>();
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_real_time)));
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_about_isf)));
-        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_terms_condition)));
-        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_privacy_policy)));
+       /* sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_terms_condition)));
+        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_privacy_policy)));*/
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_logout)));
 
     }
@@ -105,6 +107,8 @@ public class LeftMenuFragment extends BaseFragment {
         recyclerView = (RecyclerView) layout.findViewById(R.id.slide_menu_recylerview);
         txt_menu_label = (AppCompatTextView) layout.findViewById(R.id.menu_label);
         cancel = (ImageView) layout.findViewById(R.id.cancelDrawer);
+        privacyPolicy=(AppCompatTextView)layout.findViewById(R.id.privacyPolicy);
+        termsCondition=(AppCompatTextView)layout.findViewById(R.id.termsCondition);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,6 +136,7 @@ public class LeftMenuFragment extends BaseFragment {
             public void onLongClick(View view, int position) {
             }
         }));
+
         return layout;
     }
 

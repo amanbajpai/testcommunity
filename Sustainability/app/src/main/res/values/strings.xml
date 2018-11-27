@@ -18,7 +18,7 @@
     <string name="txt_no">No</string>
 
     <!--Bottom Navigation Bar Strings-->
-    <string name="txt_home">Home</string>
+    <string name="txt_home">Energy</string>
     <string name="txt_challenge">Challenge</string>
     <string name="txt_rewards">Rewards</string>
     <string name="txt_profile">Profile</string>
@@ -36,10 +36,10 @@
     <string name="txt_menu">Menu</string>
     <string name="open">open</string>
     <string name="close">close</string>
-    
+
     <!--Slider Menu Strings-->
-    <string name="txt_real_time">Real-time School Site</string>
-    <string name="txt_about_isf">About ISF</string>
+    <string name="txt_real_time">ISF Sustainability App</string>
+    <string name="txt_about_isf">ISP School App</string>
     <string name="txt_terms_condition">Terms &amp; Conditions</string>
     <string name="txt_privacy_policy">Privacy Policy</string>
     <string name="txt_logout">Logout</string>
@@ -63,7 +63,7 @@
     <string name="this_week">Today</string>
     <string name="kwh">kWh</string>
     <string name="trees">Tree</string>
-    <string name="hot_choklate">Hot chocolate</string>
+    <string name="hot_choklate">Hot Chocolate</string>
     <string name="cost_hk">costs \n HK$</string>
     <string name="turn_off_your_a_c_when_you_re_not_in_classroom">Turn off your A/C when you\'re not in Classroom</string>
     <string name="how_to_save_more_money">how to save more money ?</string>
@@ -97,10 +97,9 @@
     <string name="txt_top_ranked">You ranked 7 out of the whole school in may.</string>
     <string name="txt_gift">Here is your Gift!</string>
     <string name="txt_a_cup_of_free_drink">Free Drink Under from EDU Cafe.</string>
-    <string name="txt_reward_text">Congratulations!  You\'re Top 5 students out of the entire school.
-Here\'s your gift!</string>
+    <string name="txt_reward_text">Congratulations! You\’re the Top 5 students out of your house.</string>
     <string name="title_when_offline">Get high scores and win the prizes!</string>
-    <string name="txt_no_reward_text">Do better next time and win the prize!</string>
+    <string name="txt_no_reward_text">Win rewards based on your scores.</string>
     <string name="txt_unlock">Unlock</string>
     <string name="txt_redeemed_message">Redeemed free drink sucussfully</string>
     <string name="txt_flag_redeemed">Redeemed</string>
@@ -132,9 +131,8 @@ Here\'s your gift!</string>
     <string name="txt_send_friend_req">Send a friend request</string>
     <string name="txt_email_addrress">Email address</string>
     <string name="txt_hint_email_content"> Hi(aakash sharma),this is ashish sending you a friend request.</string>
-    <string name="txt_plz_check_this_link"> Click link to see in app https://energybox.page.link/Posx.</string>
+    <string name="txt_plz_check_this_link"> Click link to see in app https://isf.app.link/Community.</string>
     <string name="txt_Send_btn">Send</string>
-
 
 
     <!--Profile Screen-->
@@ -236,7 +234,6 @@ Here\'s your gift!</string>
 
     <!--Challange Screen-->
     <string name="txt_house">House</string>
-
 
 
 </resources>

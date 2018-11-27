@@ -76,6 +76,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/costLinearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/how_much_save_label"
@@ -127,404 +128,346 @@
 
                     </LinearLayout>
 
+                    <View
+                        android:layout_below="@+id/costLinearLayout"
+                        android:background="@color/semi_light_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp">
+
+                    </View>
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_below="@+id/costLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            tools:ignore="RtlHardcoded">
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/which_equals_to"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp" />
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/select_other_goods"
+                                    android:textColor="@color/color_text_and_spinner"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:src="@drawable/small_arrow"
+                                    tools:ignore="ContentDescription" />
+
+
+                            </LinearLayout>
+
+
+
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:visibility="gone"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                android:text="@string/for_comparision"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_11sdp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_50sdp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:src="@drawable/drinks"
+                                    tools:ignore="ContentDescription" />
+
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="@string/hot_choklate"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                                    android:id="@+id/hotChoclateText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginRight="@dimen/_1sdp"
+                                    android:maxLines="1"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_15sdp"
+                                    tools:ignore="RtlHardcoded" />
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
 
             <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginBottom="@dimen/_7sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
                 app:cardBackgroundColor="@color/dark_gray"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:baselineAligned="false">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        tools:ignore="RtlHardcoded">
-
-                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/which_equals_to"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_13sdp" />
-
-                        <LinearLayout
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/select_other_goods"
-                                android:textColor="@color/color_text_and_spinner"
-                                android:textSize="@dimen/_12sdp" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/_5sdp"
-                                android:src="@drawable/small_arrow"
-                                tools:ignore="ContentDescription" />
-
-
-                        </LinearLayout>
-
-
-
-
-                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                            android:layout_width="wrap_content"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:text="@string/for_comparision"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_11sdp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="@dimen/_50sdp"
-                                android:layout_height="@dimen/_50sdp"
-                                android:layout_gravity="center_horizontal"
-                                android:src="@drawable/hot_cho"
-                                tools:ignore="ContentDescription" />
-
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="@string/hot_choklate"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/_12sdp" />
-
-                        </LinearLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                                android:id="@+id/hotChoclateText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginRight="@dimen/_1sdp"
-                                android:maxLines="1"
-                                android:textColor="@color/gray"
-                                android:textSize="@dimen/_15sdp"
-                                tools:ignore="RtlHardcoded" />
-
-                        </RelativeLayout>
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <RelativeLayout
-                android:id="@+id/how_much_save_rl"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight=".14"
-                android:background="@drawable/how_much_saved_selector"
-                android:clickable="true"
-                android:padding="@dimen/_5sdp">
-
-                <ImageView
-                    android:id="@+id/infoImagView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/info"
-                    tools:ignore="ContentDescription,RtlHardcoded" />
-
-                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_toLeftOf="@+id/rightArrowImagView"
-                    android:layout_toRightOf="@+id/infoImagView"
-                    android:text="@string/txt_tips"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_12sdp"
-                    tools:ignore="RtlHardcoded" />
-
-                <ImageView
-                    android:id="@+id/rightArrowImagView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/share"
-                    android:tint="@color/white"
-                    tools:ignore="ContentDescription,RtlHardcoded" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_7sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:background="@drawable/turnoff_drawable_bg"
-                android:padding="@dimen/_1sdp">
-
-                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                    android:id="@+id/randomSaveInstructionText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:text="@string/turn_off_your_a_c_when_you_re_not_in_classroom"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/_12sdp" />
-            </RelativeLayout>
-
-            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_7sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_15sdp">
-
-
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                        android:id="@+id/carbon_foot_label"
-                        android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/carbon_footprint"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_16sdp" />
+                        android:padding="@dimen/_15sdp">
 
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                        android:id="@+id/consumption_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/carbon_foot_label"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:text="@string/consumption_of"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/_12sdp" />
-
-
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/carbon_foot_label"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_toRightOf="@id/consumption_label"
-                        android:drawablePadding="@dimen/_10sdp"
-                        android:drawableRight="@drawable/small_arrow"
-                        android:text="@string/txt_this_month"
-                        android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_12sdp"
-                        android:visibility="gone"
-                        tools:ignore="RtlHardcoded" />
-
-                    <LinearLayout
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/carbon_foot_label"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:layout_toRightOf="@id/consumption_label"
-                        android:orientation="horizontal"
-                        tools:ignore="RtlHardcoded">
-
-                        <android.support.v7.widget.AppCompatSpinner
-                            android:id="@+id/spinnerfootPrint"
-                            android:paddingRight="@dimen/_15sdp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:background="@drawable/spineer_drop_down"
-                            android:dropDownVerticalOffset="25dp"
-                            android:gravity="center" />
-                    </LinearLayout>
-
-
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                        android:id="@+id/value_carbon"
-                        android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_2sdp"
-                        android:layout_toLeftOf="@+id/unitCarbon"
-                        android:maxLength="6"
-                        android:text="45.7"
-                        android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_25sdp"
-                        tools:ignore="RelativeOverlap,RtlHardcoded" />
-
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                        android:id="@+id/unitCarbon"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="@string/txt_kg"
-                        android:textSize="@dimen/_12sdp"
-                        tools:ignore="RtlHardcoded" />
-
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_7sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                app:cardBackgroundColor="@color/dark_gray"
-                app:cardUseCompatPadding="true">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_15sdp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical">
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                            android:id="@+id/carbon_foot_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/_2sdp"
-                            android:text="@string/which_wastes"
+                            android:text="@string/carbon_footprint"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_13sdp" />
+                            android:textSize="@dimen/_16sdp" />
+
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                            android:id="@+id/consumption_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/carbon_foot_label"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:text="@string/consumption_of"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
 
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:layout_below="@+id/carbon_foot_label"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_toRightOf="@id/consumption_label"
                             android:drawablePadding="@dimen/_10sdp"
                             android:drawableRight="@drawable/small_arrow"
-                            android:gravity="center_vertical"
-                            android:text="@string/select_other_item"
+                            android:text="@string/txt_this_month"
                             android:textColor="@color/color_text_and_spinner"
                             android:textSize="@dimen/_12sdp"
                             android:visibility="gone"
                             tools:ignore="RtlHardcoded" />
 
-
-                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/_3sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_2sdp"
-                            android:text="@string/for_comparision"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_11sdp"
-                            android:visibility="gone" />
-                    </LinearLayout>
+                            android:layout_below="@+id/carbon_foot_label"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:layout_toRightOf="@id/consumption_label"
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/valueTree"
-                        android:orientation="vertical"
-                        tools:ignore="RelativeOverlap,RtlHardcoded">
+                            <android.support.v7.widget.AppCompatSpinner
+                                android:id="@+id/spinnerfootPrint"
+                                android:paddingRight="@dimen/_15sdp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/spineer_drop_down"
+                                android:dropDownVerticalOffset="25dp"
+                                android:gravity="center" />
+                        </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="@dimen/_50sdp"
-                            android:layout_height="@dimen/_50sdp"
-                            android:layout_gravity="center_horizontal"
-                            android:src="@drawable/tree"
-                            tools:ignore="ContentDescription" />
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                            android:id="@+id/value_carbon"
+                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/_2sdp"
+                            android:layout_toLeftOf="@+id/unitCarbon"
+                            android:maxLength="6"
+                            android:text="45.7"
+                            android:textColor="@color/color_text_and_spinner"
+                            android:textSize="@dimen/_25sdp"
+                            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                            android:id="@+id/unitCarbon"
+                            android:layout_marginTop="@dimen/_18sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="@string/trees"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/txt_kg"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_12sdp"
+                            tools:ignore="RtlHardcoded" />
 
-                    </LinearLayout>
 
+                    </RelativeLayout>
 
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                        android:id="@+id/valueTree"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                    <View
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginLeft="@dimen/_20sdp"
-                        android:text="@string/txt_x_zero"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/_15sdp"
-                        tools:ignore="RtlHardcoded" />
-                </RelativeLayout>
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:layout_below="@+id/costLinearLayout"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp">
+
+                    </View>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_2sdp"
+                                android:text="@string/which_wastes"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="@dimen/_10sdp"
+                                android:drawableRight="@drawable/small_arrow"
+                                android:gravity="center_vertical"
+                                android:text="@string/select_other_item"
+                                android:textColor="@color/color_text_and_spinner"
+                                android:textSize="@dimen/_12sdp"
+                                android:visibility="gone"
+                                tools:ignore="RtlHardcoded" />
+
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:text="@string/for_comparision"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_11sdp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/valueTree"
+                            android:orientation="vertical"
+                            tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                            <ImageView
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/tree"
+                                tools:ignore="ContentDescription" />
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="@string/trees"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </LinearLayout>
+
+
+                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                            android:id="@+id/valueTree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:text="@string/txt_x_zero"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_15sdp"
+                            tools:ignore="RtlHardcoded" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
             </android.support.v7.widget.CardView>
 
+
             <android.support.v7.widget.CardView
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_320sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp">
 
@@ -608,7 +551,74 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
+            <RelativeLayout
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/how_much_save_rl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_weight=".14"
+                android:background="@drawable/how_much_saved_selector"
+                android:clickable="true"
+                android:padding="@dimen/_5sdp">
 
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/infoImagView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/info"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/rightArrowImagView"
+                    android:layout_toRightOf="@+id/infoImagView"
+                    android:text="@string/txt_tips"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageView
+                    android:id="@+id/rightArrowImagView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/share"
+                    android:tint="@color/white"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/turnoff_drawable_bg"
+                android:padding="@dimen/_1sdp">
+
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                    android:id="@+id/randomSaveInstructionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="@string/turn_off_your_a_c_when_you_re_not_in_classroom"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_12sdp" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

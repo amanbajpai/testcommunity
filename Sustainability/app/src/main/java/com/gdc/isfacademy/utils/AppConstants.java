@@ -122,7 +122,7 @@ public class AppConstants {
     public static final String PRIVACY_POLICY_URL="https://www.energybox.com/privacy-policy/";
     public static final String REAL_TIME_SITE="http://webxr.s3-accelerate.amazonaws.com/energybox/ConvenienceStore2/index.html";
 
-
+    public static final String FORGOT_PASSWORD="https://powerschool.isf.edu.hk/public/account_recovery_begin.html";
     public static final String USED_REWARD="USED";
     public static final String ACTIVE_REWARD="ACTIVE";
 

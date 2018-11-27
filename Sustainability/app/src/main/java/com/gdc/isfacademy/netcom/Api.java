@@ -5,6 +5,7 @@ import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.LoginParentResponse;
 import com.gdc.isfacademy.model.ParentFriendListResponse;
+import com.gdc.isfacademy.model.QuizParentResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.model.RetrieveDailyConsResponse;
 import com.gdc.isfacademy.model.StudentBadgeResponse;
@@ -281,4 +282,14 @@ public interface Api {
                                            @Query(ApiConstants.ApiParams.BODY) String body);
 
 
+    /*
+  *
+  *
+  * Api call to check quiz result shared on diffrent platform
+  *
+  * */
+    @GET(ApiConstants.ApiUrls.START_QUIZ)
+    Call<QuizParentResponse> getQuizQuestionAnswer(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                                   @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                                   @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
 }

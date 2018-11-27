@@ -29,11 +29,11 @@ public interface ApiConstants {
         public static final String GET_STUDENT_STATUS = "retrieveStudentStatus";
         public static final String GET_REWARD_TOKEN = "retrieveStudentRewardsToken";
         public static final String REDEEM_REWARD = "redeemReward";
-
         public static final String RETRIVE_FRIEND_LIST="retrieveFriendList";
         public static final String ACCEPT_FRIEND_REQUEST="confirmFriend";
         public static final String SEND_FRIEND_REQUEST_VIA_EMAIL="addFriend";
         public static final String REMOVE_FRIEND="deleteFriend";
+        public static final String START_QUIZ="retrieveQNA";
 
 
 
