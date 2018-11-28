@@ -112,6 +112,7 @@ public class AppConstants {
     public static final String QUESTION="question";
     public static final String QUESTION_NUMBER="questionNo";
     public static final String TOTAL_QUESTION="totalQuestion";
+    public static final String OPTIONS="options_list";
 
     public static final int SHARE_QUIZ_RESULT_STATUS=101;
     public static final String TRUE="true";

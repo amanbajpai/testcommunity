@@ -1,4 +1,4 @@
-package com.gdc.isfacademy.view.fragment;
+package com.gdc.isfacademy.view.fragment.challange;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,24 +10,29 @@ import android.view.ViewGroup;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.Options;
-import com.gdc.isfacademy.model.Question;
+import com.gdc.isfacademy.model.QuestionAnswerBean;
 import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.adapter.QuizeListAdapter;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview;
+import com.gdc.isfacademy.view.fragment.BaseFragment;
+import com.gdc.isfacademy.view.fragment.QuizeFragment;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by ashishthakur on 28/11/18.
+ */
 
-@SuppressWarnings("ALL")
-public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter.OnListItemClick {
+public class NewQuizFragment extends BaseFragment implements QuizeListAdapter.OnListItemClick {
     public static final String TAG = "QuizePagerFragment";
-    int selectedPosition = 0;
+    public QuestionAnswerBean questionAnswerBeen;
+    public ArrayList<Options> optionList;
     private QuizeListAdapter quizeListAdapter;
-    private List<Options> optionList;
+    private QuestionAnswerBean.Options option;
     private OpenSansLightTextview questionTv, questionNoTv;
-    public Question question;
     private String questionNo, totalQuestion;
     private QuizeFragment quizeFragment;
     // private CardView answer_three, answer_two, answer_one;
@@ -43,13 +48,27 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
     }
 
     private void initView(View view) {
-
-        question = getArguments().getParcelable(AppConstants.QUESTION);
+        optionList = new ArrayList<>();
+        questionAnswerBeen = (QuestionAnswerBean) getArguments().getSerializable(AppConstants.QUESTION);
         questionNo = getArguments().getString(AppConstants.QUESTION_NUMBER);
-        optionList = question.getOptions();
+        option = questionAnswerBeen.getOptions();
         totalQuestion = getArguments().getString(AppConstants.TOTAL_QUESTION);
+        quizeFragment = ((QuizeFragment) NewQuizFragment.this.getParentFragment());
 
-        quizeFragment = ((QuizeFragment) QuizePagerFragment.this.getParentFragment());
+        if(option!=null){
+            if(option.getA()!=null&&!option.getA().equalsIgnoreCase("")){
+                optionList.add(new Options(option.getA(),false));
+            }
+            if(option.getB()!=null&&!option.getB().equalsIgnoreCase("")){
+                optionList.add(new Options(option.getB(),false));
+            }
+            if(option.getC()!=null&&!option.getC().equalsIgnoreCase("")){
+                optionList.add(new Options(option.getC(),false));
+            }
+            if(option.getD()!=null&&!option.getD().equalsIgnoreCase("")){
+                optionList.add(new Options(option.getD(),false));
+            }
+        }
 
         pager_recylerview = (XRecyclerView) view.findViewById(R.id.pager_recylerview);
         pager_recylerview.setLoadingMoreEnabled(false);
@@ -63,10 +82,9 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         pager_recylerview.setLayoutManager(linearLayoutManager);
         quizeListAdapter = new QuizeListAdapter(getActivity(), optionList);
-      //  quizeListAdapter.setQuestion(question);
         pager_recylerview.setAdapter(quizeListAdapter);
         quizeListAdapter.setOnListItemClick(this);
-        questionTv.setText(question.getQuestion());
+        questionTv.setText(questionAnswerBeen.getQuestion());
         questionNoTv.setText(questionNo + "/" + totalQuestion);
     }
 
@@ -75,7 +93,17 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
     public void onClick(int id, int pos) {
         switch (id) {
             case R.id.answerView:
-                selectedPosition = pos;
+                if (!optionList.get(pos).isSelected()) {
+                    for (int i = 0; i < optionList.size(); i++) {
+                        optionList.get(i).setSelected(false);
+                    }
+                    optionList.get(pos).setSelected(true);
+                    quizeListAdapter.notifyDataSetChanged();
+
+                }
+
+
+               /* selectedPosition = pos;
                 boolean isCorrect = question.getAnswer().equalsIgnoreCase(String.valueOf(pos + 1));
 
                 for (int i = 0; i < optionList.size(); i++) {
@@ -85,22 +113,22 @@ public class QuizePagerFragment extends BaseFragment implements QuizeListAdapter
                 question.setCorrect(isCorrect);
                 question.setUserSelectedAnswer(pos);
                 optionList.get(pos).setSelected(true);
-                quizeListAdapter.notifyDataSetChanged();
-               // quizeFragment.setView();
+                quizeListAdapter.notifyDataSetChanged();*/
+                // quizeFragment.setView();
 
                 break;
         }
 
     }
 
-    public void showWrongAnswerView() {
+/*    public void showWrongAnswerView() {
         quizeListAdapter.setWrongAnswerView();
         quizeListAdapter.setRightAnswerView();
     }
 
     public void showRightAnswerView() {
         quizeListAdapter.setRightAnswerView();
-    }
+    }*/
 
     @Override
     public void onResume() {

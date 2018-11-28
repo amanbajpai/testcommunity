@@ -25,19 +25,14 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
     final Context context;
     final List<Options> optionList;
     QuizeListAdapter.OnListItemClick onListItemClick;
-    Question question;
     QuizeListAdapter.Holder mHolder = null;
     QuizeListAdapter.Holder correctAnswermHolder = null;
-    int clickedPos = -1;
 
     public QuizeListAdapter(Context context, List<Options> optionList) {
         this.context = context;
         this.optionList = optionList;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
 
     public void setOnListItemClick(QuizeListAdapter.OnListItemClick onListItemClick) {
         this.onListItemClick = onListItemClick;
@@ -59,24 +54,30 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
         holder.answerText.setTextColor(R.color.black);
         holder.answerText.setText(optionList.get(position).getOption());
 
-        if (question.getAnswer().equalsIgnoreCase(String.valueOf(position + 1))) {
-            correctAnswermHolder = holder;
-        }
+
         holder.answerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (question.isQuestionChecked()) {
+             /*   if (question.isQuestionChecked()) {
                     return;
                 }
                 clickedPos = position;
                 mHolder = holder;
                 mHolder.answerText.setTextColor(context.getResources().getColor(R.color.black));
-                mHolder.columnName.setTextColor(context.getResources().getColor(R.color.black));
+                mHolder.columnName.setTextColor(context.getResources().getColor(R.color.black));*/
                 onListItemClick.onClick(v.getId(), position);
             }
         });
 
-        if (!question.isQuestionChecked()) {
+        if(optionList.get(position).isSelected()){
+            holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
+        }
+        else {
+            holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent));
+
+        }
+
+    /*    if (!optionList.get(position).isSelected()) {
             holder.answerView.setEnabled(true);
             if (optionList.get(position).isSelected()) {
                 holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
@@ -108,7 +109,7 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
                 }
 
             }
-        }
+        }*/
 
     }
 

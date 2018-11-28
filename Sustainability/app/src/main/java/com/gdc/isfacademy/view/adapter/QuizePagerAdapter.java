@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.gdc.isfacademy.view.fragment.QuizePagerFragment;
+import com.gdc.isfacademy.view.fragment.challange.NewQuizFragment;
 
 import java.util.List;
 
@@ -12,9 +13,9 @@ import java.util.List;
 
 @SuppressWarnings("ALL")
 public class QuizePagerAdapter extends FragmentStatePagerAdapter {
-    List<QuizePagerFragment> fragmentList;
+    List<NewQuizFragment> fragmentList;
 
-    public QuizePagerAdapter(FragmentManager fm, List<QuizePagerFragment> fragmentList) {
+    public QuizePagerAdapter(FragmentManager fm, List<NewQuizFragment> fragmentList) {
         super(fm);
 
         this.fragmentList = fragmentList;

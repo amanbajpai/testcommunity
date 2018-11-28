@@ -1,10 +1,12 @@
 package com.gdc.isfacademy.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ashishthakur on 27/11/18.
  */
 
-public class QuestionAnswerBean {
+public class QuestionAnswerBean implements Serializable {
     String question;
     String answer;
     Options options;

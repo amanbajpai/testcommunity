@@ -31,6 +31,11 @@ public class Options implements Parcelable {
     @Transient
     boolean isSelected;
 
+    public Options(String option, boolean isSelected) {
+        this.option = option;
+        this.isSelected = isSelected;
+    }
+
     private Long questionId;
     @ToOne(joinProperty = "questionId")
     private Question question;

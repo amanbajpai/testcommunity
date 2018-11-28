@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.CommonResponse;
+import com.gdc.isfacademy.model.QuestionAnswerBean;
 import com.gdc.isfacademy.model.QuestionsResponse;
 import com.gdc.isfacademy.model.QuizParentResponse;
 import com.gdc.isfacademy.model.StudentRewardResponse;
@@ -23,6 +24,7 @@ import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.adapter.QuizePagerAdapter;
 import com.gdc.isfacademy.view.customs.otherlibs.CustomViewPager;
+import com.gdc.isfacademy.view.fragment.challange.NewQuizFragment;
 import com.google.gson.Gson;
 
 import net.alexandroid.utils.indicators.IndicatorsView;
@@ -40,14 +42,15 @@ import retrofit2.Response;
 *
 * */
 @SuppressWarnings("ALL")
-public class QuizeFragment extends BaseFragment implements View.OnClickListener {
+public class QuizeFragment extends BaseFragment /*implements View.OnClickListener */{
 
     public static final String TAG = "QuizeFragment";
-    private List<QuizePagerFragment> fragmentList;
+    private List<NewQuizFragment> fragmentList;
     private QuizePagerAdapter quizePagerAdapter;
     private Button previousBt, nextBt, finishBt;
     private CustomViewPager viewpager;
     private IndicatorsView indicatorsView;
+    public ArrayList<QuestionAnswerBean>questionAnswerBeanArrayList;
 
     @SuppressLint("InflateParams")
     @Nullable
@@ -55,7 +58,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.quize_fragment_layout, null);
         initView(rootView);
-        createList();
+       // createList();
         return rootView;
     }
 
@@ -67,6 +70,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
      *
      */
     private void initView(View view) {
+        questionAnswerBeanArrayList=new ArrayList<>();
         fragmentList = new ArrayList<>();
         viewpager = (CustomViewPager) view.findViewById(R.id.viewpager);
         previousBt = (Button) view.findViewById(R.id.pager_previous_bt);
@@ -77,7 +81,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         viewpager.setAdapter(quizePagerAdapter);
         indicatorsView = (IndicatorsView) view.findViewById(R.id.indicatorsView);
         viewpager.setOffscreenPageLimit(0);
-        viewpager.setEnabled(false);
+       // viewpager.setEnabled(false);
         indicatorsView.setViewPager(viewpager);
         indicatorsView.setSmoothTransition(true);
         indicatorsView.setIndicatorsClickChangePage(false);
@@ -87,16 +91,16 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             }
             @Override
             public void onPageSelected(int position) {
-                setView();
+                //setView();
             }
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
-        previousBt.setOnClickListener(this);
+       /* previousBt.setOnClickListener(this);
         nextBt.setOnClickListener(this);
-        finishBt.setOnClickListener(this);
-        //getQuestAnswerListFromServer();
+        finishBt.setOnClickListener(this);*/
+        getQuestAnswerListFromServer();
     }
 
 
@@ -122,7 +126,10 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                         ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                         if (response.body() != null) {
                             if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-
+                                questionAnswerBeanArrayList=response.body().getQnas();
+                                if(questionAnswerBeanArrayList!=null&&questionAnswerBeanArrayList.size()>0){
+                                    createList(questionAnswerBeanArrayList);
+                                }
                             } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                                 ProjectUtil.logoutFromApp(getActivity());
                             }
@@ -146,46 +153,45 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
     }
 
 
+
+
     /**
      * Creating list to show question and answer for daily quiz.
      */
-    private void createList() {
+    private void createList(ArrayList<QuestionAnswerBean>questionAnswerBeen) {
         try {
-            int answeredCount = MyPref.getInstance(getActivity()).getAnsweredCount();
-
-            QuestionsResponse response = new Gson().fromJson(ProjectUtil.loadJSONFromAsset(getActivity()),
-                    QuestionsResponse.class);
             fragmentList.clear();
 
-            for (int i = 0; i < 3; i++, answeredCount++) {
-                QuizePagerFragment fragment = new QuizePagerFragment();
+            for (int i = 0; i < questionAnswerBeen.size();i++ ) {
+                NewQuizFragment fragment = new NewQuizFragment();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(AppConstants.QUESTION, response.getQuestions().get(answeredCount));
+                bundle.putSerializable(AppConstants.QUESTION, questionAnswerBeen.get(i));
                 bundle.putString(AppConstants.QUESTION_NUMBER, String.valueOf(i + 1));
                 bundle.putString(AppConstants.TOTAL_QUESTION, String.valueOf(3));
+                bundle.putSerializable(AppConstants.OPTIONS, questionAnswerBeen.get(i).getQuestion());
+
                 fragment.setArguments(bundle);
                 fragmentList.add(fragment);
             }
+
+            quizePagerAdapter.notifyDataSetChanged();
+            indicatorsView.setViewPager(viewpager);
             try {
                 viewpager.setOffscreenPageLimit(2);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            quizePagerAdapter.notifyDataSetChanged();
-            indicatorsView.setViewPager(viewpager);
-
-            addToDb(response);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    /**
+  /*  *//**
      *
      * Inserting
      * @param view used to get the xml objects.
      *
-     */
+     *//*
     private void addToDb(QuestionsResponse response) {
         try {
             ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
@@ -193,8 +199,9 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
 
+/*
     public void setView() {
         try {
             int position = viewpager.getCurrentItem();
@@ -233,8 +240,10 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             ex.printStackTrace();
         }
     }
+*/
 
 
+/*
     @Override
     public void onClick(View view) {
 
@@ -303,11 +312,13 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                 break;
 
             case R.id.pager_finish_bt:
-                submitQuestion();
+               // submitQuestion();
                 break;
         }
     }
+*/
 
+/*
     private void submitQuestion() {
         try {
             int correct = 0;
@@ -356,7 +367,9 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             ex.printStackTrace();
         }
     }
+*/
 
+/*
     private void finishQuiz(int answerCount, boolean submitStatus) {
         try {
 
@@ -385,6 +398,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
             ex.printStackTrace();
         }
     }
+*/
 
     @Override
     public void onResume() {

@@ -483,6 +483,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
                             }
 
 
+
+
                             if (response.body().getStudent() != null && response.body().getStudent().size() > 0) {
                                 if (response.body().getTarget() != null) {
                                     //    float value = new BigDecimal(response.body().getTarget()).setScale(1, BigDecimal.ROUND_UP).floatValue();
@@ -504,6 +506,10 @@ public class HowMuchSaveFragment extends BaseFragment implements
                                     Log.e("valuesForAvg", "" + value);
                                     yaxisValueForStudent.add(new Entry(value, i));
                                 }
+
+
+
+
 
                             }
                             if (response.body().getAvg() != null && response.body().getAvg().size() > 0) {
@@ -627,8 +633,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.setPinchZoom(true);
         mChart.setDoubleTapToZoomEnabled(false);
         mChart.setData(data);
-        mChart.setVisibleXRangeMaximum(5);
         mChart.invalidate();
+        mChart.setVisibleXRangeMaximum(31);
 
 
     }

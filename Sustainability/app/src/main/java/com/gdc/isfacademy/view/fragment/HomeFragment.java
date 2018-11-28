@@ -408,15 +408,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
-                            String text = "";
+                            String text = "<font color=#ffffff>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
                             float animProgress = (Float) animation.getAnimatedValue();
                             seekbar.setProgress((int) animProgress);
-                            text = "<font color=#4d4d4d>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
                             int val = (seekbar.getProgress() * (seekbar.getWidth() - 2 * seekbar.getThumbOffset())) / seekbar.getMax();
-                            if (seekbar.getProgress() < 15) {
-                                text = "<font color=#ffffff>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
-
-                            } else if (seekbar.getProgress() > 15 && seekbar.getProgress() <= 20) {
+                            if (seekbar.getProgress() > 15 && seekbar.getProgress() <= 20) {
                                 thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2));
                             } else if (seekbar.getProgress() > 20 && seekbar.getProgress() <= 50) {
                                 thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._56sdp));
@@ -436,6 +432,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                                 thisWeekStatus.setText(Html.fromHtml(text));
 
                             }
+
                         }
                     });
                     anim.start();
@@ -448,6 +445,47 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 
     }
+
+    public void statusEnergy(){
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                String text = "<font color=#ffffff>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
+                int val = (seekbar.getProgress() * (seekbar.getWidth() - 2 * seekbar.getThumbOffset())) / seekbar.getMax();
+                if (seekbar.getProgress() > 15 && seekbar.getProgress() <= 20) {
+                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2));
+                } else if (seekbar.getProgress() > 20 && seekbar.getProgress() <= 50) {
+                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._56sdp));
+
+                } else if (seekbar.getProgress() > 50 && seekbar.getProgress() <= 80) {
+                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._90sdp));
+
+                } else if (seekbar.getProgress() > 80 && seekbar.getProgress() <= 100) {
+                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._100sdp));
+
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    thisWeekStatus.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
+
+                } else {
+                    thisWeekStatus.setText(Html.fromHtml(text));
+
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
 
 
     private void getQuizSubmittedStatus() {
