@@ -38,6 +38,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.renderer.XAxisRenderer;
 import com.google.gson.Gson;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -470,7 +471,15 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
                             if (response.body().getStudent().size() >= response.body().getAvg().size()) {
                                 for (int i = 0; i < response.body().getStudent().size(); i++) {
-                                    xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
+                                    if(i==response.body().getStudent().size()-1){
+                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
+                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())+84600000L));
+
+                                    }
+                                    else {
+                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
+
+                                    }
                                     Log.e("xAxisDateFromStudent", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
                                 }
                             } else {
@@ -632,9 +641,11 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.setScaleYEnabled(true);
         mChart.setPinchZoom(true);
         mChart.setDoubleTapToZoomEnabled(false);
+      //  mChart.setVisibleXRange(10,100);
+        mChart.getXAxis().setLabelsToSkip(1);
         mChart.setData(data);
         mChart.invalidate();
-        mChart.setVisibleXRangeMaximum(31);
+
 
 
     }
