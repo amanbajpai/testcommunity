@@ -86,6 +86,7 @@ public class NewQuizFragment extends BaseFragment implements QuizeListAdapter.On
         quizeListAdapter.setOnListItemClick(this);
         questionTv.setText(questionAnswerBeen.getQuestion());
         questionNoTv.setText(questionNo + "/" + totalQuestion);
+        quizeListAdapter.setQuestionAnswerBean(questionAnswerBeen);
     }
 
 
@@ -93,27 +94,34 @@ public class NewQuizFragment extends BaseFragment implements QuizeListAdapter.On
     public void onClick(int id, int pos) {
         switch (id) {
             case R.id.answerView:
-                if (!optionList.get(pos).isSelected()) {
-                    for (int i = 0; i < optionList.size(); i++) {
-                        optionList.get(i).setSelected(false);
-                    }
-                    optionList.get(pos).setSelected(true);
-                    quizeListAdapter.notifyDataSetChanged();
+
+                String value="-1";
+
+                if(questionAnswerBeen.getAnswer().equalsIgnoreCase("A")){
+                    value="1";
+                }
+                else if(questionAnswerBeen.getAnswer().equalsIgnoreCase("B")){
+                    value="2";
 
                 }
+                else if(questionAnswerBeen.getAnswer().equalsIgnoreCase("C")){
+                    value="3";
 
+                }
+                else if(questionAnswerBeen.getAnswer().equalsIgnoreCase("D")){
+                    value="4";
 
-               /* selectedPosition = pos;
-                boolean isCorrect = question.getAnswer().equalsIgnoreCase(String.valueOf(pos + 1));
+                }
+                boolean isCorrect = value.equalsIgnoreCase(String.valueOf(pos + 1));
 
                 for (int i = 0; i < optionList.size(); i++) {
                     optionList.get(i).setSelected(false);
                 }
-                question.setAnswered(true);
-                question.setCorrect(isCorrect);
-                question.setUserSelectedAnswer(pos);
+                questionAnswerBeen.setAnswered(true);
+                questionAnswerBeen.setCorrect(isCorrect);
+                questionAnswerBeen.setUserSelectedAnswer(pos);
                 optionList.get(pos).setSelected(true);
-                quizeListAdapter.notifyDataSetChanged();*/
+                quizeListAdapter.notifyDataSetChanged();
                 // quizeFragment.setView();
 
                 break;

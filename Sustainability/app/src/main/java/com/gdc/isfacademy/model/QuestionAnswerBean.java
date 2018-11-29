@@ -10,7 +10,42 @@ public class QuestionAnswerBean implements Serializable {
     String question;
     String answer;
     Options options;
+    boolean isQuestionChecked=false;
+    private int userSelectedAnswer = -1;
+    boolean answered;
+    boolean correct;
 
+    public boolean isCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
+    }
+
+    public int getUserSelectedAnswer() {
+        return userSelectedAnswer;
+    }
+
+    public void setUserSelectedAnswer(int userSelectedAnswer) {
+        this.userSelectedAnswer = userSelectedAnswer;
+    }
+
+    public boolean isQuestionChecked() {
+        return isQuestionChecked;
+    }
+
+    public void setQuestionChecked(boolean questionChecked) {
+        isQuestionChecked = questionChecked;
+    }
 
     public Options getOptions() {
         return options;

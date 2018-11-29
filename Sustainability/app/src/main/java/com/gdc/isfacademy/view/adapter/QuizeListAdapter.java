@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.Options;
 import com.gdc.isfacademy.model.Question;
+import com.gdc.isfacademy.model.QuestionAnswerBean;
 
 import java.util.List;
 
@@ -27,12 +28,16 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
     QuizeListAdapter.OnListItemClick onListItemClick;
     QuizeListAdapter.Holder mHolder = null;
     QuizeListAdapter.Holder correctAnswermHolder = null;
+    QuestionAnswerBean questionAnswerBean;
 
     public QuizeListAdapter(Context context, List<Options> optionList) {
         this.context = context;
         this.optionList = optionList;
     }
 
+    public void setQuestionAnswerBean(QuestionAnswerBean questionAnswerBean) {
+        this.questionAnswerBean = questionAnswerBean;
+    }
 
     public void setOnListItemClick(QuizeListAdapter.OnListItemClick onListItemClick) {
         this.onListItemClick = onListItemClick;
@@ -58,26 +63,25 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
         holder.answerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   if (question.isQuestionChecked()) {
+                if (questionAnswerBean.isQuestionChecked()) {
                     return;
                 }
-                clickedPos = position;
                 mHolder = holder;
                 mHolder.answerText.setTextColor(context.getResources().getColor(R.color.black));
-                mHolder.columnName.setTextColor(context.getResources().getColor(R.color.black));*/
+                mHolder.columnName.setTextColor(context.getResources().getColor(R.color.black));
                 onListItemClick.onClick(v.getId(), position);
             }
         });
 
-        if(optionList.get(position).isSelected()){
+       /* if(optionList.get(position).isSelected()){
             holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
         }
         else {
             holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent));
 
-        }
+        }*/
 
-    /*    if (!optionList.get(position).isSelected()) {
+        if (!questionAnswerBean.isQuestionChecked()) {
             holder.answerView.setEnabled(true);
             if (optionList.get(position).isSelected()) {
                 holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
@@ -86,8 +90,8 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
             }
         } else {
             holder.answerView.setEnabled(false);
-            if (question.getUserSelectedAnswer() == position) {
-                if (question.getUserSelectedAnswer() == Integer.parseInt(question.getAnswer())) {
+            if (questionAnswerBean.getUserSelectedAnswer() == position) {
+                if (questionAnswerBean.getUserSelectedAnswer() == Integer.parseInt(questionAnswerBean.getAnswer())) {
                     holder.answerText.setTextColor(context.getResources().getColor(R.color.white));
                     holder.columnName.setTextColor(context.getResources().getColor(R.color.white));
                     holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
@@ -98,7 +102,23 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
                 }
 
             } else {
-                if (position == Integer.parseInt(question.getAnswer())) {
+                String value="";
+                if(questionAnswerBean.getAnswer().equalsIgnoreCase("A")){
+                    value="1";
+                }
+                else if(questionAnswerBean.getAnswer().equalsIgnoreCase("B")){
+                    value="2";
+
+                }
+                else if(questionAnswerBean.getAnswer().equalsIgnoreCase("C")){
+                    value="3";
+
+                }
+                else if(questionAnswerBean.getAnswer().equalsIgnoreCase("D")){
+                    value="4";
+
+                }
+                if (value!=null&&!value.equalsIgnoreCase("")&&position == Integer.parseInt(value)) {
                     holder.answerText.setTextColor(context.getResources().getColor(R.color.white));
                     holder.columnName.setTextColor(context.getResources().getColor(R.color.white));
                     holder.answerView.setBackgroundColor(context.getResources().getColor(R.color.white_transparent_color));
@@ -109,7 +129,7 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
                 }
 
             }
-        }*/
+        }
 
     }
 
