@@ -39,22 +39,22 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_below="@+id/home_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/home_layout"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/_8sdp"
         android:layout_marginRight="@dimen/_8sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:orientation="vertical"
+        android:weightSum="2">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_weight="0.94"
             android:background="@android:color/white">
 
             <RelativeLayout
@@ -67,9 +67,9 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_25sdp"
                         android:layout_toLeftOf="@+id/icon_user"
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
@@ -133,6 +133,7 @@
 
 
                     <ImageView
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:id="@+id/icon_user"
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="@dimen/_80sdp"
@@ -144,6 +145,7 @@
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                         android:id="@+id/percentTextview"
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/icon_user"
@@ -154,6 +156,7 @@
                         tools:ignore="RtlHardcoded" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:id="@+id/percentArrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -178,108 +181,133 @@
                         tools:ignore="RtlHardcoded" />
 
                     <RelativeLayout
+                        android:layout_marginTop="@dimen/_30sdp"
                         android:id="@+id/progressBar"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_60sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_below="@+id/percentTextview"
                         android:orientation="vertical">
 
-
-
-
                         <SeekBar
+                            android:progress="1"
                             android:id="@+id/seekbar"
                             style="@style/tallerBarStyle"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_20sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_centerVertical="true"
                             android:max="100"
-                            android:progressDrawable="@drawable/custom_seekbar"
+                            android:progressDrawable="@drawable/home_seekbar_selector"
                             android:thumb="@android:color/white" />
 
                         <FrameLayout
-                            android:layout_marginRight="@dimen/_15sdp"
-                            android:layout_marginLeft="@dimen/_15sdp"
-                            android:layout_centerVertical="true"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                                android:id="@+id/kwh_text_status"
-                                android:layout_marginLeft="@dimen/_4sdp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/_10sdp"
-                                tools:ignore="RelativeOverlap,RtlHardcoded" />
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp">
 
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
-                                android:id="@+id/full_status_text"
-                                android:visibility="gone"
-                                android:layout_toRightOf="@+id/kwh_text_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_1sdp"
-                                android:text=" "
-                                android:textSize="@dimen/_10sdp"
-                                tools:ignore="RtlHardcoded" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                                    android:id="@+id/statusTextEnergy"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_marginLeft="@dimen/_4sdp"
+                                    android:text="This Cycle"
+                                    android:textColor="@color/home_bottom_card_text_color"
+                                    android:textSize="@dimen/_10sdp"
+                                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                                    android:id="@+id/kwh_text_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/_4sdp"
+                                    android:layout_marginLeft="@dimen/_8sdp"
+                                    android:text=""
+                                    android:textColor="@color/home_bottom_card_text_color"
+                                    android:textSize="@dimen/_10sdp"
+                                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+<!--
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                                    android:id="@+id/full_status_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_1sdp"
+                                    android:layout_toRightOf="@+id/kwh_text_status"
+                                    android:text=""
+                                    android:textColor="@color/semi_light_color"
+                                    android:textSize="@dimen/_10sdp"
+                                    android:visibility="gone"
+                                    tools:ignore="RtlHardcoded" />
+-->
                             </RelativeLayout>
                         </FrameLayout>
 
+
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/how_much_save_rl"
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <SeekBar
+                        android:progress="1"
+                        android:id="@+id/seekbar_last_cycle"
+                        style="@style/tallerBarStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerVertical="true"
+                        android:max="100"
+                        android:progressDrawable="@drawable/last_cycle_seekbar"
+                        android:thumb="@android:color/white" />
+                    <FrameLayout
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:layout_marginRight="@dimen/_15sdp"
-                        android:background="@drawable/how_much_saved_energy_selector"
-                        android:clickable="true"
-                        android:padding="@dimen/_10sdp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true">
 
-                        <ImageView
-                            android:id="@+id/infoImagView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_10sdp"
-                            android:src="@drawable/info"
-                            android:visibility="gone"
-                            tools:ignore="ContentDescription,RtlHardcoded" />
-
-                        <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_10sdp"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:gravity="center_horizontal"
-                            android:text="@string/txt_how_much_saved"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/_12sdp"
-                            tools:ignore="RtlHardcoded" />
+                            android:layout_height="wrap_content">
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:text="Same Period Last Cycle"
+                                android:textColor="#8D959A"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_height="wrap_content" />
 
-                        <ImageView
-                            android:id="@+id/rightArrowImagView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:src="@drawable/right_arrow"
-                            android:visibility="gone"
-                            tools:ignore="ContentDescription,RtlHardcoded" />
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                                android:id="@+id/full_status_text"
+                                android:layout_width="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginRight="@dimen/_4sdp"
+                                android:layout_marginLeft="@dimen/_8sdp"
+                                android:textColor="#8D959A"
+                                android:textSize="@dimen/_10sdp"
+                                tools:ignore="RtlHardcoded" />
+                        </RelativeLayout>
+                    </FrameLayout>
 
 
-                    </RelativeLayout>
+
 
                 </RelativeLayout>
 
@@ -287,12 +315,59 @@
 
         </android.support.v7.widget.CardView>
 
+        <RelativeLayout
+            android:id="@+id/how_much_save_rl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_weight=".12"
+            android:background="@drawable/how_much_saved_energy_selector"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/infoImagView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:src="@drawable/info"
+                android:visibility="gone"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:text="@string/txt_how_much_saved"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_12sdp"
+                tools:ignore="RtlHardcoded" />
+
+            <ImageView
+                android:id="@+id/rightArrowImagView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/right_arrow"
+                android:visibility="gone"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+
+        </RelativeLayout>
+
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_weight="1">
+            android:layout_weight="0.96">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -305,7 +380,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="vertical"
@@ -324,8 +399,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/_4sdp"
-                            android:paddingTop="@dimen/_4sdp">
+                            android:paddingBottom="@dimen/_2sdp"
+                            android:paddingTop="@dimen/_1sdp">
 
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                 android:id="@+id/currentCosumptionDate"
@@ -347,60 +422,120 @@
                             android:textSize="@dimen/_10sdp"
                             tools:ignore="RtlHardcoded" />
 
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
+                                android:id="@+id/buildingPercentTextview"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:text="@string/txt_zero_percent"
+                                android:textColor="@color/color_text_and_spinner"
+                                android:textSize="@dimen/_20sdp"
+                                tools:ignore="RtlHardcoded" />
+
+                            <ImageView
+                                android:id="@+id/buildingEnergyStatusArrow"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/school_kwh_text_status"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_toRightOf="@+id/buildingPercentTextview"
+                                tools:ignore="ContentDescription,RtlHardcoded" />
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
+                                android:id="@+id/zeroPercentSavedBuilding"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/school_kwh_text_status"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_toRightOf="@+id/buildingPercentTextview"
+                                android:text="@string/txt_saved"
+                                android:textColor="@android:color/holo_red_light"
+                                android:textSize="@dimen/_14sdp"
+                                android:visibility="gone"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/buildingSchool"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
                         android:src="@drawable/school_icon"
                         tools:ignore="ContentDescription,RtlHardcoded" />
-
-
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
-                        android:id="@+id/buildingPercentTextview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/school_kwh_text_status"
-                        android:layout_marginBottom="@dimen/_20sdp"
+                    <RelativeLayout
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:text="@string/txt_zero_percent"
-                        android:textColor="@color/color_text_and_spinner"
-                        android:textSize="@dimen/_25sdp"
-                        tools:ignore="RtlHardcoded" />
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_below="@+id/buildingSchool"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:id="@+id/chartView"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="ScrollViewSize">
+                        </LinearLayout>
+                        <FrameLayout
+                            android:visibility="gone"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                                    android:id="@+id/school_kwh_text_status"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_marginRight="@dimen/_1sdp"
+                                    android:text="@string/txt_zero_kwh"
+                                    android:textColor="@color/semi_light_color"
+                                    android:textSize="@dimen/_10sdp"
+                                    tools:ignore="RtlHardcoded" />
 
-                    <ImageView
-                        android:id="@+id/buildingEnergyStatusArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/school_kwh_text_status"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_toRightOf="@+id/buildingPercentTextview"
-                        tools:ignore="ContentDescription,RtlHardcoded" />
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                                    android:id="@+id/school_full_status_text"
+                                    android:layout_width="0dp"
+                                    android:gravity="center"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="@dimen/_4sdp"
+                                    android:layout_toRightOf="@+id/school_kwh_text_status"
+                                    android:text="@string/txt_dash_zero_kwh"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_10sdp"
+                                    tools:ignore="RtlHardcoded" />
+                            </LinearLayout>
 
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
-                        android:id="@+id/zeroPercentSavedBuilding"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/school_kwh_text_status"
-                        android:layout_marginBottom="@dimen/_25sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_toRightOf="@+id/buildingPercentTextview"
-                        android:text="@string/txt_saved"
-                        android:textColor="@android:color/holo_red_light"
-                        android:textSize="@dimen/_14sdp"
-                        android:visibility="gone"
-                        tools:ignore="RtlHardcoded" />
+                        </FrameLayout>
+
+                    </RelativeLayout>
 
 
-                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+
+
+
+
+                    <!--<com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                         android:id="@+id/school_kwh_text_status"
                         android:layout_width="wrap_content"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
@@ -416,6 +551,7 @@
                         android:id="@+id/school_full_status_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:layout_marginLeft="@dimen/_1sdp"
@@ -423,7 +559,7 @@
                         android:text="@string/txt_dash_zero_kwh"
                         android:textColor="@color/semi_light_color"
                         android:textSize="@dimen/_10sdp"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlHardcoded" />-->
 
                 </RelativeLayout>
 

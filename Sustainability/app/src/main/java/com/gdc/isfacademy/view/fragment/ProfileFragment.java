@@ -383,6 +383,10 @@ public class ProfileFragment extends BaseFragment {
     }
 
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((HomeActivity)getActivity()).sliderIcon.setVisibility(View.VISIBLE);
+        ((HomeActivity)getActivity()).backBtn.setVisibility(View.GONE);
+    }
 }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -32,8 +33,23 @@ import com.gdc.isfacademy.utils.MyPref;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.adapter.HighLightArrayAdapter;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.formatter.YAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.gson.Gson;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -45,7 +61,7 @@ import retrofit2.Response;
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
     public static final String TAG = "HomeFragment";
     public static boolean isQuizSubmited = false;
-    public SeekBar seekbar;
+    public SeekBar seekbar,seekbar_last_cycle;
     AppCompatTextView studentHouse, currentCosumptionDate;
     EnergySavingResponse.CurrentCons currentCons;
     ImageView percentArrow, buildingEnergyStatusArrow;
@@ -55,6 +71,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private RelativeLayout how_much_save_rl;
     private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
             buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv;
+    LinearLayout chartView;
+    BarChart mChart;
+
 
     public static HomeFragment newInstance() {
         HomeFragment homeFragment = new HomeFragment();
@@ -89,6 +108,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initView(View layout) {
+        seekbar_last_cycle=(SeekBar)layout.findViewById(R.id.seekbar_last_cycle);
+        chartView=(LinearLayout)layout.findViewById(R.id.chartView);
+        mChart = new BarChart(getActivity());//just populating data, etc
+        chartView.addView(mChart);
+        mChart.getLayoutParams().height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+        mChart.getLayoutParams().width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+        mChart.invalidate();
+
         spinner = (AppCompatSpinner) layout.findViewById(R.id.spinner);
         comparison_tv = (AppCompatTextView) layout.findViewById(R.id.comparuison_tv);
         currentCosumptionDate = (AppCompatTextView) layout.findViewById(R.id.currentCosumptionDate);
@@ -115,12 +142,116 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 return true;
             }
         });
+        seekbar_last_cycle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
 
-        setSeekbarValue(0.0f);
+
+       /* setSeekbarValue(1f);
+        setSeekbarforLastCycle(1f);*/
 
       /*  Calendar cal = Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("dd MMMM yyyy");
         String currentDate = month_date.format(cal.getTime());*/
+
+        mChart.setDrawBarShadow(false);
+        mChart.setTouchEnabled(false);
+        mChart.setDragEnabled(false);
+        mChart.setScaleEnabled(true);
+        mChart.setScaleXEnabled(false);
+        mChart.setScaleYEnabled(false);
+        mChart.setPinchZoom(false);
+        mChart.setDoubleTapToZoomEnabled(false);
+
+        mChart.setDescription("");
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        mChart.setMaxVisibleValueCount(60);
+
+        // scaling can now only be done on x- and y-axis separately
+        mChart.setPinchZoom(false);
+
+        mChart.setDrawGridBackground(false);
+        // mChart.setDrawYLabels(false);
+
+        mChart.getAxisRight().setDrawGridLines(false);
+        mChart.getAxisLeft().setDrawGridLines(false);
+        mChart.getXAxis().setDrawGridLines(false);
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setSpaceBetweenLabels(2);
+
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setLabelCount(8, false);
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setSpaceTop(15f);
+        leftAxis.setAxisMinValue(0f); // this replaces setStartAtZero(true)
+
+        YAxis rightAxis = mChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setLabelCount(8, false);
+        rightAxis.setSpaceTop(15f);
+        rightAxis.setEnabled(false);
+        rightAxis.setAxisMinValue(0f); // this replaces setStartAtZero(true)
+
+        Legend l = mChart.getLegend();
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setForm(Legend.LegendForm.SQUARE);
+        l.setFormSize(9f);
+        l.setTextSize(11f);
+        l.setXEntrySpace(4f);
+        // l.setExtra(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
+        // "def", "ghj", "ikl", "mno" });
+        // l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
+        // "def", "ghj", "ikl", "mno" });
+
+    }
+
+
+    public void setDataForChart(float currentCycle,float lastCycle){
+        ArrayList<String> xVals = new ArrayList<String>();
+        xVals.add("This Cycle");
+        xVals.add("Last Cycle");
+
+        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+
+        yVals1.add(new BarEntry(currentCycle, 0));
+        yVals1.add(new BarEntry(lastCycle, 1));
+
+
+
+        BarDataSet set1 = new BarDataSet(yVals1, "");
+        set1.setBarSpacePercent(35f);
+        set1.setColors(new int[]{ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner),
+                ContextCompat.getColor(getActivity(), R.color.dark_gray)});
+        set1.setHighlightEnabled(false);
+
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+        dataSets.add(set1);
+
+        BarData data = new BarData(xVals, dataSets);
+        data.setValueTextSize(10f);
+        data.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use one decimal
+
+                float value1 = new BigDecimal(value).setScale(2,BigDecimal.ROUND_DOWN).floatValue();
+
+                return mFormat.format(value1);
+            }
+        });
+
+
+        mChart.setData(data);
+        mChart.invalidate();
     }
 
 
@@ -218,7 +349,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             percentArrow.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light), android.graphics.PorterDuff.Mode.SRC_IN);
                             percentArrow.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.up_arrow));
                             percentArrow.setVisibility(View.GONE);
-                            zerpPercentSave.setVisibility(View.VISIBLE);
+                            zerpPercentSave.setVisibility(View.GONE);
                             ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
                         }
                     }
@@ -294,10 +425,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
+            float value1 = new BigDecimal(response.getLastWeekCons().getValue()).setScale(2,BigDecimal.ROUND_DOWN).floatValue();
+
 
 
             String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
-            String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", lastValue, unit);
+            String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", value1, unit);
 
             Typeface externalFont = Typeface.createFromAsset(ISFApp.getAppInstance().getApplicationContext().getAssets(), "fonts/OpenSans-Semibold_0.ttf");
             buildingThisWeekStatus.setTypeface(externalFont, Typeface.BOLD);
@@ -331,6 +464,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             String actualConsSave = String.format(Locale.getDefault(), "%d%s", (ProjectUtil.math(actualSaving)), "%");
             buildingPercentTextview.setText(actualConsSave);
 
+            setDataForChart(currentValue,lastValue);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -343,6 +478,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
+
 
             currentCosumptionDate.setText(getString(R.string.txt_up_to) + " " + response.getCurrentCons().getLastUpdateDate());
 
@@ -359,38 +495,69 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 
             thisWeekStatusValue = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
-            lastWeekStatusValue = String.format(Locale.getDefault(), "  / %.2f %s", lastValue, unit);
-            String text = "<font color=#000000>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
+            lastWeekStatusValue = String.format(Locale.getDefault(), "%.2f %s", lastValue, unit);
 
-            thisWeekStatus.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
-            //    lastWeekStatus.setText(lastWeekStatusValue);
+            thisWeekStatus.setText(thisWeekStatusValue);
+            lastWeekStatus.setText(lastWeekStatusValue);
 
-            float actualSaving;
+
+
+            if(lastValue>currentValue){
+                seekbar_last_cycle.setProgress(100);
+              float  percentage = (currentValue * 100/ lastValue);
+                Log.e("this cycle",""+percentage);
+                setSeekbarValue(percentage);
+
+
+            }
+            else if(currentValue>lastValue){
+                seekbar.setProgress(100);
+                float  percentage = (lastValue * 100/ currentValue);
+                Log.e("Last cycle",""+percentage);
+                setSeekbarforLastCycle(percentage);
+            }
+            else {
+                setSeekbarValue(1f);
+                setSeekbarforLastCycle(1f);
+
+
+            }
+
+
+           /* float actualSaving,savingLastCycle;
             if (lastValue > currentValue) // Energy Saved
             {
                 float percentage = (currentValue / lastValue) * 100;
                 actualSaving = 100 - percentage;
+                Log.e("this cycle",""+actualSaving);
                 percentArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.down_arrow_energy));
                 percentTextview.setTextColor(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), R.color.color_text_and_spinner));
                 zerpPercentSave.setVisibility(View.GONE);
-                percentArrow.setVisibility(View.VISIBLE);
+                percentArrow.setVisibility(View.GONE);
+                seekbar_last_cycle.setProgress(100);
+                setSeekbarValue(actualSaving);
 
 
             } else // Energy Lost
             {
-                actualSaving = 0.0f;
+                float percentage = (lastValue / currentValue) * 100;
+                savingLastCycle = 100 - percentage;
+                Log.e("LAST cycle",""+savingLastCycle);
+
                 percentTextview.setTextColor(getResources().getColor(android.R.color.holo_red_light));
                 percentArrow.setColorFilter(ContextCompat.getColor(ISFApp.getAppInstance().getApplicationContext(), android.R.color.holo_red_light), android.graphics.PorterDuff.Mode.SRC_IN);
                 percentArrow.setBackground(ContextCompat.getDrawable(ISFApp.getAppInstance().getApplicationContext(), R.drawable.up_arrow));
                 percentArrow.setVisibility(View.GONE);
-                zerpPercentSave.setVisibility(View.VISIBLE);
+                zerpPercentSave.setVisibility(View.GONE);
+                seekbar.setProgress(100);
+                setSeekbarforLastCycle(savingLastCycle);
 
-            }
+            }*/
 
-            String actualConsSave = String.format(Locale.getDefault(), "%d%s", (ProjectUtil.math(actualSaving)), "%");
-            percentTextview.setText(actualConsSave);
+            //
+        /*    String actualConsSave = String.format(Locale.getDefault(), "%d%s", (ProjectUtil.math(actualSaving)), "%");
+            percentTextview.setText(actualConsSave);*/
 
-            setSeekbarValue(actualSaving);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -408,31 +575,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
-                            String text = "<font color=#ffffff>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
                             float animProgress = (Float) animation.getAnimatedValue();
                             seekbar.setProgress((int) animProgress);
-                            int val = (seekbar.getProgress() * (seekbar.getWidth() - 2 * seekbar.getThumbOffset())) / seekbar.getMax();
-                            if (seekbar.getProgress() > 15 && seekbar.getProgress() <= 20) {
-                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2));
-                            } else if (seekbar.getProgress() > 20 && seekbar.getProgress() <= 50) {
-                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._56sdp));
-
-                            } else if (seekbar.getProgress() > 50 && seekbar.getProgress() <= 80) {
-                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._90sdp));
-
-                            } else if (seekbar.getProgress() > 80 && seekbar.getProgress() <= 100) {
-                                thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._100sdp));
-
-                            }
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                thisWeekStatus.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
-
-                            } else {
-                                thisWeekStatus.setText(Html.fromHtml(text));
-
-                            }
-
+                            thisWeekStatus.setText(thisWeekStatusValue);
                         }
                     });
                     anim.start();
@@ -446,45 +591,33 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     }
 
-    public void statusEnergy(){
-        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                String text = "<font color=#ffffff>" + thisWeekStatusValue + "</font> <font color=#ffffff>" + lastWeekStatusValue + "</font>";
-                int val = (seekbar.getProgress() * (seekbar.getWidth() - 2 * seekbar.getThumbOffset())) / seekbar.getMax();
-                if (seekbar.getProgress() > 15 && seekbar.getProgress() <= 20) {
-                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2));
-                } else if (seekbar.getProgress() > 20 && seekbar.getProgress() <= 50) {
-                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._56sdp));
-
-                } else if (seekbar.getProgress() > 50 && seekbar.getProgress() <= 80) {
-                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._90sdp));
-
-                } else if (seekbar.getProgress() > 80 && seekbar.getProgress() <= 100) {
-                    thisWeekStatus.setX((seekbar.getX() + val + seekbar.getThumbOffset() / 2) - getResources().getDimension(R.dimen._100sdp));
-
-                }
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    thisWeekStatus.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY));
-
-                } else {
-                    thisWeekStatus.setText(Html.fromHtml(text));
+    private void setSeekbarforLastCycle(final float value) {
+        try {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ValueAnimator anim = ValueAnimator.ofFloat(0, value);
+                    anim.setDuration(1000);
+                    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            float animProgress = (Float) animation.getAnimatedValue();
+                            seekbar_last_cycle.setProgress((int) animProgress);
+                        }
+                    });
+                    anim.start();
 
                 }
-            }
+            }, 500);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
     }
+
+
 
 
 

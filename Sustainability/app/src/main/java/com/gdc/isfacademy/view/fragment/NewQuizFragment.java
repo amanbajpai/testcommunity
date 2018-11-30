@@ -1,4 +1,4 @@
-package com.gdc.isfacademy.view.fragment.challange;
+package com.gdc.isfacademy.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,12 +15,9 @@ import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.view.activity.HomeActivity;
 import com.gdc.isfacademy.view.adapter.QuizeListAdapter;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview;
-import com.gdc.isfacademy.view.fragment.BaseFragment;
-import com.gdc.isfacademy.view.fragment.QuizeFragment;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ashishthakur on 28/11/18.
@@ -122,21 +119,21 @@ public class NewQuizFragment extends BaseFragment implements QuizeListAdapter.On
                 questionAnswerBeen.setUserSelectedAnswer(pos);
                 optionList.get(pos).setSelected(true);
                 quizeListAdapter.notifyDataSetChanged();
-                // quizeFragment.setView();
+                 quizeFragment.setView();
 
                 break;
         }
 
     }
 
-/*    public void showWrongAnswerView() {
+    public void showWrongAnswerView() {
         quizeListAdapter.setWrongAnswerView();
         quizeListAdapter.setRightAnswerView();
     }
 
     public void showRightAnswerView() {
         quizeListAdapter.setRightAnswerView();
-    }*/
+    }
 
     @Override
     public void onResume() {

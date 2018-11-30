@@ -123,6 +123,7 @@ public class HomeActivity extends BaseActivity implements
         leftMenuFragment.privacyPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 drawerLayout.closeDrawer(containerFrag);
                 pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
 
@@ -134,6 +135,13 @@ public class HomeActivity extends BaseActivity implements
                 drawerLayout.closeDrawer(containerFrag);
                 pushFragments(TermsConditionFragment.newInstance(),null,false);
 
+            }
+        });
+        leftMenuFragment.logoutAppTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawer(containerFrag);
+                ProjectUtil.logoutFromAppMenu(HomeActivity.this);
             }
         });
 
@@ -242,7 +250,9 @@ public class HomeActivity extends BaseActivity implements
                 }
                 break;
             case 2:
+/*
                 ProjectUtil.logoutFromAppMenu(HomeActivity.this);
+*/
 
                 //pushFragments(TermsConditionFragment.newInstance(),null,false);
                 break;

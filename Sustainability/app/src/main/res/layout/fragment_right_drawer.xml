@@ -83,6 +83,17 @@
         android:text="@string/txt_privacy_policy"
         android:textSize="@dimen/_10sdp"
         android:layout_height="wrap_content" />
+    <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+        android:layout_width="wrap_content"
+        android:clickable="true"
+        android:id="@+id/logoutAppTv"
+        android:background="@drawable/terms_condition_and_privacy_selector"
+        android:padding="@dimen/_3sdp"
+        android:textColor="@color/white"
+        android:text="@string/txt_logout"
+        android:textSize="@dimen/_10sdp"
+        android:layout_height="wrap_content" />
+
 
 
 

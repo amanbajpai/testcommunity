@@ -67,7 +67,7 @@ public class LeftMenuFragment extends BaseFragment {
     private FragmentDrawerListener drawerListener;
     private AppCompatTextView txt_menu_label;
     private  ImageView cancel;
-    public AppCompatTextView privacyPolicy,termsCondition;
+    public AppCompatTextView privacyPolicy,termsCondition,logoutAppTv;
 
 
     public LeftMenuFragment() {
@@ -93,8 +93,8 @@ public class LeftMenuFragment extends BaseFragment {
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_real_time)));
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_about_isf)));
        /* sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_terms_condition)));
-        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_privacy_policy)));*/
-        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_logout)));
+        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_privacy_policy)));
+        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_logout)));*/
 
     }
 
@@ -109,6 +109,8 @@ public class LeftMenuFragment extends BaseFragment {
         cancel = (ImageView) layout.findViewById(R.id.cancelDrawer);
         privacyPolicy=(AppCompatTextView)layout.findViewById(R.id.privacyPolicy);
         termsCondition=(AppCompatTextView)layout.findViewById(R.id.termsCondition);
+        logoutAppTv=(AppCompatTextView)layout.findViewById(R.id.logoutAppTv);
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

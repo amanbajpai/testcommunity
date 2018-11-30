@@ -40,7 +40,7 @@
     <style name="tallerBarStyle" parent="@android:style/Widget.SeekBar">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:minHeight">@dimen/_10sdp</item>
-        <item name="android:maxHeight">@dimen/_20sdp</item>
+        <item name="android:maxHeight">@dimen/_30sdp</item>
     </style>
     <style name="MyProgressDialog" parent="Theme.AppCompat.Dialog">
         <item name="colorAccent">@color/color_text_and_spinner</item>

@@ -33,14 +33,17 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.renderer.XAxisRenderer;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.gson.Gson;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -511,7 +514,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
                                 }
                                 for (int i = 0; i < response.body().getStudent().size(); i++) {
-                                    float value = new BigDecimal(response.body().getStudent().get(i).getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
+                                    float value = new BigDecimal(response.body().getStudent().get(i).getValue()).floatValue();
                                     Log.e("valuesForAvg", "" + value);
                                     yaxisValueForStudent.add(new Entry(value, i));
                                 }
@@ -523,7 +526,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                             }
                             if (response.body().getAvg() != null && response.body().getAvg().size() > 0) {
                                 for (int i = 0; i < response.body().getAvg().size(); i++) {
-                                    float value = new BigDecimal(response.body().getAvg().get(i).getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
+                                    float value = new BigDecimal(response.body().getAvg().get(i).getValue()).floatValue();
                                     Log.e("valuesForSchool", "" + value);
                                     getYaxisValueForSchoolAvg.add(new Entry(value, i));
                                 }
@@ -623,13 +626,16 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
         // create a data object with the datasets
         LineData data = new LineData(xVals, dataSets);
-      /*  data.setValueFormatter(new ValueFormatter() {
+        data.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-               DecimalFormat mFormat = new DecimalFormat("###,###,##0.0"); // use one decimal
-                return mFormat.format(value);
+               DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use one decimal
+
+                float value1 = new BigDecimal(value).setScale(2,BigDecimal.ROUND_DOWN).floatValue();
+
+                return mFormat.format(value1);
             }
-        });*/
+        });
 
         // set data
         mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);

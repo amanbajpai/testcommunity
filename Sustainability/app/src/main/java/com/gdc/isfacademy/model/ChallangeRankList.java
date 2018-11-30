@@ -57,6 +57,18 @@ public class ChallangeRankList {
 
     String ranking;
 
+
+    int finalRankStudent;
+
+
+    public int getFinalRankStudent() {
+        return finalRankStudent;
+    }
+
+    public void setFinalRankStudent(int finalRankStudent) {
+        this.finalRankStudent = finalRankStudent;
+    }
+
     public String getRanking() {
         return ranking;
     }
@@ -65,9 +77,10 @@ public class ChallangeRankList {
         this.ranking = ranking;
     }
 
-    @Generated(hash = 1003762975)
+    @Generated(hash = 355939908)
     public ChallangeRankList(Long id, String studentId, String studentName, String house, String value,
-            String lastUpdateDate, String lastUpdateTs, String unit, String type, boolean checkIsme, String ranking) {
+            String lastUpdateDate, String lastUpdateTs, String unit, String type, boolean checkIsme, String ranking,
+            int finalRankStudent) {
         this.id = id;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -79,6 +92,7 @@ public class ChallangeRankList {
         this.type = type;
         this.checkIsme = checkIsme;
         this.ranking = ranking;
+        this.finalRankStudent = finalRankStudent;
     }
 
     @Generated(hash = 20761602)

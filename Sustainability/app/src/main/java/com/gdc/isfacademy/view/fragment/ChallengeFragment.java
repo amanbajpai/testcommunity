@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
     private ImageView start_quize_image;
     private String isQusetionAnswerSubmited = "";
     private TextView startNowTv;
+    public static boolean isListNeedRefresh=false;
 
     public static ChallengeFragment newInstance() {
         ChallengeFragment challengeFragment = new ChallengeFragment();
@@ -132,6 +134,11 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
             getQuizSubmittedStatus();
             getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
         }
+        if(isListNeedRefresh){
+            isListNeedRefresh=false;
+            getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
+
+        }
 
 
     }
@@ -168,6 +175,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                 } else {
                     ProjectUtil.showToast(getActivity(), getString(R.string.txt_try_again));
                 }
+
                 break;
         }
     }
@@ -257,9 +265,22 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                         if (response.body().getRankings() != null && response.body().getRankings().size() > 0) {
                             String studenId = MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID);
                             challangeRankLists.clear();
+                            String value=response.body().getRankings().get(0).getValue();
+                            int valueRank=1;
                             for (int i = 0; i < response.body().getRankings().size(); i++) {
-                                int rank = i + 1;
                                 ChallangeRankList challangeRankList = new ChallangeRankList();
+                                if(value.equalsIgnoreCase(response.body().getRankings().get(i).getValue())){
+                                    value=response.body().getRankings().get(i).getValue();
+                                    challangeRankList.setFinalRankStudent(valueRank);
+                                }
+                                else {
+                                    valueRank=i+1;
+                                    value=response.body().getRankings().get(i).getValue();
+                                    challangeRankList.setFinalRankStudent(valueRank);
+
+                                }
+                                int rank = i + 1;
+
                                 challangeRankList.setRanking("" + rank);
                                 challangeRankList.setHouse(response.body().getRankings().get(i).getHouse());
                                 challangeRankList.setLastUpdateDate(response.body().getRankings().get(i).getLastUpdateDate());
@@ -276,6 +297,9 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                                 }
                                 challangeRankLists.add(challangeRankList);
                             }
+                            for (int i=0;i<challangeRankLists.size();i++){
+                                Log.e("ranking is",""+challangeRankLists.get(i).getFinalRankStudent());
+                            }
                             challengeAdapter.updateList(getActivity(), challangeRankLists);
 
                         } else {
@@ -287,6 +311,8 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                     } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                         ProjectUtil.logoutFromApp(getActivity());
                     } else {
+                        challangeRankLists = new ArrayList<ChallangeRankList>();
+                        challengeAdapter.updateList(getActivity(), challangeRankLists);
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 
                     }

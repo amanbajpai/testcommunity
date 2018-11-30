@@ -39,10 +39,10 @@
 
     <!--Slider Menu Strings-->
     <string name="txt_real_time">ISF Sustainability App</string>
-    <string name="txt_about_isf">ISP School App</string>
-    <string name="txt_terms_condition">Terms &amp; Conditions</string>
-    <string name="txt_privacy_policy">Privacy Policy</string>
-    <string name="txt_logout">Logout</string>
+    <string name="txt_about_isf">ISF School App</string>
+    <string name="txt_terms_condition">Terms &amp; Conditions*</string>
+    <string name="txt_privacy_policy">Privacy Policy*</string>
+    <string name="txt_logout">Logout*</string>
 
     <!--Home Screen Strings-->
     <string name="txt_house_a">House A</string>
@@ -57,9 +57,9 @@
 
     <!--how much save screen-->
     <string name="txt_how_much_saved">How much have I actually saved?</string>
-    <string name="how_much_i_saved">costs HK$</string>
+    <string name="how_much_i_saved">How much I used</string>
     <string name="carbon_footprint">Carbon footprint</string>
-    <string name="consumption_of">consumption of</string>
+    <string name="consumption_of">Emission</string>
     <string name="this_week">Today</string>
     <string name="kwh">kWh</string>
     <string name="trees">Tree</string>
@@ -72,7 +72,7 @@
     <string name="which_equals_to">Which equals to</string>
     <string name="for_comparision">for comparison</string>
     <string name="select_other_item">Select other item</string>
-    <string name="which_wastes">Which needs</string>
+    <string name="which_wastes">needs to plant</string>
     <string name="dashboard">Leaderboard</string>
     <string name="friend">Friend</string>
     <string name="txt_cancel">Cancel</string>

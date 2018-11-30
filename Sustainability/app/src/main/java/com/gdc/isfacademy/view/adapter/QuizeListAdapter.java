@@ -59,7 +59,25 @@ public class QuizeListAdapter extends RecyclerView.Adapter<QuizeListAdapter.Hold
         holder.answerText.setTextColor(R.color.black);
         holder.answerText.setText(optionList.get(position).getOption());
 
+        String valueholder="";
+        if(questionAnswerBean.getAnswer().equalsIgnoreCase("A")){
+            valueholder="1";
+        }
+        else if(questionAnswerBean.getAnswer().equalsIgnoreCase("B")){
+            valueholder="2";
 
+        }
+        else if(questionAnswerBean.getAnswer().equalsIgnoreCase("C")){
+            valueholder="3";
+
+        }
+        else if(questionAnswerBean.getAnswer().equalsIgnoreCase("D")){
+            valueholder="4";
+
+        }
+        if (valueholder.equalsIgnoreCase(String.valueOf(position + 1))) {
+            correctAnswermHolder = holder;
+        }
         holder.answerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

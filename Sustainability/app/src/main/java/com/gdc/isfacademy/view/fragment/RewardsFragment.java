@@ -149,25 +149,35 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
             call.enqueue(new Callback<StudentRewardResponse>() {
                 @Override
                 public void onResponse(Call<StudentRewardResponse> call, Response<StudentRewardResponse> response) {
+                    hideProgressDialog();
                     ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             if (response.body().getRewards() != null && response.body().getRewards().size() > 0) {
                                 rewardListResponses = response.body().getRewards();
                                 rewardsAdapter.setList(getActivity(), rewardListResponses);
+                                title_reward_text.setText(getString(R.string.txt_reward_text));
+                                gift_text.setVisibility(View.GONE);
+                                gift_text.setText(getString(R.string.txt_gift));
                             }
-
+                            else {
+                                gift_text.setVisibility(View.GONE);
+                                title_reward_text.setText(getString(R.string.txt_no_reward_text));
+                            }
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
                         }
                     }
-                    getStudentStatus();
+                    //getStudentStatus();
 
                 }
 
                 @Override
                 public void onFailure(Call<StudentRewardResponse> call, Throwable t) {
-                    getStudentStatus();
+                    //getStudentStatus();
+                    hideProgressDialog();
+                    gift_text.setVisibility(View.GONE);
+                    title_reward_text.setText(getString(R.string.txt_no_reward_text));
                     if (getActivity() != null) {
                         ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
                     }

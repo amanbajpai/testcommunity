@@ -327,7 +327,8 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
                     hideProgressDialog();
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                           adapter.removeItemAtPostion(postion);
+                            ChallengeFragment.isListNeedRefresh=true;
+                            adapter.removeItemAtPostion(postion);
                             //getFriendList();
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
@@ -386,6 +387,7 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
                             if (type == 1) {
                                 adapter.removeItemAtPostion(postion);
                             } else {
+                                ChallengeFragment.isListNeedRefresh=true;
                                 allFriendAdapter.removeItemAtPostion(postion);
                             }
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {

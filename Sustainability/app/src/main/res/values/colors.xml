@@ -16,8 +16,8 @@
     <color name="red_light">#B53236</color>
     <color name="transparent_t_and_c_privacy">#4dffffff</color>
 
-
     <color name="green">#1A5A77</color>
+    <color name="cycle_text_home_color"> #009EAE</color>
 
     <color name="light_text_color">#989fa4</color>
     <color name="semi_light_color">#4d4d4d</color>
