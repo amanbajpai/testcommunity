@@ -1,6 +1,8 @@
 package com.gdc.isfacademy.view.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ import android.widget.LinearLayout;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
+import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.RetrieveDailyConsResponse;
 import com.gdc.isfacademy.model.StudentFootPrintResponse;
@@ -359,7 +362,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
             @Override
             public void onFailure(Call<StudentSavedCostResponse> call, Throwable t) {
-                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -428,7 +431,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
             @Override
             public void onFailure(Call<StudentFootPrintResponse> call, Throwable t) {
 
-                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -711,5 +714,69 @@ public class HowMuchSaveFragment extends BaseFragment implements
         ((HomeActivity) getActivity()).backBtn.setVisibility(View.VISIBLE);
         ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.GONE);
     }
+
+
+
+
+/*
+    private void submitShare() {
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
+            return;
+        }
+        showProgressDialog(getActivity());
+        Call<CommonResponse> call = ISFApp.getAppInstance()
+                .getApi()
+                .submitSharePoints(AppConstants.API_KEY,
+                        AppConstants.CONTENT_TYPE,
+                        MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+
+        ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                hideProgressDialog();
+                if (response.body() != null) {
+                    if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                        ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
+
+                    } else {
+                        ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
+
+                    }
+
+                }
+
+
+            }
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
+                t.printStackTrace();
+                hideProgressDialog();
+            }
+        });
+
+
+    }
+*/
+
+
+/*
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AppConstants.SHARE_QUIZ_RESULT_STATUS) {
+            if (resultCode == Activity.RESULT_OK) {
+                submitShare();
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                submitShare();
+            }
+        }
+    }
+*/
 
 }

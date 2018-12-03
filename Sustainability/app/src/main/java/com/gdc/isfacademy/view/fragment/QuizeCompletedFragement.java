@@ -115,7 +115,7 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
             }
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
-                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
                 t.printStackTrace();
                 hideProgressDialog();

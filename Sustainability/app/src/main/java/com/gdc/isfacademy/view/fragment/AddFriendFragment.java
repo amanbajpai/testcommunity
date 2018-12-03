@@ -230,9 +230,8 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
                 @Override
                 public void onFailure(Call<ParentFriendListResponse> call, Throwable t) {
                     hideProgressDialog();
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+
                     t.printStackTrace();
                 }
             });
@@ -327,7 +326,7 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
                     hideProgressDialog();
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                            ChallengeFragment.isListNeedRefresh=true;
+                            ChallengeFragment.isListNeedRefresh = true;
                             adapter.removeItemAtPostion(postion);
                             //getFriendList();
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
@@ -339,10 +338,9 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
 
                 @Override
                 public void onFailure(Call<CommonResponse> call, Throwable t) {
+                        hideProgressDialog();
+                    ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
 
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
                     t.printStackTrace();
                 }
             });
@@ -387,7 +385,7 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
                             if (type == 1) {
                                 adapter.removeItemAtPostion(postion);
                             } else {
-                                ChallengeFragment.isListNeedRefresh=true;
+                                ChallengeFragment.isListNeedRefresh = true;
                                 allFriendAdapter.removeItemAtPostion(postion);
                             }
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
@@ -399,10 +397,8 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
 
                 @Override
                 public void onFailure(Call<CommonResponse> call, Throwable t) {
-
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    hideProgressDialog();
+                    ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                 }
             });
@@ -446,6 +442,7 @@ public class AddFriendFragment extends BaseFragment implements View.OnClickListe
         Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
         pbutton.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
     }
+
     @Override
     public void onResume() {
         super.onResume();

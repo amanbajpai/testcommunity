@@ -121,7 +121,7 @@ public class AppConstants {
     public static final String ABOUT_US_URL="https://www.isf.edu.hk/";
     public static final String TERMS_AND_CONDITION_URL="https://www.energybox.com/terms-of-sales/";
     public static final String PRIVACY_POLICY_URL="https://www.energybox.com/privacy-policy/";
-    public static final String REAL_TIME_SITE="http://webxr.s3-accelerate.amazonaws.com/energybox/ConvenienceStore2/index.html";
+    public static final String REAL_TIME_SITE="http://webxr.s3-accelerate.amazonaws.com/ISF/index.html";
 
     public static final String FORGOT_PASSWORD="https://powerschool.isf.edu.hk/public/account_recovery_begin.html";
     public static final String USED_REWARD="USED";

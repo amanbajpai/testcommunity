@@ -227,7 +227,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
 
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
-                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -322,8 +322,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
 
             @Override
             public void onFailure(Call<RankingParentResponse> call, Throwable t) {
-
-                ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }

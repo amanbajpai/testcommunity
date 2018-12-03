@@ -40,9 +40,9 @@
     <!--Slider Menu Strings-->
     <string name="txt_real_time">ISF Sustainability App</string>
     <string name="txt_about_isf">ISF School App</string>
-    <string name="txt_terms_condition">Terms &amp; Conditions*</string>
-    <string name="txt_privacy_policy">Privacy Policy*</string>
-    <string name="txt_logout">Logout*</string>
+    <string name="txt_terms_condition">Terms &amp; Conditions</string>
+    <string name="txt_privacy_policy">Privacy Policy</string>
+    <string name="txt_logout">Logout</string>
 
     <!--Home Screen Strings-->
     <string name="txt_house_a">House A</string>
@@ -50,13 +50,13 @@
     <string name="txt_consumption">My Consumption</string>
     <string name="txt_this_month">Today</string>
     <string name="txt_this_compare">Compare to same time last cycle</string>
-    <string name="txt_school_energy_saving_txt">Total Energy Saving in School</string>
+    <string name="txt_school_energy_saving_txt">Total Energy Used in School</string>
     <string name="txt_date_upto">Up to 31 may 2017</string>
     <string name="txt_up_to">Up to </string>
 
 
     <!--how much save screen-->
-    <string name="txt_how_much_saved">How much have I actually saved?</string>
+    <string name="txt_how_much_saved">How much have I actually used?</string>
     <string name="how_much_i_saved">How much I used</string>
     <string name="carbon_footprint">Carbon footprint</string>
     <string name="consumption_of">Emission</string>
@@ -98,7 +98,7 @@
     <string name="txt_gift">Here is your Gift!</string>
     <string name="txt_a_cup_of_free_drink">Free Drink Under from EDU Cafe.</string>
     <string name="txt_reward_text">Congratulations! You\’re the Top 5 students out of your house.</string>
-    <string name="title_when_offline">Get high scores and win the prizes!</string>
+    <string name="title_when_offline">Win rewards based on your scores</string>
     <string name="txt_no_reward_text">Win rewards based on your scores.</string>
     <string name="txt_unlock">Unlock</string>
     <string name="txt_redeemed_message">Redeemed free drink sucussfully</string>

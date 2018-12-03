@@ -157,6 +157,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         SimpleDateFormat month_date = new SimpleDateFormat("dd MMMM yyyy");
         String currentDate = month_date.format(cal.getTime());*/
 
+
+        // l.setExtra(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
+        // "def", "ghj", "ikl", "mno" });
+        // l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
+        // "def", "ghj", "ikl", "mno" });
+
+    }
+
+
+    public void setDataForChart(float currentCycle,float lastCycle){
         mChart.setDrawBarShadow(false);
         mChart.setTouchEnabled(false);
         mChart.setDragEnabled(false);
@@ -188,33 +198,27 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         xAxis.setSpaceBetweenLabels(2);
 
         YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setLabelCount(8, false);
+        leftAxis.setLabelCount(5, false);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        leftAxis.setSpaceTop(15f);
-        leftAxis.setAxisMinValue(0f); // this replaces setStartAtZero(true)
+        leftAxis.setAxisMinValue(0f);// this replaces setStartAtZero(true)
+        if(currentCycle>lastCycle){
+            leftAxis.setAxisMaxValue(currentCycle+200f);
 
+        }
+        else {
+            leftAxis.setAxisMaxValue(lastCycle+200f);
+
+        }
         YAxis rightAxis = mChart.getAxisRight();
-        rightAxis.setDrawGridLines(false);
-        rightAxis.setLabelCount(8, false);
-        rightAxis.setSpaceTop(15f);
         rightAxis.setEnabled(false);
-        rightAxis.setAxisMinValue(0f); // this replaces setStartAtZero(true)
 
         Legend l = mChart.getLegend();
+
         l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         l.setForm(Legend.LegendForm.SQUARE);
-        l.setFormSize(9f);
-        l.setTextSize(11f);
-        l.setXEntrySpace(4f);
-        // l.setExtra(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
-        // l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
-
-    }
-
-
-    public void setDataForChart(float currentCycle,float lastCycle){
+        l.setFormSize(1f);
+        l.setTextSize(1f);
+        l.setXEntrySpace(1f);
         ArrayList<String> xVals = new ArrayList<String>();
         xVals.add("This Cycle");
         xVals.add("Last Cycle");
@@ -252,6 +256,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
         mChart.setData(data);
         mChart.invalidate();
+        mChart.getLegend().setEnabled(false);
+
+
     }
 
 
@@ -359,9 +366,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
                 @Override
                 public void onFailure(Call<EnergySavingResponse> call, Throwable t) {
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     getEnergySavingBuildingConsumption();
 
@@ -408,7 +413,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
                 @Override
                 public void onFailure(Call<BuildingEnergySaving> call, Throwable t) {
-                    ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     hideProgressDialog();
                 }

@@ -204,9 +204,7 @@ public class ProfileFragment extends BaseFragment {
 
                 @Override
                 public void onFailure(Call<StudentLogResponse> call, Throwable t) {
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     hideProgressDialog();
                 }
@@ -269,9 +267,7 @@ public class ProfileFragment extends BaseFragment {
 
                 @Override
                 public void onFailure(Call<StudentBadgeResponse> call, Throwable t) {
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     hideProgressDialog();
                 }
@@ -370,9 +366,7 @@ public class ProfileFragment extends BaseFragment {
 
                 @Override
                 public void onFailure(Call<StudentStatusResponse> call, Throwable t) {
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     hideProgressDialog();
                 }

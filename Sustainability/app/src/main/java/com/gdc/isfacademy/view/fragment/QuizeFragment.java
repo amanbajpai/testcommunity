@@ -136,9 +136,8 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
 
                     @Override
                     public void onFailure(Call<QuizParentResponse> call, Throwable t) {
-                        if (getActivity() != null) {
-                            ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                        }
+                        ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                        hideProgressDialog();
                         t.printStackTrace();
                     }
                 });
@@ -350,7 +349,7 @@ public class QuizeFragment extends BaseFragment implements View.OnClickListener 
                 @Override
                 public void onFailure(Call<CommonResponse> call, Throwable t) {
 
-                    ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     hideProgressDialog();
                 }

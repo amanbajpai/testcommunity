@@ -102,11 +102,9 @@ public class SendFriendRequestFragment extends BaseFragment {
 
                 @Override
                 public void onFailure(Call<CommonResponse> call, Throwable t) {
-
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
+                    hideProgressDialog();
                 }
             });
         } catch (Exception ex) {

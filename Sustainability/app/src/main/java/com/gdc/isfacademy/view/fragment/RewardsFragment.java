@@ -178,9 +178,8 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                     hideProgressDialog();
                     gift_text.setVisibility(View.GONE);
                     title_reward_text.setText(getString(R.string.txt_no_reward_text));
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+
                     t.printStackTrace();
                 }
             });
@@ -229,10 +228,8 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
 
                 @Override
                 public void onFailure(Call<CommonResponse> call, Throwable t) {
-
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                    hideProgressDialog();
                     t.printStackTrace();
                 }
             });
@@ -313,9 +310,8 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
                 @Override
                 public void onFailure(Call<CommonResponse> call, Throwable t) {
                     hideProgressDialog();
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+
                     t.printStackTrace();
                 }
             });
@@ -381,9 +377,7 @@ public class RewardsFragment extends BaseFragment implements RewardsAdapter.OnRe
 
                 @Override
                 public void onFailure(Call<StudentStatusResponse> call, Throwable t) {
-                    if (getActivity() != null) {
-                        ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                    }
+                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     hideProgressDialog();
                 }

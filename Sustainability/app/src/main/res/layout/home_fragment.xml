@@ -62,6 +62,7 @@
                 android:layout_height="match_parent">
 
                 <RelativeLayout
+                    android:layout_above="@+id/progresBarLastCycle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -133,10 +134,10 @@
 
 
                     <ImageView
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:id="@+id/icon_user"
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:src="@drawable/dummy"
@@ -181,11 +182,12 @@
                         tools:ignore="RtlHardcoded" />
 
                     <RelativeLayout
-                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:id="@+id/progressBar"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_below="@+id/percentTextview"
+                        android:layout_height="@dimen/_26sdp"
                         android:orientation="vertical">
 
                         <SeekBar
@@ -193,7 +195,7 @@
                             android:id="@+id/seekbar"
                             style="@style/tallerBarStyle"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="@dimen/_26sdp"
                             android:layout_centerVertical="true"
                             android:max="100"
                             android:progressDrawable="@drawable/home_seekbar_selector"
@@ -255,7 +257,8 @@
 
                 </RelativeLayout>
                 <RelativeLayout
-                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:id="@+id/progresBarLastCycle"
                     android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -266,7 +269,7 @@
                         android:id="@+id/seekbar_last_cycle"
                         style="@style/tallerBarStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_height="@dimen/_26sdp"
                         android:layout_centerVertical="true"
                         android:max="100"
                         android:progressDrawable="@drawable/last_cycle_seekbar"
@@ -316,11 +319,11 @@
         </android.support.v7.widget.CardView>
 
         <RelativeLayout
+            android:padding="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:id="@+id/how_much_save_rl"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_weight=".12"
+            android:layout_height="wrap_content"
             android:background="@drawable/how_much_saved_energy_selector"
             android:clickable="true">
 
@@ -366,8 +369,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_weight="0.96">
+            android:layout_weight="1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -379,18 +381,17 @@
                     tools:ignore="UselessParent">
 
                     <LinearLayout
+                        android:id="@+id/enrgySavingBuildingLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:orientation="vertical"
-                        android:padding="@dimen/_1sdp"
                         tools:ignore="RtlHardcoded">
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_1sdp"
                             android:text="@string/txt_school_energy_saving_txt"
                             android:textColor="@color/semi_light_color"
                             android:textSize="@dimen/_13sdp"
@@ -398,9 +399,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/_2sdp"
-                            android:paddingTop="@dimen/_1sdp">
+                            android:layout_height="wrap_content">
 
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                 android:id="@+id/currentCosumptionDate"
@@ -416,13 +415,13 @@
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_1sdp"
                             android:text="@string/txt_this_compare"
                             android:textColor="@color/light_text_color"
                             android:textSize="@dimen/_10sdp"
                             tools:ignore="RtlHardcoded" />
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -430,10 +429,9 @@
                                 android:id="@+id/buildingPercentTextview"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_2sdp"
                                 android:text="@string/txt_zero_percent"
                                 android:textColor="@color/color_text_and_spinner"
-                                android:textSize="@dimen/_20sdp"
+                                android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
 
                             <ImageView
@@ -454,7 +452,7 @@
                                 android:layout_toRightOf="@+id/buildingPercentTextview"
                                 android:text="@string/txt_saved"
                                 android:textColor="@android:color/holo_red_light"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_15sdp"
                                 android:visibility="gone"
                                 tools:ignore="RtlHardcoded" />
                         </LinearLayout>
@@ -464,27 +462,26 @@
 
                     <ImageView
                         android:id="@+id/buildingSchool"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:src="@drawable/school_icon"
                         tools:ignore="ContentDescription,RtlHardcoded" />
                     <RelativeLayout
+                        android:layout_marginBottom="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_below="@+id/buildingSchool"
+                        android:layout_below="@+id/enrgySavingBuildingLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <LinearLayout
                             android:id="@+id/chartView"
-                            android:layout_marginTop="@dimen/_2sdp"
                             android:layout_gravity="center"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            tools:ignore="ScrollViewSize">
+                            android:layout_height="match_parent">
                         </LinearLayout>
                         <FrameLayout
                             android:visibility="gone"
