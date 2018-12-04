@@ -333,9 +333,9 @@ public class ProfileFragment extends BaseFragment {
                                 if (response.body().getIsfStudentStatus().getChallengeCount() != null) {
                                     energySavingTv.setText(response.body().getIsfStudentStatus().getChallengeCount());
                                     if (Integer.parseInt(response.body().getIsfStudentStatus().getChallengeCount()) > 0) {
-                                        energyIcon.setImageResource(R.drawable.flash);
+                                        energyIcon.setImageResource(R.drawable.challenge_sword_active);
                                     } else {
-                                        energyIcon.setImageResource(R.drawable.energy_grey);
+                                        energyIcon.setImageResource(R.drawable.challenge_inactive);
                                     }
                                 }
                                 if (response.body().getIsfStudentStatus().getRankingCount() != null) {

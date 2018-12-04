@@ -12,7 +12,7 @@
     <string name="txt_powerd_by">Powered by</string>
     <string name="txt_validate_student_id">Please enter student id</string>
     <string name="txt_validate_password">Please enter your password</string>
-    <string name="txt_enter_student_id">Enter Student Id</string>
+    <string name="txt_enter_student_id">Enter Student ID</string>
     <string name="txt_enter_password">Enter Password</string>
     <string name="txt_yes">Yes</string>
     <string name="txt_no">No</string>
@@ -59,7 +59,7 @@
     <string name="txt_how_much_saved">How much have I actually used?</string>
     <string name="how_much_i_saved">How much I used</string>
     <string name="carbon_footprint">Carbon footprint</string>
-    <string name="consumption_of">Emission</string>
+    <string name="consumption_of">Emissions</string>
     <string name="this_week">Today</string>
     <string name="kwh">kWh</string>
     <string name="trees">Tree</string>
@@ -234,6 +234,8 @@
 
     <!--Challange Screen-->
     <string name="txt_house">House</string>
+    <string name="txt_this_cycle">This Cycle</string>
+    <string name="txt_last_cycle">Same Period Last Cycle</string>
 
 
 </resources>

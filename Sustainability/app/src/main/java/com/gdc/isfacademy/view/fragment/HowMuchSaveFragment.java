@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.gdc.isfacademy.R;
@@ -71,6 +72,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
     private LineChart mChart;
     private String dateEnergySaving;
     private LinearLayout chartView;
+    private ImageView rightArrowImagView;
 
     public static HowMuchSaveFragment newInstance() {
         HowMuchSaveFragment howMuchSaveFragment = new HowMuchSaveFragment();
@@ -104,6 +106,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.getLayoutParams().width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
         mChart.invalidate();
 
+        rightArrowImagView=(ImageView)view.findViewById(R.id.rightArrowImagView);
         upto_date_tv = (AppCompatTextView) view.findViewById(R.id.upto_date_tv);
         spinnerfootPrint = (AppCompatSpinner) view.findViewById(R.id.spinnerfootPrint);
         cost_tv = (AppCompatTextView) view.findViewById(R.id.cost_tv);
@@ -138,6 +141,16 @@ public class HowMuchSaveFragment extends BaseFragment implements
             // energyUnit.setText(currentCons.getUnit());
         }
         upto_date_tv.setText(dateEnergySaving);
+        rightArrowImagView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, randomSaveInstructionText.getText().toString().trim());
+                sendIntent.setType("text/plain");
+                startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
+            }
+        });
 
 
         getGraphData(getString(R.string.txt_month_graph));
@@ -632,7 +645,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         data.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-               DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use one decimal
+               DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use two decimal
 
                 float value1 = new BigDecimal(value).setScale(2,BigDecimal.ROUND_DOWN).floatValue();
 
@@ -718,7 +731,6 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
 
 
-/*
     private void submitShare() {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
@@ -739,14 +751,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
                 ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                 hideProgressDialog();
                 if (response.body() != null) {
-                    if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
-                        ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
-
-                    } else {
-                        ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
-
-                    }
-
+                    ProjectUtil.showToast(getActivity(), response.body().getResponseMessage());
                 }
 
 
@@ -754,7 +759,6 @@ public class HowMuchSaveFragment extends BaseFragment implements
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
                 ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
-                ((HomeActivity) getActivity()).pushFragments(ChallengeFragment.newInstance(), null, true);
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -762,10 +766,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
 
     }
-*/
 
 
-/*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -777,6 +779,5 @@ public class HowMuchSaveFragment extends BaseFragment implements
             }
         }
     }
-*/
 
 }

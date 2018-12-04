@@ -62,9 +62,9 @@
                 android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:layout_above="@+id/progresBarLastCycle"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/progresBarLastCycle">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -134,19 +134,18 @@
 
 
                     <ImageView
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:id="@+id/icon_user"
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="@dimen/_70sdp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/dummy"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                         android:id="@+id/percentTextview"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/icon_user"
@@ -154,10 +153,10 @@
                         android:text="@string/txt_zero_percent"
                         android:textColor="@color/color_text_and_spinner"
                         android:textSize="@dimen/_25sdp"
+                        android:visibility="gone"
                         tools:ignore="RtlHardcoded" />
 
                     <ImageView
-                        android:visibility="gone"
                         android:id="@+id/percentArrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -165,6 +164,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_7sdp"
                         android:layout_toRightOf="@+id/percentTextview"
+                        android:visibility="gone"
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
                     <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
@@ -182,22 +182,22 @@
                         tools:ignore="RtlHardcoded" />
 
                     <RelativeLayout
-                        android:layout_marginBottom="@dimen/_5sdp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:id="@+id/progressBar"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_26sdp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="vertical">
 
                         <SeekBar
-                            android:progress="1"
                             android:id="@+id/seekbar"
                             style="@style/tallerBarStyle"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_26sdp"
                             android:layout_centerVertical="true"
                             android:max="100"
+                            android:progress="1"
                             android:progressDrawable="@drawable/home_seekbar_selector"
                             android:thumb="@android:color/white" />
 
@@ -228,26 +228,26 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
-                                    android:layout_marginRight="@dimen/_4sdp"
                                     android:layout_marginLeft="@dimen/_8sdp"
+                                    android:layout_marginRight="@dimen/_4sdp"
                                     android:text=""
                                     android:textColor="@color/home_bottom_card_text_color"
                                     android:textSize="@dimen/_10sdp"
                                     tools:ignore="RelativeOverlap,RtlHardcoded" />
 
-<!--
-                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
-                                    android:id="@+id/full_status_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/_1sdp"
-                                    android:layout_toRightOf="@+id/kwh_text_status"
-                                    android:text=""
-                                    android:textColor="@color/semi_light_color"
-                                    android:textSize="@dimen/_10sdp"
-                                    android:visibility="gone"
-                                    tools:ignore="RtlHardcoded" />
--->
+                                <!--
+                                                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                                                                    android:id="@+id/full_status_text"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_marginLeft="@dimen/_1sdp"
+                                                                    android:layout_toRightOf="@+id/kwh_text_status"
+                                                                    android:text=""
+                                                                    android:textColor="@color/semi_light_color"
+                                                                    android:textSize="@dimen/_10sdp"
+                                                                    android:visibility="gone"
+                                                                    tools:ignore="RtlHardcoded" />
+                                -->
                             </RelativeLayout>
                         </FrameLayout>
 
@@ -256,60 +256,60 @@
 
 
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:layout_marginBottom="@dimen/_10sdp"
                     android:id="@+id/progresBarLastCycle"
-                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_10sdp">
 
                     <SeekBar
-                        android:progress="1"
                         android:id="@+id/seekbar_last_cycle"
                         style="@style/tallerBarStyle"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_26sdp"
                         android:layout_centerVertical="true"
                         android:max="100"
+                        android:progress="1"
                         android:progressDrawable="@drawable/last_cycle_seekbar"
                         android:thumb="@android:color/white" />
+
                     <FrameLayout
-                        android:layout_marginLeft="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_15sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true">
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                                 android:layout_width="wrap_content"
-                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/_5sdp"
                                 android:text="Same Period Last Cycle"
                                 android:textColor="#8D959A"
-                                android:textSize="@dimen/_10sdp"
-                                android:layout_height="wrap_content" />
+                                android:textSize="@dimen/_10sdp" />
 
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
                                 android:id="@+id/full_status_text"
                                 android:layout_width="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_alignParentRight="true"
                                 android:layout_height="wrap_content"
-                                android:text=""
-                                android:layout_marginRight="@dimen/_4sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:layout_marginLeft="@dimen/_8sdp"
+                                android:layout_marginRight="@dimen/_4sdp"
+                                android:text=""
                                 android:textColor="#8D959A"
                                 android:textSize="@dimen/_10sdp"
                                 tools:ignore="RtlHardcoded" />
                         </RelativeLayout>
                     </FrameLayout>
-
-
 
 
                 </RelativeLayout>
@@ -319,13 +319,13 @@
         </android.support.v7.widget.CardView>
 
         <RelativeLayout
-            android:padding="@dimen/_4sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
             android:id="@+id/how_much_save_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/how_much_saved_energy_selector"
-            android:clickable="true">
+            android:clickable="true"
+            android:padding="@dimen/_4sdp">
 
             <ImageView
                 android:id="@+id/infoImagView"
@@ -421,10 +421,11 @@
                             tools:ignore="RtlHardcoded" />
 
                         <LinearLayout
-                            android:visibility="gone"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                                 android:id="@+id/buildingPercentTextview"
                                 android:layout_width="wrap_content"
@@ -462,71 +463,98 @@
 
                     <ImageView
                         android:id="@+id/buildingSchool"
-                        android:layout_marginTop="@dimen/_3sdp"
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
                         android:src="@drawable/school_icon"
                         tools:ignore="ContentDescription,RtlHardcoded" />
+
                     <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/enrgySavingBuildingLayout"
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_below="@+id/enrgySavingBuildingLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_marginRight="@dimen/_10sdp">
+
                         <LinearLayout
                             android:id="@+id/chartView"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
                         </LinearLayout>
                         <FrameLayout
-                            android:visibility="gone"
-                            android:layout_centerVertical="true"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true">
+
                             <LinearLayout
-                                android:orientation="horizontal"
-                                android:weightSum="2"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
                                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                     android:id="@+id/school_kwh_text_status"
+                                    android:layout_width="0dp"
+                                    android:visibility="gone"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/semi_light_color"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:ignore="RtlHardcoded" />
+
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                                    android:id="@+id/school_full_status_text"
+                                    android:layout_width="0dp"
+                                    android:visibility="gone"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="@dimen/_4sdp"
+                                    android:layout_toRightOf="@+id/school_kwh_text_status"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_8sdp"
+                                    tools:ignore="RtlHardcoded" />
+
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/_10sdp"
-                                    android:layout_marginRight="@dimen/_1sdp"
-                                    android:text="@string/txt_zero_kwh"
+                                    android:text="@string/txt_this_cycle"
                                     android:textColor="@color/semi_light_color"
-                                    android:textSize="@dimen/_10sdp"
+                                    android:textSize="@dimen/_8sdp"
                                     tools:ignore="RtlHardcoded" />
 
-                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
-                                    android:id="@+id/school_full_status_text"
+                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                                     android:layout_width="0dp"
                                     android:gravity="center"
                                     android:layout_weight="1"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="@dimen/_4sdp"
                                     android:layout_toRightOf="@+id/school_kwh_text_status"
-                                    android:text="@string/txt_dash_zero_kwh"
-                                    android:textColor="@color/white"
-                                    android:textSize="@dimen/_10sdp"
+                                    android:text="@string/txt_last_cycle"
+                                    android:textColor="@color/semi_light_color"
+                                    android:textSize="@dimen/_8sdp"
                                     tools:ignore="RtlHardcoded" />
+
                             </LinearLayout>
 
                         </FrameLayout>
 
                     </RelativeLayout>
-
-
-
-
 
 
                     <!--<com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView

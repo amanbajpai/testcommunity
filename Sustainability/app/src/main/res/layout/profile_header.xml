@@ -88,7 +88,7 @@
                     <ImageView
                         android:layout_gravity="center_vertical"
                         android:id="@+id/energyIcon"
-                        android:src="@drawable/energy_grey"
+                        android:src="@drawable/challenge_inactive"
                         android:layout_width="@dimen/_11sdp"
                         android:layout_height="@dimen/_11sdp" />
 

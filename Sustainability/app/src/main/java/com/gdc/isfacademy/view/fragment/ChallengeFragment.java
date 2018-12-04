@@ -297,9 +297,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                                 }
                                 challangeRankLists.add(challangeRankList);
                             }
-                            for (int i=0;i<challangeRankLists.size();i++){
-                                Log.e("ranking is",""+challangeRankLists.get(i).getFinalRankStudent());
-                            }
+
                             challengeAdapter.updateList(getActivity(), challangeRankLists);
 
                         } else {

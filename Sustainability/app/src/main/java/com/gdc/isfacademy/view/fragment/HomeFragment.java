@@ -61,19 +61,18 @@ import retrofit2.Response;
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
     public static final String TAG = "HomeFragment";
     public static boolean isQuizSubmited = false;
-    public SeekBar seekbar,seekbar_last_cycle;
+    public SeekBar seekbar, seekbar_last_cycle;
     AppCompatTextView studentHouse, currentCosumptionDate;
     EnergySavingResponse.CurrentCons currentCons;
     ImageView percentArrow, buildingEnergyStatusArrow;
     AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding;
     AppCompatSpinner spinner;
     String thisWeekStatusValue, lastWeekStatusValue;
+    LinearLayout chartView;
+    BarChart mChart;
     private RelativeLayout how_much_save_rl;
     private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
             buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv;
-    LinearLayout chartView;
-    BarChart mChart;
-
 
     public static HomeFragment newInstance() {
         HomeFragment homeFragment = new HomeFragment();
@@ -108,8 +107,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initView(View layout) {
-        seekbar_last_cycle=(SeekBar)layout.findViewById(R.id.seekbar_last_cycle);
-        chartView=(LinearLayout)layout.findViewById(R.id.chartView);
+        seekbar_last_cycle = (SeekBar) layout.findViewById(R.id.seekbar_last_cycle);
+        chartView = (LinearLayout) layout.findViewById(R.id.chartView);
         mChart = new BarChart(getActivity());//just populating data, etc
         chartView.addView(mChart);
         mChart.getLayoutParams().height = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -166,7 +165,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
 
-    public void setDataForChart(float currentCycle,float lastCycle){
+    public void setDataForChart(float currentCycle, float lastCycle, String currentValue, String lastCycleValue) {
         mChart.setDrawBarShadow(false);
         mChart.setTouchEnabled(false);
         mChart.setDragEnabled(false);
@@ -193,20 +192,22 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mChart.getXAxis().setDrawGridLines(false);
 
         XAxis xAxis = mChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
         xAxis.setDrawGridLines(false);
+        xAxis.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+
         xAxis.setSpaceBetweenLabels(2);
 
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setLabelCount(5, false);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setAxisMinValue(0f);// this replaces setStartAtZero(true)
-        if(currentCycle>lastCycle){
-            leftAxis.setAxisMaxValue(currentCycle+200f);
+        if (currentCycle > lastCycle) {
 
-        }
-        else {
-            leftAxis.setAxisMaxValue(lastCycle+200f);
+            leftAxis.setAxisMaxValue(currentCycle + setRatio(currentCycle));
+
+        } else {
+            leftAxis.setAxisMaxValue(lastCycle + setRatio(lastCycle));
 
         }
         YAxis rightAxis = mChart.getAxisRight();
@@ -220,14 +221,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         l.setTextSize(1f);
         l.setXEntrySpace(1f);
         ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("This Cycle");
-        xVals.add("Last Cycle");
+        xVals.add(currentValue);
+        xVals.add(lastCycleValue);
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
         yVals1.add(new BarEntry(currentCycle, 0));
         yVals1.add(new BarEntry(lastCycle, 1));
-
 
 
         BarDataSet set1 = new BarDataSet(yVals1, "");
@@ -247,7 +247,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
                 DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use one decimal
 
-                float value1 = new BigDecimal(value).setScale(2,BigDecimal.ROUND_DOWN).floatValue();
+                float value1 = new BigDecimal(value).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
 
                 return mFormat.format(value1);
             }
@@ -259,6 +259,26 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mChart.getLegend().setEnabled(false);
 
 
+    }
+
+
+    public float setRatio(float value) {
+        if (value >= 0 && value <= 5) {
+            return  5;
+        } else if (value > 5 && value <= 10) {
+            return  10;
+        } else if (value > 10 && value <= 20) {
+            return  20;
+        } else if (value > 20 && value <= 50) {
+            return 25;
+        } else if (value > 50 && value <= 100) {
+            return 50;
+        } else if (value > 100 && value <= 1000) {
+            return  200;
+        }  else if (value > 1000 && value <= 2000) {
+            return   200;
+        }
+        return  500;
     }
 
 
@@ -366,7 +386,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
                 @Override
                 public void onFailure(Call<EnergySavingResponse> call, Throwable t) {
-                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                    ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     getEnergySavingBuildingConsumption();
 
@@ -413,7 +433,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
                 @Override
                 public void onFailure(Call<BuildingEnergySaving> call, Throwable t) {
-                    ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                    ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                     t.printStackTrace();
                     hideProgressDialog();
                 }
@@ -430,12 +450,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
-            float value1 = new BigDecimal(response.getLastWeekCons().getValue()).setScale(2,BigDecimal.ROUND_DOWN).floatValue();
+            float currentValueFinal = new BigDecimal(response.getCurrentCons().getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
+            float lastValueFinal = new BigDecimal(response.getLastWeekCons().getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
 
 
-
-            String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
-            String lastWeekCons = String.format(Locale.getDefault(), "/ %.2f %s", value1, unit);
+            String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValueFinal, unit);
+            String lastWeekCons = String.format(Locale.getDefault(), "%.2f %s", lastValueFinal, unit);
 
             Typeface externalFont = Typeface.createFromAsset(ISFApp.getAppInstance().getApplicationContext().getAssets(), "fonts/OpenSans-Semibold_0.ttf");
             buildingThisWeekStatus.setTypeface(externalFont, Typeface.BOLD);
@@ -469,7 +489,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             String actualConsSave = String.format(Locale.getDefault(), "%d%s", (ProjectUtil.math(actualSaving)), "%");
             buildingPercentTextview.setText(actualConsSave);
 
-            setDataForChart(currentValue,lastValue);
+            setDataForChart(currentValue, lastValue, currentCons, lastWeekCons);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -506,22 +526,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             lastWeekStatus.setText(lastWeekStatusValue);
 
 
-
-            if(lastValue>currentValue){
+            if (lastValue > currentValue) {
                 seekbar_last_cycle.setProgress(100);
-              float  percentage = (currentValue * 100/ lastValue);
-                Log.e("this cycle",""+percentage);
+                float percentage = (currentValue * 100 / lastValue);
                 setSeekbarValue(percentage);
 
-
-            }
-            else if(currentValue>lastValue){
+            } else if (currentValue > lastValue) {
                 seekbar.setProgress(100);
-                float  percentage = (lastValue * 100/ currentValue);
-                Log.e("Last cycle",""+percentage);
+                float percentage = (lastValue * 100 / currentValue);
                 setSeekbarforLastCycle(percentage);
-            }
-            else {
+            } else {
                 setSeekbarValue(1f);
                 setSeekbarforLastCycle(1f);
 
@@ -621,9 +635,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 
     }
-
-
-
 
 
     private void getQuizSubmittedStatus() {
