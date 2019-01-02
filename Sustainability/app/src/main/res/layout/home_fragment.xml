@@ -176,7 +176,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_toRightOf="@+id/percentTextview"
                         android:text="@string/txt_saved"
-                        android:textColor="@android:color/holo_red_light"
+                        android:textColor="@android:color/transparent"
                         android:textSize="@dimen/_14sdp"
                         android:visibility="gone"
                         tools:ignore="RtlHardcoded" />
@@ -218,7 +218,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
                                     android:layout_marginLeft="@dimen/_4sdp"
-                                    android:text="This Cycle"
+                                    android:text="@string/txt_this_cycle"
                                     android:textColor="@color/home_bottom_card_text_color"
                                     android:textSize="@dimen/_10sdp"
                                     tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -292,7 +292,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="@dimen/_5sdp"
-                                android:text="Same Period Last Cycle"
+                                android:text="@string/txt_last_cycle"
                                 android:textColor="#8D959A"
                                 android:textSize="@dimen/_10sdp" />
 
@@ -431,7 +431,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/txt_zero_percent"
-                                android:textColor="@color/color_text_and_spinner"
+                                android:textColor="@android:color/transparent"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
 
@@ -452,7 +452,7 @@
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 android:layout_toRightOf="@+id/buildingPercentTextview"
                                 android:text="@string/txt_saved"
-                                android:textColor="@android:color/holo_red_light"
+                                android:textColor="@android:color/transparent"
                                 android:textSize="@dimen/_15sdp"
                                 android:visibility="gone"
                                 tools:ignore="RtlHardcoded" />

@@ -67,8 +67,6 @@ public class HomeActivity extends BaseActivity implements
         setNavagionDrawer();
         setBottomNavigation();
         ProjectUtil.setAlarmReminder(this);
-
-
     }
 
     public void setUpToolbar() {
@@ -76,6 +74,7 @@ public class HomeActivity extends BaseActivity implements
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportFragmentManager().addOnBackStackChangedListener(this);
+
 
 
     }

@@ -191,6 +191,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mChart.getAxisLeft().setDrawGridLines(false);
         mChart.getXAxis().setDrawGridLines(false);
 
+
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
         xAxis.setDrawGridLines(false);
@@ -231,10 +232,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 
         BarDataSet set1 = new BarDataSet(yVals1, "");
+        set1.setDrawValues(false);
         set1.setBarSpacePercent(35f);
         set1.setColors(new int[]{ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner),
                 ContextCompat.getColor(getActivity(), R.color.dark_gray)});
-        set1.setHighlightEnabled(false);
+         set1.setHighlightEnabled(false);
 
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
@@ -245,13 +247,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         data.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use one decimal
+                DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use two decimal
 
                 float value1 = new BigDecimal(value).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
 
                 return mFormat.format(value1);
             }
         });
+
 
 
         mChart.setData(data);
@@ -658,7 +661,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 hideProgressDialog();
                 isQuizSubmited = true;
                 if (response.body() != null) {
-
                     if (response.body().getResponseCode() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             if (response.body().isSubmitted().equalsIgnoreCase("true")) {

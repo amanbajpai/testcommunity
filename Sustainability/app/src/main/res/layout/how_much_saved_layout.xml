@@ -22,6 +22,7 @@
 
 
             <android.support.v7.widget.CardView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_7sdp"
@@ -265,6 +266,7 @@
 
 
             <android.support.v7.widget.CardView
+                android:layout_marginTop="@dimen/_10sdp"
                 app:cardBackgroundColor="@color/dark_gray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -532,7 +534,8 @@
                         android:layout_width="wrap_content"
                         android:layout_below="@+id/compariosn_text"
                         android:textSize="@dimen/_12sdp"
-                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
                         android:text="@string/kwh"
                         android:layout_height="wrap_content"
                         tools:ignore="RtlHardcoded" />

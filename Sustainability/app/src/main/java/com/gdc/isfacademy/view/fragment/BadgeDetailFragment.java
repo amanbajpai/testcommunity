@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.BadgeStudentResponse;
 import com.gdc.isfacademy.view.activity.HomeActivity;
@@ -70,12 +68,6 @@ public class BadgeDetailFragment extends BaseFragment {
                 }
             }
         }
-
-        Log.e("size",""+localBadgeStudentResponses.size());
-
-
-
-
         badge_detail_recylerview = (RecyclerView) view.findViewById(R.id.badge_detail_recylerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         badge_detail_recylerview.setLayoutManager(linearLayoutManager);

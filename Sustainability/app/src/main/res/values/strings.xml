@@ -46,17 +46,17 @@
 
     <!--Home Screen Strings-->
     <string name="txt_house_a">House A</string>
-    <string name="txt_energy_saving">Energy Saving</string>
+    <string name="txt_energy_saving">Energy Use</string>
     <string name="txt_consumption">My Consumption</string>
     <string name="txt_this_month">Today</string>
-    <string name="txt_this_compare">Compare to same time last cycle</string>
-    <string name="txt_school_energy_saving_txt">Total Energy Used in School</string>
+    <string name="txt_this_compare">Compared to same time last cycle</string>
+    <string name="txt_school_energy_saving_txt">Total Energy Used In School</string>
     <string name="txt_date_upto">Up to 31 may 2017</string>
     <string name="txt_up_to">Up to </string>
 
 
     <!--how much save screen-->
-    <string name="txt_how_much_saved">How much have I actually used?</string>
+    <string name="txt_how_much_saved">What\'s my carbon footprint?</string>
     <string name="how_much_i_saved">How much I used</string>
     <string name="carbon_footprint">Carbon footprint</string>
     <string name="consumption_of">Emissions</string>
@@ -72,7 +72,7 @@
     <string name="which_equals_to">Which equals to</string>
     <string name="for_comparision">for comparison</string>
     <string name="select_other_item">Select other item</string>
-    <string name="which_wastes">needs to plant</string>
+    <string name="which_wastes">need to plant</string>
     <string name="dashboard">Leaderboard</string>
     <string name="friend">Friend</string>
     <string name="txt_cancel">Cancel</string>
@@ -89,16 +89,15 @@
     <string name="txt_x_zero">X0</string>
     <string name="txt_twenty_percent">20%</string>
     <string name="txt_x">x</string>
-    <string name="txt_compariosn_today_cycle">Compare to same time last cycle</string>
-    <string name="txt_compariosn_month">Compare to same time last month</string>
+    <string name="txt_compariosn_today_cycle">Compared to same time last cycle</string>
+    <string name="txt_compariosn_month">Compared to same time last month</string>
 
 
     <!--Rewards Screen Strings-->
     <string name="txt_top_ranked">You ranked 7 out of the whole school in may.</string>
     <string name="txt_gift">Here is your Gift!</string>
     <string name="txt_a_cup_of_free_drink">Free Drink Under from EDU Cafe.</string>
-    <string name="txt_reward_text">Congratulations! You\’re the Top 5 students out of your house.</string>
-    <string name="title_when_offline">Win rewards based on your scores</string>
+    <string name="txt_reward_text">Congratulations! You\'re one of the Top 5 students out of your house.</string>
     <string name="txt_no_reward_text">Win rewards based on your scores.</string>
     <string name="txt_unlock">Unlock</string>
     <string name="txt_redeemed_message">Redeemed free drink sucussfully</string>

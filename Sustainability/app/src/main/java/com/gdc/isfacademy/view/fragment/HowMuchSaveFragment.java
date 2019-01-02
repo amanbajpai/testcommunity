@@ -23,6 +23,7 @@ import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
 import com.gdc.isfacademy.model.RetrieveDailyConsResponse;
 import com.gdc.isfacademy.model.StudentFootPrintResponse;
+import com.gdc.isfacademy.model.StudentRetriveDailyCons;
 import com.gdc.isfacademy.model.StudentSavedCostResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
@@ -46,9 +47,12 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.renderer.XAxisRenderer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.gson.Gson;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,6 +77,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
     private String dateEnergySaving;
     private LinearLayout chartView;
     private ImageView rightArrowImagView;
+    private double maxValue=0.0;
 
     public static HowMuchSaveFragment newInstance() {
         HowMuchSaveFragment howMuchSaveFragment = new HowMuchSaveFragment();
@@ -106,7 +111,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.getLayoutParams().width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
         mChart.invalidate();
 
-        rightArrowImagView=(ImageView)view.findViewById(R.id.rightArrowImagView);
+        rightArrowImagView = (ImageView) view.findViewById(R.id.rightArrowImagView);
         upto_date_tv = (AppCompatTextView) view.findViewById(R.id.upto_date_tv);
         spinnerfootPrint = (AppCompatSpinner) view.findViewById(R.id.spinnerfootPrint);
         cost_tv = (AppCompatTextView) view.findViewById(R.id.cost_tv);
@@ -130,7 +135,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.getLegend().setForm(Legend.LegendForm.SQUARE);
         mChart.getLegend().setTextSize(12);
         mChart.setDoubleTapToZoomEnabled(false);
-        setItemForSpinner();
+        //setItemForSpinner();
         setRandomInstruction();
         Bundle bundle = getArguments();
         currentCons = (EnergySavingResponse.CurrentCons) bundle.getSerializable(AppConstants.CURRENT_ENERGY_UNIT);
@@ -154,7 +159,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
 
         getGraphData(getString(R.string.txt_month_graph));
-        getStudentCostSaving(getString(R.string.txt_daily));
+        //getStudentCostSaving(getString(R.string.txt_daily));
         getStudentFootPrint(getString(R.string.txt_daily));
         setItemForFootPrintSpinner();
         setItemForSpinnerChart();
@@ -375,7 +380,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
             @Override
             public void onFailure(Call<StudentSavedCostResponse> call, Throwable t) {
-                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -444,7 +449,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
             @Override
             public void onFailure(Call<StudentFootPrintResponse> call, Throwable t) {
 
-                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -490,27 +495,35 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
                             if (response.body().getStudent().size() >= response.body().getAvg().size()) {
                                 for (int i = 0; i < response.body().getStudent().size(); i++) {
-                                    if(i==response.body().getStudent().size()-1){
+                                    if (i == response.body().getStudent().size() - 1) {
                                         xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
-                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())+84600000L));
+                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs()) + 84600000L));
 
-                                    }
-                                    else {
+                                    } else {
                                         xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
 
                                     }
                                     Log.e("xAxisDateFromStudent", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
                                 }
+                               maxValue= response.body().getStudent().get(response.body().getStudent().size()-1).getValue();
+                                Log.e("maxValue",""+maxValue);
                             } else {
                                 for (int i = 0; i < response.body().getAvg().size(); i++) {
-                                    xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
+                                    if (i == response.body().getStudent().size() - 1) {
+                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
+                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs()) + 84600000L));
+
+                                    } else {
+                                        xVals.add(ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
+                                    }
                                     Log.e("xAxisDateFromAvg", "" + ProjectUtil.toDate(Long.parseLong(response.body().getAvg().get(i).getTs())));
 
 
                                 }
+                                maxValue= response.body().getStudent().get(response.body().getAvg().size()-1).getValue();
+                                Log.e("maxValue",""+maxValue);
+
                             }
-
-
 
 
                             if (response.body().getStudent() != null && response.body().getStudent().size() > 0) {
@@ -533,10 +546,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
                                     float value = new BigDecimal(response.body().getStudent().get(i).getValue()).floatValue();
                                     Log.e("valuesForAvg", "" + value);
                                     yaxisValueForStudent.add(new Entry(value, i));
+
                                 }
-
-
-
 
 
                             }
@@ -645,13 +656,25 @@ public class HowMuchSaveFragment extends BaseFragment implements
         data.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-               DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use two decimal
+                DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use two decimal
 
-                float value1 = new BigDecimal(value).setScale(2,BigDecimal.ROUND_DOWN).floatValue();
+                float value1 = new BigDecimal(value).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
 
                 return mFormat.format(value1);
             }
         });
+
+
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setLabelCount(5, false);
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setAxisMinValue(0f);// this replaces setStartAtZero(true)
+        if(maxValue>=0){
+            float f = (float) maxValue;
+            leftAxis.setAxisMaxValue(f+1);
+        }
+
+
 
         // set data
         mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -663,11 +686,10 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.setScaleYEnabled(true);
         mChart.setPinchZoom(true);
         mChart.setDoubleTapToZoomEnabled(false);
-      //  mChart.setVisibleXRange(10,100);
+        //  mChart.setVisibleXRange(10,100);
         mChart.getXAxis().setLabelsToSkip(1);
         mChart.setData(data);
         mChart.invalidate();
-
 
 
     }
@@ -721,14 +743,13 @@ public class HowMuchSaveFragment extends BaseFragment implements
     public void onNothingSelected() {
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
         ((HomeActivity) getActivity()).backBtn.setVisibility(View.VISIBLE);
         ((HomeActivity) getActivity()).sliderIcon.setVisibility(View.GONE);
     }
-
-
 
 
     private void submitShare() {
@@ -756,6 +777,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
 
             }
+
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
                 ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
