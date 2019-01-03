@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ISFApp extends BranchApp {
     static ISFApp appInstance;
     Database db;
-    private Retrofit retrofit, retrofitLogin;
+    private Retrofit retrofit;
     private Api api, apiLogin;
     private DaoSession daoSession;
 
@@ -55,10 +55,6 @@ public class ISFApp extends BranchApp {
         retrofit = getApiClient(ApiConstants.API_SERVER_URL);
         api = retrofit.create(Api.class);
 
-        retrofitLogin = getApiClientLogin(ApiConstants.API_LOGIN_URL);
-        apiLogin = retrofitLogin.create(Api.class);
-
-
         AnalyticsTrackers.initialize(this);
         AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
 
@@ -74,9 +70,6 @@ public class ISFApp extends BranchApp {
         return api;
     }
 
-    public Api getApiLogin() {
-        return apiLogin;
-    }
 
     public Database getDataBase() {
         return db;
@@ -96,18 +89,6 @@ public class ISFApp extends BranchApp {
         return retrofit;
     }
 
-    private Retrofit getApiClientLogin(String baseUrl) {
-        if (retrofitLogin == null) {
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
-            retrofitLogin = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
-        }
-        return retrofitLogin;
-    }
 
     public DaoSession getDaoSession() {
         return daoSession;

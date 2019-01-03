@@ -25,7 +25,7 @@ android {
         applicationId "com.energybox.isf"
         minSdkVersion 21
         //noinspection OldTargetApi
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

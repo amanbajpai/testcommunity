@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 break;
             case R.id.forgot_password_btn:
-                startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
                 break;
         }
     }
@@ -113,8 +113,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     passET.setError(getString(R.string.txt_validate_password));
 
                 } else {
-                    ProjectUtil.hideKeyboardFrom(LoginActivity.this,nameET);
-                    ProjectUtil.hideKeyboardFrom(LoginActivity.this,passET);
+                    ProjectUtil.hideKeyboardFrom(LoginActivity.this, nameET);
+                    ProjectUtil.hideKeyboardFrom(LoginActivity.this, passET);
                     dialog.cancel();
                     loginUser(nameET.getText().toString().trim(), passET.getText().toString().trim());
                 }
@@ -129,80 +129,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         dialog.setContentView(view);
         dialog.show();
     }
-
-
-
-
-
-
-    public void loginUserNew(String userName, String userPassowrd) {
-        JSONObject jsonObject = null;
-        RequestBody body = null;
-
-        try {
-            jsonObject = new JSONObject();
-            jsonObject.put(ApiConstants.ApiParams.EMAIL, userName);
-            jsonObject.put(ApiConstants.ApiParams.ORGANIZATION_ID, 188);
-            jsonObject.put(ApiConstants.ApiParams.PASSWORD, userPassowrd);
-            Log.d("json", "" + jsonObject.toString());
-            body = RequestBody.create(okhttp3.MediaType.parse("application/json"),
-                    (new JSONObject(jsonObject.toString())).toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        showProgressDialog(mContext);
-        final Call<LoginParentResponse> loginRequest = ((ISFApp) mContext.getApplicationContext())
-                .getApiLogin().loginnew(AppConstants.API_KEY,
-                        AppConstants.CONTENT_TYPE,
-                        body);
-        ProjectUtil.showLog(AppConstants.REQUEST, "" + loginRequest.request().url(), AppConstants.ERROR_LOG);
-
-        loginRequest.enqueue(new Callback<LoginParentResponse>() {
-            @Override
-            public void onResponse(Call<LoginParentResponse> call, Response<LoginParentResponse> response) {
-                hideProgressDialog();
-                ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
-                if (response.body() != null) {
-                    LoginParentResponse loginParentResponse = response.body();
-                    if (loginParentResponse.getStudentInfo() != null) {
-                       /* Tracker tracker = ISFApp.getAppInstance().getGoogleAnalyticsTracker();
-                        tracker.setClientId(loginParentResponse.getStudentInfo().getStudentId());
-                        if (getAddressFromUserCurrentLocation() != null && !getAddressFromUserCurrentLocation().equalsIgnoreCase("")) {
-                            tracker.setLocation(getAddressFromUserCurrentLocation());
-                        }
-                        //  tracker.setLocation();
-                        MyPref.getInstance(mContext).writePrefs(AppConstants.STUDENT_NAME,
-                                loginParentResponse.getStudentInfo().getStudentName());
-                        MyPref.getInstance(mContext).writePrefs(AppConstants.STUDENT_ID,
-                                loginParentResponse.getStudentInfo().getStudentId());
-                        MyPref.getInstance(mContext).writePrefs(AppConstants.STUDENT_KEY,
-                                loginParentResponse.getStudentInfo().getStudentKey());
-                        MyPref.getInstance(mContext).writePrefs(AppConstants.STUDENT_HOUSE,
-                                loginParentResponse.getStudentInfo().getStudentHouse());
-
-                        Intent intent = new Intent(mContext, HomeActivity.class);
-                        startActivity(intent, ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
-                        finish();*/
-                    }
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<LoginParentResponse> call, Throwable t) {
-                t.getMessage();
-                t.printStackTrace();
-                ProjectUtil.hideKeyboard(LoginActivity.this);
-                hideProgressDialog();
-            }
-        });
-
-
-    }
-
 
 
     public void loginUser(String userName, String userPassowrd) {
@@ -250,7 +176,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 loginParentResponse.getStudentInfo().getStudentHouse());
 
                         Intent intent = new Intent(mContext, HomeActivity.class);
-                        startActivity(intent, ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
+                        startActivity(intent, ActivityOptions.makeCustomAnimation(mContext, R.anim.slide_in, R.anim.slide_out).toBundle());
                         finish();
                     }
 
@@ -294,11 +220,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         try {
             addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-           if(addresses!=null&&addresses.size()>0){
-               address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-               Log.d("address", "" + address);
-               return address;
-           }
+            if (addresses != null && addresses.size() > 0) {
+                address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                Log.d("address", "" + address);
+                return address;
+            }
 
         } catch (Throwable e) {
             e.printStackTrace();
