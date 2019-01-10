@@ -38,7 +38,7 @@
     <string name="close">close</string>
 
     <!--Slider Menu Strings-->
-    <string name="txt_real_time">ISF Sustainability App</string>
+    <string name="txt_real_time">ISF 3D school map</string>
     <string name="txt_about_isf">ISF School App</string>
     <string name="txt_terms_condition">Terms &amp; Conditions</string>
     <string name="txt_privacy_policy">Privacy Policy</string>
@@ -187,8 +187,8 @@
 
 
     <!--Badge Allotment Screen-->
-    <string name="title_badge_energy_saving">Energy Saver</string>
-    <string name="txt_badge_energy_saving_description">kWh you saved.</string>
+    <string name="title_badge_energy_saving">Energy Guardian</string>
+    <string name="txt_badge_energy_saving_description">Accumulation of decline in kWh consumed.</string>
 
     <string name="title_badge_quizholic">Quizzaholic</string>
     <string name="txt_badge_quizholic_description">Completed daily quizzes.</string>
