@@ -48,6 +48,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     Context mContext;
     LocationUtils locationUtils;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,10 +175,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 loginParentResponse.getStudentInfo().getStudentKey());
                         MyPref.getInstance(mContext).writePrefs(AppConstants.STUDENT_HOUSE,
                                 loginParentResponse.getStudentInfo().getStudentHouse());
+                        MyPref.getInstance(mContext).writePrefs(AppConstants.IS_STATUS_MAP,
+                                loginParentResponse.getStudentInfo().getGroup());
 
-                        Intent intent = new Intent(mContext, HomeActivity.class);
-                        startActivity(intent, ActivityOptions.makeCustomAnimation(mContext, R.anim.slide_in, R.anim.slide_out).toBundle());
-                        finish();
+                        if(loginParentResponse.getStudentInfo().getGroup()!=null&&loginParentResponse.getStudentInfo().getGroup().equalsIgnoreCase(AppConstants.OTHER)){
+                            SplashActivity.isMapStatusFromSplash=true;
+                            Intent intent = new Intent(mContext, HomeActivity.class);
+                            startActivity(intent, ActivityOptions.makeCustomAnimation(mContext, R.anim.slide_in, R.anim.slide_out).toBundle());
+                            finish();
+                        }
+                        else {
+                            SplashActivity.isMapStatusFromSplash=false;
+                            Intent intent = new Intent(mContext, HomeActivity.class);
+                            intent.putExtra(AppConstants.IS_STATUS_MAP,false);
+                            startActivity(intent, ActivityOptions.makeCustomAnimation(mContext, R.anim.slide_in, R.anim.slide_out).toBundle());
+                            finish();
+                        }
+
+
                     }
 
 

@@ -127,6 +127,9 @@ public class AppConstants {
     public static final String USED_REWARD="USED";
     public static final String ACTIVE_REWARD="ACTIVE";
 
+    public static final String IS_STATUS_MAP="isStatusMap";
+    public static final String OTHER="other";
+
 
 
 

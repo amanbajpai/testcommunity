@@ -13,6 +13,8 @@ import com.gdc.isfacademy.utils.MyPref;
 @SuppressWarnings("ALL")
 public class SplashActivity extends AppCompatActivity {
     Context mContext;
+    public static boolean isMapStatusFromSplash=false;
+
 
 
     @Override
@@ -32,6 +34,12 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(AppConstants.SPLASH_HOLD_TIME);
+                    if(MyPref.getInstance(mContext).readPrefs(AppConstants.IS_STATUS_MAP).equalsIgnoreCase(AppConstants.OTHER)){
+                        isMapStatusFromSplash=true;
+                    }
+                    else {
+                        isMapStatusFromSplash=false;
+                    }
                     if(MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_KEY).
                             equalsIgnoreCase("")){
                         startActivity(new Intent(mContext, LoginActivity.class), ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());

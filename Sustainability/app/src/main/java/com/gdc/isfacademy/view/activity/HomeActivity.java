@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
+import com.gdc.isfacademy.utils.AppConstants;
 import com.gdc.isfacademy.utils.BackManager;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.fragment.AboutISfFragment;
@@ -64,18 +65,14 @@ public class HomeActivity extends BaseActivity implements
         setContentView(R.layout.activity_home);
         setUpToolbar();
         init();
-        setNavagionDrawer();
-        setBottomNavigation();
-        ProjectUtil.setAlarmReminder(this);
-    }
 
+
+    }
     public void setUpToolbar() {
         // Set a toolbar to replace the action bar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportFragmentManager().addOnBackStackChangedListener(this);
-
-
 
     }
 
@@ -93,6 +90,18 @@ public class HomeActivity extends BaseActivity implements
         backBtn = (ImageView) findViewById(R.id.backBtn);
         sliderIcon.setOnClickListener(this);
         backBtn.setOnClickListener(this);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        if(SplashActivity.isMapStatusFromSplash){
+            bottomNavigationView.setVisibility(View.GONE);
+            setNavagionDrawer();
+            pushFragments(RealTimeSchoolFragment.newInstance(),null,false);
+        }
+        else {
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            setNavagionDrawer();
+            setBottomNavigation();
+            ProjectUtil.setAlarmReminder(this);
+        }
 
     }
 
@@ -163,8 +172,7 @@ public class HomeActivity extends BaseActivity implements
 
 
     public void setBottomNavigation() {
-        bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.navigation);
+
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -283,7 +291,8 @@ public class HomeActivity extends BaseActivity implements
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
         if (fragment instanceof HomeFragment || fragment instanceof ChallengeFragment ||
-                fragment instanceof RewardsFragment || fragment instanceof ProfileFragment) {
+                fragment instanceof RewardsFragment || fragment instanceof ProfileFragment ||
+                fragment instanceof RealTimeSchoolFragment) {
             ProjectUtil.logoutAlert(this);
         } else {
             super.onBackPressed();

@@ -10,6 +10,7 @@ public class StudentInfo {
     String studentName;
     String studentKey;
     String studentHouse;
+    String group;
 
 
     public String getStudentId() {
@@ -42,5 +43,13 @@ public class StudentInfo {
 
     public void setStudentHouse(String studentHouse) {
         this.studentHouse = studentHouse;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

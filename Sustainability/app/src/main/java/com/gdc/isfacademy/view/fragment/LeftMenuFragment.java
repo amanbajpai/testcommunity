@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.gdc.isfacademy.model.SliderBean;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.view.activity.HomeActivity;
+import com.gdc.isfacademy.view.activity.SplashActivity;
 import com.gdc.isfacademy.view.adapter.LeftMenuAdapter;
 
 import java.util.ArrayList;
@@ -57,8 +58,9 @@ public class LeftMenuFragment extends BaseFragment {
     }*/
 
 
+    public AppCompatTextView privacyPolicy, termsCondition, logoutAppTv;
     ImageView cancelDrawer;
-    ArrayList<SliderBean>sliderBeanArrayList;
+    ArrayList<SliderBean> sliderBeanArrayList;
     LeftMenuAdapter leftMenuAdapter;
     private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -66,8 +68,7 @@ public class LeftMenuFragment extends BaseFragment {
     private View containerView;
     private FragmentDrawerListener drawerListener;
     private AppCompatTextView txt_menu_label;
-    private  ImageView cancel;
-    public AppCompatTextView privacyPolicy,termsCondition,logoutAppTv;
+    private ImageView cancel;
 
 
     public LeftMenuFragment() {
@@ -87,11 +88,22 @@ public class LeftMenuFragment extends BaseFragment {
     }
 
 
-
     public void setIconList() {
-        sliderBeanArrayList=new ArrayList<>();
-        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_real_time)));
-        sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_about_isf)));
+        sliderBeanArrayList = new ArrayList<>();
+
+        if (SplashActivity.isMapStatusFromSplash) {
+            privacyPolicy.setVisibility(View.GONE);
+            termsCondition.setVisibility(View.GONE);
+            logoutAppTv.setVisibility(View.VISIBLE);
+            sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_real_time)));
+        } else {
+            privacyPolicy.setVisibility(View.VISIBLE);
+            termsCondition.setVisibility(View.VISIBLE);
+            logoutAppTv.setVisibility(View.VISIBLE);
+            sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_real_time)));
+            sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_about_isf)));
+        }
+
        /* sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_terms_condition)));
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_privacy_policy)));
         sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_logout)));*/
@@ -107,21 +119,21 @@ public class LeftMenuFragment extends BaseFragment {
         recyclerView = (RecyclerView) layout.findViewById(R.id.slide_menu_recylerview);
         txt_menu_label = (AppCompatTextView) layout.findViewById(R.id.menu_label);
         cancel = (ImageView) layout.findViewById(R.id.cancelDrawer);
-        privacyPolicy=(AppCompatTextView)layout.findViewById(R.id.privacyPolicy);
-        termsCondition=(AppCompatTextView)layout.findViewById(R.id.termsCondition);
-        logoutAppTv=(AppCompatTextView)layout.findViewById(R.id.logoutAppTv);
+        privacyPolicy = (AppCompatTextView) layout.findViewById(R.id.privacyPolicy);
+        termsCondition = (AppCompatTextView) layout.findViewById(R.id.termsCondition);
+        logoutAppTv = (AppCompatTextView) layout.findViewById(R.id.logoutAppTv);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((HomeActivity)getActivity()).slideDrawer();
+                ((HomeActivity) getActivity()).slideDrawer();
 
             }
         });
         txt_menu_label.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((HomeActivity)getActivity()).slideDrawer();
+                ((HomeActivity) getActivity()).slideDrawer();
             }
         });
         setIconList();
@@ -134,6 +146,7 @@ public class LeftMenuFragment extends BaseFragment {
                 drawerListener.onLeftMenuDrawerSelected(view, position);
                 mDrawerLayout.closeDrawer(containerView);
             }
+
             @Override
             public void onLongClick(View view, int position) {
             }
@@ -151,6 +164,7 @@ public class LeftMenuFragment extends BaseFragment {
                 super.onDrawerOpened(drawerView);
                 getActivity().invalidateOptionsMenu();
             }
+
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -173,11 +187,12 @@ public class LeftMenuFragment extends BaseFragment {
 
     public interface ClickListener {
         void onClick(View view, int position);
-         void onLongClick(View view, int position);
+
+        void onLongClick(View view, int position);
     }
 
     public interface FragmentDrawerListener {
-         void onLeftMenuDrawerSelected(View view, int position);
+        void onLeftMenuDrawerSelected(View view, int position);
     }
 
     static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {

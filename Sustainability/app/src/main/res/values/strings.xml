@@ -147,8 +147,8 @@
     <string name="points_history">Points History</string>
     <string name="profile_date">Date</string>
     <string name="profile_points">Points</string>
-    <string name="profile_you_have_saved_user">% of energy is saved (personal)</string>
-    <string name="profile_you_have_saved_building">% of energy is saved (school building)</string>
+    <string name="profile_you_have_saved_user">% energy less consumed (personal)</string>
+    <string name="profile_you_have_saved_building">% energy less consumed (school building)</string>
 
     <string name="badge_text">Badges</string>
     <string name="txt_no_badges_alloted">No unlocked badges</string>
