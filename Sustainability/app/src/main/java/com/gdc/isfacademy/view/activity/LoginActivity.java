@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,18 +46,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     AppCompatTextView loginBtn, forgotPasswordBtn;
     Context mContext;
     LocationUtils locationUtils;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initViews();
         ProjectUtil.setAlarm(this);
-
-       /* if(MyPref.getInstance(this).readIntegerPrefs(MyPref.QUIZ_COUNT)==0){
-        }*/
-
     }
 
     public void initViews() {
@@ -178,16 +171,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         MyPref.getInstance(mContext).writePrefs(AppConstants.IS_STATUS_MAP,
                                 loginParentResponse.getStudentInfo().getGroup());
 
-                        if(loginParentResponse.getStudentInfo().getGroup()!=null&&loginParentResponse.getStudentInfo().getGroup().equalsIgnoreCase(AppConstants.OTHER)){
-                            SplashActivity.isMapStatusFromSplash=true;
+                        if (loginParentResponse.getStudentInfo().getGroup() != null && loginParentResponse.getStudentInfo().getGroup().equalsIgnoreCase(AppConstants.OTHER)) {
+                            SplashActivity.isMapStatusFromSplash = true;
                             Intent intent = new Intent(mContext, HomeActivity.class);
                             startActivity(intent, ActivityOptions.makeCustomAnimation(mContext, R.anim.slide_in, R.anim.slide_out).toBundle());
                             finish();
-                        }
-                        else {
-                            SplashActivity.isMapStatusFromSplash=false;
+                        } else {
+                            SplashActivity.isMapStatusFromSplash = false;
                             Intent intent = new Intent(mContext, HomeActivity.class);
-                            intent.putExtra(AppConstants.IS_STATUS_MAP,false);
+                            intent.putExtra(AppConstants.IS_STATUS_MAP, false);
                             startActivity(intent, ActivityOptions.makeCustomAnimation(mContext, R.anim.slide_in, R.anim.slide_out).toBundle());
                             finish();
                         }

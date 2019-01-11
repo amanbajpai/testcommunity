@@ -38,6 +38,9 @@ public class ISFApp extends BranchApp {
 
 //CASTLEY	Alexander	10010006	A24cFuxs
 
+
+   /* private ISFApp(){
+    }*/
     public static ISFApp getAppInstance() {
         if (appInstance == null) {
             appInstance = new ISFApp();

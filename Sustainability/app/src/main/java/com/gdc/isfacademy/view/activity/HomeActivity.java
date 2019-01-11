@@ -68,11 +68,15 @@ public class HomeActivity extends BaseActivity implements
 
 
     }
+
     public void setUpToolbar() {
+
         // Set a toolbar to replace the action bar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportFragmentManager().addOnBackStackChangedListener(this);
+
+
 
     }
 

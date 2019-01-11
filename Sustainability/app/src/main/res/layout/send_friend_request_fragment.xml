@@ -151,7 +151,6 @@
             app:theme="@style/EditTextTheme"
             android:imeOptions="actionSend"
             android:textColorHint="@color/light_text_color"
-            android:text="@string/txt_plz_check_this_link"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:textColor="@android:color/transparent"
