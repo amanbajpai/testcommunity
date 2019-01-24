@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -145,7 +146,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         AppConstants.CONTENT_TYPE,
                         body);
         ProjectUtil.showLog(AppConstants.REQUEST, "" + loginRequest.request().url(), AppConstants.ERROR_LOG);
-
         loginRequest.enqueue(new Callback<LoginParentResponse>() {
             @Override
             public void onResponse(Call<LoginParentResponse> call, Response<LoginParentResponse> response) {

@@ -40,6 +40,7 @@
     <!--Slider Menu Strings-->
     <string name="txt_real_time">ISF 3D school map</string>
     <string name="txt_about_isf">ISF School App</string>
+    <string name="txt_slider_faq">FAQ</string>
     <string name="txt_terms_condition">Terms &amp; Conditions</string>
     <string name="txt_privacy_policy">Privacy Policy</string>
     <string name="txt_logout">Logout</string>
@@ -89,7 +90,19 @@
     <string name="txt_x_zero">X0</string>
     <string name="txt_twenty_percent">20%</string>
     <string name="txt_x">x</string>
-    <string name="txt_compariosn_today_cycle">Compared to same time last cycle</string>
+    <string name="txt_compariosn_yesterday">Compared to same time yesterday</string>
+    <string name="txt_compariosn_last_cylce">Compared to same time last cycle</string>
+    <string name="txt_compariosn_last_month">Compared to same time last month</string>
+
+    <string name="txt_green_scale_text_today">Today</string>
+    <string name="txt_grey_scale_text_today">Yesterday</string>
+
+    <string name="txt_green_scale_text_cycle">This Cycle</string>
+    <string name="txt_grey_scale_text_cycle">Last Cycle</string>
+
+    <string name="txt_green_scale_text_month">This Month</string>
+    <string name="txt_grey_scale_text_month">Last Month</string>
+
     <string name="txt_compariosn_month">Compared to same time last month</string>
 
 
@@ -146,17 +159,22 @@
     <string name="points_history">Points History</string>
     <string name="profile_date">Date</string>
     <string name="profile_points">Points</string>
-    <string name="profile_you_have_saved_user">% energy less consumed (personal)</string>
-    <string name="profile_you_have_saved_building">% energy less consumed (school building)</string>
+    <string name="profile_you_have_saved_user">% less energy consumed (personal)</string>
+    <string name="profile_you_have_saved_building">% less energy consumed (school building)</string>
 
     <string name="badge_text">Badges</string>
     <string name="txt_no_badges_alloted">No unlocked badges</string>
-    <string name="txt_shared_daily_result">Daily quiz result is shared. (max. 5 times)</string>
+    <string name="txt_shared_daily_result">Daily quiz result is shared (max. 5 times)</string>
     <string name="txt_correct_answer">correct answers</string>
+    <string name="txt_correct_answer_if_less_then_one">correct answer</string>
     <string name="txt_points_in_your_daily_quiz">Daily quiz is completed with</string>
     <string name="txt_pts">pts.</string>
     <string name="txt_no_badge_list">No badges alloted yet</string>
     <string name="txt_dash">--</string>
+    <string name="txt_earned">I earned</string>
+    <string name="txt_points_earned">Points in the ISF Sustainability Quiz</string>
+    <string name="txt_points_earned_zero_one">Point in the ISF Sustainability Quiz</string>
+
 
     <!--SpinnerItem-->
     <string name="txt_daily">daily</string>
@@ -165,8 +183,8 @@
     <string name="txt_month_graph">month</string>
 
     <string name="txt_today">Today</string>
-    <string name="txt_cycle">Cycle</string>
-    <string name="txt_monthly">Monthly</string>
+    <string name="txt_cycle">This Cycle</string>
+    <string name="txt_monthly">This Month</string>
 
     <!--valdation msg-->
     <string name="txt_try_again">Something went wrong,please refresh again.</string>

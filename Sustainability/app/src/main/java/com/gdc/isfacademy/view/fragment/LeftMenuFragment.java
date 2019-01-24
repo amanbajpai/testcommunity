@@ -102,6 +102,7 @@ public class LeftMenuFragment extends BaseFragment {
             logoutAppTv.setVisibility(View.VISIBLE);
             sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_real_time)));
             sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_about_isf)));
+            sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_slider_faq)));
         }
 
        /* sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_terms_condition)));

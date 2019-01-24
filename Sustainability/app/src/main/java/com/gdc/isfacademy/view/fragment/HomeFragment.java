@@ -65,7 +65,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     AppCompatTextView studentHouse, currentCosumptionDate;
     EnergySavingResponse.CurrentCons currentCons;
     ImageView percentArrow, buildingEnergyStatusArrow;
-    AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding;
+    AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding,greenScaleText,greyScaleText;
     AppCompatSpinner spinner;
     String thisWeekStatusValue, lastWeekStatusValue;
     LinearLayout chartView;
@@ -116,6 +116,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mChart.invalidate();
 
         spinner = (AppCompatSpinner) layout.findViewById(R.id.spinner);
+        greenScaleText=(AppCompatTextView)layout.findViewById(R.id.greenScaleText);
+        greyScaleText=(AppCompatTextView)layout.findViewById(R.id.greyScaleText);
         comparison_tv = (AppCompatTextView) layout.findViewById(R.id.comparuison_tv);
         currentCosumptionDate = (AppCompatTextView) layout.findViewById(R.id.currentCosumptionDate);
         zerpPercentSave = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSaved);
@@ -132,7 +134,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         buildingLastWeekStatus = (TextView) layout.findViewById(R.id.school_full_status_text);
         studentHouse = (AppCompatTextView) layout.findViewById(R.id.studentHouse);
         studentHouse.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE));
-        comparison_tv.setText(getString(R.string.txt_compariosn_today_cycle));
+        comparison_tv.setText(getString(R.string.txt_compariosn_yesterday));
+        greenScaleText.setText((getString(R.string.txt_green_scale_text_today)));
+        greyScaleText.setText((getString(R.string.txt_grey_scale_text_today)));
+
 
         how_much_save_rl.setOnClickListener(this);
         seekbar.setOnTouchListener(new View.OnTouchListener() {
@@ -327,12 +332,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
                     getEnergySaving(getString(R.string.txt_daily));
-                    comparison_tv.setText(getString(R.string.txt_compariosn_today_cycle));
+                    comparison_tv.setText(getString(R.string.txt_compariosn_yesterday));
+                    greenScaleText.setText((getString(R.string.txt_green_scale_text_today)));
+                    greyScaleText.setText((getString(R.string.txt_grey_scale_text_today)));
                 } else if (i == 1) {
-                    comparison_tv.setText(getString(R.string.txt_compariosn_today_cycle));
+                    comparison_tv.setText(getString(R.string.txt_compariosn_last_cylce));
+                    greenScaleText.setText((getString(R.string.txt_green_scale_text_cycle)));
+                    greyScaleText.setText((getString(R.string.txt_grey_scale_text_cycle)));
                     getEnergySaving(getString(R.string.txt_cycle_small));
+
                 } else if (i == 2) {
-                    comparison_tv.setText(getString(R.string.txt_compariosn_month));
+                    comparison_tv.setText(getString(R.string.txt_compariosn_last_month));
+                    greenScaleText.setText((getString(R.string.txt_green_scale_text_month)));
+                    greyScaleText.setText((getString(R.string.txt_grey_scale_text_month)));
                     getEnergySaving(getString(R.string.txt_monthly_small));
 
                 }

@@ -70,7 +70,13 @@ public class QuizeCompletedFragement extends BaseFragment implements View.OnClic
             case R.id.share_tv:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Earned" + " " + count + " " + "Points in ISF Community Quiz");
+                if(count>1){
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.txt_earned) + " " + count + " " + getString(R.string.txt_points_earned));
+                }
+                else {
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.txt_earned) + " " + count + " " + getString(R.string.txt_points_earned_zero_one));
+
+                }
                 sendIntent.setType("text/plain");
                 startActivityForResult(Intent.createChooser(sendIntent, getResources().getText(R.string.txt_send_to)), 101);
                 break;

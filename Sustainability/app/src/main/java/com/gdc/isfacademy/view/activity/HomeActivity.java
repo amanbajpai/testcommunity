@@ -25,6 +25,7 @@ import com.gdc.isfacademy.view.fragment.AboutISfFragment;
 import com.gdc.isfacademy.view.fragment.AddFriendFragment;
 import com.gdc.isfacademy.view.fragment.BadgeDetailFragment;
 import com.gdc.isfacademy.view.fragment.ChallengeFragment;
+import com.gdc.isfacademy.view.fragment.FaqFragment;
 import com.gdc.isfacademy.view.fragment.HomeFragment;
 import com.gdc.isfacademy.view.fragment.HowMuchSaveFragment;
 import com.gdc.isfacademy.view.fragment.LeftMenuFragment;
@@ -48,6 +49,7 @@ public class HomeActivity extends BaseActivity implements
         LeftMenuFragment.FragmentDrawerListener,
         View.OnClickListener,
         FragmentManager.OnBackStackChangedListener {
+    public static boolean isFromLink = false;
     public BottomNavigationView bottomNavigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public DrawerLayout drawerLayout;
@@ -56,8 +58,6 @@ public class HomeActivity extends BaseActivity implements
     public ImageView backBtn;
     public Toolbar toolbar;
     View containerFrag;
-    public static boolean isFromLink=false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,6 @@ public class HomeActivity extends BaseActivity implements
         getSupportFragmentManager().addOnBackStackChangedListener(this);
 
 
-
     }
 
     @Override
@@ -95,12 +94,11 @@ public class HomeActivity extends BaseActivity implements
         sliderIcon.setOnClickListener(this);
         backBtn.setOnClickListener(this);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        if(SplashActivity.isMapStatusFromSplash){
+        if (SplashActivity.isMapStatusFromSplash) {
             bottomNavigationView.setVisibility(View.GONE);
             setNavagionDrawer();
-            pushFragments(RealTimeSchoolFragment.newInstance(),null,false);
-        }
-        else {
+            pushFragments(RealTimeSchoolFragment.newInstance(), null, false);
+        } else {
             bottomNavigationView.setVisibility(View.VISIBLE);
             setNavagionDrawer();
             setBottomNavigation();
@@ -137,7 +135,7 @@ public class HomeActivity extends BaseActivity implements
             public void onClick(View v) {
 
                 drawerLayout.closeDrawer(containerFrag);
-                pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
+                pushFragments(PrivacyPolicyFragment.newInstance(), null, false);
 
             }
         });
@@ -145,7 +143,7 @@ public class HomeActivity extends BaseActivity implements
             @Override
             public void onClick(View v) {
                 drawerLayout.closeDrawer(containerFrag);
-                pushFragments(TermsConditionFragment.newInstance(),null,false);
+                pushFragments(TermsConditionFragment.newInstance(), null, false);
 
             }
         });
@@ -232,7 +230,7 @@ public class HomeActivity extends BaseActivity implements
         drawerLayout.closeDrawer(containerFrag);
         switch (position) {
             case 0:
-                pushFragments(RealTimeSchoolFragment.newInstance(),null,false);
+                pushFragments(RealTimeSchoolFragment.newInstance(), null, false);
 
               /*  Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.Visionaries777.isfacademy");
                 if (launchIntent != null) {
@@ -248,11 +246,10 @@ public class HomeActivity extends BaseActivity implements
                 break;
             case 1:
                 //pushFragments(AboutISfFragment.newInstance(),null,false);
-                     Intent launchIntent = getPackageManager().getLaunchIntentForPackage("hk.edu.isf.isfapps");
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("hk.edu.isf.isfapps");
                 if (launchIntent != null) {
                     startActivity(launchIntent);//null pointer check in case package name was not found
-                }
-                else {
+                } else {
                     try {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=hk.edu.isf.isfapps")));
                     } catch (android.content.ActivityNotFoundException anfe) {
@@ -265,10 +262,10 @@ public class HomeActivity extends BaseActivity implements
                 ProjectUtil.logoutFromAppMenu(HomeActivity.this);
 */
 
-                //pushFragments(TermsConditionFragment.newInstance(),null,false);
+                pushFragments(FaqFragment.newInstance(), null, false);
                 break;
             case 3:
-               // pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
+                // pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
                 break;
             case 4:
                 break;
@@ -415,9 +412,9 @@ public class HomeActivity extends BaseActivity implements
                     // ... insert custom logic here ...
                     try {
 
-                        Log.e("status linked clicked",""+referringParams.getString("+clicked_branch_link"));
-                        if(referringParams.getString("+clicked_branch_link").equalsIgnoreCase("true")){
-                            isFromLink=true;
+                        Log.e("status linked clicked", "" + referringParams.getString("+clicked_branch_link"));
+                        if (referringParams.getString("+clicked_branch_link").equalsIgnoreCase("true")) {
+                            isFromLink = true;
                             bottomNavigationView.setSelectedItemId(R.id.navigation_challenge);
                         }
                     } catch (JSONException e) {

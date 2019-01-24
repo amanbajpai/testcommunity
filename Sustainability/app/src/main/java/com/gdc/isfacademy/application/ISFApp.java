@@ -6,6 +6,7 @@ import com.crashlytics.android.Crashlytics;
 import com.gdc.isfacademy.googleanalitics.AnalyticsTrackers;
 import com.gdc.isfacademy.model.DaoMaster;
 import com.gdc.isfacademy.model.DaoSession;
+import com.gdc.isfacademy.model.LoginParentResponse;
 import com.gdc.isfacademy.netcom.Api;
 import com.gdc.isfacademy.netcom.ApiConstants;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -35,6 +36,7 @@ public class ISFApp extends BranchApp {
     private Retrofit retrofit;
     private Api api, apiLogin;
     private DaoSession daoSession;
+    private LoginParentResponse loginParentResponse;
 
 //CASTLEY	Alexander	10010006	A24cFuxs
 
@@ -92,6 +94,14 @@ public class ISFApp extends BranchApp {
         return retrofit;
     }
 
+
+    public LoginParentResponse getLoginParentResponse() {
+        return loginParentResponse;
+    }
+
+    public void setLoginParentResponse(LoginParentResponse loginParentResponse) {
+        this.loginParentResponse = loginParentResponse;
+    }
 
     public DaoSession getDaoSession() {
         return daoSession;

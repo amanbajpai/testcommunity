@@ -6,13 +6,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
-
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.ProjectUtil;
+
 
 
 @SuppressWarnings("ALL")

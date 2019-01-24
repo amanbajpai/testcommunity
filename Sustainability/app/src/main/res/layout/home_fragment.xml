@@ -213,7 +213,7 @@
                                 android:layout_height="wrap_content">
 
                                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-                                    android:id="@+id/statusTextEnergy"
+                                    android:id="@+id/greenScaleText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
@@ -288,6 +288,7 @@
 
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                                 android:layout_width="wrap_content"
+                                android:id="@+id/greyScaleText"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
