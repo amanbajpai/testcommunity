@@ -172,8 +172,8 @@
     <string name="txt_no_badge_list">No badges alloted yet</string>
     <string name="txt_dash">--</string>
     <string name="txt_earned">I earned</string>
-    <string name="txt_points_earned">Points in the ISF Sustainability Quiz</string>
-    <string name="txt_points_earned_zero_one">Point in the ISF Sustainability Quiz</string>
+    <string name="txt_points_earned">points in the ISF Sustainability Quiz</string>
+    <string name="txt_points_earned_zero_one">point in the ISF Sustainability Quiz</string>
 
 
     <!--SpinnerItem-->

@@ -83,7 +83,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
             double value = logStudentResponses.get(position).getCount();
             int count=(int)value;
             if(count>1){
-                holder.studentMessageTv.setText(context.getString(R.string.txt_points_in_your_daily_quiz)+" "+
+                holder
+                        .studentMessageTv.setText(context.getString(R.string.txt_points_in_your_daily_quiz)+" "+
                         count+" "+
                         context.getString(R.string.txt_correct_answer));
             }
