@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,8 @@ import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
 import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.model.CommonResponse;
+import com.gdc.isfacademy.model.HouseList;
+import com.gdc.isfacademy.model.HouseParentResponse;
 import com.gdc.isfacademy.model.RankingParentResponse;
 import com.gdc.isfacademy.netcom.CheckNetworkState;
 import com.gdc.isfacademy.utils.AppConstants;
@@ -29,6 +30,8 @@ import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -46,17 +49,18 @@ import retrofit2.Response;
 public class ChallengeFragment extends BaseFragment implements View.OnClickListener {
     public static final String TAG = "ExploreFragment";
     public static boolean isDataRefresh = false;
+    public static boolean isListNeedRefresh = false;
     private XRecyclerView challenge_recylerview;
     private HomeActivity activity;
     private Context context;
     private ChallengeAdapter challengeAdapter;
     private ArrayList<ChallangeRankList> challangeRankLists;
-    private AppCompatTextView friendsRankBtn, houseRankBtn;
+    private ArrayList<HouseList> houseLists;
+    private AppCompatTextView friendsRankBtn, studentHouseRankBtn, allHouseRankBtn;
     private OpenSansSemiBoldTextView add_friend_tv;
     private ImageView start_quize_image;
     private String isQusetionAnswerSubmited = "";
     private TextView startNowTv;
-    public static boolean isListNeedRefresh=false;
 
     public static ChallengeFragment newInstance() {
         ChallengeFragment challengeFragment = new ChallengeFragment();
@@ -99,6 +103,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
     * */
     private void initView(View view) {
         challangeRankLists = new ArrayList<>();
+        houseLists = new ArrayList<>();
         challenge_recylerview = (XRecyclerView) view.findViewById(R.id.challenge_recylerview);
         challenge_recylerview.setLoadingMoreEnabled(false);
         challenge_recylerview.setPullRefreshEnabled(false);
@@ -107,21 +112,40 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         challenge_recylerview.addHeaderView(voucherHeader);
         startNowTv = (TextView) voucherHeader.findViewById(R.id.startNowTv);
         friendsRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.friendsRankBtn);
-        houseRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.houseRankBtn);
+        studentHouseRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.houseRankBtn);
+        allHouseRankBtn = (AppCompatTextView) voucherHeader.findViewById(R.id.allHouseRankBtn);
+
+        studentHouseRankBtn.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE));
         friendsRankBtn.setOnClickListener(this);
-        houseRankBtn.setOnClickListener(this);
+        studentHouseRankBtn.setOnClickListener(this);
+        allHouseRankBtn.setOnClickListener(this);
+
+        /*
+        *
+        * Setting first drawable selector for the tabs button
+        *
+        * */
         friendsRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.friend_selector));
-        houseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
-        houseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+        studentHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
+        allHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.all_house_selector));
+
+        /*
+        *
+        * Setting first text color for the tabs button
+        *
+        * */
         friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+        allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+
         add_friend_tv = (OpenSansSemiBoldTextView) voucherHeader.findViewById(R.id.add_friend_tv);
+        start_quize_image = (ImageView) voucherHeader.findViewById(R.id.start_quize_image);
+        add_friend_tv.setOnClickListener(this);
+        startNowTv.setOnClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         challenge_recylerview.setLayoutManager(linearLayoutManager);
         challengeAdapter = new ChallengeAdapter(getActivity(), challangeRankLists);
         challenge_recylerview.setAdapter(challengeAdapter);
-        start_quize_image = (ImageView) voucherHeader.findViewById(R.id.start_quize_image);
-        add_friend_tv.setOnClickListener(this);
-        startNowTv.setOnClickListener(this);
     }
 
     @Override
@@ -134,8 +158,8 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
             getQuizSubmittedStatus();
             getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
         }
-        if(isListNeedRefresh){
-            isListNeedRefresh=false;
+        if (isListNeedRefresh) {
+            isListNeedRefresh = false;
             getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
 
         }
@@ -153,17 +177,35 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                 break;
             case R.id.friendsRankBtn:
                 friendsRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.friend_selector));
-                houseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
-                houseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                studentHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
+                allHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.all_house_selector));
+
                 friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
                 getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
                 break;
             case R.id.houseRankBtn:
                 friendsRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.friend_deselector));
-                houseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_selector));
+                studentHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_selector));
+                allHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.all_house_selector));
+
                 friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
-                houseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+
                 getStudentRanking(AppConstants.RANK_TYPE_HOUSE);
+                break;
+            case R.id.allHouseRankBtn:
+                friendsRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.friend_deselector));
+                studentHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
+                allHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.all_house_selected_selector));
+
+                friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+
+                getHouseRanking();
                 break;
             case R.id.startNowTv:
                 if (isQusetionAnswerSubmited.equalsIgnoreCase(AppConstants.FALSE)) {
@@ -227,7 +269,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
 
             @Override
             public void onFailure(Call<CommonResponse> call, Throwable t) {
-                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -265,22 +307,21 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                         if (response.body().getRankings() != null && response.body().getRankings().size() > 0) {
                             String studenId = MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_ID);
                             challangeRankLists.clear();
-                            String value=response.body().getRankings().get(0).getValue();
-                            int valueRank=1;
+                            String value = response.body().getRankings().get(0).getValue();
+                            int valueRank = 1;
                             for (int i = 0; i < response.body().getRankings().size(); i++) {
                                 ChallangeRankList challangeRankList = new ChallangeRankList();
-                                if(value.equalsIgnoreCase(response.body().getRankings().get(i).getValue())){
-                                    value=response.body().getRankings().get(i).getValue();
+                                if (value.equalsIgnoreCase(response.body().getRankings().get(i).getValue())) {
+                                    value = response.body().getRankings().get(i).getValue();
+
                                     challangeRankList.setFinalRankStudent(valueRank);
-                                }
-                                else {
-                                    valueRank=i+1;
-                                    value=response.body().getRankings().get(i).getValue();
+                                } else {
+                                    valueRank = i + 1;
+                                    value = response.body().getRankings().get(i).getValue();
                                     challangeRankList.setFinalRankStudent(valueRank);
 
                                 }
                                 int rank = i + 1;
-
                                 challangeRankList.setRanking("" + rank);
                                 challangeRankList.setHouse(response.body().getRankings().get(i).getHouse());
                                 challangeRankList.setLastUpdateDate(response.body().getRankings().get(i).getLastUpdateDate());
@@ -297,20 +338,23 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                                 }
                                 challangeRankLists.add(challangeRankList);
                             }
+                            challengeAdapter.updateList(getActivity(),challangeRankLists);
 
-                            challengeAdapter.updateList(getActivity(), challangeRankLists);
+
 
                         } else {
-                            challangeRankLists = new ArrayList<ChallangeRankList>();
-                            challengeAdapter.updateList(getActivity(), challangeRankLists);
-
+                          /*  challangeRankLists = new ArrayList<ChallangeRankList>();
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                            challenge_recylerview.setLayoutManager(linearLayoutManager);
+                            challengeAdapter = new ChallengeAdapter(getActivity(), challangeRankLists);
+                            challenge_recylerview.setAdapter(challengeAdapter);*/
 
                         }
                     } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                         ProjectUtil.logoutFromApp(getActivity());
                     } else {
-                        challangeRankLists = new ArrayList<ChallangeRankList>();
-                        challengeAdapter.updateList(getActivity(), challangeRankLists);
+                        challangeRankLists=new ArrayList<ChallangeRankList>();
+                        challengeAdapter.updateList(getActivity(),challangeRankLists);
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 
                     }
@@ -320,7 +364,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
 
             @Override
             public void onFailure(Call<RankingParentResponse> call, Throwable t) {
-                ProjectUtil.showToast(ISFApp.getAppInstance(),ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
                 t.printStackTrace();
                 hideProgressDialog();
             }
@@ -329,5 +373,112 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
 
     }
 
+
+
+    /*
+    *
+    *
+    * Api call for House Ranking
+    *
+    *
+    *
+    * */
+
+
+    private void getHouseRanking() {
+        houseLists=new ArrayList<>();
+        challangeRankLists=new ArrayList<>();
+        if (!CheckNetworkState.isOnline(getActivity())) {
+            ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
+            return;
+        }
+        showProgressDialog(getActivity());
+        Call<HouseParentResponse> call = ISFApp.getAppInstance()
+                .getApi()
+                .getHouseRankings(AppConstants.API_KEY,
+                        AppConstants.CONTENT_TYPE,
+                        MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
+
+        ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
+
+        call.enqueue(new Callback<HouseParentResponse>() {
+            @Override
+            public void onResponse(Call<HouseParentResponse> call, Response<HouseParentResponse> response) {
+                ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
+                hideProgressDialog();
+                if (response.body() != null) {
+                    if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
+                        if (response.body().getHouseLists() != null && response.body().getHouseLists().size() > 0) {
+                            String value = response.body().getHouseLists().get(0).getValue();
+                            int valueRank = 1;
+                            String studentHouse = MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE);
+                            DecimalFormat mFormat = new DecimalFormat("###,###,##0.00"); // use two decimal
+
+                            for (int i = 0; i < response.body().getHouseLists().size(); i++) {
+                                HouseList houseList = new HouseList();
+                                if (value.equalsIgnoreCase(response.body().getHouseLists().get(i).getValue())) {
+                                    value = response.body().getHouseLists().get(i).getValue();
+                                    houseList.setFinalRankStudent(valueRank);
+                                } else {
+                                    valueRank = i + 1;
+                                    value = response.body().getHouseLists().get(i).getValue();
+                                    houseList.setFinalRankStudent(valueRank);
+
+                                }
+
+                                float houseValue = new BigDecimal(response.body().getHouseLists().get(i).getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
+
+                                houseList.setHouse(response.body().getHouseLists().get(i).getHouse());
+                                houseList.setValue(mFormat.format(houseValue));
+                                houseList.setHomeRoomId(response.body().getHouseLists().get(i).getHomeRoomId());
+                                if (response.body().getHouseLists().get(i).getHouse().equalsIgnoreCase(studentHouse)) {
+                                    houseList.setCheckIsme(true);
+                                } else {
+                                    houseList.setCheckIsme(false);
+                                }
+                                houseLists.add(houseList);
+                            }
+
+                            if(houseLists!=null&&houseLists.size()>0){
+                                for (int i=0;i<houseLists.size();i++){
+                                    challangeRankLists.add(new ChallangeRankList(houseLists.get(i).getHouse(),
+                                            houseLists.get(i).getValue(),
+                                            houseLists.get(i).getFinalRankStudent(),
+                                            houseLists.get(i).isCheckIsme()));
+                                }
+                                challengeAdapter.updateList(getActivity(),challangeRankLists);
+                            }
+
+
+                          /*  LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                            challenge_recylerview.setLayoutManager(linearLayoutManager);
+                            houseRankAdapter = new HouseRankAdapter(getActivity(), houseLists);
+                            challenge_recylerview.setAdapter(houseRankAdapter);*/
+                        }
+
+
+
+                    } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
+                        ProjectUtil.logoutFromApp(getActivity());
+                    } else {
+                        challangeRankLists=new ArrayList<ChallangeRankList>();
+                        challengeAdapter.updateList(getActivity(),challangeRankLists);
+
+                        ProjectUtil.showToast(getActivity(), response.body().getResponseMessage());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<HouseParentResponse> call, Throwable t) {
+                ProjectUtil.showToast(ISFApp.getAppInstance(), ISFApp.getAppInstance().getString(R.string.something_went_wrong));
+                t.printStackTrace();
+                hideProgressDialog();
+            }
+        });
+
+
+    }
 
 }

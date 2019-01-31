@@ -33,6 +33,9 @@
 
 
     <LinearLayout
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginRight="@dimen/_25sdp"
+        android:weightSum="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -40,7 +43,8 @@
 
 
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/friendsRankBtn"
             android:background="@drawable/friend_selector"
@@ -50,10 +54,11 @@
             android:padding="@dimen/_2sdp"
             android:text="@string/friend"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_12sdp" />
 
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:id="@+id/houseRankBtn"
             android:layout_height="wrap_content"
             android:background="@drawable/house_deselector"
@@ -61,9 +66,23 @@
             android:clickable="true"
             android:minWidth="@dimen/_120sdp"
             android:padding="@dimen/_2sdp"
+            android:text="@string/txt_house_name_default"
+            android:textColor="@color/color_text_and_spinner"
+            android:textSize="@dimen/_12sdp" />
+        <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/allHouseRankBtn"
+            android:layout_height="wrap_content"
+            android:background="@drawable/all_house_selector"
+            android:gravity="center"
+            android:clickable="true"
+            android:minWidth="@dimen/_120sdp"
+            android:padding="@dimen/_2sdp"
             android:text="@string/txt_house"
             android:textColor="@color/color_text_and_spinner"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_12sdp" />
+
     </LinearLayout>
 
 

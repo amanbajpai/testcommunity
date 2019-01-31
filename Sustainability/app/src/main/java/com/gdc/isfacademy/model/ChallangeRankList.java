@@ -100,6 +100,14 @@ public class ChallangeRankList {
     }
 
 
+    public ChallangeRankList(String studentName,String value,int finalRankStudent,boolean checkIsme){
+        this.studentName=studentName;
+        this.value=value;
+        this.checkIsme=checkIsme;
+        this.finalRankStudent=finalRankStudent;
+    }
+
+
     public boolean isCheckIsme() {
         return checkIsme;
     }

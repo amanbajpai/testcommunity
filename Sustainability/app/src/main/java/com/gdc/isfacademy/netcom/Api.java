@@ -3,6 +3,7 @@ package com.gdc.isfacademy.netcom;
 import com.gdc.isfacademy.model.BuildingEnergySaving;
 import com.gdc.isfacademy.model.CommonResponse;
 import com.gdc.isfacademy.model.EnergySavingResponse;
+import com.gdc.isfacademy.model.HouseParentResponse;
 import com.gdc.isfacademy.model.LoginParentResponse;
 import com.gdc.isfacademy.model.ParentFriendListResponse;
 import com.gdc.isfacademy.model.QuizParentResponse;
@@ -82,6 +83,19 @@ public interface Api {
                                                    @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
                                                    @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey,
                                                    @Query(ApiConstants.ApiParams.TYPE) String type);
+
+
+    /*
+ *
+ *
+ * Api call for house according to there ranking.
+ *
+ * */
+    @GET(ApiConstants.ApiUrls.GET_HOUSE_RANKINGS)
+    Call<HouseParentResponse> getHouseRankings(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
+                                               @Header(ApiConstants.ApiParams.HEADER_CONTENT_TYPE) String contentType,
+                                               @Query(ApiConstants.ApiParams.STUDENT_KEY) String studentKey);
+
 
     /*
     *

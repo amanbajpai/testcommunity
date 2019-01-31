@@ -165,7 +165,7 @@
     <string name="badge_text">Badges</string>
     <string name="txt_no_badges_alloted">No unlocked badges</string>
     <string name="txt_shared_daily_result">Daily quiz result is shared (max. 5 times)</string>
-    <string name="txt_correct_answer">correct answers</string>
+    <string name="txt_correct_answers">correct answers</string>
     <string name="txt_correct_answer_if_less_then_one">correct answer</string>
     <string name="txt_points_in_your_daily_quiz">Daily quiz is completed with</string>
     <string name="txt_pts">pts.</string>
@@ -250,6 +250,7 @@
 
     <!--Challange Screen-->
     <string name="txt_house">House</string>
+    <string name="txt_house_name_default">Earth</string>
     <string name="txt_this_cycle">This Cycle</string>
     <string name="txt_last_cycle">Same Period Last Cycle</string>
 

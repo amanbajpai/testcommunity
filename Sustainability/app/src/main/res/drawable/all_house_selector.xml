@@ -5,4 +5,7 @@
         android:width="1dp"
         android:color="@color/color_text_and_spinner" />
     <solid android:color="@android:color/transparent" />
+    <corners
+        android:bottomRightRadius="@dimen/_6sdp"
+        android:topRightRadius="@dimen/_6sdp" />
 </shape>

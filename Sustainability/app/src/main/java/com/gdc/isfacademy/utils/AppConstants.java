@@ -181,6 +181,52 @@ public class AppConstants {
 
 
 
+    public static final String FAQ_TEXT_UPDATED = "<!doctype html>\n" +
+            "<html lang=\"en\">\n" +
+            "   <head>\n" +
+            "      <meta charset=\"utf-8\">\n" +
+            "      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
+            "      <title>HTML Template</title>\n" +
+            "      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+            "      <style type=\"text/css\">\n" +
+            "        body{\n" +
+            "          font-family: arial;\n" +
+            "          font-size: 15px;\n" +
+            "        }\n" +
+            "        p{\n" +
+            "          margin-top: 7px;\n" +
+            "        }\n" +
+            "      </style>\n" +
+            "   </head>\n" +
+            "   <body>\n" +
+            "<h4 style=\"margin-bottom: 0px\">Cycle</h4>\n" +
+            "<p>\n" + "A 10-day class schedule for students and teachers</p>\n" +
+            "\n" +
+            "<p>Same Period Last Cycle<br/>\n" +
+            "Same time period this cycle compared to same time period last cycle </p>\n" +
+            "\n" +
+            "<h4 style=\"margin-bottom: 0px\">Ranking</h4>\n" +
+            "<p>A ranking sorted by the the scores you earnt;  based on the 3 areas ( energy consumption, daily quiz and sharings) </p>\n" +
+            "\n" +
+            "\n" +
+            "<h4 style=\"margin-bottom: 0px\">Rewards</h4>\n" +
+            "<p>Users can earn a prize each cycle if they fulfill all 3 requirements below:<br/>\n" +
+            "1) one of the first 5 places<br/>\n" +
+            "2) at least did 1 quiz <br/>\n" +
+            "3) at least shared the result once<br/>\n" +
+            "</p>\n" +
+            "\n" +
+            "<h4 style=\"margin-bottom: 0px\">Prize</h4>\n" +
+            "<p>A HK$40 cash coupon of educafe will be provided. No change, and it is not allowed to change into cash. Each coupon can only redeemed once..</p>\n" +
+            "\n" +
+            "<p>User can spend as much as the value on the voucher,  and will need to pay the rest if the total amount is over the value (HK$40).</p>\n" +
+            "\n" +
+            "\n" +
+            "<h4 style=\"margin-bottom: 0px\">Friends</h4>\n" +
+            "<p>Users can add friends to their own friend list by sending an email invitation. Users can also manage their friend list (accept/ decline requests or remove a friend) on the page.</p>\n" +
+            "\n" +
+            "   </body>\n" +
+            "</html>";
 
 
 

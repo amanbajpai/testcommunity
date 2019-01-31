@@ -32,7 +32,7 @@ public class FaqFragment extends BaseFragment {
         webviewFaq.getSettings().setJavaScriptEnabled(true);
         webviewFaq.getSettings().setDomStorageEnabled(true);
         webviewFaq.setWebViewClient(new FaqFragment.AppWebViewClients());
-        webviewFaq.loadDataWithBaseURL("", AppConstants.FAQ_TEXT, "text/html", "UTF-8", "");
+        webviewFaq.loadDataWithBaseURL("", AppConstants.FAQ_TEXT_UPDATED, "text/html", "UTF-8", "");
         return rootView;
     }
 

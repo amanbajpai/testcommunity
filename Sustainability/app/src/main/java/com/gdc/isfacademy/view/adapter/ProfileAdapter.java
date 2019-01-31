@@ -82,16 +82,16 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
         else if (logStudentResponses.get(position).getType().equalsIgnoreCase(AppConstants.typeStudenLogChallange)) {
             double value = logStudentResponses.get(position).getCount();
             int count=(int)value;
-            if(count>1){
+            if(count==1){
                 holder
                         .studentMessageTv.setText(context.getString(R.string.txt_points_in_your_daily_quiz)+" "+
                         count+" "+
-                        context.getString(R.string.txt_correct_answer));
+                        context.getString(R.string. txt_correct_answer_if_less_then_one));
             }
             else {
                 holder.studentMessageTv.setText(context.getString(R.string.txt_points_in_your_daily_quiz)+" "+
                         count+" "+
-                        context.getString(R.string.txt_correct_answer_if_less_then_one));
+                        context.getString(R.string.txt_correct_answers));
             }
 
             holder.type_log_imagview.setImageResource(R.drawable.challnge_type);
