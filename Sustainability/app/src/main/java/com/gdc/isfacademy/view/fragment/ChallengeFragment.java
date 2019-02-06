@@ -331,6 +331,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                                 challangeRankList.setType(type);
                                 challangeRankList.setStudentId(response.body().getRankings().get(i).getStudentId());
                                 challangeRankList.setUnit(response.body().getRankings().get(i).getUnit());
+                                challangeRankList.setFromHouse(false);
                                 if (response.body().getRankings().get(i).getStudentId().equalsIgnoreCase(studenId)) {
                                     challangeRankList.setCheckIsme(true);
                                 } else {
@@ -338,8 +339,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                                 }
                                 challangeRankLists.add(challangeRankList);
                             }
-                            challengeAdapter.updateList(getActivity(),challangeRankLists);
-
+                            challengeAdapter.updateList(getActivity(), challangeRankLists);
 
 
                         } else {
@@ -353,8 +353,8 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                     } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                         ProjectUtil.logoutFromApp(getActivity());
                     } else {
-                        challangeRankLists=new ArrayList<ChallangeRankList>();
-                        challengeAdapter.updateList(getActivity(),challangeRankLists);
+                        challangeRankLists = new ArrayList<ChallangeRankList>();
+                        challengeAdapter.updateList(getActivity(), challangeRankLists);
                         ProjectUtil.showToast(ISFApp.getAppInstance().getApplicationContext(), response.body().getResponseMessage());
 
                     }
@@ -369,6 +369,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                 hideProgressDialog();
             }
         });
+
 
 
     }
@@ -386,8 +387,8 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
 
 
     private void getHouseRanking() {
-        houseLists=new ArrayList<>();
-        challangeRankLists=new ArrayList<>();
+        houseLists = new ArrayList<>();
+        challangeRankLists = new ArrayList<>();
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getString(R.string.txt_network_error));
             return;
@@ -431,6 +432,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                                 houseList.setHouse(response.body().getHouseLists().get(i).getHouse());
                                 houseList.setValue(mFormat.format(houseValue));
                                 houseList.setHomeRoomId(response.body().getHouseLists().get(i).getHomeRoomId());
+                                houseList.setFromHouse(true);
                                 if (response.body().getHouseLists().get(i).getHouse().equalsIgnoreCase(studentHouse)) {
                                     houseList.setCheckIsme(true);
                                 } else {
@@ -439,14 +441,15 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                                 houseLists.add(houseList);
                             }
 
-                            if(houseLists!=null&&houseLists.size()>0){
-                                for (int i=0;i<houseLists.size();i++){
+                            if (houseLists != null && houseLists.size() > 0) {
+                                for (int i = 0; i < houseLists.size(); i++) {
                                     challangeRankLists.add(new ChallangeRankList(houseLists.get(i).getHouse(),
                                             houseLists.get(i).getValue(),
                                             houseLists.get(i).getFinalRankStudent(),
-                                            houseLists.get(i).isCheckIsme()));
+                                            houseLists.get(i).isCheckIsme(),
+                                            houseLists.get(i).isFromHouse()));
                                 }
-                                challengeAdapter.updateList(getActivity(),challangeRankLists);
+                                challengeAdapter.updateList(getActivity(), challangeRankLists);
                             }
 
 
@@ -457,12 +460,11 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                         }
 
 
-
                     } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                         ProjectUtil.logoutFromApp(getActivity());
                     } else {
-                        challangeRankLists=new ArrayList<ChallangeRankList>();
-                        challengeAdapter.updateList(getActivity(),challangeRankLists);
+                        challangeRankLists = new ArrayList<ChallangeRankList>();
+                        challengeAdapter.updateList(getActivity(), challangeRankLists);
 
                         ProjectUtil.showToast(getActivity(), response.body().getResponseMessage());
                     }

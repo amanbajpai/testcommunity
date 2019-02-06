@@ -8,6 +8,7 @@ public class AppConstants {
     public static final int SPLASH_HOLD_TIME = 3000;
     public static final int TOP_RANKED_VIEW=0;
     public static final int OTHERS_RANK_VIEW=1;
+    public static final int HOUSE_RANK_VIEW=2;
     public static final String API_KEY="25a64d9a-b9c8-44d9-9a7d-e76aa39913429086752942922195079";
     public static final String CONTENT_TYPE="application/json";
     public static final String REQUEST="Request :";

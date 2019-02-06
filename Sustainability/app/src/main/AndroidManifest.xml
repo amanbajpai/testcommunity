@@ -55,6 +55,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".view.activity.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

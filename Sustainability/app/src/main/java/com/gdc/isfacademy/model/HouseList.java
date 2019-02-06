@@ -10,7 +10,15 @@ public class HouseList {
     String homeRoomId;
     String house;
     String value;
+    boolean isFromHouse=false;
 
+    public boolean isFromHouse() {
+        return isFromHouse;
+    }
+
+    public void setFromHouse(boolean fromHouse) {
+        isFromHouse = fromHouse;
+    }
 
     public boolean isCheckIsme() {
         return checkIsme;

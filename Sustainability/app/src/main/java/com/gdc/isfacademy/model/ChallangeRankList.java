@@ -54,6 +54,7 @@ public class ChallangeRankList {
     @SerializedName("checkIsme")
     @Expose
     boolean checkIsme = false;
+    boolean isFromHouse=false;
 
     String ranking;
 
@@ -69,6 +70,14 @@ public class ChallangeRankList {
         this.finalRankStudent = finalRankStudent;
     }
 
+    public boolean isFromHouse() {
+        return isFromHouse;
+    }
+
+    public void setFromHouse(boolean fromHouse) {
+        isFromHouse = fromHouse;
+    }
+
     public String getRanking() {
         return ranking;
     }
@@ -77,10 +86,10 @@ public class ChallangeRankList {
         this.ranking = ranking;
     }
 
-    @Generated(hash = 355939908)
+    @Generated(hash = 110267609)
     public ChallangeRankList(Long id, String studentId, String studentName, String house, String value,
-            String lastUpdateDate, String lastUpdateTs, String unit, String type, boolean checkIsme, String ranking,
-            int finalRankStudent) {
+            String lastUpdateDate, String lastUpdateTs, String unit, String type, boolean checkIsme, boolean isFromHouse,
+            String ranking, int finalRankStudent) {
         this.id = id;
         this.studentId = studentId;
         this.studentName = studentName;
@@ -91,6 +100,7 @@ public class ChallangeRankList {
         this.unit = unit;
         this.type = type;
         this.checkIsme = checkIsme;
+        this.isFromHouse = isFromHouse;
         this.ranking = ranking;
         this.finalRankStudent = finalRankStudent;
     }
@@ -100,11 +110,12 @@ public class ChallangeRankList {
     }
 
 
-    public ChallangeRankList(String studentName,String value,int finalRankStudent,boolean checkIsme){
+    public ChallangeRankList(String studentName,String value,int finalRankStudent,boolean checkIsme,boolean isFromHouse){
         this.studentName=studentName;
         this.value=value;
         this.checkIsme=checkIsme;
         this.finalRankStudent=finalRankStudent;
+        this.isFromHouse=isFromHouse;
     }
 
 
@@ -190,5 +201,13 @@ public class ChallangeRankList {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean getIsFromHouse() {
+        return this.isFromHouse;
+    }
+
+    public void setIsFromHouse(boolean isFromHouse) {
+        this.isFromHouse = isFromHouse;
     }
 }

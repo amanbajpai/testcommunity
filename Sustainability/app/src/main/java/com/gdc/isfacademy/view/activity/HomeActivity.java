@@ -1,6 +1,7 @@
 package com.gdc.isfacademy.view.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -206,6 +207,16 @@ public class HomeActivity extends BaseActivity implements
 
     public void pushFragments(Fragment fragment, Bundle bundle, boolean isAddbackStack) {
         try {
+
+            if (fragment instanceof RealTimeSchoolFragment) {
+                // FragmentOne can be any orientation
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            }
+            else {
+                // FragmentTwo can be only portrait orientation
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+
             BackManager.manageBackStack(this, fragment.getClass().getSimpleName());
             if (bundle != null)
                 fragment.setArguments(bundle);

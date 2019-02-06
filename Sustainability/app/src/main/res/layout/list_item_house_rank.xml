@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingBottom="@dimen/_5sdp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/houseLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_26sdp"
+        android:orientation="vertical">
+
+        <SeekBar
+            android:id="@+id/seekbarHouse"
+            style="@style/tallerBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_26sdp"
+            android:layout_centerVertical="true"
+            android:max="100"
+            android:progress="1"
+            android:progressDrawable="@drawable/seekbar_house_selector"
+            android:thumb="@android:color/white" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
+                    android:id="@+id/houseName"
+                    android:textColor="#8D959A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:text="House Name"
+                    android:textSize="@dimen/_10sdp"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
+                    android:id="@+id/pointsHouse"
+                    android:textColor="#8D959A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:text=""
+                    android:textSize="@dimen/_10sdp"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+                <!--
+                                                <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
+                                                    android:id="@+id/full_status_text"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="@dimen/_1sdp"
+                                                    android:layout_toRightOf="@+id/kwh_text_status"
+                                                    android:text=""
+                                                    android:textColor="@color/semi_light_color"
+                                                    android:textSize="@dimen/_10sdp"
+                                                    android:visibility="gone"
+                                                    tools:ignore="RtlHardcoded" />
+                -->
+            </RelativeLayout>
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/studentHouseLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:id="@+id/seekbar_student_house"
+            style="@style/tallerBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_26sdp"
+            android:layout_centerVertical="true"
+            android:max="100"
+            android:progress="1"
+            android:progressDrawable="@drawable/seekbar_student_house_selector"
+            android:thumb="@android:color/white" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/student_house_name"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/home_bottom_card_text_color"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@string/txt_last_cycle"
+                    android:textSize="@dimen/_10sdp" />
+
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                    android:id="@+id/points_student_house"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:text=""
+                    android:textColor="@color/home_bottom_card_text_color"
+                    android:textSize="@dimen/_10sdp"
+                    tools:ignore="RtlHardcoded" />
+            </RelativeLayout>
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
