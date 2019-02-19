@@ -19,7 +19,9 @@
             android:src="@drawable/challenge_header"
             tools:ignore="ContentDescription" />
 
-        <TextView
+
+         <TextView
+             android:textColor="@color/white"
             android:id="@+id/startNowTv"
             android:layout_marginBottom="@dimen/_32sdp"
             android:layout_marginRight="@dimen/_45sdp"
@@ -67,7 +69,7 @@
             android:minWidth="@dimen/_120sdp"
             android:padding="@dimen/_2sdp"
             android:text="@string/txt_house_name_default"
-            android:textColor="@color/color_text_and_spinner"
+            android:textColor="#009EAE"
             android:textSize="@dimen/_12sdp" />
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:layout_width="0dp"
@@ -80,7 +82,7 @@
             android:minWidth="@dimen/_120sdp"
             android:padding="@dimen/_2sdp"
             android:text="@string/txt_house"
-            android:textColor="@color/color_text_and_spinner"
+            android:textColor="#009EAE"
             android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
@@ -102,6 +104,18 @@
             tools:ignore="RtlHardcoded" />
 
 
+        <ImageView
+            android:id="@+id/addFriendIv"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:tint="#009EAE"
+            android:src="@drawable/add"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/add_friend_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
             android:id="@+id/add_friend_tv"
             android:layout_width="wrap_content"
@@ -109,10 +123,9 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/_10sdp"
-            android:drawableLeft="@drawable/add"
             android:drawablePadding="@dimen/_5sdp"
             android:text="@string/friend"
-            android:textColor="@color/color_text_and_spinner"
+            android:textColor="#009EAE"
             android:textSize="@dimen/_11sdp"
             tools:ignore="RtlHardcoded" />
 

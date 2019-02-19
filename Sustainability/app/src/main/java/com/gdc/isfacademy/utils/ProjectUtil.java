@@ -319,6 +319,60 @@ public class ProjectUtil {
     }
 
 
+
+
+
+
+    public static void shareAppLinkAlertDialog(final Context mContext,String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        Typeface externalFont = Typeface.createFromAsset(mContext.getAssets(), "fonts/OpenSans-Bold_0.ttf");
+        CustomTFSpan tfSpan = new CustomTFSpan(externalFont);
+        SpannableString spannableString = new SpannableString(mContext.getString(R.string.app_name));
+        spannableString.setSpan(tfSpan, 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setTitle(spannableString)
+                .setMessage(fromHtmlAlert(message))
+                .setNegativeButton(R.string.txt_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                    }
+                })
+                .setPositiveButton(R.string.txt_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, mContext.getString(R.string.txt_hello) + " " +
+                                MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_NAME) + " " +
+                                mContext.getString(R.string.txt_sending_app_link)  +AppConstants.FOR_ANDROID+ AppConstants.ANDROID_APP_LINK
+                        +mContext.getString(R.string.txt_next_line)+AppConstants.FOR_IOS+AppConstants.IOS_APP_LINK);
+
+                        sendIntent.setType("text/plain");
+                        mContext.startActivity(Intent.createChooser(sendIntent, mContext.getResources().getText(R.string.txt_send_to)));
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+        alert.setCanceledOnTouchOutside(false);
+        alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.cancel();
+            }
+        });
+        Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+
+        pbutton.setEnabled(true);
+        nbutton.setEnabled(true);
+        pbutton.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_and_spinner));
+        nbutton.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_and_spinner));
+
+    }
+
+
+
     public static Dialog showCustomDialog(Context context, int resId) {
         final Dialog dialog = new Dialog(context);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -474,6 +528,9 @@ public class ProjectUtil {
     }
 
     public static void hideKeyboardFrom(Context context, View view) {
+        if (context == null) {
+            context = ISFApp.getAppInstance().getApplicationContext();
+        }
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }

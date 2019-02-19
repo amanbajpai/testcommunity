@@ -58,7 +58,7 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
     private ArrayList<HouseList> houseLists;
     private AppCompatTextView friendsRankBtn, studentHouseRankBtn, allHouseRankBtn;
     private OpenSansSemiBoldTextView add_friend_tv;
-    private ImageView start_quize_image;
+    private ImageView start_quize_image,addFriendIv;
     private String isQusetionAnswerSubmited = "";
     private TextView startNowTv;
 
@@ -135,13 +135,15 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         *
         * */
         friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-        studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
-        allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+        studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
+        allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
 
         add_friend_tv = (OpenSansSemiBoldTextView) voucherHeader.findViewById(R.id.add_friend_tv);
         start_quize_image = (ImageView) voucherHeader.findViewById(R.id.start_quize_image);
+        addFriendIv = (ImageView) voucherHeader.findViewById(R.id.addFriendIv);
         add_friend_tv.setOnClickListener(this);
         startNowTv.setOnClickListener(this);
+        addFriendIv.setOnClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         challenge_recylerview.setLayoutManager(linearLayoutManager);
         challengeAdapter = new ChallengeAdapter(getActivity(), challangeRankLists);
@@ -175,14 +177,17 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
             case R.id.add_friend_tv:
                 ((HomeActivity) getActivity()).pushFragments(new AddFriendFragment(), null, true);
                 break;
+            case R.id.addFriendIv:
+                ((HomeActivity) getActivity()).pushFragments(new AddFriendFragment(), null, true);
+                break;
             case R.id.friendsRankBtn:
                 friendsRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.friend_selector));
                 studentHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
                 allHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.all_house_selector));
 
                 friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-                allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
-                studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
+                studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
                 getStudentRanking(AppConstants.RANK_TYPE_FRIEND);
                 break;
             case R.id.houseRankBtn:
@@ -190,9 +195,9 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                 studentHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_selector));
                 allHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.all_house_selector));
 
-                friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
                 studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-                allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
 
                 getStudentRanking(AppConstants.RANK_TYPE_HOUSE);
                 break;
@@ -201,8 +206,8 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
                 studentHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.house_deselector));
                 allHouseRankBtn.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.all_house_selected_selector));
 
-                friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
-                studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner));
+                friendsRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
+                studentHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_challnge));
                 allHouseRankBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
 
                 getHouseRanking();

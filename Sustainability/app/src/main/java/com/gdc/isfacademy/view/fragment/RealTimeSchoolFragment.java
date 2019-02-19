@@ -43,7 +43,6 @@ public class RealTimeSchoolFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.webview_fragment, container, false);
         realTimeWebView = (WebView) rootView.findViewById(R.id.webView);
-        realTimeWebView.getSettings().setJavaScriptEnabled(true);
         realTimeWebView.getSettings().setDomStorageEnabled(true);
         realTimeWebView.setWebViewClient(new AppWebViewClients());
         if (Build.VERSION.SDK_INT >= 19) {

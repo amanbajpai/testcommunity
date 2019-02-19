@@ -35,6 +35,7 @@ public class AppConstants {
     public static final int  DEBUG_LOG=0;
     public static final int REQUEST_LOCATION=101;
     public static final String ERROR_CODE_STUDENT_KEY_NOT_MATCHED="C0703";
+    public static final String ERROR_CODE_FRIEND_NOT_EXIST="C0713";
 
     public static final String ID_ENERGY_SAVING="1";
     public static final String ID_QUIZHOLIC="2";
@@ -130,6 +131,12 @@ public class AppConstants {
 
     public static final String IS_STATUS_MAP="isStatusMap";
     public static final String OTHER="other";
+
+    public static final String FOR_ANDROID="android link:-";
+    public static final String FOR_IOS="iphone link:-";
+    public static final String ANDROID_APP_LINK="https://play.google.com/store/apps/details?id=com.energybox.isf&hl=en";
+    public static final String IOS_APP_LINK="https://play.google.com/store/apps/details?id=com.energybox.isf&hl=en";
+
 
     public static final String FAQ_TEXT = "<!doctype html>\n" +
             "<html lang=\"en\">\n" +

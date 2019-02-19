@@ -144,6 +144,12 @@
     <string name="txt_email_addrress">Email address</string>
     <string name="txt_hint_email_content"> Hi(aakash sharma),this is ashish sending you a friend request.</string>
     <string name="txt_Send_btn">Send</string>
+    <string name="txt_share_app_link_for_download">Share app link to friend for download</string>
+    <string name="txt_no_friend_available">Your friend does not exist or not first time login.\n</string>
+    <string name="txt_hello">Hello this is</string>
+    <string name="txt_sending_app_link">sending app link to download so i can add you as a friend \n </string>
+    <string name="txt_download_app_link">Would you like to share download link to friend?</string>
+    <string name="txt_next_line">\n</string>
 
 
     <!--Profile Screen-->

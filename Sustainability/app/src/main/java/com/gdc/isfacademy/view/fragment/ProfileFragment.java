@@ -166,7 +166,7 @@ public class ProfileFragment extends BaseFragment {
     * for showing points earned,quiz completion,Energy saving etc.
     *
     * */
-    private void getStudentActivityLogs() {
+    private synchronized void getStudentActivityLogs() {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
             return;
@@ -212,6 +212,7 @@ public class ProfileFragment extends BaseFragment {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
     }
 
 
@@ -222,7 +223,7 @@ public class ProfileFragment extends BaseFragment {
     * for student weather it is locked or unlocked badge
     *
     * */
-    private void getStudentBadges() {
+    private synchronized void getStudentBadges() {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
             return;
@@ -306,7 +307,7 @@ public class ProfileFragment extends BaseFragment {
 
 
 
-    private void getStudentStatus() {
+    private synchronized void getStudentStatus() {
         if (!CheckNetworkState.isOnline(getActivity())) {
             ProjectUtil.showToast(getActivity(), getResources().getString(R.string.something_went_wrong));
             return;
@@ -374,6 +375,7 @@ public class ProfileFragment extends BaseFragment {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
     }
 
 

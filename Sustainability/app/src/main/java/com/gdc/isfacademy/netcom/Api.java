@@ -65,6 +65,7 @@ public interface Api {
     *
     * Api call for submitting quiz result answer to server
     *
+    *
     * */
     @GET(ApiConstants.ApiUrls.SUBMIT_ANSWER)
     Call<CommonResponse> submitQuestion(@Header(ApiConstants.ApiParams.HEADER_API_KEY) String apiKey,
@@ -75,7 +76,7 @@ public interface Api {
     /*
     *
     *
-    * Api call for gettinga all student list according to there ranking.
+    * Api call for getting all student list according to there ranking.
     *
     * */
     @GET(ApiConstants.ApiUrls.GET_STUDENTS_RANKINGS)
