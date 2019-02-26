@@ -103,6 +103,8 @@ public class LeftMenuFragment extends BaseFragment {
             sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_real_time)));
             sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_about_isf)));
             sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_slider_faq)));
+            sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_app_glossary)));
+
         }
 
        /* sliderBeanArrayList.add(new SliderBean(getResources().getString(R.string.txt_terms_condition)));

@@ -348,6 +348,10 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
 
 
                         } else {
+                            challangeRankLists = new ArrayList<ChallangeRankList>();
+                            challengeAdapter.updateList(getActivity(),challangeRankLists);
+                            ProjectUtil.showToast(getActivity(),"No Friends available");
+
                           /*  challangeRankLists = new ArrayList<ChallangeRankList>();
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                             challenge_recylerview.setLayoutManager(linearLayoutManager);

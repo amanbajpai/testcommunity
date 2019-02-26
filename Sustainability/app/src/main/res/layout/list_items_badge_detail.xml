@@ -70,7 +70,6 @@
                         android:id="@+id/descriptionbadge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lines="2"
                         android:ellipsize="end"
                         android:text=""
                         android:textColor="@color/black"

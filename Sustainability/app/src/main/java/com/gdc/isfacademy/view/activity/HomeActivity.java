@@ -24,6 +24,7 @@ import com.gdc.isfacademy.utils.BackManager;
 import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.fragment.AboutISfFragment;
 import com.gdc.isfacademy.view.fragment.AddFriendFragment;
+import com.gdc.isfacademy.view.fragment.AppGlossaryFragment;
 import com.gdc.isfacademy.view.fragment.BadgeDetailFragment;
 import com.gdc.isfacademy.view.fragment.ChallengeFragment;
 import com.gdc.isfacademy.view.fragment.FaqFragment;
@@ -276,6 +277,8 @@ public class HomeActivity extends BaseActivity implements
                 pushFragments(FaqFragment.newInstance(), null, false);
                 break;
             case 3:
+                pushFragments(AppGlossaryFragment.newInstance(), null, false);
+
                 // pushFragments(PrivacyPolicyFragment.newInstance(),null,false);
                 break;
             case 4:

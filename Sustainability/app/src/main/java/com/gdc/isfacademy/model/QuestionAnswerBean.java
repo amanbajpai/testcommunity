@@ -1,12 +1,15 @@
 package com.gdc.isfacademy.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
  * Created by ashishthakur on 27/11/18.
  */
 
-public class QuestionAnswerBean implements Serializable {
+public class QuestionAnswerBean implements Serializable,Parcelable {
     String question;
     String answer;
     Options options;
@@ -69,6 +72,16 @@ public class QuestionAnswerBean implements Serializable {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 
     public class Options {

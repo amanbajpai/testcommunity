@@ -53,7 +53,7 @@ public class SendFriendRequestFragment extends BaseFragment {
         emailAddress = (EditText) rootView.findViewById(R.id.emailAddressEt);
         bodyEmail = (EditText) rootView.findViewById(R.id.bodyEmailEt);
         sendFriendRequestLayout=(LinearLayout)rootView.findViewById(R.id.sendFriendRequestLayout);
-        bodyEmail.setText("Hello,this is" + " " + MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_NAME) + " " + "Sending you a friend Request.");
+        bodyEmail.setText(getString(R.string.txt_hey_this) + " " + MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_NAME) + "." + getString(R.string.txt_connect_as_friend));
         extraText = (TextView) rootView.findViewById(R.id.extraText);
 
         send_btn_tv.setOnClickListener(new View.OnClickListener() {

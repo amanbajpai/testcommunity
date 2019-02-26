@@ -345,8 +345,8 @@ public class ProjectUtil {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, mContext.getString(R.string.txt_hello) + " " +
                                 MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_NAME) + " " +
-                                mContext.getString(R.string.txt_sending_app_link)  +AppConstants.FOR_ANDROID+ AppConstants.ANDROID_APP_LINK
-                        +mContext.getString(R.string.txt_next_line)+AppConstants.FOR_IOS+AppConstants.IOS_APP_LINK);
+                                mContext.getString(R.string.txt_sending_app_link)  +mContext.getString(R.string.txt_next_line)+AppConstants.FOR_ANDROID+ AppConstants.ANDROID_APP_LINK
+                        +mContext.getString(R.string.txt_next_line)+mContext.getString(R.string.txt_next_line)+AppConstants.FOR_IOS+AppConstants.IOS_APP_LINK);
 
                         sendIntent.setType("text/plain");
                         mContext.startActivity(Intent.createChooser(sendIntent, mContext.getResources().getText(R.string.txt_send_to)));
