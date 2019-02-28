@@ -101,7 +101,7 @@ dependencies {
     compile project(':xrecyclerview')
     compile 'io.branch.sdk.android:library:3.0.0'
     compile 'com.daimajia.numberprogressbar:library:1.4@aar'
-
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
 
 }

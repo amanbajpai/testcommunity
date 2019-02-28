@@ -16,10 +16,12 @@
     <string name="txt_enter_password">Enter Password</string>
     <string name="txt_yes">Yes</string>
     <string name="txt_no">No</string>
+    <string name="txt_login">Login</string>
+    <string name="txt_cancel_btn">Cancel</string>
 
     <!--Bottom Navigation Bar Strings-->
     <string name="txt_home">Energy</string>
-    <string name="txt_challenge">Challenge</string>
+    <string name="txt_challenge">Challenges</string>
     <string name="txt_rewards">Rewards</string>
     <string name="txt_profile">Profile</string>
 
@@ -28,8 +30,6 @@
     <string name="dialog_message_exit">Are you sure you want to exit?</string>
     <string name="dialog_message_decline_friend_request">Are you sure you want to decline friend request?</string>
     <string name="dialog_message_delete_friend">Are you sure you want to remove this friend?</string>
-
-
     <string name="app_restriction_message">You can\'t use app between 8 AM to 4 PM.</string>
 
     <string name="dialog_btn_yes">Yes</string>

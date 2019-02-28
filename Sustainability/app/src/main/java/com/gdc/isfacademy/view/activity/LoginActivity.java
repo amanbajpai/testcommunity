@@ -27,13 +27,9 @@ import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightEditText;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -106,7 +102,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     nameET.setError(getString(R.string.txt_validate_student_id));
                 } else if (passET.getText().toString().trim().isEmpty()) {
                     passET.setError(getString(R.string.txt_validate_password));
-
                 } else {
                     ProjectUtil.hideKeyboardFrom(LoginActivity.this, nameET);
                     ProjectUtil.hideKeyboardFrom(LoginActivity.this, passET);

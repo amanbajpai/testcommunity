@@ -37,7 +37,7 @@
 
                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                     android:id="@+id/houseName"
-                    android:textColor="#8D959A"
+                    android:textColor="#333E48"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -48,7 +48,7 @@
 
                 <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                     android:id="@+id/pointsHouse"
-                    android:textColor="#8D959A"
+                    android:textColor="#333E48"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -105,19 +105,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
                     android:layout_width="wrap_content"
                     android:id="@+id/student_house_name"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_alignParentLeft="true"
-                    android:textColor="@color/home_bottom_card_text_color"
+                    android:textColor="@color/home_bottom_card_text_color_new"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:text="@string/txt_last_cycle"
                     android:textSize="@dimen/_10sdp" />
 
-                <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                <com.gdc.isfacademy.view.customs.customfonts.OpenSansBoldTextView
                     android:id="@+id/points_student_house"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_4sdp"
                     android:text=""
-                    android:textColor="@color/home_bottom_card_text_color"
+                    android:textColor="@color/home_bottom_card_text_color_new"
                     android:textSize="@dimen/_10sdp"
                     tools:ignore="RtlHardcoded" />
             </RelativeLayout>

@@ -23,6 +23,8 @@
     <color name="light_text_color">#989fa4</color>
     <color name="semi_light_color">#4d4d4d</color>
     <color name="home_bottom_card_text_color">#009FAC</color>
+    <color name="home_bottom_card_text_color_new">#00A0AF</color>
+
     <color name="color_try_later_bg">#D5D7D9</color>
     <color name="color_cofffe">#734d4d4d</color>
     <color name="disable">#4d42505D</color>

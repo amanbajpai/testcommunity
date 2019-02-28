@@ -148,6 +148,10 @@ public class ChallengeFragment extends BaseFragment implements View.OnClickListe
         challenge_recylerview.setLayoutManager(linearLayoutManager);
         challengeAdapter = new ChallengeAdapter(getActivity(), challangeRankLists);
         challenge_recylerview.setAdapter(challengeAdapter);
+        challenge_recylerview.setHasFixedSize(true);
+        challenge_recylerview.setItemViewCacheSize(100);
+        challenge_recylerview.setDrawingCacheEnabled(true);
+        challenge_recylerview.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 
     @Override

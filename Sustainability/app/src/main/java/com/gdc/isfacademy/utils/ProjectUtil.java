@@ -451,7 +451,6 @@ public class ProjectUtil {
         String date = "";
         try {
             Calendar calendar = Calendar.getInstance();
-
             date = calendar.get(Calendar.DAY_OF_MONTH) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.YEAR);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -490,12 +489,18 @@ public class ProjectUtil {
     }
 
     public static void logoutFromApp(Context context) {
-        ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
-        MyPref.getInstance(context).clearPrefs();
-        MyPref.getInstance(context).writePrefs(AppConstants.STUDENT_KEY, "");
+        try {
+            ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
+            MyPref.getInstance(context).clearPrefs();
+            MyPref.getInstance(context).writePrefs(AppConstants.STUDENT_KEY, "");
+
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
         ((Activity) context).finish();
+
     }
 
     @SuppressLint("SimpleDateFormat")
