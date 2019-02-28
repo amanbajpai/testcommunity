@@ -182,8 +182,19 @@ public class ProjectUtil {
     }
 
     public static void showToast(final Context context, String message) {
+        try {
+            Context mContext;
+            if (context == null) {
+                mContext = ISFApp.getAppInstance().getApplicationContext();
+                Toast.makeText(mContext, "" + message, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
 
-        Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -319,11 +330,7 @@ public class ProjectUtil {
     }
 
 
-
-
-
-
-    public static void shareAppLinkAlertDialog(final Context mContext,String message) {
+    public static void shareAppLinkAlertDialog(final Context mContext, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         Typeface externalFont = Typeface.createFromAsset(mContext.getAssets(), "fonts/OpenSans-Bold_0.ttf");
         CustomTFSpan tfSpan = new CustomTFSpan(externalFont);
@@ -345,8 +352,8 @@ public class ProjectUtil {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, mContext.getString(R.string.txt_hello) + " " +
                                 MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_NAME) + " " +
-                                mContext.getString(R.string.txt_sending_app_link)  +mContext.getString(R.string.txt_next_line)+AppConstants.FOR_ANDROID+ AppConstants.ANDROID_APP_LINK
-                        +mContext.getString(R.string.txt_next_line)+mContext.getString(R.string.txt_next_line)+AppConstants.FOR_IOS+AppConstants.IOS_APP_LINK);
+                                mContext.getString(R.string.txt_sending_app_link) + mContext.getString(R.string.txt_next_line) + AppConstants.FOR_ANDROID + AppConstants.ANDROID_APP_LINK
+                                + mContext.getString(R.string.txt_next_line) + mContext.getString(R.string.txt_next_line) + AppConstants.FOR_IOS + AppConstants.IOS_APP_LINK);
 
                         sendIntent.setType("text/plain");
                         mContext.startActivity(Intent.createChooser(sendIntent, mContext.getResources().getText(R.string.txt_send_to)));
@@ -370,7 +377,6 @@ public class ProjectUtil {
         nbutton.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_and_spinner));
 
     }
-
 
 
     public static Dialog showCustomDialog(Context context, int resId) {
@@ -494,7 +500,7 @@ public class ProjectUtil {
             MyPref.getInstance(context).clearPrefs();
             MyPref.getInstance(context).writePrefs(AppConstants.STUDENT_KEY, "");
 
-        }catch (Throwable e){
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         Intent intent = new Intent(context, LoginActivity.class);
@@ -551,8 +557,8 @@ public class ProjectUtil {
                     public void onClick(DialogInterface dialog, int which) {
                         ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
                         MyPref.getInstance(mContext).clearPrefs();
-                        Intent intent=new Intent(mContext,LoginActivity.class);
-                        ((Activity) mContext).startActivity(intent, ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
+                        Intent intent = new Intent(mContext, LoginActivity.class);
+                        ((Activity) mContext).startActivity(intent, ActivityOptions.makeCustomAnimation(mContext, R.anim.slide_in, R.anim.slide_out).toBundle());
                         ((Activity) mContext).finishAfterTransition();
 
                     }
@@ -586,35 +592,8 @@ public class ProjectUtil {
         return formattedValue;
     }
 
-    public void timeAgo(String date) {
-
-        try {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss 'GMT'Z yyyy");
-            Date past = dateFormat.parse(date);
-            Date now = new Date();
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
-            long minutes = TimeUnit.MILLISECONDS.toMinutes(now.getTime() - past.getTime());
-            long hours = TimeUnit.MILLISECONDS.toHours(now.getTime() - past.getTime());
-            long days = TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime());
-            System.out.println(TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime()) + " days ago");
-
-            if (seconds < 60) {
-                System.out.println(seconds + " seconds ago");
-            } else if (minutes < 60) {
-                System.out.println(minutes + " minutes ago");
-            } else if (hours < 24) {
-                System.out.println(hours + " hours ago");
-            } else {
-                System.out.println(days + " days ago");
-            }
-        } catch (Exception j) {
-            j.printStackTrace();
-        }
-    }
-
-
-    public static ArrayList<BadgeStudentResponse>getBadgeList(ArrayList<BadgeStudentResponse>badgeStudentResponses){
-        for (int position=0;position<badgeStudentResponses.size();position++){
+    public static ArrayList<BadgeStudentResponse> getBadgeList(ArrayList<BadgeStudentResponse> badgeStudentResponses) {
+        for (int position = 0; position < badgeStudentResponses.size(); position++) {
             if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_ENERGY_SAVING)) {
                 if (badgeStudentResponses.get(position).getValue() != null) {
                     float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
@@ -636,8 +615,7 @@ public class ProjectUtil {
 
                     }
                 }
-            }
-            else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_QUIZHOLIC)) {
+            } else if (badgeStudentResponses.get(position).getBadgesType().equalsIgnoreCase(AppConstants.ID_QUIZHOLIC)) {
                 if (badgeStudentResponses.get(position).getValue() != null) {
                     float value = Float.parseFloat(badgeStudentResponses.get(position).getValue());
                     if (value < AppConstants.VALUE_QUIZHOLIC_BRONZE) {
@@ -794,6 +772,32 @@ public class ProjectUtil {
         return badgeStudentResponses;
 
 
+    }
+
+    public void timeAgo(String date) {
+
+        try {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss 'GMT'Z yyyy");
+            Date past = dateFormat.parse(date);
+            Date now = new Date();
+            long seconds = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(now.getTime() - past.getTime());
+            long hours = TimeUnit.MILLISECONDS.toHours(now.getTime() - past.getTime());
+            long days = TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime());
+            System.out.println(TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime()) + " days ago");
+
+            if (seconds < 60) {
+                System.out.println(seconds + " seconds ago");
+            } else if (minutes < 60) {
+                System.out.println(minutes + " minutes ago");
+            } else if (hours < 24) {
+                System.out.println(hours + " hours ago");
+            } else {
+                System.out.println(days + " days ago");
+            }
+        } catch (Exception j) {
+            j.printStackTrace();
+        }
     }
 
 
