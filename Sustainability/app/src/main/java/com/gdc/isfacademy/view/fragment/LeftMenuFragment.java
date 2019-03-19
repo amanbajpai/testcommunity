@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.gdc.isfacademy.BuildConfig;
 import com.gdc.isfacademy.model.SliderBean;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.view.activity.HomeActivity;
@@ -67,7 +68,7 @@ public class LeftMenuFragment extends BaseFragment {
     private DrawerLayout mDrawerLayout;
     private View containerView;
     private FragmentDrawerListener drawerListener;
-    private AppCompatTextView txt_menu_label;
+    private AppCompatTextView txt_menu_label,appVersion;
     private ImageView cancel;
 
 
@@ -125,6 +126,7 @@ public class LeftMenuFragment extends BaseFragment {
         privacyPolicy = (AppCompatTextView) layout.findViewById(R.id.privacyPolicy);
         termsCondition = (AppCompatTextView) layout.findViewById(R.id.termsCondition);
         logoutAppTv = (AppCompatTextView) layout.findViewById(R.id.logoutAppTv);
+        appVersion=(AppCompatTextView)layout.findViewById(R.id.appVersion);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +142,7 @@ public class LeftMenuFragment extends BaseFragment {
             }
         });
         setIconList();
+        appVersion.setText(getString(R.string.txt_app_version)+ BuildConfig.VERSION_NAME);
         leftMenuAdapter = new LeftMenuAdapter(getActivity(), sliderBeanArrayList);
         recyclerView.setAdapter(leftMenuAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

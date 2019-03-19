@@ -63,6 +63,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/appVersion"
+        android:padding="@dimen/_3sdp"
+        android:textColor="@color/white_alpha"
+        android:text="@string/txt_app_version"
+        android:textSize="@dimen/_10sdp"
+        android:layout_height="wrap_content" />
+
+
     <com.gdc.isfacademy.view.customs.customfonts.OpenSansItallicTextView
         android:layout_width="wrap_content"
         android:id="@+id/termsCondition"

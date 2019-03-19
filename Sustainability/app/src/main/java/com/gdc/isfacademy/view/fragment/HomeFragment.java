@@ -75,7 +75,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     BarChart mChart;
     private RelativeLayout how_much_save_rl;
     private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
-            buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv;
+            buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv,lastUpdatedTv;
 
     public static HomeFragment newInstance() {
         HomeFragment homeFragment = new HomeFragment();
@@ -119,6 +119,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mChart.invalidate();
 
         spinner = (AppCompatSpinner) layout.findViewById(R.id.spinner);
+        lastUpdatedTv=(AppCompatTextView)layout.findViewById(R.id.lastUpdatedTv);
         greenScaleText=(AppCompatTextView)layout.findViewById(R.id.greenScaleText);
         greyScaleText=(AppCompatTextView)layout.findViewById(R.id.greyScaleText);
         comparison_tv = (AppCompatTextView) layout.findViewById(R.id.comparuison_tv);
@@ -386,6 +387,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             currentCons = response.body().getCurrentCons();
+                            lastUpdatedTv.setText(getString(R.string.txt_last_updated)+ ProjectUtil.getDateCurrentTimeZone(currentCons.getLastUpdateTs()));
                             setView(response.body());
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());

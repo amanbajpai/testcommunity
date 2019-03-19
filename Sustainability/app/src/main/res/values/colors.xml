@@ -9,6 +9,8 @@
     <color name="color_text_and_spinner">#00DCCF</color>
     <color name="color_challnge">#009EAE</color>
     <color name="white">#ffffff</color>
+    <color name="white_alpha">#5Cffffff</color>
+
     <color name="black">#000000</color>
     <color name="dark_gray">#43515D</color>
     <color name="gray">#91999E</color>

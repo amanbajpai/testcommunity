@@ -378,17 +378,31 @@
                     </View>
 
                     <RelativeLayout
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_15sdp">
+                        android:padding="@dimen/_10sdp">
 
                         <LinearLayout
+                            android:layout_marginLeft="@dimen/_6sdp"
+                            android:layout_marginRight="@dimen/_20sdp"
+                            android:layout_toLeftOf="@+id/valueTree"
+                            android:layout_alignParentLeft="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:orientation="vertical">
-
                             <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                android:text="@string/txt_details_carbon_foot_print"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_10sdp"
+                                tools:ignore="RtlHardcoded" />
+
+                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansRegularTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="@dimen/_2sdp"
@@ -397,35 +411,16 @@
                                 android:textSize="@dimen/_13sdp" />
 
 
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:drawablePadding="@dimen/_10sdp"
-                                android:drawableRight="@drawable/small_arrow"
-                                android:gravity="center_vertical"
-                                android:text="@string/select_other_item"
-                                android:textColor="@color/color_text_and_spinner"
-                                android:textSize="@dimen/_12sdp"
-                                android:visibility="gone"
-                                tools:ignore="RtlHardcoded" />
 
 
-                            <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_2sdp"
-                                android:text="@string/for_comparision"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/_11sdp"
-                                android:visibility="gone" />
                         </LinearLayout>
 
                         <LinearLayout
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/treeLl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_toLeftOf="@+id/valueTree"
                             android:orientation="vertical"
                             tools:ignore="RelativeOverlap,RtlHardcoded">
 
@@ -450,11 +445,11 @@
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
                             android:id="@+id/valueTree"
+                            android:layout_toLeftOf="@+id/treeLl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginRight="@dimen/_20sdp"
                             android:text="@string/txt_x_zero"
                             android:textColor="@color/gray"
                             android:textSize="@dimen/_15sdp"

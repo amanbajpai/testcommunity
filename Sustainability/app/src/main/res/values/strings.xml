@@ -43,6 +43,7 @@
     <string name="txt_slider_faq">FAQ</string>
     <string name="txt_app_glossary">App Glossary</string>
     <string name="txt_terms_condition">Terms &amp; Conditions</string>
+    <string name="txt_app_version">App Version v</string>
     <string name="txt_privacy_policy">Privacy Policy</string>
     <string name="txt_logout">Logout</string>
 
@@ -55,6 +56,7 @@
     <string name="txt_school_energy_saving_txt">Total energy used in school</string>
     <string name="txt_date_upto">Up to 31 may 2017</string>
     <string name="txt_up_to">Up to </string>
+    <string name="txt_last_updated">Last updated:-</string>
 
 
     <!--how much save screen-->
@@ -94,6 +96,7 @@
     <string name="txt_compariosn_yesterday">Compared to the same time yesterday</string>
     <string name="txt_compariosn_last_cylce">Compared to the same time last cycle</string>
     <string name="txt_compariosn_last_month">Compared to the same time last month</string>
+    <string name="txt_details_carbon_foot_print">to balance out the carbon dioxide you produced</string>
 
     <string name="txt_green_scale_text_today">Today</string>
     <string name="txt_grey_scale_text_today">Yesterday</string>
@@ -265,7 +268,7 @@
     <string name="txt_last_cycle">Same Period Last Cycle</string>
 
 
-    <string name="image_base_64"></string>
+
 
 
 </resources>
