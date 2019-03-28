@@ -198,7 +198,7 @@ public class AppConstants {
                 "    <ol style=\"list-style:decimal; margin:0px;\">\n" +
                 "      <li>During the day, take action around the school to reduce energy consumption.</li>\n" +
                 "      <li>Answer the daily sustainability quiz questions.</li>\n" +
-                "      <li> Share your results and your badges with friends. </li>\n" +
+                "      <li> Share your results with friends. </li>\n" +
                 "    </ol>\n" +
                 "    <p>A maximum of 600 points can be earned per day, per person.</p>\n" +
                 "  </section>\n" +
@@ -324,6 +324,12 @@ public class AppConstants {
                 "    <section class=\"section-four\">\n" +
                 "    <h2>Carbon footprint</h2>\n" +
                 "    <p>How much carbon dioxide* is produced by burning fossil fuels for your electricity needs at school (*or the equivalent, in terms of Greenhouse Gases)</p>\n" +
+                "  </section>\n" +
+                "  \n" +
+                "  </section>\n" +
+                "    <section class=\"section-grid\">\n" +
+                "    <h2>Grid</h2>\n" +
+                "    <p>An electrical grid, or electric grid, is an interconnected network for delivering electricity from producers to consumers.</p>\n" +
                 "  </section>\n" +
                 "  \n" +
                 "   <section class=\"section-five\">\n" +

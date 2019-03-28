@@ -145,10 +145,10 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     houseRankHolder.studentHouseLayout.setVisibility(View.VISIBLE);
                     houseRankHolder.houseLayout.setVisibility(View.GONE);
                     houseRankHolder.studentHouseName.setText(challangeRankLists.get(position).getStudentName() + " " + "(You)");
-                    houseRankHolder.studentHousePoints.setText(challangeRankLists.get(position).getValue());
                     double covertValuetoDouble = Double.valueOf(challangeRankLists.get(0).getValue().replace(",", ""));
                     int seekbarMax = (int) covertValuetoDouble;
                     double covertProgressValuetoDouble = Double.valueOf(challangeRankLists.get(position).getValue().replace(",", ""));
+                    houseRankHolder.studentHousePoints.setText(String.format("%.0f", covertProgressValuetoDouble));
                     int seekbarProgress = (int) covertProgressValuetoDouble;
                     houseRankHolder.seekbarStudentHouse.setMax(seekbarMax);
                     houseRankHolder.seekbarStudentHouse.setProgress(seekbarProgress);
@@ -156,10 +156,10 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     houseRankHolder.studentHouseLayout.setVisibility(View.GONE);
                     houseRankHolder.houseLayout.setVisibility(View.VISIBLE);
                     houseRankHolder.houseName.setText(challangeRankLists.get(position).getStudentName());
-                    houseRankHolder.housePoints.setText(challangeRankLists.get(position).getValue());
                     double covertValuetoDouble = Double.valueOf(challangeRankLists.get(0).getValue().replace(",", ""));
                     int seekbarMax = (int) covertValuetoDouble;
                     double covertProgressValuetoDouble = Double.valueOf(challangeRankLists.get(position).getValue().replace(",", ""));
+                    houseRankHolder.housePoints.setText(String.format("%.0f", covertProgressValuetoDouble));
                     int seekbarProgress = (int) covertProgressValuetoDouble;
                     houseRankHolder.seekbarHouse.setMax(seekbarMax);
                     houseRankHolder.seekbarHouse.setProgress(seekbarProgress);

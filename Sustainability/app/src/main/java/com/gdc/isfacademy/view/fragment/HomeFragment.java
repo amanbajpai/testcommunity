@@ -427,7 +427,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_KEY));
 
             ProjectUtil.showLog(AppConstants.REQUEST, "" + call.request().url(), AppConstants.ERROR_LOG);
-
             call.enqueue(new Callback<BuildingEnergySaving>() {
                 @Override
                 public void onResponse(Call<BuildingEnergySaving> call, Response<BuildingEnergySaving> response) {
@@ -627,7 +626,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             ex.printStackTrace();
         }
 
-
     }
 
     private void setSeekbarforLastCycle(final float value) {
@@ -646,10 +644,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         }
                     });
                     anim.start();
+                 }
 
-                }
             }, 500);
         } catch (Exception ex) {
+
             ex.printStackTrace();
         }
 

@@ -77,6 +77,8 @@
     <string name="for_comparision">for comparison</string>
     <string name="select_other_item">Select other item</string>
     <string name="which_wastes">need to plant</string>
+
+
     <string name="dashboard">Leaderboard</string>
     <string name="friend">Friend</string>
     <string name="txt_cancel">Cancel</string>
@@ -96,7 +98,7 @@
     <string name="txt_compariosn_yesterday">Compared to the same time yesterday</string>
     <string name="txt_compariosn_last_cylce">Compared to the same time last cycle</string>
     <string name="txt_compariosn_last_month">Compared to the same time last month</string>
-    <string name="txt_details_carbon_foot_print">to balance out the carbon dioxide you produced</string>
+    <string name="txt_details_carbon_foot_print">to balance out the carbon dioxide you produced.</string>
 
     <string name="txt_green_scale_text_today">Today</string>
     <string name="txt_grey_scale_text_today">Yesterday</string>

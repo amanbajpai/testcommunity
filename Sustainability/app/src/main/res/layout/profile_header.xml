@@ -76,6 +76,23 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalScoreTv"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:text=""
+                        android:textColor="@color/home_bottom_card_text_color"
+                        android:textSize="@dimen/_11sdp"
+                        tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_marginLeft="@dimen/_4sdp"

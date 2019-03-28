@@ -60,7 +60,7 @@ public class ProfileFragment extends BaseFragment {
     private RecyclerView badge_recylerview;
     private BadgeAdapter badgeAdapter;
     private ArrayList<BadgeStudentResponse> badgeStudentResponsesNew;
-    private AppCompatTextView no_badges_alloted, energySavingTv, studentRankingTv, sharingtv;
+    private AppCompatTextView no_badges_alloted, energySavingTv, studentRankingTv, sharingtv,totalScoreTv;
     private CardView card_view_badges;
     private CardView cardViewFroStudentLog;
     private ImageView shareIcon, graphIcon, energyIcon;
@@ -107,6 +107,7 @@ public class ProfileFragment extends BaseFragment {
         shareIcon = (ImageView) view.findViewById(R.id.shareIcon);
         graphIcon = (ImageView) view.findViewById(R.id.graphIcon);
         energyIcon = (ImageView) view.findViewById(R.id.energyIcon);
+        totalScoreTv=(AppCompatTextView)view.findViewById(R.id.totalScoreTv);
         sharingtv = (AppCompatTextView) view.findViewById(R.id.sharingtv);
         studentRankingTv = (AppCompatTextView) view.findViewById(R.id.studentRankingTv);
         energySavingTv = (AppCompatTextView) view.findViewById(R.id.energySavingTv);
@@ -190,6 +191,11 @@ public class ProfileFragment extends BaseFragment {
                                 cardViewFroStudentLog.setVisibility(View.VISIBLE);
                                 logStudentResponses = response.body().getLogStudentResponses();
                                 adapter.setList(getActivity(), logStudentResponses);
+                                double value=0;
+                                for (int i=0;i<logStudentResponses.size();i++){
+                                    value=value+logStudentResponses.get(i).getValue();
+                                }
+                                totalScoreTv.setText("Your Score "+String.format("%.0f",value));
                             } else {
                                 cardViewFroStudentLog.setVisibility(View.GONE);
                             }
