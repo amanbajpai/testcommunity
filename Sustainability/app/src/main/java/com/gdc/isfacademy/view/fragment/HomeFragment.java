@@ -387,7 +387,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             currentCons = response.body().getCurrentCons();
-                            lastUpdatedTv.setText(getString(R.string.txt_last_updated)+ ProjectUtil.getDateCurrentTimeZone(currentCons.getLastUpdateTs()));
+                            lastUpdatedTv.setText(getString(R.string.txt_last_updated)+" "+ currentCons.getLastUpdateDate()+" "+ "03:30 PM");
                             setView(response.body());
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());

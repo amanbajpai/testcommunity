@@ -15,6 +15,7 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
+
 apply plugin: 'org.greenrobot.greendao'
 
 //noinspection GroovyMissingReturnStatement

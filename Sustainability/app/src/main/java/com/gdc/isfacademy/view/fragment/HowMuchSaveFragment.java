@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.application.ISFApp;
@@ -78,6 +80,7 @@ public class HowMuchSaveFragment extends BaseFragment implements
     private LinearLayout chartView;
     private ImageView rightArrowImagView;
     private double maxValue=0.0;
+    private double maxValueNew=0.0;
 
     public static HowMuchSaveFragment newInstance() {
         HowMuchSaveFragment howMuchSaveFragment = new HowMuchSaveFragment();
@@ -557,6 +560,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
                                     Log.e("valuesForSchool", "" + value);
                                     getYaxisValueForSchoolAvg.add(new Entry(value, i));
                                 }
+                                maxValueNew= response.body().getAvg().get(response.body().getAvg().size()-1).getValue();
+                                Log.e("maxValueNew",""+maxValueNew);
                             }
                             setData();
 
@@ -669,10 +674,19 @@ public class HowMuchSaveFragment extends BaseFragment implements
         leftAxis.setLabelCount(5, false);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setAxisMinValue(0f);// this replaces setStartAtZero(true)
-        if(maxValue>=0){
-            float f = (float) maxValue;
-            leftAxis.setAxisMaxValue(f+1);
+        if(maxValue>=maxValueNew){
+            if(maxValue>=0){
+                float f = (float) maxValue;
+                leftAxis.setAxisMaxValue(f+1);
+            }
         }
+        else {
+            if(maxValueNew>=0){
+                float f = (float) maxValueNew;
+                leftAxis.setAxisMaxValue(f+1);
+            }
+        }
+
 
 
 
@@ -690,8 +704,6 @@ public class HowMuchSaveFragment extends BaseFragment implements
         mChart.getXAxis().setLabelsToSkip(1);
         mChart.setData(data);
         mChart.invalidate();
-
-
     }
 
 

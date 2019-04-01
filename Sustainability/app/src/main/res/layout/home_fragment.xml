@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:ignore="Overdraw">
 
+
     <RelativeLayout
         android:id="@+id/home_layout"
         android:layout_width="match_parent"
@@ -54,7 +55,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_weight="0.94"
+            android:layout_weight="0.96"
             android:background="@android:color/white">
 
             <RelativeLayout
@@ -71,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:layout_toLeftOf="@+id/icon_user"
                         android:orientation="vertical"
                         tools:ignore="RtlHardcoded">
@@ -136,8 +137,8 @@
 
                     <ImageView
                         android:id="@+id/icon_user"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -206,8 +207,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_15sdp"
-                            android:layout_marginRight="@dimen/_15sdp">
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -218,7 +219,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentLeft="true"
-                                    android:layout_marginLeft="@dimen/_4sdp"
+                                    android:layout_marginLeft="@dimen/_15sdp"
                                     android:text="@string/txt_this_cycle"
                                     android:textColor="@color/home_bottom_card_text_color"
                                     android:textSize="@dimen/_10sdp"
@@ -229,8 +230,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
-                                    android:layout_marginLeft="@dimen/_8sdp"
-                                    android:layout_marginRight="@dimen/_4sdp"
+                                    android:layout_marginRight="@dimen/_6sdp"
                                     android:text=""
                                     android:textColor="@color/home_bottom_card_text_color"
                                     android:textSize="@dimen/_10sdp"
@@ -259,6 +259,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_above="@+id/lastUpdated"
                     android:id="@+id/progresBarLastCycle"
@@ -281,8 +282,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_15sdp">
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -294,7 +295,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:layout_marginLeft="@dimen/_15sdp"
                                 android:text="@string/txt_last_cycle"
                                 android:textColor="#8D959A"
                                 android:textSize="@dimen/_10sdp" />
@@ -305,8 +306,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="@dimen/_8sdp"
-                                android:layout_marginRight="@dimen/_4sdp"
+                                android:layout_marginRight="@dimen/_6sdp"
                                 android:text=""
                                 android:textColor="#8D959A"
                                 android:textSize="@dimen/_10sdp"
@@ -318,12 +318,12 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:layout_marginEnd="@dimen/_14sdp"
-                    android:layout_marginStart="@dimen/_14sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:orientation="horizontal"
                     android:id="@+id/lastUpdated"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

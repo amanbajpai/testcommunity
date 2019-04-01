@@ -311,14 +311,14 @@ public class AppConstants {
                 "    <h2>Cycle</h2>\n" +
                 "    <p>Think of a cycle as a new round of the game. A cycle lasts 10 days (just like in the ISF senior school calendar), then automatically restarts. </p>\n" +
                 "  \n" +
-                "  </section>\n" +
+               /* "  </section>\n" +
                 "  <section class=\"section-two\">\n" +
                 "    <h2>kW</h2>\n" +
                 "    <p>kW means kilowatt which is 1,000 Watts. It is a measure of power.Power (speed at which the energy is generated/used); this is how we measure the energy used in each room on the 3D map (as well as for the solar microgrid) and this updates every minute </p>\n" +
                 "    \n" +
-                "  </section>\n" +
+                "  </section>\n" +*/
                 "  <section class=\"section-three\">\n" +
-                "    <h2>kWh (coming soon)</h2>\n" +
+                "    <h2>kWh</h2>\n" +
                 "    <p>kWh stands for kilowatt-hour. A kWh is a measure of energy, not power.How much electrical energy is generated/used per period of time; this is how we measure your personal energy consumption over 24 hours </p>\n" +
                 "  </section>\n" +
                 "    <section class=\"section-four\">\n" +

@@ -496,6 +496,9 @@ public class ProjectUtil {
     }
 
     public static void logoutFromApp(Context context) {
+        if(context==null){
+            context=ISFApp.getAppInstance().getApplicationContext();
+        }
         try {
             ISFApp.getAppInstance().getDaoSession().getQuestionDao().deleteAll();
             MyPref.getInstance(context).clearPrefs();
@@ -806,7 +809,7 @@ public class ProjectUtil {
     public static String getDateCurrentTimeZone(long timestamp) {
         try{
             Calendar calendar = Calendar.getInstance();
-            TimeZone tz = TimeZone.getDefault();
+            TimeZone tz = TimeZone.getTimeZone("UTC");
             calendar.setTimeInMillis(timestamp);
             calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm a");

@@ -142,7 +142,6 @@ public class ProfileFragment extends BaseFragment {
         badge_recylerview.setAdapter(badgeAdapter);
         studentname.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_NAME));
         studentHouse.setText(MyPref.getInstance(getActivity()).readPrefs(AppConstants.STUDENT_HOUSE));
-
         adapter = new ProfileAdapter(context, logStudentResponses);
         recycler_view.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(context, LinearLayout.VERTICAL, false);
@@ -191,11 +190,11 @@ public class ProfileFragment extends BaseFragment {
                                 cardViewFroStudentLog.setVisibility(View.VISIBLE);
                                 logStudentResponses = response.body().getLogStudentResponses();
                                 adapter.setList(getActivity(), logStudentResponses);
-                                double value=0;
+                                int value=0;
                                 for (int i=0;i<logStudentResponses.size();i++){
-                                    value=value+logStudentResponses.get(i).getValue();
+                                    value= (int) (value+logStudentResponses.get(i).getValue());
                                 }
-                                totalScoreTv.setText("Your Score "+String.format("%.0f",value));
+                                totalScoreTv.setText("Your Score "+value);
                             } else {
                                 cardViewFroStudentLog.setVisibility(View.GONE);
                             }

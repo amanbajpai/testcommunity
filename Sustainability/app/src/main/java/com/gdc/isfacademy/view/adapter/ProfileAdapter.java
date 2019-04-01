@@ -99,9 +99,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
         }
 
         if (logStudentResponses.get(position).getValue() != null) {
-            //String points = new BigDecimal(logStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-            String value=String.format("%.0f", logStudentResponses.get(position).getValue());
+
+            int value=logStudentResponses.get(position).getValue().intValue();
             holder.points_log_tv.setText("+"+value+context.getString(R.string.txt_pts));
+
+
         }
 
         holder.date_log_tv.setText(toDate(Long.parseLong(logStudentResponses.get(position).getTs())));

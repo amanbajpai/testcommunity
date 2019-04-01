@@ -94,10 +94,15 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
                 } else if (value >= AppConstants.VALUE_ENERGY_SAVING_GOLD && value < AppConstants.VALUE_ENERGY_SAVING_HIDDEN) {
                     holder.iv_badge.setImageResource(R.drawable.energy_saving_gold_badge);
-                    float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+                  /*  float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
                     holder.seekBarText.setText("" + valueCheck + "/" + ProjectUtil.getValue(AppConstants.VALUE_ENERGY_SAVING_HIDDEN));
                     holder.seekbar.setMax((int) AppConstants.VALUE_ENERGY_SAVING_HIDDEN);
-                    holder.seekbar.setProgress((int) valueCheck);
+                    holder.seekbar.setProgress((int) valueCheck);*/
+
+                    holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                    holder.seekbar.setVisibility(View.GONE);
+                    float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                    holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
 
                 } else if (value >= AppConstants.VALUE_ENERGY_SAVING_HIDDEN) {
                     holder.hiddenBadgeView.setVisibility(View.VISIBLE);
@@ -141,10 +146,14 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
                 } else if (value >= AppConstants.VALUE_QUIZHOLIC_GOLDE && value < AppConstants.VALUE_QUIZHOLIC_HIDDEN) {
                     holder.iv_badge.setImageResource(R.drawable.quiz_holic_gold_badge);
-                    float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                   /* float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
                     holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_QUIZHOLIC_HIDDEN));
                     holder.seekbar.setMax((int) AppConstants.VALUE_QUIZHOLIC_HIDDEN);
-                    holder.seekbar.setProgress((int) valueCheck);
+                    holder.seekbar.setProgress((int) valueCheck);*/
+                    holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                    holder.seekbar.setVisibility(View.GONE);
+                    float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                    holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
 
                 } else if (value >= AppConstants.VALUE_QUIZHOLIC_HIDDEN) {
                     holder.hiddenBadgeView.setVisibility(View.VISIBLE);
@@ -187,10 +196,16 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
             } else if (value >= AppConstants.VALUE_PERSISTANT_GOLD && value < AppConstants.VALUE_PERSISTANT_HIDDEN) {
                 holder.iv_badge.setImageResource(R.drawable.persitent_gold_badge);
-                float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+              /*  float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                 holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_PERSISTANT_HIDDEN));
                 holder.seekbar.setMax((int) AppConstants.VALUE_PERSISTANT_HIDDEN);
-                holder.seekbar.setProgress((int) valueCheck);
+                holder.seekbar.setProgress((int) valueCheck);*/
+
+                holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                holder.seekbar.setVisibility(View.GONE);
+                float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
+
 
             } else if (value >= AppConstants.VALUE_PERSISTANT_HIDDEN) {
                 holder.hiddenBadgeView.setVisibility(View.VISIBLE);
@@ -232,10 +247,16 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
             } else if (value >= AppConstants.VALUE_PERFECTION_GOLD && value < AppConstants.VALUE_PERFECTION_HIDDEN) {
                 holder.iv_badge.setImageResource(R.drawable.perfection_gold_badge);
-                float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+                /*float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                 holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_PERFECTION_HIDDEN));
                 holder.seekbar.setMax((int) AppConstants.VALUE_PERFECTION_HIDDEN);
-                holder.seekbar.setProgress((int) valueCheck);
+                holder.seekbar.setProgress((int) valueCheck);*/
+
+                holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                holder.seekbar.setVisibility(View.GONE);
+                float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
+
 
             } else if (value >= AppConstants.VALUE_PERFECTION_HIDDEN) {
                 holder.hiddenBadgeView.setVisibility(View.VISIBLE);
@@ -276,10 +297,16 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
             } else if (value >= AppConstants.VALUE_BROADCASTER_GOLD && value < AppConstants.VALUE_BROADCASTER_HIDDEN) {
                 holder.iv_badge.setImageResource(R.drawable.brodcaster_gold_badge);
-                float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+                /*float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                 holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_BROADCASTER_HIDDEN));
                 holder.seekbar.setMax((int) AppConstants.VALUE_BROADCASTER_HIDDEN);
-                holder.seekbar.setProgress((int) valueCheck);
+                holder.seekbar.setProgress((int) valueCheck);*/
+
+                holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                holder.seekbar.setVisibility(View.GONE);
+                float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
+
             } else if (value >= AppConstants.VALUE_BROADCASTER_HIDDEN) {
                 holder.hiddenBadgeView.setVisibility(View.VISIBLE);
                 holder.seekbar.setVisibility(View.GONE);
@@ -320,10 +347,16 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
             } else if (value >= AppConstants.VALUE_FRIENDLY_GOLD && value < AppConstants.VALUE_FRIENDLY_HIDDEN) {
                 holder.iv_badge.setImageResource(R.drawable.friendly_gold_badge);
-                float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+               /* float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                 holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_FRIENDLY_HIDDEN));
                 holder.seekbar.setMax((int) AppConstants.VALUE_FRIENDLY_HIDDEN);
-                holder.seekbar.setProgress((int) valueCheck);
+                holder.seekbar.setProgress((int) valueCheck);*/
+
+                holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                holder.seekbar.setVisibility(View.GONE);
+                float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
+
 
             } else if (value >= AppConstants.VALUE_FRIENDLY_HIDDEN) {
                 holder.hiddenBadgeView.setVisibility(View.VISIBLE);
@@ -364,10 +397,16 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
             } else if (value >= AppConstants.VALUE_LEGENDARY_GOLD && value < AppConstants.VALUE_LEGENDARY_HIDDEN) {
                 holder.iv_badge.setImageResource(R.drawable.legendary_gold_badge);
-                float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+              /*  float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                 holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_LEGENDARY_HIDDEN));
                 holder.seekbar.setMax((int) AppConstants.VALUE_LEGENDARY_HIDDEN);
-                holder.seekbar.setProgress((int) valueCheck);
+                holder.seekbar.setProgress((int) valueCheck);*/
+
+                holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                holder.seekbar.setVisibility(View.GONE);
+                float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
+
 
             } else if (value >= AppConstants.VALUE_LEGENDARY_HIDDEN) {
                 holder.hiddenBadgeView.setVisibility(View.VISIBLE);
@@ -409,10 +448,16 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
             } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_GOLD && value < AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN) {
                 holder.iv_badge.setImageResource(R.drawable.superior_gold_badge);
-                float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+              /*  float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                 holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN));
                 holder.seekbar.setMax((int) AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN);
-                holder.seekbar.setProgress((int) valueCheck);
+                holder.seekbar.setProgress((int) valueCheck);*/
+
+                holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                holder.seekbar.setVisibility(View.GONE);
+                float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
+
 
             } else if (value >= AppConstants.VALUE_SUPERIOR_SPECLIST_HIDDEN) {
                 holder.hiddenBadgeView.setVisibility(View.VISIBLE);
@@ -453,10 +498,16 @@ public class BadgeDetailAdapter extends RecyclerView.Adapter<BadgeDetailAdapter.
 
             } else if (value >= AppConstants.VALUE_CHAMPION_GOLD && value < AppConstants.VALUE_CHAMPION_HIDDEN) {
                 holder.iv_badge.setImageResource(R.drawable.champion_gold_badge);
-                float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
+              /*  float valueCheck = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
                 holder.seekBarText.setText("" + ProjectUtil.getValue(valueCheck) + "/" + ProjectUtil.getValue(AppConstants.VALUE_CHAMPION_HIDDEN));
                 holder.seekbar.setMax((int) AppConstants.VALUE_CHAMPION_HIDDEN);
-                holder.seekbar.setProgress((int) valueCheck);
+                holder.seekbar.setProgress((int) valueCheck);*/
+
+                holder.hiddenBadgeView.setVisibility(View.VISIBLE);
+                holder.seekbar.setVisibility(View.GONE);
+                float valueCheckGold = new BigDecimal(badgeStudentResponses.get(position).getValue()).setScale(0, BigDecimal.ROUND_HALF_UP).floatValue();
+                holder.seekBarText.setText("" + valueCheckGold+"/"+"?????");
+
 
             } else if (value >= AppConstants.VALUE_CHAMPION_HIDDEN) {
                 holder.hiddenBadgeView.setVisibility(View.VISIBLE);

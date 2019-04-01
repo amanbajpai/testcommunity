@@ -44,11 +44,11 @@ public class SplashActivity extends AppCompatActivity {
                     if(MyPref.getInstance(mContext).readPrefs(AppConstants.STUDENT_KEY).
                             equalsIgnoreCase("")){
                         startActivity(new Intent(mContext, LoginActivity.class), ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
-                        finishAfterTransition();
+                        finish();
                     }
                     else {
                         startActivity(new Intent(mContext, HomeActivity.class), ActivityOptions.makeCustomAnimation(mContext,R.anim.slide_in,R.anim.slide_out).toBundle());
-                        finishAfterTransition();
+                        finish();
                     }
 
 
