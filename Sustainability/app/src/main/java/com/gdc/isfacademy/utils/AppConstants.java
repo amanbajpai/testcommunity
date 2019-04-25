@@ -126,7 +126,7 @@ public class AppConstants {
     public static final String PRIVACY_POLICY_URL = "https://www.energybox.com/privacy-policy/";
     public static final String REAL_TIME_SITE = "http://webxr.s3-accelerate.amazonaws.com/ISF/index.html?l=true";
 
-    public static final String FORGOT_PASSWORD = "https://powerschool.isf.edu.hk/public/account_recovery_begin.html";
+    public static final String FORGOT_PASSWORD = "https://mypw.isf.edu.hk/accounts/Reset";
     public static final String USED_REWARD = "USED";
     public static final String ACTIVE_REWARD = "ACTIVE";
 
@@ -182,7 +182,7 @@ public class AppConstants {
                 "  <section class=\"section-start\">\n" +
                 "    <h2>Hi, I’m the ISF Sustainability app.</h2>\n" +
                 "    <p>I’ve been designed by students, teachers and energy heroes to make sustainability the name of the game, every day.</p>\n" +
-                "    <p>Are you up for the challenge?Get ready to prove it.</p>\n" +
+                "    <p>Are you up for the challenge? Get ready to prove it.</p>\n" +
                 "   </section>\n" +
                 "  <section class=\"section-one\">\n" +
                 "    <h2>How does the app work?</h2>\n" +
@@ -225,7 +225,7 @@ public class AppConstants {
                 "  \n" +
                 "  <section class=\"section-seven\">\n" +
                 "    <h2>What are ‘badges’?</h2>\n" +
-                "    <p>Badges are milestones that recognise your achievements on your sustainability journey. You can check out the ‘Badges’ section under your Profile to see what you’ve earned. Each badge has different levels, so once you’ve earned one—keep up the good work! </p>\n" +
+                "    <p>Badges are milestones that recognise your achievements on your sustainability journey. You can check out the ‘Badges’ section under your Profile to see what you’ve earned. Each badge has different levels.</p>\n" +
                 "  </section>\n" +
                 "  \n" +
                 "  <section class=\"section-img\">\n" +
@@ -234,10 +234,7 @@ public class AppConstants {
                 "  \n" +
                 "  <section class=\"section-eight\">\n" +
                 "    <h2>How do I add friends?</h2>\n" +
-                "    <p>Great question! It’s important to add friends to your app, as you can earn points every time you share your results with them.</p>\n" +
-                "\n" +
-                "<p>You can add friends by sending a friend request to their school email address. You can only add friends who have an ISF email address. </p>\n" +
-                "  </section>\n" +
+                "    <p>Great question!  You can add friends by sending a friend request to their school email address.  You can only add friends who have an ISF email address.</p>\n" +
                 "  \n" +
                 "    <section class=\"section-nine\">\n" +
                 "    <h2>How do rankings work?</h2>\n" +
@@ -329,7 +326,7 @@ public class AppConstants {
                 "  </section>\n" +
                 "    <section class=\"section-grid\">\n" +
                 "    <h2>Grid</h2>\n" +
-                "    <p>An electrical grid, or electric grid, is an interconnected network for delivering electricity from producers to consumers.</p>\n" +
+                "    <p>An electrical grid, or electric grid, is an interconnected network for delivering electricity from producers to consumers.  For ISF, this means getting energy from the city’s main electrical grid which obtains energy from burning fossil fuels.</p>\n" +
                 "  </section>\n" +
                 "  \n" +
                 "   <section class=\"section-five\">\n" +
@@ -344,7 +341,7 @@ public class AppConstants {
                 "  \n" +
                 "  <section class=\"section-seven\">\n" +
                 "    <h2>Badges</h2>\n" +
-                "    <p>Badges are milestones that recognise your achievements on your sustainability journey. You can check out the ‘Badges’ section under your Profile to see what you’ve earned. Each badge has different levels, so once you’ve earned one—keep up the good work! </p>\n" +
+                "    <p>Badges are milestones that recognise your achievements on your sustainability journey. You can check out the ‘Badges’ section under your Profile to see what you’ve earned. Each badge has different levels.</p>\n" +
                 "  </section>\n" +
                 "  \n" +
                 "  <section class=\"section-eight\">\n" +

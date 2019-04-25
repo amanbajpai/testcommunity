@@ -15,8 +15,10 @@ import android.widget.SeekBar;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.ChallangeRankList;
 import com.gdc.isfacademy.utils.AppConstants;
+import com.gdc.isfacademy.utils.ProjectUtil;
 import com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 
@@ -148,7 +150,11 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     double covertValuetoDouble = Double.valueOf(challangeRankLists.get(0).getValue().replace(",", ""));
                     int seekbarMax = (int) covertValuetoDouble;
                     double covertProgressValuetoDouble = Double.valueOf(challangeRankLists.get(position).getValue().replace(",", ""));
-                    houseRankHolder.studentHousePoints.setText(String.format("%.0f", covertProgressValuetoDouble));
+                    double currentValueFinal = Double.parseDouble(challangeRankLists.get(position).getValue().replace(",", ""));
+                    int valueInt= (int) currentValueFinal;
+                    houseRankHolder.studentHousePoints.setText(""+ProjectUtil.getFormatedAmount(valueInt));
+
+                    //  houseRankHolder.studentHousePoints.setText(String.format("%.0f", covertProgressValuetoDouble));
                     int seekbarProgress = (int) covertProgressValuetoDouble;
                     houseRankHolder.seekbarStudentHouse.setMax(seekbarMax);
                     houseRankHolder.seekbarStudentHouse.setProgress(seekbarProgress);
@@ -158,11 +164,16 @@ public class ChallengeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     houseRankHolder.houseName.setText(challangeRankLists.get(position).getStudentName());
                     double covertValuetoDouble = Double.valueOf(challangeRankLists.get(0).getValue().replace(",", ""));
                     int seekbarMax = (int) covertValuetoDouble;
-                    double covertProgressValuetoDouble = Double.valueOf(challangeRankLists.get(position).getValue().replace(",", ""));
-                    houseRankHolder.housePoints.setText(String.format("%.0f", covertProgressValuetoDouble));
+                    double covertProgressValuetoDouble = Double.valueOf(challangeRankLists.get(position).getValue().replace(",", ""));;
+                 //   houseRankHolder.housePoints.setText(String.format("%.0f", covertProgressValuetoDouble));
                     int seekbarProgress = (int) covertProgressValuetoDouble;
                     houseRankHolder.seekbarHouse.setMax(seekbarMax);
                     houseRankHolder.seekbarHouse.setProgress(seekbarProgress);
+
+                    double currentValueFinal = Double.parseDouble(challangeRankLists.get(position).getValue().replace(",", ""));
+                    int valueInt= (int) currentValueFinal;
+                    houseRankHolder.housePoints.setText(""+ProjectUtil.getFormatedAmount(valueInt));
+
                 }
 
                 houseRankHolder.seekbarHouse.setOnTouchListener(new View.OnTouchListener() {

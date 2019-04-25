@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.gdc.isfacademy.R;
 import com.gdc.isfacademy.model.LogStudentResponse;
 import com.gdc.isfacademy.utils.AppConstants;
+import com.gdc.isfacademy.utils.ProjectUtil;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -101,7 +102,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.Holder> 
         if (logStudentResponses.get(position).getValue() != null) {
 
             int value=logStudentResponses.get(position).getValue().intValue();
-            holder.points_log_tv.setText("+"+value+context.getString(R.string.txt_pts));
+            holder.points_log_tv.setText("+"+ ProjectUtil.getFormatedAmount(value)+context.getString(R.string.txt_pts));
 
 
         }

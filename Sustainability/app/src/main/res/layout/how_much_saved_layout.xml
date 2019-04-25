@@ -345,13 +345,15 @@
 
                         <com.gdc.isfacademy.view.customs.customfonts.OpenSansLightTextview
                             android:id="@+id/value_carbon"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_centerVertical="true"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/_2sdp"
+                            android:layout_toRightOf="@+id/carbon_foot_label"
                             android:layout_toLeftOf="@+id/unitCarbon"
-                            android:maxLength="6"
-                            android:text="45.7"
+                            android:maxLines="1"
+                            android:gravity="end"
+                            android:ellipsize="end"
                             android:textColor="@color/color_text_and_spinner"
                             android:textSize="@dimen/_25sdp"
                             tools:ignore="RelativeOverlap,RtlHardcoded" />

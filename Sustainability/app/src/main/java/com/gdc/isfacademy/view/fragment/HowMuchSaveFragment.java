@@ -79,8 +79,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
     private String dateEnergySaving;
     private LinearLayout chartView;
     private ImageView rightArrowImagView;
-    private double maxValue=0.0;
-    private double maxValueNew=0.0;
+    private double maxValue = 0.0;
+    private double maxValueNew = 0.0;
 
     public static HowMuchSaveFragment newInstance() {
         HowMuchSaveFragment howMuchSaveFragment = new HowMuchSaveFragment();
@@ -421,8 +421,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
                             if (response.body().getCo2().getValue() != null && !response.body().getCo2().getValue().equalsIgnoreCase("")) {
                                 try {
                                     unitCarbon.setText(response.body().getCo2().getUnit());
-                                    String value = new BigDecimal(response.body().getCo2().getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                                    valueCarbon.setText(value);
+                                    float value = new BigDecimal(response.body().getCo2().getValue()).setScale(1, BigDecimal.ROUND_HALF_DOWN).floatValue();
+                                    valueCarbon.setText(ProjectUtil.getFormatedAmount(value));
 
                                 } catch (Throwable e) {
                                     e.printStackTrace();
@@ -432,8 +432,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
                             }
                             if (response.body().getTree().getValue() != null && !response.body().getTree().getValue().equalsIgnoreCase("")) {
                                 try {
-                                    String value = new BigDecimal(response.body().getTree().getValue()).setScale(1, BigDecimal.ROUND_HALF_UP).toString();
-                                    valueTree.setText(getString(R.string.txt_x) + "" + value);
+                                    float value = new BigDecimal(response.body().getTree().getValue()).setScale(1, BigDecimal.ROUND_HALF_DOWN).floatValue();
+                                    valueTree.setText(getString(R.string.txt_x) + "" + ProjectUtil.getFormatedAmount(value));
                                 } catch (Throwable e) {
                                     e.printStackTrace();
                                 }
@@ -508,8 +508,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
                                     }
                                     Log.e("xAxisDateFromStudent", "" + ProjectUtil.toDate(Long.parseLong(response.body().getStudent().get(i).getTs())));
                                 }
-                               maxValue= response.body().getStudent().get(response.body().getStudent().size()-1).getValue();
-                                Log.e("maxValue",""+maxValue);
+                                maxValue = response.body().getStudent().get(response.body().getStudent().size() - 1).getValue();
+                                Log.e("maxValue", "" + maxValue);
                             } else {
                                 for (int i = 0; i < response.body().getAvg().size(); i++) {
                                     if (i == response.body().getStudent().size() - 1) {
@@ -523,8 +523,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
 
 
                                 }
-                                maxValue= response.body().getStudent().get(response.body().getAvg().size()-1).getValue();
-                                Log.e("maxValue",""+maxValue);
+                                maxValue = response.body().getStudent().get(response.body().getAvg().size() - 1).getValue();
+                                Log.e("maxValue", "" + maxValue);
 
                             }
 
@@ -560,8 +560,8 @@ public class HowMuchSaveFragment extends BaseFragment implements
                                     Log.e("valuesForSchool", "" + value);
                                     getYaxisValueForSchoolAvg.add(new Entry(value, i));
                                 }
-                                maxValueNew= response.body().getAvg().get(response.body().getAvg().size()-1).getValue();
-                                Log.e("maxValueNew",""+maxValueNew);
+                                maxValueNew = response.body().getAvg().get(response.body().getAvg().size() - 1).getValue();
+                                Log.e("maxValueNew", "" + maxValueNew);
                             }
                             setData();
 
@@ -674,20 +674,17 @@ public class HowMuchSaveFragment extends BaseFragment implements
         leftAxis.setLabelCount(5, false);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setAxisMinValue(0f);// this replaces setStartAtZero(true)
-        if(maxValue>=maxValueNew){
-            if(maxValue>=0){
+        if (maxValue >= maxValueNew) {
+            if (maxValue >= 0) {
                 float f = (float) maxValue;
-                leftAxis.setAxisMaxValue(f+1);
+                leftAxis.setAxisMaxValue(f + 1);
             }
-        }
-        else {
-            if(maxValueNew>=0){
+        } else {
+            if (maxValueNew >= 0) {
                 float f = (float) maxValueNew;
-                leftAxis.setAxisMaxValue(f+1);
+                leftAxis.setAxisMaxValue(f + 1);
             }
         }
-
-
 
 
         // set data

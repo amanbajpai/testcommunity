@@ -109,6 +109,8 @@
                    android:textColor="@color/color_text_and_spinner"
                    android:id="@+id/points_log_tv"
                    android:gravity="end"
+                   android:ellipsize="end"
+                   android:maxLines="1"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
                    android:text="+288.00pts"

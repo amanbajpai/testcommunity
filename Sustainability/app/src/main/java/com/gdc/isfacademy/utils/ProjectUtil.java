@@ -52,10 +52,12 @@ import com.gdc.isfacademy.view.customs.customfonts.OpenSansSemiBoldTextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
@@ -821,4 +823,10 @@ public class ProjectUtil {
     }
 
 
+    public static String getFormatedAmount(float amount){
+        return NumberFormat.getNumberInstance(Locale.getDefault()).format(amount);
+    }
+    public static String getFormatedAmount(double amount){
+        return NumberFormat.getNumberInstance(Locale.getDefault()).format(amount);
+    }
 }

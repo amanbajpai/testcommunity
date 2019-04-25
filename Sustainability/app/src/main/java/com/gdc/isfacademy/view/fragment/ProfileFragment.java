@@ -194,7 +194,7 @@ public class ProfileFragment extends BaseFragment {
                                 for (int i=0;i<logStudentResponses.size();i++){
                                     value= (int) (value+logStudentResponses.get(i).getValue());
                                 }
-                                totalScoreTv.setText("Your Score "+value);
+                                totalScoreTv.setText("Your Score "+ProjectUtil.getFormatedAmount(value));
                             } else {
                                 cardViewFroStudentLog.setVisibility(View.GONE);
                             }

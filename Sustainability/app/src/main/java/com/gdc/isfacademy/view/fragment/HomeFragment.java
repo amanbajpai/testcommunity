@@ -68,14 +68,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     AppCompatTextView studentHouse, currentCosumptionDate;
     EnergySavingResponse.CurrentCons currentCons;
     ImageView percentArrow, buildingEnergyStatusArrow;
-    AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding,greenScaleText,greyScaleText;
+    AppCompatTextView zerpPercentSave, zeroPercentSavedBuilding, greenScaleText, greyScaleText;
     AppCompatSpinner spinner;
     String thisWeekStatusValue, lastWeekStatusValue;
     LinearLayout chartView;
     BarChart mChart;
     private RelativeLayout how_much_save_rl;
     private TextView thisWeekStatus, lastWeekStatus, buildingThisWeekStatus,
-            buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv,lastUpdatedTv;
+            buildingLastWeekStatus, percentTextview, buildingPercentTextview, comparison_tv, lastUpdatedTv;
 
     public static HomeFragment newInstance() {
         HomeFragment homeFragment = new HomeFragment();
@@ -119,9 +119,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mChart.invalidate();
 
         spinner = (AppCompatSpinner) layout.findViewById(R.id.spinner);
-        lastUpdatedTv=(AppCompatTextView)layout.findViewById(R.id.lastUpdatedTv);
-        greenScaleText=(AppCompatTextView)layout.findViewById(R.id.greenScaleText);
-        greyScaleText=(AppCompatTextView)layout.findViewById(R.id.greyScaleText);
+        lastUpdatedTv = (AppCompatTextView) layout.findViewById(R.id.lastUpdatedTv);
+        greenScaleText = (AppCompatTextView) layout.findViewById(R.id.greenScaleText);
+        greyScaleText = (AppCompatTextView) layout.findViewById(R.id.greyScaleText);
         comparison_tv = (AppCompatTextView) layout.findViewById(R.id.comparuison_tv);
         currentCosumptionDate = (AppCompatTextView) layout.findViewById(R.id.currentCosumptionDate);
         zerpPercentSave = (AppCompatTextView) layout.findViewById(R.id.zeroPercentSaved);
@@ -185,6 +185,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mChart.setDoubleTapToZoomEnabled(false);
 
         mChart.setDescription("");
+        Log.e("currentValue", "" + currentCycle);
+        Log.e("lastCycleValue", "" + lastCycle);
+
 
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
@@ -245,7 +248,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         set1.setBarSpacePercent(35f);
         set1.setColors(new int[]{ContextCompat.getColor(getActivity(), R.color.color_text_and_spinner),
                 ContextCompat.getColor(getActivity(), R.color.dark_gray)});
-         set1.setHighlightEnabled(false);
+        set1.setHighlightEnabled(false);
 
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
@@ -264,8 +267,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             }
         });
 
-
-
         mChart.setData(data);
         mChart.invalidate();
         mChart.getLegend().setEnabled(false);
@@ -276,21 +277,21 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     public float setRatio(float value) {
         if (value >= 0 && value <= 5) {
-            return  5;
+            return 5;
         } else if (value > 5 && value <= 10) {
-            return  10;
+            return 10;
         } else if (value > 10 && value <= 20) {
-            return  20;
+            return 20;
         } else if (value > 20 && value <= 50) {
             return 25;
         } else if (value > 50 && value <= 100) {
             return 50;
         } else if (value > 100 && value <= 1000) {
-            return  200;
-        }  else if (value > 1000 && value <= 2000) {
-            return   200;
+            return 200;
+        } else if (value > 1000 && value <= 2000) {
+            return 200;
         }
-        return  500;
+        return 500;
     }
 
 
@@ -387,7 +388,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     if (response.body() != null) {
                         if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.RESPONSE_CODE_SUCCUSS)) {
                             currentCons = response.body().getCurrentCons();
-                            lastUpdatedTv.setText(getString(R.string.txt_last_updated)+" "+ currentCons.getLastUpdateDate()+" "+ "03:30 PM");
+                            lastUpdatedTv.setText(getString(R.string.txt_last_updated) + " " + currentCons.getLastUpdateDate() + " " + "03:30 PM");
                             setView(response.body());
                         } else if (response.body().getResponseCode().equalsIgnoreCase(AppConstants.ERROR_CODE_STUDENT_KEY_NOT_MATCHED)) {
                             ProjectUtil.logoutFromApp(getActivity());
@@ -472,7 +473,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             float currentValueFinal = new BigDecimal(response.getCurrentCons().getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
             float lastValueFinal = new BigDecimal(response.getLastWeekCons().getValue()).setScale(2, BigDecimal.ROUND_DOWN).floatValue();
 
-
+            String a = ProjectUtil.getFormatedAmount(currentValueFinal)+" "+unit;
+            String b = ProjectUtil.getFormatedAmount(lastValueFinal)+" "+unit;
+            Log.e("default",""+a);
+            Log.e("default",""+b);
             String currentCons = String.format(Locale.getDefault(), "%.2f %s", currentValueFinal, unit);
             String lastWeekCons = String.format(Locale.getDefault(), "%.2f %s", lastValueFinal, unit);
 
@@ -508,7 +512,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             String actualConsSave = String.format(Locale.getDefault(), "%d%s", (ProjectUtil.math(actualSaving)), "%");
             buildingPercentTextview.setText(actualConsSave);
 
-            setDataForChart(currentValue, lastValue, currentCons, lastWeekCons);
+            setDataForChart(currentValue, lastValue, a, b);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -522,6 +526,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
             Float currentValue = response.getCurrentCons().getValue();
             Float lastValue = response.getLastWeekCons().getValue();
+            float currentValueFinal = new BigDecimal(currentValue).setScale(2, BigDecimal.ROUND_HALF_DOWN).floatValue();
+            float lastValueFinal = new BigDecimal(lastValue).setScale(2, BigDecimal.ROUND_HALF_DOWN).floatValue();
 
 
             currentCosumptionDate.setText(getString(R.string.txt_up_to) + " " + response.getCurrentCons().getLastUpdateDate());
@@ -538,8 +544,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             Log.d("time is",result);*/
 
 
-            thisWeekStatusValue = String.format(Locale.getDefault(), "%.2f %s", currentValue, unit);
-            lastWeekStatusValue = String.format(Locale.getDefault(), "%.2f %s", lastValue, unit);
+            thisWeekStatusValue = ProjectUtil.getFormatedAmount(currentValueFinal)+" "+unit;
+            lastWeekStatusValue = ProjectUtil.getFormatedAmount(lastValueFinal)+" "+unit;
 
             thisWeekStatus.setText(thisWeekStatusValue);
             lastWeekStatus.setText(lastWeekStatusValue);
@@ -644,7 +650,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         }
                     });
                     anim.start();
-                 }
+                }
 
             }, 500);
         } catch (Exception ex) {
@@ -672,6 +678,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
         call.enqueue(new Callback<CommonResponse>() {
             @Override
+
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                 ProjectUtil.showLog(AppConstants.RESPONSE, "" + new Gson().toJson(response.body()), AppConstants.ERROR_LOG);
                 hideProgressDialog();

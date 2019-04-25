@@ -76,7 +76,7 @@
     <string name="which_equals_to">Which equals to</string>
     <string name="for_comparision">for comparison</string>
     <string name="select_other_item">Select other item</string>
-    <string name="which_wastes">need to plant</string>
+    <string name="which_wastes">You need to plant</string>
 
 
     <string name="dashboard">Leaderboard</string>
@@ -153,7 +153,7 @@
     <string name="txt_hint_email_content"> Hi(aakash sharma),this is ashish sending you a friend request.</string>
     <string name="txt_Send_btn">Send</string>
     <string name="txt_share_app_link_for_download">Share app link to friend for download</string>
-    <string name="txt_no_friend_available">Please check the email address is correct.Only friends with an ISF email address can be added.\n</string>
+    <string name="txt_no_friend_available">Please check the email address is correct. Only friends who have logged into the app with an ISF email address can be added. \n</string>
     <string name="txt_hello">Hello this is</string>
     <string name="txt_sending_app_link">sending app link to download so i can add you as a friend \n </string>
     <string name="txt_download_app_link">Would you like to share download link to friend?</string>
@@ -214,7 +214,7 @@
     <string name="txt_three">Why you leave light on eh?!</string>
     <string name="txt_four">The AC is cooler than you!</string>
     <string name="txt_five">Save Energy!!</string>
-    <string name="txt_six">Remember to switch off your lights when you are not using it.</string>
+    <string name="txt_six">Remember to switch off your lights when you are not using them.</string>
 
 
     <!--Badge Allotment Screen-->

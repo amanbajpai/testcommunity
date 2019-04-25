@@ -1,9 +1,11 @@
 package com.gdc.isfacademy.view.activity;
 
+import android.net.http.SslError;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -66,6 +68,11 @@ public class ForgotPasswordActivity extends BaseActivity {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             hideProgressDialog();
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed(); // Ignore SSL certificate errors
         }
     }
 }
