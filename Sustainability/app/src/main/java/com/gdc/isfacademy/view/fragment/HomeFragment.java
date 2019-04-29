@@ -551,12 +551,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             lastWeekStatus.setText(lastWeekStatusValue);
 
 
-            if (lastValue > currentValue) {
+            if (lastValue >= currentValue) {
                 seekbar_last_cycle.setProgress(100);
                 float percentage = (currentValue * 100 / lastValue);
                 setSeekbarValue(percentage);
 
-            } else if (currentValue > lastValue) {
+            } else if (currentValue >= lastValue) {
                 seekbar.setProgress(100);
                 float percentage = (lastValue * 100 / currentValue);
                 setSeekbarforLastCycle(percentage);

@@ -306,7 +306,7 @@ public class AppConstants {
                 "  <hr>\n" +
                 "  <section class=\"section-one\">\n" +
                 "    <h2>Cycle</h2>\n" +
-                "    <p>Think of a cycle as a new round of the game. A cycle lasts 10 days (just like in the ISF senior school calendar), then automatically restarts. </p>\n" +
+                "    <p>Think of a cycle as a new round of the game. A cycle lasts 14 days (just like in the ISF senior school calendar), then automatically restarts. </p>\n" +
                 "  \n" +
                /* "  </section>\n" +
                 "  <section class=\"section-two\">\n" +
