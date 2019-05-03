@@ -20,7 +20,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 //noinspection GroovyMissingReturnStatement
 android {
-    compileSdkVersion 25
+    compileSdkVersion 27
     buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.energybox.isf"
